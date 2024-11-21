@@ -1,6 +1,7 @@
 function toggleLanguage() {
     if (localStorage.getItem("language") == null) {
         localStorage.setItem("language", "en");
+        location.href = "/en";
         return;
     }
     if (localStorage.getItem("language") === "en") {
