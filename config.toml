@@ -1,0 +1,47 @@
+theme = "apollo"
+default_language = "de"
+taxonomies = [{ name = "tags" }]
+generate_feeds = true
+feed_filenames = ["rss.xml"]
+minify_html = true
+base_url = "https://simeon.staneks.de"
+title = "Simeon's Blog"
+description = "lieber unperfekt starten als perfekt warten"
+
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = false
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+[markdown]
+highlight_code = true
+highlight_theme = "ayu-light"
+
+[extra]
+theme = "toggle"
+socials = [
+   { name = "mastodon", url = "https://indieweb.social/@simerl", icon = "mastodon" },
+    { name = "github", url = "https://github.com/SimeonLukas", icon = "github" },
+]
+menu = [
+  { name = "/posts", url = "/posts", weight = 1 },
+    { name = "/pages", url = "/pages", weight = 1 },
+    { name = "/about", url = "/pages/about", weight = 2 },
+    { name = "/tags", url = "/tags", weight = 3 },
+]
+fancy_code = true
+dynamic_note = true
+section_path = "/posts"
+404 = "Da is nix :("
+[translations]
+[languages.en]
+title = "Blog by Simeon"
+description = "It's better to start imperfectly than wait perfectly"
+taxonomies = [{ name = "tags" }]
+generate_feeds = true
+feed_filenames = ["rss.xml"]
+[languages.en.translations]
+404 = "There's nothing here :("
+
