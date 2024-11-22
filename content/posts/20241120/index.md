@@ -6,6 +6,9 @@ template = "page.html"
 
 [taxonomies]
 tags = ["software", "hardware", "work", "html", "css", "javascript", "arduino", "raspberry-pi", "atmega32u4", "n8n", "php"]
+
+[extra]
+image = "https://simeon.staneks.de/posts/20241120/images/screenshot.jpeg"
 +++
 
 # Genese

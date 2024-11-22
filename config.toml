@@ -21,6 +21,7 @@ highlight_theme = "ayu-light"
 
 [extra]
 theme = "toggle"
+toc = true
 socials = [
    { name = "mastodon", url = "https://indieweb.social/@simerl", icon = "mastodon" },
     { name = "github", url = "https://github.com/SimeonLukas", icon = "github" },
@@ -32,6 +33,7 @@ menu = [
     { name = "/about", url = "/pages/about", weight = 2 },
     { name = "/tags", url = "/tags", weight = 3 },
 ]
+favicon = "https://simeon.staneks.de/android-chrome-512x512.png"
 fancy_code = true
 dynamic_note = true
 section_path = "/posts"

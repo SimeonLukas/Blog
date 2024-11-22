@@ -38,6 +38,7 @@ function updatelanguage() {
         document.getElementsByClassName("/pages")[0].innerText = "/Seiten";
         document.getElementsByClassName("/about")[0].innerText = "/Über";
         document.getElementsByClassName("/tags")[0].innerText = "/Tags";
+        document.getElementsByClassName("toc-title")[0].innerText = "Inhaltsverzeichnis";
 
     }
 
