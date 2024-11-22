@@ -38,7 +38,24 @@ function updatelanguage() {
         document.getElementsByClassName("/pages")[0].innerText = "/Seiten";
         document.getElementsByClassName("/about")[0].innerText = "/Über";
         document.getElementsByClassName("/tags")[0].innerText = "/Tags";
+        if (document.getElementsByClassName("toc-title")[0]){
         document.getElementsByClassName("toc-title")[0].innerText = "Inhaltsverzeichnis";
+        }
+        if (document.getElementsByClassName("date-label-posted")[0]){
+        document.getElementsByClassName("date-label-posted")[0].innerText = ":: Verfasst am ";
+        }
+        if (document.getElementsByClassName("date-label-updated")[0]){
+        document.getElementsByClassName("date-label-updated")[0].innerText = ":: Aktualisiert am ";
+        }
+       let times = document.getElementsByTagName("time")
+        for (let i = 0; i < times.length; i++) {
+            let date = times[i].innerText
+            // convert to locale date
+            date = new Date(date).toLocaleDateString();
+
+
+            times[i].innerText = date;
+        }
 
     }
 
