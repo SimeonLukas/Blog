@@ -16,6 +16,8 @@ Meine Interessen umfassen:
 - Hardware
 und so viel mehr...
 
+## Links
+
 [**Portfolio**](https://staneks.de)
 
 [**Blog**](https://simeon.staneks.de)
@@ -23,3 +25,5 @@ und so viel mehr...
 [**GitHub**](https://github.com/simeonlukas)
 
 [**Impressum**](/pages/impressum)
+
+[**Datenschutzhinweis**](/pages/policy)

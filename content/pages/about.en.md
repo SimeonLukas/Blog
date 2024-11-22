@@ -17,6 +17,8 @@ My interests include:
 - Hardware
 ...and beyond!
 
+## Links
+
 [**Portfolio**](https://staneks.de)
 
 [**Blog**](https://simeon.staneks.de)
@@ -24,3 +26,5 @@ My interests include:
 [**GitHub**](https://github.com/simeonlukas)
 
 [**Imprint**](/en/pages/impressum)
+
+[**Privacy Policy**](/en/pages/policy)
