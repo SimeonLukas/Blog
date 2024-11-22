@@ -22,14 +22,23 @@ function updatelanguage() {
             let url = navigationanchors[i].getAttribute("href");
             navigationanchors[i].setAttribute("href", "/en" + url );
         }
+        document.getElementsByClassName("rss")[0].setAttribute("href", "/en/rss.xml");
         document.getElementById("navigation_start").setAttribute("href", "/en");
         document.getElementById("language-name").innerHTML = "en";
+        if (!location.href.includes("/en")) {
+            location.href = "/en";
+        }
     }
     else{
         let readmore = document.getElementsByClassName("readmore");
         for (let i = 0; i < readmore.length; i++) {
            readmore[i].innerText = "Weiterlesen ⟶";
         }
+        document.getElementsByClassName("/posts")[0].innerText = "/Artikel";
+        document.getElementsByClassName("/pages")[0].innerText = "/Seiten";
+        document.getElementsByClassName("/about")[0].innerText = "/Über";
+        document.getElementsByClassName("/tags")[0].innerText = "/Tags";
+
     }
 
 }

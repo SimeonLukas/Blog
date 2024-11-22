@@ -24,6 +24,7 @@ theme = "toggle"
 socials = [
    { name = "mastodon", url = "https://indieweb.social/@simerl", icon = "mastodon" },
     { name = "github", url = "https://github.com/SimeonLukas", icon = "github" },
+    { name = "rss", url = "/rss.xml", icon = "rss" },
 ]
 menu = [
   { name = "/posts", url = "/posts", weight = 1 },

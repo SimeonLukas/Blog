@@ -1,5 +1,5 @@
 +++
-title="Datenschutzerklärung"
+title="Datenschutzhinweis"
 template = "page.html"
 description = "Datenschutzhinweise für die Webseite von Simeon Stanek"
 date="2024-11-20"
@@ -9,10 +9,10 @@ date="2024-11-20"
 
 ### 1. Verantwortlicher
 
-Simeon Stanek
-Schwabengasse 3
-82487 Oberammergau
-E-Mail: simeon@staneks.de
+Simeon Stanek  
+Schwabengasse 3  
+82487 Oberammergau  
+E-Mail: simeon@staneks.de  
 
 ### 2. Grundlegende Informationen zur Datenverarbeitung
 
@@ -39,8 +39,8 @@ Sie haben folgende Rechte bezüglich Ihrer Daten:
 
 ### 4. Kontakt bei Datenschutzfragen
 
-Bei Fragen zum Datenschutz können Sie sich jederzeit an uns wenden:
-Simeon Stanek
+Bei Fragen zum Datenschutz können Sie sich jederzeit an uns wenden:  
+Simeon Stanek   
 E-Mail: simeon@staneks.de
 
 ### 5. Änderungen der Datenschutzerklärung
