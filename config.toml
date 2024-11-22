@@ -24,6 +24,8 @@ theme = "toggle"
 toc = true
 socials = [
    { name = "mastodon", url = "https://indieweb.social/@simerl", icon = "mastodon" },
+   { name = "instagram", url = "https://www.instagram.com/simeonstanek/", icon = "instagram" },
+   
     { name = "github", url = "https://github.com/SimeonLukas", icon = "github" },
     { name = "rss", url = "/rss.xml", icon = "rss" },
 ]
