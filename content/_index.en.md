@@ -1,4 +1,4 @@
 +++
 title = "Content"
-template = "homepage.html"
+template = "homepage.en.html"
 +++
