@@ -27,3 +27,7 @@ und so viel mehr...
 [**Impressum**](/pages/impressum)
 
 [**Datenschutzhinweis**](/pages/policy)
+
+## Unterstützung
+
+<a href="https://www.buymeacoffee.com/simeonlukas" style="border-bottom: 0px !important;" target="_blank" ><img src="https://github.com/SimeonLukas/obsidian-kindle-export/raw/main/files/coffee.jpg" width="75%"></a>

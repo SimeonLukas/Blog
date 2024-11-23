@@ -28,3 +28,7 @@ My interests include:
 [**Imprint**](/en/pages/impressum)
 
 [**Privacy Policy**](/en/pages/policy)
+
+## Support
+
+<a href="https://www.buymeacoffee.com/simeonlukas" style="border-bottom: 0px !important;" target="_blank" ><img src="https://github.com/SimeonLukas/obsidian-kindle-export/raw/main/files/coffee.jpg" width="75%"></a>
