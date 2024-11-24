@@ -1,5 +1,5 @@
 +++
-title = "Digital Wheel of Fortune"
+title = "Digital Wheel of Fortune: Fun Gimmick for Tourism Pastoral Events"
 description = "A digital wheel of fortune for events of the Tourism Pastoral in the Werdenfels Region and the Tourism Pastoral of the Archdiocese of Munich and Freising."
 date = "2024-11-20"
 template = "page.html"

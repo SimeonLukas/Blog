@@ -1,5 +1,5 @@
 +++
-title = "Digitales Glücksrad"
+title = "Digitales Glücksrad: Lustiger Firlefanz für die Tourismuspastoral"
 description = "Ein digitales Glücksrad für die Veranstaltungen der Tourismuspastoral im Werdenfelser Land und die Tourismuspastoral der Erzdiözese München und Freising."
 date = "2024-11-20"
 template = "page.html"
