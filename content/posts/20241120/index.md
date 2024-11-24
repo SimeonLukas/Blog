@@ -21,7 +21,7 @@ Mein Kollege F. und ich haben uns etwas Besonderes für die Dekanatszusammenlegu
 
 ### Frontend
 
-Ich dachte mir, es sollte doch einfach sein, ein Glücksrad mit Vanilla-Webtechnologie zu erstellen. Gesagt, getan – innerhalb einer Stunde stand das Prinzip, und das Rad drehte sich, wenn man auf die Taste 1 auf der Tastatur drückte. Das Design war zunächst eher provisorisch. Doch F., ein leidenschaftlicher Layouter, Grafiker, Zeichner und Designer, zeichnete gleich einen passenden Rahmen für das Glücksrad und die ausgedrehte Nummer. 
+Ich dachte mir, es sollte doch einfach sein, ein Glücksrad mit Vanilla-Webtechnologie zu erstellen. Gesagt, getan – innerhalb einer Stunde stand das Prinzip, und das Rad drehte sich, wenn man auf die Taste 1 auf der Tastatur drückte. Das Design war zunächst eher provisorisch. Doch F., ein leidenschaftlicher Layouter, Grafiker, Zeichner und Designer, zeichnete gleich einen passenden Rahmen für das Glücksrad und die ausgedrehte Nummer.
 
 Ein Probelauf ist möglich unter [https://tourismuspastoral.de/yourturn/](https://tourismuspastoral.de/yourturn/). Je nach Bildschirmauflösung passt der Rahmen nicht optimal. Aus Zeit- und Einfachkeitsgründen ist die Web-App nur für Bildschirme mit 720p optimiert – das reicht völlig aus.
 
@@ -54,5 +54,55 @@ Unser Chef war von der Aktion so begeistert, dass er das Glücksrad auf der Frei
 Den Taster habe ich bei AliExpress gekauft, zusammen mit einem Atmega32u4. Der Chip kann wie eine Tastatur agieren und sendet bei Tastendruck die "1" an die Web-App. Er lässt sich sehr einfach mit der Arduino-IDE programmieren und kann direkt per USB an den Raspberry angeschlossen werden.
 
 ![Screenshot](images/hardware1.jpeg)
+
+Hier ist übrigens der einfache Code der per Arduino-IDE auf den Atmega32u4 hochgeladen wurde.
+
+```cpp
+#include "Keyboard.h"
+
+// Deklaration der Pins 4 für den Button und 3 für die LED beide Pins müssen natürlich mit einem Ground verbunden werden
+const int buttonPin = 4;
+const int ledPin = 3;
+int previousButtonState = HIGH;
+
+void setup() {
+// Definition der Pins
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(ledPin, OUTPUT);
+  Keyboard.begin();
+}
+
+void loop() {
+// Liest den Buttonstatus
+  int buttonState = digitalRead(buttonPin);
+  digitalWrite(ledPin, HIGH);
+
+// Wenn der Button gedruckt wurde:
+  if (buttonState == LOW && previousButtonState == HIGH) {
+    Keyboard.print("1");
+    // Blinkt die LED 😃
+     digitalWrite(ledPin, LOW);
+     delay(50);
+       digitalWrite(ledPin, HIGH);
+    delay(50);
+        digitalWrite(ledPin, LOW);
+     delay(50);
+       digitalWrite(ledPin, HIGH);
+    delay(50);
+        digitalWrite(ledPin, LOW);
+     delay(50);
+       digitalWrite(ledPin, HIGH);
+    delay(50);
+  }
+
+  if (buttonState == HIGH && previousButtonState == LOW) {
+// Hier passiert nichts
+    delay(50);
+  }
+// Speichert den aktuellen Buttonstatus
+  previousButtonState = buttonState;
+
+}
+```
 
 Wie das Endergebnis schlussendlich aussehen wird, zeigt sich in den nächsten Wochen.

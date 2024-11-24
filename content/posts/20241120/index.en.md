@@ -55,4 +55,55 @@ I bought the switch on AliExpress, along with an Atmega32u4. The chip can act li
 
 ![Screenshot](images/hardware1.jpeg)
 
+
+Here's the simple code that was uploaded to the Atmega32u4 using the Arduino IDE.
+
+```cpp
+#include "Keyboard.h"
+
+// Declaration of pins: 4 for the button and 3 for the LED - both pins must of course be connected to ground
+const int buttonPin = 4;
+const int ledPin = 3;
+int previousButtonState = HIGH;
+
+void setup() {
+// Definition of pins
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(ledPin, OUTPUT);
+  Keyboard.begin();
+}
+
+void loop() {
+// Reads the button state
+  int buttonState = digitalRead(buttonPin);
+  digitalWrite(ledPin, HIGH);
+
+// When the button is pressed:
+  if (buttonState == LOW && previousButtonState == HIGH) {
+    Keyboard.print("1");
+    // Makes the LED blink 😃
+     digitalWrite(ledPin, LOW);
+     delay(50);
+       digitalWrite(ledPin, HIGH);
+    delay(50);
+        digitalWrite(ledPin, LOW);
+     delay(50);
+       digitalWrite(ledPin, HIGH);
+    delay(50);
+        digitalWrite(ledPin, LOW);
+     delay(50);
+       digitalWrite(ledPin, HIGH);
+    delay(50);
+  }
+
+  if (buttonState == HIGH && previousButtonState == LOW) {
+// Nothing happens here
+    delay(50);
+  }
+// Stores the current button state
+  previousButtonState = buttonState;
+
+}
+```
+
 How the final result will ultimately look will become clear in the coming weeks.
