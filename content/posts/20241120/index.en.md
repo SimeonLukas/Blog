@@ -56,6 +56,8 @@ I bought the switch on AliExpress, along with an Atmega32u4. The chip can act li
 ![Screenshot](images/hardware1.jpeg)
 
 
+### Code Example
+
 Here's the simple code that was uploaded to the Atmega32u4 using the Arduino IDE.
 
 ```cpp
