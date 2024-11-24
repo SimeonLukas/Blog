@@ -31,7 +31,7 @@ Anschließend wählt man unter *Werkzeuge* das entsprechende Board aus – in di
 
 ![Prozessor](images/foto00003.png)
 
-{{ note(header="Das wahre Fegefeuer: Ein wichtiger Hinweis!", body="Bei falscher Prozessorauswahl und anschließendem Upload kann der Chip funktionsunfähig werden. In diesem Fall muss der Bootloader neu geflasht werden:
+{{ note(header="Das wahre Fegefeuer: <br>Ein wichtiger Hinweis!", body="Bei falscher Prozessorauswahl und anschließendem Upload kann der Chip funktionsunfähig werden. In diesem Fall muss der Bootloader neu geflasht werden:
 
 1. Korrekten Prozessor auswählen
 2. Bootloader-Modus aktivieren (2x schnell hintereinander die Pins `RST` & `GND` verbinden)

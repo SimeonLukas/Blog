@@ -31,7 +31,7 @@ Then, select the appropriate board under *Tools* – in this case, the *Sparkfun
 
 ![Processor](images/foto00003.png)
 
-{{ note(header="The True Purgatory: An Important Note!", body="If you select the wrong processor and upload a file, the chip can become non-functional. In this case, the bootloader must be reflashed:
+{{ note(header="The True Purgatory: <br>An Important Note!", body="If you select the wrong processor and upload a file, the chip can become non-functional. In this case, the bootloader must be reflashed:
 
 1. Select the correct processor
 2. Enter bootloader mode (quickly connect the `RST` & `GND` pins twice in succession)
