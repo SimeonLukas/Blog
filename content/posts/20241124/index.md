@@ -3,7 +3,7 @@ title = "Der ATmega32u4 und die Arduino IDE: Eine Offenbarung mit ein bisschen F
 date = 2024-11-24
 description = "Eine praktische Einführung in den ATmega32u4-Mikrocontroller und dessen Programmierung mit der Arduino IDE"
 [taxonomies]
-tags = ["software", "hardware", "arduino", "atmega32u4"]
+tags = ["software", "hardware", "arduino", "atmega32u4" ,"tutorial"]
 [extra]
 image = "https://simeon.staneks.de/posts/20241124/images/foto00001.jpeg"
 +++
