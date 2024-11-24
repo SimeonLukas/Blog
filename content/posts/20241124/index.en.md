@@ -10,7 +10,7 @@ image = "https://simeon.staneks.de/posts/20241124/images/foto00001.jpeg"
 
 # Genesis
 
-Back in 2018, I was looking for a way to emulate a keyboard. At the time, I was building a photo booth for my wedding and needed keyboard inputs for a program I had downloaded from GitHub. Today, I find myself facing a similar challenge – this time for a work project. You can find details here: [Digital Wheel of Fortune: Fun and Games for Tourism Ministry](https://simeon.staneks.de/en/posts/20241120/).
+Back in 2018, I was looking for a way to emulate a keyboard. At the time, I was building a photo booth for my wedding and needed keyboard inputs for a program I had downloaded from GitHub. Today, I find myself facing a similar challenge – this time for a work project. You can find details here: [Digital Wheel of Fortune: Fun Gimmick for Tourism Pastoral Events](https://simeon.staneks.de/en/posts/20241120/).
 
 ![ATmega32u4: Pro Micro](images/foto00001.jpeg)
 
