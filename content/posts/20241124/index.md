@@ -27,7 +27,7 @@ Nach der Installation navigiert man zu den *Einstellungen* und fügt unter *Zus�
 
 ![Boardverwalter](images/foto00002.png)
 
-Anschließend wählt man unter *Werkzeuge* das entsprechende Board aus – in diesem Fall den *Sparkfun Pro Micro*. Wichtig ist auch die Auswahl des korrekten Prozessors, abhängig von der Betriebsspannung. Der Programmer sollte ebenfalls zum Chip passen.
+Anschließend wählt man unter *Werkzeuge* das entsprechende Board aus – in diesem Fall den *Sparkfun Pro Micro*. Wichtig ist auch die Auswahl des korrekten Prozessors, abhängig von der Betriebsspannung. Der Programmer sollte ebenfalls zum Chip passen. Das Board wird per USB (in meinem Fall USB-C) angeschlossen und sollte sofort erkannt werden.
 
 ![Prozessor](images/foto00003.png)
 
@@ -40,7 +40,7 @@ Anschließend wählt man unter *Werkzeuge* das entsprechende Board aus – in di
 5. Erfolgreicher Upload wird mit der Meldung `avrdude done. Thank you.` bestätigt
 ") }}
 
-Nach der Bewältigung des Prozessor-Fegefeuers kann die eigentliche Programmierung beginnen. Das Board wird per USB (in meinem Fall USB-C) angeschlossen und sollte sofort erkannt werden.
+Nach der Bewältigung des Prozessor-Fegefeuers kann die eigentliche Programmierung beginnen.
 
 ## Die Offenbarung: Programmierung des Chips
 

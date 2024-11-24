@@ -27,7 +27,7 @@ After installation, navigate to *Preferences* and add the following link under *
 
 ![Board Manager](images/foto00002.png)
 
-Then, select the appropriate board under *Tools* – in this case, the *Sparkfun Pro Micro*. It's also crucial to select the correct processor based on the operating voltage. The programmer should also match the chip.
+Then, select the appropriate board under *Tools* – in this case, the *Sparkfun Pro Micro*. It's also crucial to select the correct processor based on the operating voltage. The programmer should also match the chip. The board connects via USB (in my case USB-C) and should be recognized immediately.
 
 ![Processor](images/foto00003.png)
 
@@ -40,7 +40,7 @@ Then, select the appropriate board under *Tools* – in this case, the *Sparkfun
 5. Successful upload is confirmed with the message `avrdude done. Thank you.`
 ") }}
 
-After surviving the processor purgatory, the actual programming can begin. The board connects via USB (in my case USB-C) and should be recognized immediately.
+After surviving the processor purgatory, the actual programming can begin.
 
 ## The Revelation: Programming the Chip
 
