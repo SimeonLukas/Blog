@@ -6,7 +6,7 @@ date="2024-11-20"
 +++
 # Simeon Stanek
 
-Ich bin ein freier Hobbyist mit Freude an spannenden und individuellen Projekten in Webentwicklung, Appentwicklung, Programmiering, und mehr. Außerdem gestalte ich Webseiten und Webanwendungen auf Anfrage.  
+Ich bin beruflich Seelsorger und ein leidenschaftlicher Hobbyist mit Freude an spannenden und individuellen Projekten in Webentwicklung, Appentwicklung, Programmiering, und mehr. Außerdem gestalte ich Webseiten, Webanwendungen und Apps auf Anfrage.  
 Meine Interessen umfassen:
 - Webentwicklung
 - Appentwicklung
@@ -14,8 +14,7 @@ Meine Interessen umfassen:
 - Design
 - Gaming
 - Hardware
-und so viel mehr...
-
+und mehr...
 ## Links
 
 [**Portfolio**](https://staneks.de)
