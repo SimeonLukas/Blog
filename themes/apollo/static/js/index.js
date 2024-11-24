@@ -1,15 +1,18 @@
 function toggleLanguage() {
     if (localStorage.getItem("language") == null) {
         localStorage.setItem("language", "en");
+        document.getElementsByTagName("html")[0].setAttribute("lang", "en");
         location.href = "/en";
         return;
     }
     if (localStorage.getItem("language") === "en") {
         localStorage.setItem("language", "de");
+        document.getElementsByTagName("html")[0].setAttribute("lang", "de");
         location.href = "/#";
 
     } else if (localStorage.getItem("language") === "de") {
         localStorage.setItem("language", "en");
+        document.getElementsByTagName("html")[0].setAttribute("lang", "en");
         location.href = "/en";
     }
     
@@ -25,6 +28,7 @@ function updatelanguage() {
         document.getElementsByClassName("rss")[0].setAttribute("href", "/en/rss.xml");
         document.getElementById("navigation_start").setAttribute("href", "/en");
         document.getElementById("language-name").innerHTML = "en";
+        document.getElementsByTagName("html")[0].setAttribute("lang", "en");
         if (!location.href.includes("/en")) {
             location.href = "/en";
         }
