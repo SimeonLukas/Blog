@@ -131,3 +131,20 @@ del {
   overflow-x: auto;
   overflow-y: hidden;
 }
+
+
+progress {
+  border-radius: 7px; 
+  height: 22px;
+}
+progress::-webkit-progress-bar {
+  border-radius: 7px;
+  background-color: #ddd;
+}
+progress::-webkit-progress-value {
+  background-color: var(--primary-color);
+  border-radius: 7px;
+}
+progress::-moz-progress-bar {
+  /* style rules */
+}

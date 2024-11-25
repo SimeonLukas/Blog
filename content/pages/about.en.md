@@ -17,6 +17,17 @@ My interests include:
 - Hardware
 ...and beyond!
 
+## Experience
+<label for="file">HTML</label>
+<progress id="file" value="85" max="100"> 85% </progress>
+
+<label for="file">CSS</label>
+<progress id="file" value="85" max="100"> 85% </progress>
+
+<label for="file">JavaScript</label>
+<progress id="file" value="75" max="100"> 75% </progress>
+
+
 ## Links
 
 [**Portfolio**](https://staneks.de)
@@ -31,4 +42,4 @@ My interests include:
 
 ## Support
 
-<a href="https://www.buymeacoffee.com/simeonlukas" style="border-bottom: 0px !important;" target="_blank" ><img src="https://github.com/SimeonLukas/obsidian-kindle-export/raw/main/files/coffee.jpg" width="75%"></a>
+<a href="https://www.buymeacoffee.com/simeonlukas" style="border-bottom: 0px !important;" target="_blank" ><img src="https://github.com/SimeonLukas/obsidian-kindle-export/raw/main/files/coffee.jpg" width="100%"></a>
