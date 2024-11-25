@@ -22,10 +22,12 @@ highlight_theme = "ayu-light"
 [extra]
 theme = "toggle"
 toc = true
+repo_view = true
+repo_url = "https://github.com/SimeonLukas/Blog/tree/main/content/"  
 socials = [
    { name = "mastodon", url = "https://indieweb.social/@simerl", icon = "mastodon" },
    { name = "instagram", url = "https://www.instagram.com/simeonstanek/", icon = "instagram" },
-   
+
     { name = "github", url = "https://github.com/SimeonLukas", icon = "github" },
     { name = "rss", url = "/rss.xml", icon = "rss" },
 ]
@@ -40,6 +42,9 @@ fancy_code = true
 dynamic_note = true
 section_path = "/posts"
 404 = "Da is nix :("
+
+
+
 [translations]
 [languages.en]
 title = "Blog by Simeon"
