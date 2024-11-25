@@ -2,18 +2,20 @@ function toggleLanguage() {
     if (localStorage.getItem("language") == null) {
         localStorage.setItem("language", "en");
         document.getElementsByTagName("html")[0].setAttribute("lang", "en");
-        location.href = "/en";
+        location.href = window.location.origin+"/en"+window.location.pathname;
         return;
     }
     if (localStorage.getItem("language") === "en") {
         localStorage.setItem("language", "de");
         document.getElementsByTagName("html")[0].setAttribute("lang", "de");
-        location.href = "/#";
+        let url = window.location.href;
+        url = url.replace("/en", "");
+        location.href = url;
 
     } else if (localStorage.getItem("language") === "de") {
         localStorage.setItem("language", "en");
         document.getElementsByTagName("html")[0].setAttribute("lang", "en");
-        location.href = "/en";
+        location.href = window.location.origin+"/en"+window.location.pathname;
     }
     
 }
@@ -30,7 +32,7 @@ function updatelanguage() {
         document.getElementById("language-name").innerHTML = "en";
         document.getElementsByTagName("html")[0].setAttribute("lang", "en");
         if (!location.href.includes("/en")) {
-            location.href = "/en";
+            location.href = window.location.origin+"/en"+window.location.pathname;
         }
     }
     else{
