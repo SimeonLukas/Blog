@@ -61,8 +61,14 @@
     <meta property="og:description" content="{{ config.description }}" />
     <!-- twitter description -->
     <meta name="twitter:description" content="{{ config.description }}">
+
+
     {% endif %}
     {% endif %}
+
+    <meta property="og:url" content="{%if page.url %}{{ page.url }}{% else %}{{ config.base_url }}{% endif %}"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:logo" content="{{ config.extra.favicon }}" />
 
     {% if not page_has_description %}
     {% if page.description %}
