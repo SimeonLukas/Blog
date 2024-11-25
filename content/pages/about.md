@@ -17,7 +17,7 @@ Meine Interessen umfassen:
 und mehr...
 
 ## Erfahrung
-### Frontend & Programmiering
+### Frontend & Programmierung
 <label for="file">HTML</label>
 <progress id="file" value="85" max="100"> 85% </progress>
 
