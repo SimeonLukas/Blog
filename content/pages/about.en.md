@@ -17,7 +17,8 @@ My interests include:
 - Hardware
 ...and beyond!
 
-## Experience
+## Eperience
+### Frontend & Programming
 <label for="file">HTML</label>
 <progress id="file" value="85" max="100"> 85% </progress>
 
@@ -26,6 +27,22 @@ My interests include:
 
 <label for="file">JavaScript</label>
 <progress id="file" value="75" max="100"> 75% </progress>
+
+<label for="file">TypeScript</label>
+<progress id="file" value="60" max="100"> 60% </progress>
+
+<label for="file">PHP</label>
+<progress id="file" value="60" max="100"> 60% </progress>
+
+<label for="file">RUST</label>
+<progress id="file" value="50" max="100"> 50% </progress>
+
+### Backend & Tooling
+<label for="file">Docker</label>
+<progress id="file" value="60" max="100"> 60% </progress>
+
+<label for="file">git</label>
+<progress id="file" value="50" max="100"> 50% </progress>
 
 
 ## Links
