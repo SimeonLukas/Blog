@@ -6,6 +6,7 @@ description = "Eine praktische Einführung in den ATmega32u4-Mikrocontroller und
 tags = ["software", "hardware", "arduino", "atmega32u4" ,"tutorial"]
 [extra]
 image = "https://simeon.staneks.de/posts/20241124/images/foto00001.jpeg"
+comment =  true
 +++
 
 # Genese

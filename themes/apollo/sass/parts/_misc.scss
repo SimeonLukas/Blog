@@ -148,3 +148,14 @@ progress::-webkit-progress-value {
 progress::-moz-progress-bar {
   /* style rules */
 }
+
+
+// Comments
+
+.utterances-frame{
+  font-family: monospace !important;
+}
+
+.utterances-frame .text-link{
+  display: none !important;
+}

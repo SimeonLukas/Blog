@@ -6,6 +6,7 @@ description = "Eine ausführliche Anleitung und persönliche Erfahrungen mit dem
 tags = ["retrogaming", "n64", "hardware", "software", "tutorial", "gaming"]
 [extra]
 image = "https://simeon.staneks.de/posts/20241122/images/n6400001.jpeg"
+comment =  true
 +++
 
 # Genese

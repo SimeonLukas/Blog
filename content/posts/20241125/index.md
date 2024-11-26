@@ -7,4 +7,5 @@ draft = true
 tags = ["software", "html", "css", "javascript", "zola" ,"github-pages" ,"tutorial"]
 [extra]
 image = "https://simeon.staneks.de/posts/20241125/images/zola00001.png"
+comment =  true
 +++

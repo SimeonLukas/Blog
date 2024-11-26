@@ -9,6 +9,7 @@ tags = ["software", "hardware", "work", "html", "css", "javascript", "arduino", 
 
 [extra]
 image = "https://simeon.staneks.de/posts/20241120/images/screenshot.jpeg"
+comment =  true
 +++
 
 # Genesis

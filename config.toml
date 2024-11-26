@@ -23,6 +23,7 @@ highlight_theme = "ayu-light"
 [extra]
 theme = "toggle"
 toc = true
+comment = true
 repo_view = true
 repo_url = "https://github.com/SimeonLukas/Blog/tree/main/content/"  
 socials = [
