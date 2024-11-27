@@ -185,4 +185,7 @@ main .gsc-loading-image {
 
 #__next{
     font-family: monospace !important;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
 }
