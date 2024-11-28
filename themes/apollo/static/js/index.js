@@ -73,11 +73,12 @@ function updatelanguage() {
 function changeGiscusTheme () {
     const theme = document.documentElement.getAttribute('data-theme');
     console.log(theme);
+    let css = "https://simeon.staneks.de/css/giscus.css";
+    if (localStorage.getItem("theme-storage") == "dark") {
+        css = "https://simeon.staneks.de/css/giscus.dark.css";
+    }
 
     function sendMessage(message) {
-    if (localStorage.getItem("theme-storage") === "dark") {
-        
-
       const iframe = document.querySelector('iframe.giscus-frame');
       if (!iframe) {
         setTimeout(changeGiscusTheme, 1000); 
@@ -86,11 +87,10 @@ function changeGiscusTheme () {
       iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
       }
     }
-    }
 
     sendMessage({
       setConfig: {
-        theme: "https://simeon.staneks.de/css/giscus.dark.css"
+        theme: css
       }
     });
   }
