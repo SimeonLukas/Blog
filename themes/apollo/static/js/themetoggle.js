@@ -9,9 +9,11 @@ function toggleTheme() {
     if (localStorage.getItem("theme-storage") === "light") {
         setTheme("dark");
         updateItemToggleTheme();
+        changeGiscusTheme();
     } else if (localStorage.getItem("theme-storage") === "dark") {
         setTheme("light");
         updateItemToggleTheme();
+        changeGiscusTheme();
     }
 }
 
