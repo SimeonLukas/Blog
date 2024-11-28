@@ -66,3 +66,33 @@ function updatelanguage() {
     }
 
 }
+
+
+
+
+function changeGiscusTheme () {
+    const theme = document.documentElement.getAttribute('data-theme');
+    console.log(theme);
+
+    function sendMessage(message) {
+    if (localStorage.getItem("theme-storage") === "dark") {
+        
+
+      const iframe = document.querySelector('iframe.giscus-frame');
+      if (!iframe) {
+        setTimeout(changeGiscusTheme, 1000); 
+      }
+      else{
+      iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+    }
+    }
+
+    sendMessage({
+      setConfig: {
+        theme: "https://simeon.staneks.de/css/giscus.dark.css"
+      }
+    });
+  }
+
+  changeGiscusTheme ()
