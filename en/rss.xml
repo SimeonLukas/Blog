@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title>Blog by Simeon</title>
+      <link>https://simeon.staneks.de</link>
+      <description>It&#x27;s better to start imperfectly than wait perfectly</description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://simeon.staneks.de/en/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Sun, 24 Nov 2024 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>The ATmega32u4 and Arduino IDE: A Revelation with a Touch of Purgatory</title>
+          <pubDate>Sun, 24 Nov 2024 00:00:00 +0000</pubDate>
+          <author>Simeon Stanek</author>
+          <link>https://simeon.staneks.de/en/posts/20241124/</link>
+          <guid>https://simeon.staneks.de/en/posts/20241124/</guid>
+          <description xml:base="https://simeon.staneks.de/en/posts/20241124/">&lt;h1 id=&quot;genesis&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#genesis&quot; aria-label=&quot;Anchor link for: genesis&quot;&gt;Genesis&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Back in 2018, I was looking for a way to emulate a keyboard. At the time, I was building a photo booth for my wedding and needed keyboard inputs for a program I had downloaded from GitHub. Today, I find myself facing a similar challenge – this time for a work project. You can find details here: &lt;a href=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;20241120&#x2F;&quot;&gt;Digital Wheel of Fortune: Fun Gimmick for Tourism Pastoral Events&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;20241124&#x2F;images&#x2F;foto00001.jpeg&quot; alt=&quot;ATmega32u4: Pro Micro&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;installation-and-setup-the-path-through-purgatory&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#installation-and-setup-the-path-through-purgatory&quot; aria-label=&quot;Anchor link for: installation-and-setup-the-path-through-purgatory&quot;&gt;Installation and Setup - The Path Through Purgatory&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;arduino-ide&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#arduino-ide&quot; aria-label=&quot;Anchor link for: arduino-ide&quot;&gt;Arduino IDE&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;The simplest method for programming the chip is the &lt;a href=&quot;https:&#x2F;&#x2F;www.arduino.cc&#x2F;en&#x2F;software&quot;&gt;Arduino IDE&lt;&#x2F;a&gt;. It can be easily downloaded and installed.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;configuring-the-atmega32u4&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#configuring-the-atmega32u4&quot; aria-label=&quot;Anchor link for: configuring-the-atmega32u4&quot;&gt;Configuring the ATmega32u4&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;After installation, navigate to &lt;em&gt;Preferences&lt;&#x2F;em&gt; and add the following link under &lt;em&gt;Additional Board Manager URLs&lt;&#x2F;em&gt;:
+&lt;code&gt;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;sparkfun&#x2F;Arduino_Boards&#x2F;main&#x2F;IDE_Board_Manager&#x2F;package_sparkfun_index.json&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;20241124&#x2F;images&#x2F;foto00002.png&quot; alt=&quot;Board Manager&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Then, select the appropriate board under &lt;em&gt;Tools&lt;&#x2F;em&gt; – in this case, the &lt;em&gt;Sparkfun Pro Micro&lt;&#x2F;em&gt;. It&#x27;s also crucial to select the correct processor based on the operating voltage. The programmer should also match the chip. The board connects via USB (in my case USB-C) and should be recognized immediately.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;20241124&#x2F;images&#x2F;foto00003.png&quot; alt=&quot;Processor&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;div class=&quot;note-container&quot;&gt;
+  
+    &lt;div class=&quot;note-header&quot;&gt;
+      
+        &lt;div class=&quot;note-icon&quot;&gt;
+        &lt;p&gt;The True Purgatory: &lt;br&gt;An Important Note!&lt;&#x2F;p&gt;
+
+        &lt;&#x2F;div&gt;
+      
+    &lt;&#x2F;div&gt;
+    &lt;div class=&quot;note-content&quot;&gt;
+      &lt;p&gt;If you select the wrong processor and upload a file, the chip can become non-functional. In this case, the bootloader must be reflashed:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Select the correct processor&lt;&#x2F;li&gt;
+&lt;li&gt;Enter bootloader mode (quickly connect the &lt;code&gt;RST&lt;&#x2F;code&gt; &amp;amp; &lt;code&gt;GND&lt;&#x2F;code&gt; pins twice in succession)&lt;&#x2F;li&gt;
+&lt;li&gt;Upload the file within 8 seconds after reset (best to prepare the upload first and then enter bootloader mode)&lt;&#x2F;li&gt;
+&lt;li&gt;Repeat if error messages occur&lt;&#x2F;li&gt;
+&lt;li&gt;Successful upload is confirmed with the message &lt;code&gt;avrdude done. Thank you.&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+
+    &lt;&#x2F;div&gt;
+  
+&lt;&#x2F;div&gt;
+&lt;p&gt;After surviving the processor purgatory, the actual programming can begin.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-revelation-programming-the-chip&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#the-revelation-programming-the-chip&quot; aria-label=&quot;Anchor link for: the-revelation-programming-the-chip&quot;&gt;The Revelation: Programming the Chip&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;For testing, the Blink example under &lt;em&gt;File &amp;gt; Examples &amp;gt; 01.Basics &amp;gt; Blink&lt;&#x2F;em&gt; is ideal. Even though this didn&#x27;t work as expected in my case, the successful upload showed that basic communication with the board was working. For keyboard inputs, you&#x27;ll need the Keyboard library, which can be installed via &lt;em&gt;Sketch &amp;gt; Include Library&lt;&#x2F;em&gt;. You can find a working &lt;a href=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;20241120&#x2F;#code-example&quot;&gt;code example&lt;&#x2F;a&gt; in the linked article.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;&gt;Conclusion&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;The ATmega32u4 proves to be a true revelation in the world of microcontrollers. Once you&#x27;ve passed through the initial purgatory of configuration, it offers both experienced Arduino developers and beginners an excellent path to microcontroller programming, thanks to its compact size and the extensive collection of examples in the IDE.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>SummerCart64 N64 Flashcart: A Must-Have for N64 Enthusiasts</title>
+          <pubDate>Fri, 22 Nov 2024 00:00:00 +0000</pubDate>
+          <author>Simeon Stanek</author>
+          <link>https://simeon.staneks.de/en/posts/20241122/</link>
+          <guid>https://simeon.staneks.de/en/posts/20241122/</guid>
+          <description xml:base="https://simeon.staneks.de/en/posts/20241122/">&lt;h1 id=&quot;genesis&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#genesis&quot; aria-label=&quot;Anchor link for: genesis&quot;&gt;Genesis&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;I think it was 10 years. In any case, we spent a long time looking for our old N64 console. Just before I was about to buy one on Kleinanzeigen, we found it in a white bag in my parents&#x27; basement. There was also a PS2 Slim with it. Nostalgia kicked in. I was so happy with the find and looked forward to gaming.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;sc64-n64-flashcart-the-modern-way-to-enjoy-n64-games&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#sc64-n64-flashcart-the-modern-way-to-enjoy-n64-games&quot; aria-label=&quot;Anchor link for: sc64-n64-flashcart-the-modern-way-to-enjoy-n64-games&quot;&gt;SC64 N64 Flashcart: The Modern Way to Enjoy N64 Games&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;As a long-time Nintendo 64 enthusiast, I was always looking for a reliable way to play my favorite games on original hardware. After some research, I discovered the SC64 Flashcart - and I must say, it was one of the best decisions for my retro gaming setup. Additionally, I bought two new controllers from AliExpress, and I was ready for a new adventure with my N64.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;20241122&#x2F;images&#x2F;n6400001.jpeg&quot; alt=&quot;N64 SC64&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-is-the-sc64-summercart64&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#what-is-the-sc64-summercart64&quot; aria-label=&quot;Anchor link for: what-is-the-sc64-summercart64&quot;&gt;What is the SC64 - SummerCart64?&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;The SC64 is a modern flashcart for the Nintendo 64 that allows you to load ROMs from an SD card. Compared to older solutions like the 64drive or EverDrive-64, it offers several modern conveniences such as a USB-C connection and excellent PC integration. Furthermore, the entire project is open source and can be viewed on GitHub &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Polprzewodnikowy&#x2F;N64FlashcartMenu&#x2F;blob&#x2F;main&#x2F;docs&#x2F;00_getting_started_sd.md&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;Polprzewodnikowy&#x2F;SummerCart64&#x2F;&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;installation-and-initial-setup&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#installation-and-initial-setup&quot; aria-label=&quot;Anchor link for: installation-and-initial-setup&quot;&gt;Installation and Initial Setup&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;The SC64 works like a classic flashcart:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Format SD card with FAT32 or exFAT&lt;&#x2F;li&gt;
+&lt;li&gt;Copy &lt;code&gt;sc64menu.n64&lt;&#x2F;code&gt; to the root directory (The manual mentions creating a &lt;code&gt;menu&lt;&#x2F;code&gt; folder, but please don&#x27;t do that)&lt;&#x2F;li&gt;
+&lt;li&gt;Insert SD card into the SC64&lt;&#x2F;li&gt;
+&lt;li&gt;Insert SC64 into the Nintendo 64&lt;&#x2F;li&gt;
+&lt;li&gt;Power on and wait briefly&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Everything should work then. Now the root directory of the SD card has a &lt;code&gt;menu&lt;&#x2F;code&gt; folder. You can now simply place the ROMs on the SD card (not in &lt;code&gt;menu&lt;&#x2F;code&gt;) and you&#x27;re ready to go. Everything is described and explained on the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Polprzewodnikowy&#x2F;SummerCart64&#x2F;blob&#x2F;main&#x2F;docs&#x2F;00_quick_startup_guide.md&quot;&gt;website&lt;&#x2F;a&gt;. Additionally, you can use the SC64Deployer program to flash the SC64&#x27;s firmware, format the SD card, and upload ROMs.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;20241122&#x2F;images&#x2F;n6400002.jpeg&quot; alt=&quot;N64 SC64&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;&gt;Conclusion&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;After several days of intensive use, I can unconditionally recommend the SC64. The combination of user-friendly operation makes it a perfect companion for N64 enthusiasts.&lt;&#x2F;p&gt;
+&lt;p&gt;Advantages:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Easy installation&lt;&#x2F;li&gt;
+&lt;li&gt;Fast ROM loading times&lt;&#x2F;li&gt;
+&lt;li&gt;Reliable save state management&lt;&#x2F;li&gt;
+&lt;li&gt;Modern USB-C connection&lt;&#x2F;li&gt;
+&lt;li&gt;Active firmware development&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Disadvantages:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Price higher than some alternatives&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The SC64 is currently the best N64 flashcart on the market for me. It combines modern technology with nostalgic N64 hardware in a way that will excite both casual gamers and hardware enthusiasts.&lt;&#x2F;p&gt;
+&lt;p&gt;For more information and building instructions, visit the official &lt;a href=&quot;https:&#x2F;&#x2F;summercart64.dev&#x2F;&quot;&gt;website&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>About me</title>
+          <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+          <author>Simeon Stanek</author>
+          <link>https://simeon.staneks.de/en/pages/about/</link>
+          <guid>https://simeon.staneks.de/en/pages/about/</guid>
+          <description xml:base="https://simeon.staneks.de/en/pages/about/">&lt;h1 id=&quot;simeon-stanek&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#simeon-stanek&quot; aria-label=&quot;Anchor link for: simeon-stanek&quot;&gt;Simeon Stanek&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Driven by a passion for creating unique digital experiences, I&#x27;m a freelance hobbyist specializing in web development, app development, programming, and more. I love taking on custom projects and bringing ideas to life.
+My interests include:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Web development&lt;&#x2F;li&gt;
+&lt;li&gt;App development&lt;&#x2F;li&gt;
+&lt;li&gt;Programming&lt;&#x2F;li&gt;
+&lt;li&gt;Design&lt;&#x2F;li&gt;
+&lt;li&gt;Gaming&lt;&#x2F;li&gt;
+&lt;li&gt;Hardware
+...and beyond!&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;eperience&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#eperience&quot; aria-label=&quot;Anchor link for: eperience&quot;&gt;Eperience&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;frontend-programming&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#frontend-programming&quot; aria-label=&quot;Anchor link for: frontend-programming&quot;&gt;Frontend &amp;amp; Programming&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;HTML&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;85&quot; max=&quot;100&quot;&gt; 85% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;CSS&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;85&quot; max=&quot;100&quot;&gt; 85% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;JavaScript&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;75&quot; max=&quot;100&quot;&gt; 75% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;TypeScript&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;60&quot; max=&quot;100&quot;&gt; 60% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;PHP&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;60&quot; max=&quot;100&quot;&gt; 60% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;RUST&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;50&quot; max=&quot;100&quot;&gt; 50% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;backend-tooling&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#backend-tooling&quot; aria-label=&quot;Anchor link for: backend-tooling&quot;&gt;Backend &amp;amp; Tooling&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;Docker&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;60&quot; max=&quot;100&quot;&gt; 60% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;git&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;50&quot; max=&quot;100&quot;&gt; 50% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;links&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#links&quot; aria-label=&quot;Anchor link for: links&quot;&gt;Links&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;staneks.de&quot;&gt;&lt;strong&gt;Portfolio&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;simeon.staneks.de&quot;&gt;&lt;strong&gt;Blog&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;simeonlukas&quot;&gt;&lt;strong&gt;GitHub&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;&#x2F;en&#x2F;pages&#x2F;impressum&quot;&gt;&lt;strong&gt;Imprint&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;&#x2F;en&#x2F;pages&#x2F;policy&quot;&gt;&lt;strong&gt;Privacy Policy&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;support&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#support&quot; aria-label=&quot;Anchor link for: support&quot;&gt;Support&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.buymeacoffee.com&#x2F;simeonlukas&quot; style=&quot;border-bottom: 0px !important;&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;obsidian-kindle-export&#x2F;raw&#x2F;main&#x2F;files&#x2F;coffee.jpg&quot; width=&quot;100%&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Imprint</title>
+          <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+          <author>Simeon Stanek</author>
+          <link>https://simeon.staneks.de/en/pages/impressum/</link>
+          <guid>https://simeon.staneks.de/en/pages/impressum/</guid>
+          <description xml:base="https://simeon.staneks.de/en/pages/impressum/">&lt;h2 id=&quot;imprint&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#imprint&quot; aria-label=&quot;Anchor link for: imprint&quot;&gt;Imprint&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;according-to-ss-5-tmg&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#according-to-ss-5-tmg&quot; aria-label=&quot;Anchor link for: according-to-ss-5-tmg&quot;&gt;According to § 5 TMG:&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Simeon Stanek
+Schwabengasse 3
+82487 Oberammergau&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Contact:&lt;&#x2F;strong&gt;
+Telephone: +49 177 4419070
+Email: simeon@staneks.de&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;disclaimer&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#disclaimer&quot; aria-label=&quot;Anchor link for: disclaimer&quot;&gt;Disclaimer&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;liability-for-content&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#liability-for-content&quot; aria-label=&quot;Anchor link for: liability-for-content&quot;&gt;Liability for Content&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;p&gt;The content on our website has been created with the greatest care. However, we cannot guarantee the accuracy, completeness, or up-to-dateness of the information provided.&lt;&#x2F;p&gt;
+&lt;p&gt;As a service provider, we are responsible for our own content on these pages according to general laws (§ 7 Abs.1 TMG). However, we are not obligated to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity (§§ 8 to 10 TMG). Obligations to remove or block the use of information under general law remain unaffected. A liability in this regard, however, is only possible from the moment of knowledge of a specific infringement. Upon notification of violations, we will remove such content immediately.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;liability-for-links&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#liability-for-links&quot; aria-label=&quot;Anchor link for: liability-for-links&quot;&gt;Liability for Links&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;p&gt;Our website contains links to external websites of third parties over whose content we have no influence. Therefore, we cannot assume any liability for this foreign content. The respective provider or operator is always responsible for the content of the linked pages. The linked pages were checked for possible legal violations at the time of linking. Illegal content was not recognizable at the time of linking.&lt;&#x2F;p&gt;
+&lt;p&gt;A permanent control of the linked pages is unreasonable without concrete evidence of a violation of law. Upon notification of violations, we will remove such links immediately.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;copyright&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#copyright&quot; aria-label=&quot;Anchor link for: copyright&quot;&gt;Copyright&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;The content and works created by the site operators on these pages are subject to German copyright law. The reproduction, processing, distribution, and any kind of exploitation outside the limits of copyright require the written consent of the respective author or creator. Downloads and copies of this site are for private, non-commercial use only.&lt;&#x2F;p&gt;
+&lt;p&gt;As far as the content on this site was not created by the operator, the copyrights of third parties are respected. In particular, contents of third parties are marked as such. Should you nevertheless become aware of a copyright infringement, please inform us accordingly. Upon notification of violations, we will remove such content immediately.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;additional-information&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#additional-information&quot; aria-label=&quot;Anchor link for: additional-information&quot;&gt;Additional Information&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;According to § 2 Nr. 5 TMG and § 5 TMG:
+The website staneks.de was created by Simeon Stanek and does not contain any cookies or forms.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Privacy Policy</title>
+          <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+          <author>Simeon Stanek</author>
+          <link>https://simeon.staneks.de/en/pages/policy/</link>
+          <guid>https://simeon.staneks.de/en/pages/policy/</guid>
+          <description xml:base="https://simeon.staneks.de/en/pages/policy/">&lt;h2 id=&quot;privacy-policy&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#privacy-policy&quot; aria-label=&quot;Anchor link for: privacy-policy&quot;&gt;Privacy Policy&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;1-data-controller&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#1-data-controller&quot; aria-label=&quot;Anchor link for: 1-data-controller&quot;&gt;1. Data Controller&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Simeon Stanek
+Schwabengasse 3
+82487 Oberammergau
+Email: simeon@staneks.de&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;2-basic-information-on-data-processing&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#2-basic-information-on-data-processing&quot; aria-label=&quot;Anchor link for: 2-basic-information-on-data-processing&quot;&gt;2. Basic Information on Data Processing&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;2-1-hosting-on-github-pages&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#2-1-hosting-on-github-pages&quot; aria-label=&quot;Anchor link for: 2-1-hosting-on-github-pages&quot;&gt;2.1 Hosting on GitHub Pages&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;p&gt;This website is hosted on GitHub Pages. GitHub Inc. (headquartered at 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, USA) may collect technical data such as:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;IP address&lt;&#x2F;li&gt;
+&lt;li&gt;Browser information&lt;&#x2F;li&gt;
+&lt;li&gt;Access time&lt;&#x2F;li&gt;
+&lt;li&gt;Visited pages&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Legal basis: Article 6(1)(f) GDPR. More information can be found in the &lt;a href=&quot;https:&#x2F;&#x2F;docs.github.com&#x2F;en&#x2F;site-policy&#x2F;privacy-policies&#x2F;github-privacy-statement&quot;&gt;GitHub Privacy Statement&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;2-2-data-processing&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#2-2-data-processing&quot; aria-label=&quot;Anchor link for: 2-2-data-processing&quot;&gt;2.2 Data Processing&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;p&gt;This website is a static page without active tracking mechanisms, cookies, or forms. No additional personal data is collected or processed by the website itself.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;3-your-rights&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#3-your-rights&quot; aria-label=&quot;Anchor link for: 3-your-rights&quot;&gt;3. Your Rights&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;You have the following rights regarding your data:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Right to information&lt;&#x2F;li&gt;
+&lt;li&gt;Right to correction&lt;&#x2F;li&gt;
+&lt;li&gt;Right to deletion&lt;&#x2F;li&gt;
+&lt;li&gt;Right to restrict processing&lt;&#x2F;li&gt;
+&lt;li&gt;Right to object&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;4-contact-for-privacy-questions&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#4-contact-for-privacy-questions&quot; aria-label=&quot;Anchor link for: 4-contact-for-privacy-questions&quot;&gt;4. Contact for Privacy Questions&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;For any privacy-related questions, please contact:
+Simeon Stanek
+Email: simeon@staneks.de&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;5-changes-to-privacy-policy&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#5-changes-to-privacy-policy&quot; aria-label=&quot;Anchor link for: 5-changes-to-privacy-policy&quot;&gt;5. Changes to Privacy Policy&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;We reserve the right to update this privacy policy at any time.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;6-legal-notes&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#6-legal-notes&quot; aria-label=&quot;Anchor link for: 6-legal-notes&quot;&gt;6. Legal Notes&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;This privacy policy complies with the requirements of the GDPR and BDSG.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Digital Wheel of Fortune: Fun Gimmick for Tourism Pastoral Events</title>
+          <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+          <author>Simeon Stanek</author>
+          <link>https://simeon.staneks.de/en/posts/20241120/</link>
+          <guid>https://simeon.staneks.de/en/posts/20241120/</guid>
+          <description xml:base="https://simeon.staneks.de/en/posts/20241120/">&lt;h1 id=&quot;genesis&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#genesis&quot; aria-label=&quot;Anchor link for: genesis&quot;&gt;Genesis&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;My colleague F. and I came up with something special for the decanal merger of the Werdenfels and Rottenbuch deaneries. It was important to us that the project would make a strong impression. I came up with the idea of a digital wheel of fortune – or fate wheel, as you might call it. It was to be controlled with a foot switch. Depending on the number, participants would receive a postcard personally designed by F. As a highlight, a photo would be taken for selected numbers. A photo booth and a wheel of fortune in one – how hard could it be? 😃&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;concept&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#concept&quot; aria-label=&quot;Anchor link for: concept&quot;&gt;Concept&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;software&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#software&quot; aria-label=&quot;Anchor link for: software&quot;&gt;Software&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;frontend&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#frontend&quot; aria-label=&quot;Anchor link for: frontend&quot;&gt;Frontend&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;I thought it should be simple to create a wheel of fortune using vanilla web technology. Said and done – within an hour, the principle was established, and the wheel would spin when pressing the 1 key on the keyboard. The design was initially rather makeshift. But F., a passionate layout artist, graphic designer, illustrator, and designer, immediately drew a matching frame for the wheel of fortune and the drawn number.&lt;&#x2F;p&gt;
+&lt;p&gt;A test run is possible at &lt;a href=&quot;https:&#x2F;&#x2F;tourismuspastoral.de&#x2F;yourturn&#x2F;&quot;&gt;https:&#x2F;&#x2F;tourismuspastoral.de&#x2F;yourturn&#x2F;&lt;&#x2F;a&gt;. Depending on the screen resolution, the frame doesn&#x27;t fit optimally. Due to time and simplicity constraints, the web app is only optimized for 720p screens – that&#x27;s completely sufficient.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;20241120&#x2F;images&#x2F;screenshot.jpeg&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;For numbers 1 and 25, the camera opens and takes a photo after 5 seconds. This function is also triggered when pressing key 2, as we wanted to make the photo available to those photographed. The photo is sent to my server and a QR code is generated to retrieve the photo.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;20241120&#x2F;images&#x2F;screenshot1.jpeg&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;backend&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#backend&quot; aria-label=&quot;Anchor link for: backend&quot;&gt;Backend&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Of course, it took some effort to make everything work. The photo is received via an n8n webhook and stored in two locations on my server. Once this process is complete, a confirmation is sent and the corresponding QR code is displayed. Additionally, there is a second webhook.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;20241120&#x2F;images&#x2F;screenshot2.png&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The QR code leads to a PHP script that allows deleting the photo. The photo can then be removed from both storage locations by the second webhook, if desired.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;20241120&#x2F;images&#x2F;screenshot3.jpg&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;hardware&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#hardware&quot; aria-label=&quot;Anchor link for: hardware&quot;&gt;Hardware&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;A laptop would have sufficed for the simple setup, but we wanted to go big: 50-inch screen, foot switch, webcam, and laptop were necessary. The participants visibly had fun.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;further-development&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#further-development&quot; aria-label=&quot;Anchor link for: further-development&quot;&gt;Further Development&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Our boss was so excited about the action that he wants to set up the wheel of fortune at the leisure fair in Munich. He wishes for a hand switch, and in the course of this, we&#x27;re also acquiring a Raspberry Pi 5 so that no one has to leave their laptop at the F.re.e for a week.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;20241120&#x2F;images&#x2F;hardware.jpeg&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;I bought the switch on AliExpress, along with an Atmega32u4. The chip can act like a keyboard and sends the &quot;1&quot; to the web app when a key is pressed. It can be programmed very easily with the Arduino IDE and can be directly connected to the Raspberry via USB.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;20241120&#x2F;images&#x2F;hardware1.jpeg&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;code-example&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#code-example&quot; aria-label=&quot;Anchor link for: code-example&quot;&gt;Code Example&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Here&#x27;s the simple code that was uploaded to the Atmega32u4 using the Arduino IDE.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;cpp&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-cpp &quot;&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;#include &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;Keyboard.h&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&#x2F;&#x2F; Declaration of pins: 4 for the button and 3 for the LED - both pins must of course be connected to ground
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;const int&lt;&#x2F;span&gt;&lt;span&gt; buttonPin &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;4&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;const int&lt;&#x2F;span&gt;&lt;span&gt; ledPin &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;3&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; previousButtonState &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; HIGH&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;setup&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&#x2F;&#x2F; Definition of pins
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;pinMode&lt;&#x2F;span&gt;&lt;span&gt;(buttonPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; INPUT_PULLUP)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;pinMode&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; OUTPUT)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  Keyboard&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;begin&lt;&#x2F;span&gt;&lt;span&gt;()&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;loop&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&#x2F;&#x2F; Reads the button state
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; buttonState &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalRead&lt;&#x2F;span&gt;&lt;span&gt;(buttonPin)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalWrite&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; HIGH)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&#x2F;&#x2F; When the button is pressed:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;(buttonState &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;==&lt;&#x2F;span&gt;&lt;span&gt; LOW &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;&amp;amp;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt; previousButtonState &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;==&lt;&#x2F;span&gt;&lt;span&gt; HIGH) {
+&lt;&#x2F;span&gt;&lt;span&gt;    Keyboard&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;print&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;1&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&#x2F;&#x2F; Makes the LED blink 😃
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalWrite&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; LOW)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;delay&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;50&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalWrite&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; HIGH)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;delay&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;50&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalWrite&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; LOW)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;delay&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;50&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalWrite&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; HIGH)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;delay&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;50&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalWrite&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; LOW)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;delay&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;50&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalWrite&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; HIGH)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;delay&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;50&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;(buttonState &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;==&lt;&#x2F;span&gt;&lt;span&gt; HIGH &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;&amp;amp;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt; previousButtonState &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;==&lt;&#x2F;span&gt;&lt;span&gt; LOW) {
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&#x2F;&#x2F; Nothing happens here
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;delay&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;50&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  }
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&#x2F;&#x2F; Stores the current button state
+&lt;&#x2F;span&gt;&lt;span&gt;  previousButtonState &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; buttonState&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;How the final result will ultimately look will become clear in the coming weeks.&lt;&#x2F;p&gt;
+</description>
+      </item>
+    </channel>
+</rss>
