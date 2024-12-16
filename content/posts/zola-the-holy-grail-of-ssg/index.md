@@ -192,6 +192,16 @@ Der zola Kompiler weißt dankenswerterweise darauf hin, wenn keys in der Konfigu
 ```
 
 ### Inhalt
+Der Inhalt wird einfach unter `/content` abgelegt. Einfache .md Dateien mit einer toml Konfiguration im Header, der durch drei Pluszeichen gekennzeichnete wird. Zola rendert diese Dateien dann zu html und fügt sie zugleich der Sitemap hinzu und wenn gewünscht dem RSS Feed und dem Suchindex.
+
+```md
++++
+title = "Zola"
+template = "index.html"
+date = 2025-01-01
++++
+``` 
+
 Nachdem die Seite erstellt wurde und der Inhalt eingefügt wurde, geht es darum die Webseite öffentlich zu machen.
 Anhand von Github-Pages möchte ich hier eine grobe Anleitung geben:
 

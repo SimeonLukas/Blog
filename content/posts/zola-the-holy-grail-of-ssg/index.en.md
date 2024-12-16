@@ -196,6 +196,16 @@ Thankfully, the zola compiler indicates when keys are missing in the configurati
 ```
 
 ### Content
+The content is simply stored under `/content`. Simple .md files with a toml configuration in the header, which is marked with three plus signs. Zola then renders these files to html and adds them to the sitemap and, if desired, to the RSS feed and the search index.
+
+```md
++++
+title = "Zola"
+template = "index.html"
+date = 2025-01-01
++++
+``` 
+
 After the page has been created and the content has been inserted, it is a matter of making the website public. I would like to give a rough guide here using Github Pages:
 
 ## Upload the website with Github Pages
