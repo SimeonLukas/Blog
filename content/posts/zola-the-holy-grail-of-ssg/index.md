@@ -21,7 +21,7 @@ Natürlich gibt es weitere Alternativen, wie [HUGO](https://gohugo.io/), [Next.j
 
 ## Was macht Zola?
 
-Zola erstellt dir aus statischen Inhalten, aus [Tera-Templates](https://keats.github.io/tera/) und Markdown Dateien eine sog. statische Webseite. Konfiguriert wird alles in einer sog. `config.toml`, die im Wurzelverzeichnis des Projekts bzw. Repositories liegt. Die generierte Webseite findet sich dann im `public` Verzeichnis und kann dann von einem beliebigen Webserver (z.B.[Apache](https://httpd.apache.org/), [Caddy](https://caddyserver.com/), [nginx](https://www.nginx.com/), etc.) bereitgestellt werden. Für mein Projekt nutze ich die Infrastruktur von Gihub Pages, aber dazu später mehr.
+Zola erstellt dir aus statischen Inhalten, aus [Tera-Templates](https://keats.github.io/tera/) und Markdown Dateien eine sog. statische Webseite. Konfiguriert wird alles in einer sog. `config.toml`, die im Wurzelverzeichnis des Projekts bzw. Repositories liegt. Die generierte Webseite findet sich dann im `public` Verzeichnis und kann dann von einem beliebigen Webserver (z.B.[Apache](https://httpd.apache.org/), [Caddy](https://caddyserver.com/), [nginx](https://www.nginx.com/), etc.) bereitgestellt werden. Für mein Projekt nutze ich die Infrastruktur von Github Pages, aber dazu später mehr.
 
 ## Aufbruch mit Zola
 
