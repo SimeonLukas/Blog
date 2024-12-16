@@ -210,6 +210,16 @@ After the page has been created and the content has been inserted, it is a matte
 
 ## Upload the website with Github Pages
 
+### Add a domain to Github
+
+As a first step, you need to add a domain name in Github Settings. You can see this in the following screenshots:
+
+![Screenshot](images/zola00005.png)
+
+![Screenshot](images/zola00006.png)
+
+### Gihtub Pages
+
 1. Create a public repository on Github
 
 2. Create a branch called `gh-pages`

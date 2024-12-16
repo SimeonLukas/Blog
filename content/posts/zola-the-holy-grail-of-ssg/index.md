@@ -207,6 +207,16 @@ Anhand von Github-Pages möchte ich hier eine grobe Anleitung geben:
 
 ## Upload der Webseite mit Github Pages
 
+### Add a domain to Github
+
+Zu allererst muss die private Domain bei Github hinzugefügt werden. Die Schritte kann man auf folgenden Screenshots nachsehen:
+
+![Screenshot](images/zola00005.png)
+
+![Screenshot](images/zola00006.png)
+
+### Gihtub Pages
+
 1. Erstelle ein öffentliches Repository auf Github
 
 2. Erstelle ein Branch namens `gh-pages`
