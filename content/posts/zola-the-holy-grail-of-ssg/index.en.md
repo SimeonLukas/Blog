@@ -208,7 +208,7 @@ date = 2025-01-01
 
 After the page has been created and the content has been inserted, it is a matter of making the website public. I would like to give a rough guide here using Github Pages:
 
-## Upload the website with Github Pages
+## Upload the website to Github Pages
 
 ### Add a domain to Github
 
