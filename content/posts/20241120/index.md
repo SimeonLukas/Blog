@@ -80,7 +80,7 @@ void loop() {
   int buttonState = digitalRead(buttonPin);
   digitalWrite(ledPin, HIGH);
 
-// Wenn der Button gedruckt wurde:
+// Wenn der Button gedrückt wurde:
   if (buttonState == LOW && previousButtonState == HIGH) {
     Keyboard.print("1");
     // Blinkt die LED 😃
