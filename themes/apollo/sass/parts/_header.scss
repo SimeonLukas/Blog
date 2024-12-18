@@ -157,6 +157,11 @@ h2::before {
     content: "## ";
 }
 
+.postlink::before {
+    color: var(--primary-color);
+    content: unset !important;
+}
+
 h3::before {
     color: var(--primary-color);
     content: "### ";
