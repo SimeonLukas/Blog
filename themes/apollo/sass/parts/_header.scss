@@ -3,8 +3,11 @@
     line-height: 100%;
     font-family: var(--header-font);
     margin: 4rem 0px 1rem 0px;
+    font-weight: normal;
 }
-
+.page-header::before {
+    content: unset;
+}
 .centered-header {
     font-family: var(--header-font);
     position: absolute;
@@ -159,7 +162,7 @@ h2::before {
 .postlink{
     font-size: 1.2rem;
     margin-top: 0em;
-    
+
 }
 .postlink::before {
     color: var(--primary-color);
