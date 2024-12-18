@@ -159,7 +159,7 @@ h2::before {
 
 .postlink::before {
     color: var(--primary-color);
-    content: unset !important;
+    content: "# ";
 }
 
 h3::before {
