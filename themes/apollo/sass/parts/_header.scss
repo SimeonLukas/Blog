@@ -156,7 +156,10 @@ h2::before {
     color: var(--primary-color);
     content: "## ";
 }
-
+.postlink{
+    font-size: 1.2rem;
+    margin-top: 0em;
+}
 .postlink::before {
     color: var(--primary-color);
     content: "# ";
