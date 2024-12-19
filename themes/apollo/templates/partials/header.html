@@ -14,6 +14,7 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="msapplication-TileColor" content="#00a300">
     <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="{{ config.title }}" />
 
     {% if page.extra.meta %}
     <!-- the meta data config goes here  -->
@@ -54,7 +55,7 @@
 
     {% if not page_has_og_description %}
     {% if page.description %}
-    <meta property="og:description" content="{{ page.description }}"/>
+    <meta property="og:description" content="{{ page.description | truncate(length=157, end="...")}}"/>
     <!-- twitter description -->
     <meta name="twitter:description" content="{{ page.description }}">
     {% elif config.description %}
