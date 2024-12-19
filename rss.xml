@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title>Simeon&#x27;s Blog</title>
+      <link>https://simeon.staneks.de</link>
+      <description>lieber unperfekt starten als perfekt warten</description>
+      <generator>Zola</generator>
+      <language>de</language>
+      <atom:link href="https://simeon.staneks.de/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Mon, 16 Dec 2024 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Zola: Der Heilige Gral der Static-Site-Generatoren</title>
+          <pubDate>Mon, 16 Dec 2024 00:00:00 +0000</pubDate>
+          <author>Simeon Stanek</author>
+          <link>https://simeon.staneks.de/posts/zola-the-holy-grail-of-ssg/</link>
+          <guid>https://simeon.staneks.de/posts/zola-the-holy-grail-of-ssg/</guid>
+          <description xml:base="https://simeon.staneks.de/posts/zola-the-holy-grail-of-ssg/">&lt;h1 id=&quot;genese&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#genese&quot; aria-label=&quot;Anchor link for: genese&quot;&gt;Genese&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Bei unseren wöchentlichen Jogging-Meetups, reden J. und ich über Gott und die Welt, doch 90% unsere Nerd-Talks handeln von Hosting, Programmierung und jeglichem Technikzeugs, das man sich vorstellen kann. Die Talks sind wahrscheinlich auch der erste Grund fürs Joggen und letztens kam J. auf die grandiose Idee, dass wir doch beide bloggen sollten. Let&#x27;s do it! Mindestens ein Artikel, einmal im Monat. Da bietet sich doch gleich ein Artikel über den eigenen Blog an. - Denn es gibt so viele Wege zum Blog, wie es Menschen gibt.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;zola-ein-rostiges-wegstuck&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#zola-ein-rostiges-wegstuck&quot; aria-label=&quot;Anchor link for: zola-ein-rostiges-wegstuck&quot;&gt;Zola - Ein rostiges Wegstück&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Als kleiner Fan der Programmiersprache Rust, bin ich grundsätzlich immer auf der Suche nach Rust-Software. Zola ist ein Static-Site-Generator, der es wirklich in sich hat. Hier ist die Website, der in Entwicklung befindlichen Software: &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;&quot;&gt;getzola.org&lt;&#x2F;a&gt;
+Wenn man nicht vor CLI-Tools zurückschreckt, dann empfehle ich die Software mal zu testen.
+Natürlich gibt es weitere Alternativen, wie &lt;a href=&quot;https:&#x2F;&#x2F;gohugo.io&#x2F;&quot;&gt;HUGO&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;nextjs.org&#x2F;&quot;&gt;Next.js&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;www.gatsbyjs.com&#x2F;&quot;&gt;Gatsby&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;astro.build&#x2F;&quot;&gt;Astro&lt;&#x2F;a&gt;, etc. J. hat sich in diesem Fall für Astro entschieden, doch da ich schon gute Erfahrungen mit Zola gemacht habe, entschied ich mich dafür.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;was-macht-zola&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#was-macht-zola&quot; aria-label=&quot;Anchor link for: was-macht-zola&quot;&gt;Was macht Zola?&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Zola erstellt dir aus statischen Inhalten, aus &lt;a href=&quot;https:&#x2F;&#x2F;keats.github.io&#x2F;tera&#x2F;&quot;&gt;Tera-Templates&lt;&#x2F;a&gt; und Markdown Dateien eine sog. statische Webseite. Konfiguriert wird alles in einer sog. &lt;code&gt;config.toml&lt;&#x2F;code&gt;, die im Wurzelverzeichnis des Projekts bzw. Repositories liegt. Die generierte Webseite findet sich dann im &lt;code&gt;public&lt;&#x2F;code&gt; Verzeichnis und kann dann von einem beliebigen Webserver (z.B.&lt;a href=&quot;https:&#x2F;&#x2F;httpd.apache.org&#x2F;&quot;&gt;Apache&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;caddyserver.com&#x2F;&quot;&gt;Caddy&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;www.nginx.com&#x2F;&quot;&gt;nginx&lt;&#x2F;a&gt;, etc.) bereitgestellt werden. Für mein Projekt nutze ich die Infrastruktur von Github Pages, aber dazu später mehr.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;aufbruch-mit-zola&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#aufbruch-mit-zola&quot; aria-label=&quot;Anchor link for: aufbruch-mit-zola&quot;&gt;Aufbruch mit Zola&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Zola ist einfach zu installieren und zu benutzen, aber auch zu konfigurieren. In diesem Artikel werde ich auf einzelne Schritte eingehen.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;installation&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#installation&quot; aria-label=&quot;Anchor link for: installation&quot;&gt;Installation&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Es gibt quasi für jedes Betriebssystem eine passende Binärdatei. Auf Gihtub findet man in den meisten Fällen den passenden &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;getzola&#x2F;zola&#x2F;releases&quot;&gt;Release&lt;&#x2F;a&gt;, wenn der nicht zu finden ist, dann findet man auch auf &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;documentation&#x2F;getting-started&#x2F;installation&#x2F;&quot;&gt;getzola.org&lt;&#x2F;a&gt; Installationsskripte und auch eine Anleitung zum kompilieren von Zola.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;initialisierung&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#initialisierung&quot; aria-label=&quot;Anchor link for: initialisierung&quot;&gt;Initialisierung&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Wenn Zola installiert ist, kann man mit &lt;code&gt;zola init&lt;&#x2F;code&gt; die Verzeichisstruktur eines neuen Projekts erstellen.
+Zola frägt dich dann:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;shell&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-shell &quot;&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span&gt;Welcome to Zola!
+&lt;&#x2F;span&gt;&lt;span&gt;Please answer a few questions to get started quickly.
+&lt;&#x2F;span&gt;&lt;span&gt;Any choices made can be changed by modifying the `config.toml` file later.
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt; What is the URL of your site? (https:&#x2F;&#x2F;example.com): https:&#x2F;&#x2F;test.staneks.de
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt; Do you want to enable Sass compilation? [Y&#x2F;n]: n
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt; Do you want to enable syntax highlighting? [y&#x2F;N]: y
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt; Do you want to build a search index of the content? [y&#x2F;N]: n
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Done! Your site was created in &#x2F;Users&#x2F;simeon&#x2F;zola&#x2F;testblog.
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Get started by moving into the directory and using the built-in server: `zola serve`
+&lt;&#x2F;span&gt;&lt;span&gt;Visit https:&#x2F;&#x2F;www.getzola.org for the full documentation.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;zola-serve&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#zola-serve&quot; aria-label=&quot;Anchor link for: zola-serve&quot;&gt;zola serve&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Mit dem Befehl &lt;code&gt;zola serve&lt;&#x2F;code&gt; kann man nun die Webseite auf &lt;code&gt;localhost:1111&lt;&#x2F;code&gt; einsehen. Bei jeder Änderung passt sich die Seite dann auch an.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;zola-the-holy-grail-of-ssg&#x2F;images&#x2F;zola00002.png&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;konfiguration&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#konfiguration&quot; aria-label=&quot;Anchor link for: konfiguration&quot;&gt;Konfiguration&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Die Konfiguartionsdatei &lt;code&gt;config.toml&lt;&#x2F;code&gt; liegt im Wurzelverzeichnis des Projekts. Sie ist der Dreh und Angelpunkt für das Projekt. Alle möglichen Konfigurationen finden sich in der &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;documentation&#x2F;getting-started&#x2F;configuration&#x2F;&quot;&gt;Dokumentation&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Je nach dem empfiehlt dir Zola eine &lt;code&gt;ìndex.html&lt;&#x2F;code&gt; datei unter &lt;code&gt;templates&lt;&#x2F;code&gt; zu erstellen, bzw. kann man direkt ein Theme installieren, das schon Templates und mögliche statische Inhalte beinhaltet. Eine genauere Anletung dazu gibt es unter &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;documentation&#x2F;themes&#x2F;installing-and-using-themes&#x2F;&quot;&gt;Installing &amp;amp; using themes&lt;&#x2F;a&gt;. Für meinen Blog gehe ich mit dem Theme &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;themes&#x2F;apollo&#x2F;&quot;&gt;Apollo&lt;&#x2F;a&gt;. Diese Theme bringt schon einen Darkmode mit. Man kann sich dann entscheiden ob man die Templates im Theme anpasst, oder weitere im Ordner &lt;code&gt;&#x2F;templates&lt;&#x2F;code&gt; hinzufügt.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;theme&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#theme&quot; aria-label=&quot;Anchor link for: theme&quot;&gt;Theme&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;p&gt;Nachdem das Theme per git installiert wurde, oder die Daten von einem .zip Archiv in das Verzeichnis &lt;code&gt;&#x2F;themes&lt;&#x2F;code&gt; extrahiert wurden, muss man die &lt;code&gt;config.toml&lt;&#x2F;code&gt; Datei dem entsprechend anpassen:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Die URL der Webseite
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;base_url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;https:&#x2F;&#x2F;test.staneks.de&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Name des Themes, das im Ordner `&#x2F;themes&#x2F;apollo` liegt
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;theme &lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;apollo&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Title der Webseite
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;title &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;Testing&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Bezeichnung der Schlagworte, die den Artikeln zugewiesen werden sollen
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;taxonomies &lt;&#x2F;span&gt;&lt;span&gt;= [{ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;tags&amp;quot; &lt;&#x2F;span&gt;&lt;span&gt;}]
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Generiere eine CSS Datei aus sass
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;compile_sass &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;false
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Erstelle einen Suchindex
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;build_search_index &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;false
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;#Markdown abhängige Einstellungen
+&lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;markdown&lt;&#x2F;span&gt;&lt;span&gt;]
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Erlaube Syntax Highlighting
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;highlight_code &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;true
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Theme abhängige Einstellungen
+&lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;extra&lt;&#x2F;span&gt;&lt;span&gt;]
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Aktiviere das Darkmode
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;theme &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;auto&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Social links
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;socials &lt;&#x2F;span&gt;&lt;span&gt;= [
+&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;mastodon&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;icon &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;mastodon&amp;quot; &lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;instagram&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;icon &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;instagram&amp;quot; &lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;github&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;icon &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;github&amp;quot; &lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;rss&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;rss.xml&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;icon &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;rss&amp;quot; &lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;]
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Navigationleiste
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;menu &lt;&#x2F;span&gt;&lt;span&gt;= [
+&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;posts&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;posts&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;weight &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;pages&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;pages&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;weight &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;about&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;pages&#x2F;about&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;weight &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;2 &lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;tags&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;url &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;&#x2F;tags&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;weight &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;3 &lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;]
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Platz für Variablen, die für die ganze Webseite zur Verfügung stehen.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Danach schaut die Webseite so aus:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;zola-the-holy-grail-of-ssg&#x2F;images&#x2F;zola00003.png&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Je nachdem wie der Entwickler des Themes seine Templates erstellt hat findet man unter &lt;code&gt;themes&#x2F;apollo&#x2F;templates&lt;&#x2F;code&gt; die unterschiedlichen .html-Dateien, die mit der Template Engine &lt;a href=&quot;https:&#x2F;&#x2F;keats.github.io&#x2F;tera&#x2F;&quot;&gt;Tera&lt;&#x2F;a&gt; ausgezeichnet wurden.
+Diese Templates können dann nach und nach an die eigenen Bedürfnisse angepasst werden. Anhand der Dokumentaion und der schon erstellten Templates kann die Syntax schnell verstanden werden. Hier ein paar Beispiele:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;html&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-html &quot;&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;title&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&amp;lt;!-- Wenn es einen Titel für eine spezifische Seite gibt, dann nimm diese. --&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        {% if page.title %} {{ page.title }}
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&amp;lt;!-- Wenn es einen Titel fuür eine spezifische Section gibt, dann nimm diese. --&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        {% elif section.title %} {{ section.title }}
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&amp;lt;!-- Wenn es keinen Titel gibt, dann den Titel der Webseite. --&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;        {% else %} {{ config.title }}
+&lt;&#x2F;span&gt;&lt;span&gt;        {% endif %}
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;title&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;html&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-html &quot;&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&amp;lt;!-- templates&#x2F;base.html --&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;!&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;DOCTYPE &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;html&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;html &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;lang&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;en&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;head&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;meta &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;charset&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;utf-8&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;title&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;Testing&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;title&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;head&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;body&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;section &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;section&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;div &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;container&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      {% block content %} {% endblock %}
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;div&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;section&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;body&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;html&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;html&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-html &quot;&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&amp;lt;!-- templates&#x2F;index.html --&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&amp;lt;!-- Erweitere das base Template und füge es ein --&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt; {% extends &amp;quot;base.html&amp;quot; %}
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&amp;lt;!-- Inhalt der Seite --&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;{% block content %}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;h1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;title&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  This is my blog made with Zola.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;h1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&amp;lt;!-- Inhalt der Seite die im Markdown unterhlab de Konfiguration ist --&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;{{ page.content }}
+&lt;&#x2F;span&gt;&lt;span&gt;{% endblock content %}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Jede .md Datein, bei der in der Konfiguartion &lt;code&gt;template = &quot;index.html&quot;&lt;&#x2F;code&gt; gesetzt wurde, wird wie oben beschrieben gerendert.
+Der zola Kompiler weißt dankenswerterweise darauf hin, wenn keys in der Konfiguartion fehlen. Somit kann innerhalb dieser Templates einfaches HTML geschrieben werden und es lassen sich mit der Logik der Engine die Inhalte der Seiten anpassen. Sections sind wie bei anderen SSGs auch notwendig um einzelne Seiten zur gruppieren. Section Dateien liegen im Quellverzeichnis eines Ordners und werden mit Unterstrich gekennzeichnet &lt;code&gt;_index.md&lt;&#x2F;code&gt;. Diesen Sections liegen dann andere Werte vor und durch eine Section kann man über andere Seiten, die auch in dem Ordner liegen iterieren.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;html&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-html &quot;&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&amp;lt;!-- templates&#x2F;section.html --&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    {% block post_list %}  
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;main &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;list&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;            {%- if paginator %}
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&amp;lt;!-- get section --&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;                {%- set show_pages = paginator.pages -%}
+&lt;&#x2F;span&gt;&lt;span&gt;            {% else %}
+&lt;&#x2F;span&gt;&lt;span&gt;                {%- set show_pages = section.pages  -%}
+&lt;&#x2F;span&gt;&lt;span&gt;            {% endif -%}
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&amp;lt;!-- macros können in einem anderen Template hinterlegt werden und durch das importieren geladen werden, diese sind dann global verfügbar --&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;            {{ post_macros::list_posts(pages=show_pages) }}
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span style=&quot;color:#55b4d490;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    {% endblock post_list %}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;inhalt&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#inhalt&quot; aria-label=&quot;Anchor link for: inhalt&quot;&gt;Inhalt&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Der Inhalt wird einfach unter &lt;code&gt;&#x2F;content&lt;&#x2F;code&gt; abgelegt. Einfache .md Dateien mit einer toml Konfiguration im Header, der durch drei Pluszeichen gekennzeichnete wird. Zola rendert diese Dateien dann zu html und fügt sie zugleich der Sitemap hinzu und wenn gewünscht dem RSS Feed und dem Suchindex.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;md&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-md &quot;&gt;&lt;code class=&quot;language-md&quot; data-lang=&quot;md&quot;&gt;&lt;span&gt;+++
+&lt;&#x2F;span&gt;&lt;span&gt;title = &amp;quot;Zola&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;template = &amp;quot;index.html&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;date = 2025-01-01
+&lt;&#x2F;span&gt;&lt;span&gt;+++
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Nachdem die Seite erstellt wurde und der Inhalt eingefügt wurde, geht es darum die Webseite öffentlich zu machen.
+Anhand von Github-Pages möchte ich hier eine grobe Anleitung geben:&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;upload-der-webseite-mit-github-pages&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#upload-der-webseite-mit-github-pages&quot; aria-label=&quot;Anchor link for: upload-der-webseite-mit-github-pages&quot;&gt;Upload der Webseite mit Github Pages&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;add-a-domain-to-github&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#add-a-domain-to-github&quot; aria-label=&quot;Anchor link for: add-a-domain-to-github&quot;&gt;Add a domain to Github&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Zu allererst muss die private Domain bei Github hinzugefügt werden. Die Schritte kann man auf folgenden Screenshots nachsehen:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;zola-the-holy-grail-of-ssg&#x2F;images&#x2F;zola00005.png&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;zola-the-holy-grail-of-ssg&#x2F;images&#x2F;zola00006.png&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;gihtub-pages&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#gihtub-pages&quot; aria-label=&quot;Anchor link for: gihtub-pages&quot;&gt;Gihtub Pages&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Erstelle ein öffentliches Repository auf Github&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Erstelle ein Branch namens &lt;code&gt;gh-pages&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Kopiere die durch &lt;code&gt;zola build&lt;&#x2F;code&gt; erstellten Dateien im &lt;code&gt;public&lt;&#x2F;code&gt; Verzeichnis in den Branch &lt;code&gt;gh-pages&lt;&#x2F;code&gt;  oder rendere die Seite durch Github Actions in den Branch &lt;code&gt;gh-pages&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre data-lang=&quot;yaml&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-yaml &quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Füge diesen Script in `.github&#x2F;workflows` ein und benenne es in `zola.yml` oder `main.yml`
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;# Dein Repository muss öffentlich sein
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;on&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;push
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;Build and deploy GH Pages
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;jobs&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;build&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;runs-on&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;ubuntu-latest
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;if&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;github.ref == &amp;#39;refs&#x2F;heads&#x2F;main&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;steps&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;      - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;checkout
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;uses&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;actions&#x2F;checkout@v4
+&lt;&#x2F;span&gt;&lt;span&gt;      - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;build_and_deploy
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;uses&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;shalzz&#x2F;zola-deploy-action@v0.19.2
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;env&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;          &lt;&#x2F;span&gt;&lt;span style=&quot;color:#399ee6;&quot;&gt;TOKEN&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;${{ secrets.GITHUB_TOKEN }}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Erstelle eine CNAME Datei in das Verzeichnis &lt;code&gt;gh-pages&lt;&#x2F;code&gt; mit der Domain deiner Webseite. Du kannst sie direkt im Ordner &lt;code&gt;static&lt;&#x2F;code&gt; ablegen, dann ist sie immer an der richtigen Stelle.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Ändere den A Record deiner Domain auf den A-Record von Github Pages: &lt;code&gt;185.199.108.153&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Passe deine Einstellungen auf Github an, wie du es auf dem folgenden Bild siehst:&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;zola-the-holy-grail-of-ssg&#x2F;images&#x2F;zola00004.png&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Wenn das alles funktioniert hat, dürfte die Webseite auf deiner Domain sichtbar sein.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;fazit&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#fazit&quot; aria-label=&quot;Anchor link for: fazit&quot;&gt;Fazit&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Zola überzeugt als leichtgewichtiger, performanter Static-Site-Generator, der die Vorzüge von Rust optimal nutzt. Die Kombination aus einfacher Konfiguration, mächtigem Tera-Templating und nahtlosem GitHub-Pages-Deployment macht ihn zu einer hervorragenden Wahl für Entwickler, die Wert auf Einfachheit und Kontrolle legen.
+Die Lernkurve ist moderat - mit grundlegenden Markdown- und HTML-Kenntnissen kann man schnell eine funktionale Website aufbauen. Die Flexibilität bei Themes und Templates erlaubt eine individuelle Gestaltung, während die Rust-basierte Architektur für Geschwindigkeit und Zuverlässigkeit bürgt.
+Für alle, die einen unkomplizierten, schnellen und anpassungsfähigen Static-Site-Generator suchen, ist Zola definitiv einen genaueren Blick wert.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Der ATmega32u4 und die Arduino IDE: Eine Offenbarung mit ein bisschen Fegefeuer</title>
+          <pubDate>Sun, 24 Nov 2024 00:00:00 +0000</pubDate>
+          <author>Simeon Stanek</author>
+          <link>https://simeon.staneks.de/posts/20241124/</link>
+          <guid>https://simeon.staneks.de/posts/20241124/</guid>
+          <description xml:base="https://simeon.staneks.de/posts/20241124/">&lt;h1 id=&quot;genese&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#genese&quot; aria-label=&quot;Anchor link for: genese&quot;&gt;Genese&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Bereits 2018 suchte ich nach einer Möglichkeit, eine Tastatur zu emulieren. Damals baute ich eine Fotobox für meine Hochzeit und benötigte Tastatureingaben für ein von GitHub geladenes Programm. Heute stehe ich vor einer ähnlichen Herausforderung – diesmal für ein Projekt in meiner Arbeit. Details dazu finden sich hier: &lt;a href=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;20241120&#x2F;&quot;&gt;Digitales Glücksrad: Lustiger Firlefanz für die Tourismuspastoral&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;20241124&#x2F;images&#x2F;foto00001.jpeg&quot; alt=&quot;ATmega32u4: Pro Micro&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;installation-und-einrichtung-der-weg-durchs-fegefeuer&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#installation-und-einrichtung-der-weg-durchs-fegefeuer&quot; aria-label=&quot;Anchor link for: installation-und-einrichtung-der-weg-durchs-fegefeuer&quot;&gt;Installation und Einrichtung - Der Weg durchs Fegefeuer&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;arduino-ide&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#arduino-ide&quot; aria-label=&quot;Anchor link for: arduino-ide&quot;&gt;Arduino IDE&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Die einfachste Methode zur Programmierung des Chips ist die &lt;a href=&quot;https:&#x2F;&#x2F;www.arduino.cc&#x2F;en&#x2F;software&quot;&gt;Arduino IDE&lt;&#x2F;a&gt;. Diese lässt sich unkompliziert herunterladen und installieren.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;atmega32u4-konfigurieren&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#atmega32u4-konfigurieren&quot; aria-label=&quot;Anchor link for: atmega32u4-konfigurieren&quot;&gt;ATmega32u4 konfigurieren&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Nach der Installation navigiert man zu den &lt;em&gt;Einstellungen&lt;&#x2F;em&gt; und fügt unter &lt;em&gt;Zusätzliche Boardverwalter-URLs&lt;&#x2F;em&gt; folgenden Link ein:
+&lt;code&gt;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;sparkfun&#x2F;Arduino_Boards&#x2F;main&#x2F;IDE_Board_Manager&#x2F;package_sparkfun_index.json&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;20241124&#x2F;images&#x2F;foto00002.png&quot; alt=&quot;Boardverwalter&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Anschließend wählt man unter &lt;em&gt;Werkzeuge&lt;&#x2F;em&gt; das entsprechende Board aus – in diesem Fall den &lt;em&gt;Sparkfun Pro Micro&lt;&#x2F;em&gt;. Wichtig ist auch die Auswahl des korrekten Prozessors, abhängig von der Betriebsspannung. Der Programmer sollte ebenfalls zum Chip passen. Das Board wird per USB (in meinem Fall USB-C) angeschlossen und sollte sofort erkannt werden.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;20241124&#x2F;images&#x2F;foto00003.png&quot; alt=&quot;Prozessor&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;div class=&quot;note-container&quot;&gt;
+  
+    &lt;div class=&quot;note-header&quot;&gt;
+      
+        &lt;div class=&quot;note-icon&quot;&gt;
+        &lt;p&gt;Das wahre Fegefeuer: &lt;br&gt;Ein wichtiger Hinweis!&lt;&#x2F;p&gt;
+
+        &lt;&#x2F;div&gt;
+      
+    &lt;&#x2F;div&gt;
+    &lt;div class=&quot;note-content&quot;&gt;
+      &lt;p&gt;Bei falscher Prozessorauswahl und anschließendem Upload kann der Chip funktionsunfähig werden. In diesem Fall muss der Bootloader neu geflasht werden:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Korrekten Prozessor auswählen&lt;&#x2F;li&gt;
+&lt;li&gt;Bootloader-Modus aktivieren (2x schnell hintereinander die Pins &lt;code&gt;RST&lt;&#x2F;code&gt; &amp;amp; &lt;code&gt;GND&lt;&#x2F;code&gt; verbinden)&lt;&#x2F;li&gt;
+&lt;li&gt;Innerhalb von 8 Sekunden nach dem Reset die Datei hochladen (am besten Upload vorbereiten und dann erst in den Bootloader-Modus wechseln)&lt;&#x2F;li&gt;
+&lt;li&gt;Bei Fehlermeldungen Vorgang wiederholen&lt;&#x2F;li&gt;
+&lt;li&gt;Erfolgreicher Upload wird mit der Meldung &lt;code&gt;avrdude done. Thank you.&lt;&#x2F;code&gt; bestätigt&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+
+    &lt;&#x2F;div&gt;
+  
+&lt;&#x2F;div&gt;
+&lt;p&gt;Nach der Bewältigung des Prozessor-Fegefeuers kann die eigentliche Programmierung beginnen.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;die-offenbarung-programmierung-des-chips&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#die-offenbarung-programmierung-des-chips&quot; aria-label=&quot;Anchor link for: die-offenbarung-programmierung-des-chips&quot;&gt;Die Offenbarung: Programmierung des Chips&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Zum Testen eignet sich das Blink-Beispiel unter &lt;em&gt;Datei &amp;gt; Beispiele &amp;gt; 01.Basics &amp;gt; Blink&lt;&#x2F;em&gt;. Auch wenn dieses bei mir nicht wie erwartet funktionierte, zeigte der erfolgreiche Upload, dass die grundlegende Kommunikation mit dem Board funktioniert. Für Tastatureingaben wird zusätzlich die Keyboard-Bibliothek benötigt, die sich über &lt;em&gt;Sketch &amp;gt; Bibliothek einbinden&lt;&#x2F;em&gt; installieren lässt. Ein funktionierendes &lt;a href=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;20241120&#x2F;#codebeispiel&quot;&gt;Codebeispiel&lt;&#x2F;a&gt; findet sich im verlinkten Artikel.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;fazit&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#fazit&quot; aria-label=&quot;Anchor link for: fazit&quot;&gt;Fazit&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Der ATmega32u4 erweist sich als wahre Offenbarung in der Welt der Mikrocontroller. Wenn man einmal das anfängliche Fegefeuer der Konfiguration durchschritten hat, bietet er sowohl erfahrenen Arduino-Entwicklern als auch Einsteigern durch seine kompakte Größe und die umfangreiche Beispielsammlung in der IDE einen hervorragenden Weg zur Mikrocontroller-Programmierung.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>SummerCart64 N64 Flashcart: Must-Have für N64 Enthusiasten</title>
+          <pubDate>Fri, 22 Nov 2024 00:00:00 +0000</pubDate>
+          <author>Simeon Stanek</author>
+          <link>https://simeon.staneks.de/posts/20241122/</link>
+          <guid>https://simeon.staneks.de/posts/20241122/</guid>
+          <description xml:base="https://simeon.staneks.de/posts/20241122/">&lt;h1 id=&quot;genese&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#genese&quot; aria-label=&quot;Anchor link for: genese&quot;&gt;Genese&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Ich glaube 10 Jahre waren es. Jedenfalls suchten wir lange nach unserer alten N64-Konsole. Kurz bevor ich sie dann bei Kleinanzeigen erworben hätte, lag sie in einer weißen Tüte im Keller meiner Eltern. Dabei lag noch eine PS2-Slim. Nostalgia kicked in. Ich war so glücklich mit dem Fund und freute mich schon aufs Zocken.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;sc64-n64-flashcart-der-moderne-weg-n64-spiele-zu-geniessen&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#sc64-n64-flashcart-der-moderne-weg-n64-spiele-zu-geniessen&quot; aria-label=&quot;Anchor link for: sc64-n64-flashcart-der-moderne-weg-n64-spiele-zu-geniessen&quot;&gt;SC64 N64 Flashcart: Der moderne Weg N64 Spiele zu genießen&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Als langjähriger Nintendo 64 Enthusiast war ich immer auf der Suche nach einer zuverlässigen Möglichkeit, meine Lieblingsspiele auf Original-Hardware zu spielen. Nach einiger Recherche bin ich auf den SC64 Flashcart gestoßen - und ich muss sagen, es war eine der besten Entscheidungen für mein Retro-Gaming Setup. Zusätzlich kaufte ich mir noch zwei neue Controller auf AliExpress und ich war bereit für eine neue Erlebnisreise mit meinem N64.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;20241122&#x2F;images&#x2F;n6400001.jpeg&quot; alt=&quot;N64 SC64&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;was-ist-der-sc64-summercart64&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#was-ist-der-sc64-summercart64&quot; aria-label=&quot;Anchor link for: was-ist-der-sc64-summercart64&quot;&gt;Was ist der SC64 - SummerCart64?&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Der SC64 ist ein moderner Flashcart für das Nintendo 64, der es ermöglicht, ROMs von einer SD-Karte zu laden. Im Vergleich zu älteren Lösungen wie dem 64drive oder EverDrive-64 bietet er einige moderne Annehmlichkeiten wie einen USB-C Anschluss und eine ausgezeichnete PC-Integration. Außerdem ist das ganze Projekt Open Source und kann auf GitHub eingesehen werden. &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Polprzewodnikowy&#x2F;N64FlashcartMenu&#x2F;blob&#x2F;main&#x2F;docs&#x2F;00_getting_started_sd.md&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;Polprzewodnikowy&#x2F;SummerCart64&#x2F;&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;installation-und-ersteinrichtung&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#installation-und-ersteinrichtung&quot; aria-label=&quot;Anchor link for: installation-und-ersteinrichtung&quot;&gt;Installation und Ersteinrichtung&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Der SC64 funktioniert wie ein klassischer Flashcart:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;SD-Karte mit FAT32 oder exFAT formatieren&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;sc64menu.n64&lt;&#x2F;code&gt; in das Wurzelverzeichnis kopieren (In der Anleitung steht, dass man einen Ordner &lt;code&gt;menu&lt;&#x2F;code&gt; erstellen muss, aber das bitte nicht machen)&lt;&#x2F;li&gt;
+&lt;li&gt;SD-Karte in den SC64 einstecken&lt;&#x2F;li&gt;
+&lt;li&gt;SC64 in den Nintendo 64 einstecken&lt;&#x2F;li&gt;
+&lt;li&gt;Einschalten und kurz warten&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Dann sollte alles geklappt haben. Jetzt hat das Wurzelverzeichnis der SD-Karte einen Ordner &lt;code&gt;menu&lt;&#x2F;code&gt;. Jetzt kann man die Roms einfach auf der SD-Karte ablegen (nicht in &lt;code&gt;menu&lt;&#x2F;code&gt;) und los gehts. Auf der &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Polprzewodnikowy&#x2F;SummerCart64&#x2F;blob&#x2F;main&#x2F;docs&#x2F;00_quick_startup_guide.md&quot;&gt;Webseite&lt;&#x2F;a&gt; ist alles beschrieben und erklärt. Zudem kann man mit dem Programm SC64Deployer die Firmware der SC64 flashen, die SD-Karte formatieren und ROMs hochladen.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;20241122&#x2F;images&#x2F;n6400002.jpeg&quot; alt=&quot;N64 SC64&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;fazit&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#fazit&quot; aria-label=&quot;Anchor link for: fazit&quot;&gt;Fazit&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Nach einigen Tagen intensiver Nutzung kann ich den SC64 uneingeschränkt empfehlen. Die Kombination aus benutzerfreundlicher Bedienung macht ihn zu einem perfekten Begleiter für N64-Enthusiasten.&lt;&#x2F;p&gt;
+&lt;p&gt;Vorteile:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Einfache Installation&lt;&#x2F;li&gt;
+&lt;li&gt;Schnelle ROM-Ladezeiten&lt;&#x2F;li&gt;
+&lt;li&gt;Zuverlässige Speicherstand-Verwaltung&lt;&#x2F;li&gt;
+&lt;li&gt;Moderne USB-C Verbindung&lt;&#x2F;li&gt;
+&lt;li&gt;Aktive Firmware-Entwicklung&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Nachteile:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Preis höher als bei einigen Alternativen&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Der SC64 ist für mich der derzeit beste N64 Flashcart auf dem Markt. Er vereint moderne Technologie mit der nostalgischen N64-Hardware auf eine Art und Weise, die sowohl Gelegenheitsspieler als auch Hardware-Enthusiasten begeistern wird.&lt;&#x2F;p&gt;
+&lt;p&gt;Weitere Infos und Bauanleitung gibt es auf der offiziellen &lt;a href=&quot;https:&#x2F;&#x2F;summercart64.dev&#x2F;&quot;&gt;Webseite&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Über mich</title>
+          <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+          <author>Simeon Stanek</author>
+          <link>https://simeon.staneks.de/pages/about/</link>
+          <guid>https://simeon.staneks.de/pages/about/</guid>
+          <description xml:base="https://simeon.staneks.de/pages/about/">&lt;h1 id=&quot;simeon-stanek&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#simeon-stanek&quot; aria-label=&quot;Anchor link for: simeon-stanek&quot;&gt;Simeon Stanek&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Ich bin beruflich Seelsorger und ein leidenschaftlicher Hobbyist mit Freude an spannenden und individuellen Projekten in Webentwicklung, Appentwicklung, Programmiering, und mehr. Außerdem gestalte ich Webseiten, Webanwendungen und Apps auf Anfrage.&lt;br &#x2F;&gt;
+Meine Interessen umfassen:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Webentwicklung&lt;&#x2F;li&gt;
+&lt;li&gt;Appentwicklung&lt;&#x2F;li&gt;
+&lt;li&gt;Programmiering&lt;&#x2F;li&gt;
+&lt;li&gt;Design&lt;&#x2F;li&gt;
+&lt;li&gt;Gaming&lt;&#x2F;li&gt;
+&lt;li&gt;Hardware
+und mehr...&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;erfahrung&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#erfahrung&quot; aria-label=&quot;Anchor link for: erfahrung&quot;&gt;Erfahrung&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;frontend-programmierung&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#frontend-programmierung&quot; aria-label=&quot;Anchor link for: frontend-programmierung&quot;&gt;Frontend &amp;amp; Programmierung&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;HTML&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;85&quot; max=&quot;100&quot;&gt; 85% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;CSS&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;85&quot; max=&quot;100&quot;&gt; 85% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;JavaScript&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;75&quot; max=&quot;100&quot;&gt; 75% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;TypeScript&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;60&quot; max=&quot;100&quot;&gt; 60% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;PHP&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;60&quot; max=&quot;100&quot;&gt; 60% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;RUST&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;50&quot; max=&quot;100&quot;&gt; 50% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;backend-tooling&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#backend-tooling&quot; aria-label=&quot;Anchor link for: backend-tooling&quot;&gt;Backend &amp;amp; Tooling&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;Docker&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;60&quot; max=&quot;100&quot;&gt; 60% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;label for=&quot;file&quot;&gt;git&lt;&#x2F;label&gt;
+&lt;progress id=&quot;file&quot; value=&quot;50&quot; max=&quot;100&quot;&gt; 50% &lt;&#x2F;progress&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;links&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#links&quot; aria-label=&quot;Anchor link for: links&quot;&gt;Links&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;staneks.de&quot;&gt;&lt;strong&gt;Portfolio&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;simeon.staneks.de&quot;&gt;&lt;strong&gt;Blog&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;simeonlukas&quot;&gt;&lt;strong&gt;GitHub&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;&#x2F;pages&#x2F;impressum&quot;&gt;&lt;strong&gt;Impressum&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;&#x2F;pages&#x2F;policy&quot;&gt;&lt;strong&gt;Datenschutzhinweis&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;unterstutzung&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#unterstutzung&quot; aria-label=&quot;Anchor link for: unterstutzung&quot;&gt;Unterstützung&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.buymeacoffee.com&#x2F;simeonlukas&quot; style=&quot;border-bottom: 0px !important;&quot; target=&quot;_blank&quot; &gt;&lt;img src=&quot;https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;obsidian-kindle-export&#x2F;raw&#x2F;main&#x2F;files&#x2F;coffee.jpg&quot; width=&quot;100%&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Impressum</title>
+          <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+          <author>Simeon Stanek</author>
+          <link>https://simeon.staneks.de/pages/impressum/</link>
+          <guid>https://simeon.staneks.de/pages/impressum/</guid>
+          <description xml:base="https://simeon.staneks.de/pages/impressum/">&lt;h2 id=&quot;impressum&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#impressum&quot; aria-label=&quot;Anchor link for: impressum&quot;&gt;Impressum&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;angaben-gemass-ss-5-tmg&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#angaben-gemass-ss-5-tmg&quot; aria-label=&quot;Anchor link for: angaben-gemass-ss-5-tmg&quot;&gt;Angaben gemäß § 5 TMG:&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Simeon Stanek
+Schwabengasse 3
+82487 Oberammergau&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Kontakt:&lt;&#x2F;strong&gt;
+Telefon: 01774419070
+E-Mail: simeon@staneks.de&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;haftungsausschluss&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#haftungsausschluss&quot; aria-label=&quot;Anchor link for: haftungsausschluss&quot;&gt;Haftungsausschluss&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;haftung-fur-inhalte&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#haftung-fur-inhalte&quot; aria-label=&quot;Anchor link for: haftung-fur-inhalte&quot;&gt;Haftung für Inhalte&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;p&gt;Die Inhalte dieser Website wurden sorgfältig erstellt. Dennoch übernehmen wir keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Informationen.&lt;&#x2F;p&gt;
+&lt;p&gt;Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten verantwortlich. Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen (§§ 8 bis 10 TMG).&lt;&#x2F;p&gt;
+&lt;p&gt;Bei bekannt werdenden Rechtsverletzungen werden wir die entsprechenden Inhalte umgehend entfernen.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;haftung-fur-links&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#haftung-fur-links&quot; aria-label=&quot;Anchor link for: haftung-fur-links&quot;&gt;Haftung für Links&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;p&gt;Unsere Website enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte dieser verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar.&lt;&#x2F;p&gt;
+&lt;p&gt;Bei bekannt werdenden Rechtsverletzungen werden wir derartige Links umgehend entfernen.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;urheberrecht&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#urheberrecht&quot; aria-label=&quot;Anchor link for: urheberrecht&quot;&gt;Urheberrecht&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Die Inhalte dieser Website unterliegen dem deutschen Urheberrecht. Jede Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedarf der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.&lt;&#x2F;p&gt;
+&lt;p&gt;Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.&lt;&#x2F;p&gt;
+&lt;p&gt;Sollten Sie auf Urheberrechtsverletzungen aufmerksam werden, bitten wir um einen entsprechenden Hinweis.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;weitere-angaben&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#weitere-angaben&quot; aria-label=&quot;Anchor link for: weitere-angaben&quot;&gt;Weitere Angaben&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Gemäß § 2 Nr. 5 TMG und § 5 TMG:
+Die Webseite staneks.de wurde von Simeon Stanek selbst erstellt und enthält keine Cookies oder Formulare.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Datenschutzhinweis</title>
+          <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+          <author>Simeon Stanek</author>
+          <link>https://simeon.staneks.de/pages/policy/</link>
+          <guid>https://simeon.staneks.de/pages/policy/</guid>
+          <description xml:base="https://simeon.staneks.de/pages/policy/">&lt;h2 id=&quot;datenschutzerklarung&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#datenschutzerklarung&quot; aria-label=&quot;Anchor link for: datenschutzerklarung&quot;&gt;Datenschutzerklärung&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;1-verantwortlicher&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#1-verantwortlicher&quot; aria-label=&quot;Anchor link for: 1-verantwortlicher&quot;&gt;1. Verantwortlicher&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Simeon Stanek&lt;br &#x2F;&gt;
+Schwabengasse 3&lt;br &#x2F;&gt;
+82487 Oberammergau&lt;br &#x2F;&gt;
+E-Mail: simeon@staneks.de&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;2-grundlegende-informationen-zur-datenverarbeitung&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#2-grundlegende-informationen-zur-datenverarbeitung&quot; aria-label=&quot;Anchor link for: 2-grundlegende-informationen-zur-datenverarbeitung&quot;&gt;2. Grundlegende Informationen zur Datenverarbeitung&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;2-1-hosting-auf-github-pages&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#2-1-hosting-auf-github-pages&quot; aria-label=&quot;Anchor link for: 2-1-hosting-auf-github-pages&quot;&gt;2.1 Hosting auf GitHub Pages&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;p&gt;Die Website wird auf GitHub Pages gehostet. GitHub Inc. (headquartered at 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, USA) sammelt dabei möglicherweise technische Daten wie:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;IP-Adresse&lt;&#x2F;li&gt;
+&lt;li&gt;Browserinformationen&lt;&#x2F;li&gt;
+&lt;li&gt;Zugriffszeit&lt;&#x2F;li&gt;
+&lt;li&gt;Besuchte Seiten&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Rechtsgrundlage hierfür ist Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen finden Sie in den &lt;a href=&quot;https:&#x2F;&#x2F;docs.github.com&#x2F;en&#x2F;site-policy&#x2F;privacy-policies&#x2F;github-privacy-statement&quot;&gt;GitHub Privacy Statement&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;2-2-datenverarbeitung&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#2-2-datenverarbeitung&quot; aria-label=&quot;Anchor link for: 2-2-datenverarbeitung&quot;&gt;2.2 Datenverarbeitung&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;p&gt;Diese Website wird als statische Seite ohne aktive Tracking-Mechanismen, Cookies oder Formulare gehostet. Es werden keine zusätzlichen personenbezogenen Daten durch die Website selbst erhoben oder verarbeitet.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;3-ihre-rechte&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#3-ihre-rechte&quot; aria-label=&quot;Anchor link for: 3-ihre-rechte&quot;&gt;3. Ihre Rechte&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Sie haben folgende Rechte bezüglich Ihrer Daten:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Recht auf Auskunft&lt;&#x2F;li&gt;
+&lt;li&gt;Recht auf Berichtigung&lt;&#x2F;li&gt;
+&lt;li&gt;Recht auf Löschung&lt;&#x2F;li&gt;
+&lt;li&gt;Recht auf Einschränkung der Verarbeitung&lt;&#x2F;li&gt;
+&lt;li&gt;Recht auf Widerspruch&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;4-kontakt-bei-datenschutzfragen&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#4-kontakt-bei-datenschutzfragen&quot; aria-label=&quot;Anchor link for: 4-kontakt-bei-datenschutzfragen&quot;&gt;4. Kontakt bei Datenschutzfragen&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Bei Fragen zum Datenschutz können Sie sich jederzeit an uns wenden:&lt;br &#x2F;&gt;
+Simeon Stanek&lt;br &#x2F;&gt;
+E-Mail: simeon@staneks.de&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;5-anderungen-der-datenschutzerklarung&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#5-anderungen-der-datenschutzerklarung&quot; aria-label=&quot;Anchor link for: 5-anderungen-der-datenschutzerklarung&quot;&gt;5. Änderungen der Datenschutzerklärung&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Wir behalten uns vor, diese Datenschutzerklärung jederzeit zu aktualisieren.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;6-rechtliche-hinweise&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#6-rechtliche-hinweise&quot; aria-label=&quot;Anchor link for: 6-rechtliche-hinweise&quot;&gt;6. Rechtliche Hinweise&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Diese Datenschutzerklärung entspricht den Anforderungen der DSGVO und des BDSG.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Digitales Glücksrad: Lustiger Firlefanz für die Tourismuspastoral</title>
+          <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+          <author>Simeon Stanek</author>
+          <link>https://simeon.staneks.de/posts/20241120/</link>
+          <guid>https://simeon.staneks.de/posts/20241120/</guid>
+          <description xml:base="https://simeon.staneks.de/posts/20241120/">&lt;h1 id=&quot;genese&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#genese&quot; aria-label=&quot;Anchor link for: genese&quot;&gt;Genese&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Mein Kollege F. und ich haben uns etwas Besonderes für die Dekanatszusammenlegung der Dekanate Werdenfels und Rottenbuch überlegt. Uns war wichtig, dass das Projekt einen starken Eindruck hinterlässt. So kam ich mit der Idee eines digitalen Glücksrads – oder Schicksalsrads, wie man es auch nennen könnte. Mit einem Fußtaster sollte man es steuern können. Je nach Nummer bekommen die Teilnehmer eine von 10 Postkarten, die persönlich von F. gestaltet wurden. Als Highlight wird bei ausgewählten Nummern ein Foto gemacht. Eine Fotobox und ein Glücksrad in einem – das konnte doch nicht so schwer sein. 😃&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;konzept&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#konzept&quot; aria-label=&quot;Anchor link for: konzept&quot;&gt;Konzept&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;software&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#software&quot; aria-label=&quot;Anchor link for: software&quot;&gt;Software&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;frontend&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#frontend&quot; aria-label=&quot;Anchor link for: frontend&quot;&gt;Frontend&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Ich dachte mir, es sollte doch einfach sein, ein Glücksrad mit Vanilla-Webtechnologie zu erstellen. Gesagt, getan – innerhalb einer Stunde stand das Prinzip, und das Rad drehte sich, wenn man auf die Taste 1 auf der Tastatur drückte. Das Design war zunächst eher provisorisch. Doch F., ein leidenschaftlicher Layouter, Grafiker, Zeichner und Designer, zeichnete gleich einen passenden Rahmen für das Glücksrad und die ausgedrehte Nummer.&lt;&#x2F;p&gt;
+&lt;p&gt;Ein Probelauf ist möglich unter &lt;a href=&quot;https:&#x2F;&#x2F;tourismuspastoral.de&#x2F;yourturn&#x2F;&quot;&gt;https:&#x2F;&#x2F;tourismuspastoral.de&#x2F;yourturn&#x2F;&lt;&#x2F;a&gt;. Je nach Bildschirmauflösung passt der Rahmen nicht optimal. Aus Zeit- und Einfachkeitsgründen ist die Web-App nur für Bildschirme mit 720p optimiert – das reicht völlig aus.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;20241120&#x2F;images&#x2F;screenshot.jpeg&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Bei den Nummern 1 und 25 öffnet sich die Kamera und macht nach 5 Sekunden ein Foto. Diese Funktion wird auch beim Drücken der Taste 2 ausgelöst, da wir das Foto den Fotografierten zur Verfügung stellen wollten wird das Foto an meinen Server gesendet und ein QR-Code generiert, mit dem man sich das Foto abholen kann.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;20241120&#x2F;images&#x2F;screenshot1.jpeg&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;backend&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#backend&quot; aria-label=&quot;Anchor link for: backend&quot;&gt;Backend&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Natürlich brauchte es einige Bemühungen, damit alles funktioniert. Per n8n-Webhook wird das Foto empfangen und auf meinem Server an zwei Stellen gespeichert. Sobald dieser Vorgang abgeschlossen ist, wird eine Rückmeldung gesendet und der passende QR-Code angezeigt. Zusätzlich gibt es einen zweiten Webhook.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;20241120&#x2F;images&#x2F;screenshot2.png&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Der QR-Code leitet auf ein PHP-Skript, das es ermöglicht, das Foto zu löschen. Das Foto wird anschließend, wenn gewünscht, durch den zweiten Webhook von beiden Speicherorten entfernt.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;20241120&#x2F;images&#x2F;screenshot3.jpg&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;hardware&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#hardware&quot; aria-label=&quot;Anchor link for: hardware&quot;&gt;Hardware&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Für den einfachen Aufbau würde ein Laptop genügen, aber wir wollten es groß machen: 50-Zoll-Bildschirm, Fußtaster, Webcam und Laptop waren notwendig. Die Teilnehmenden hatten sichtlich Spaß.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;weiterentwicklung&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#weiterentwicklung&quot; aria-label=&quot;Anchor link for: weiterentwicklung&quot;&gt;Weiterentwicklung&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Unser Chef war von der Aktion so begeistert, dass er das Glücksrad auf der Freizeitmesse in München aufstellen möchte. Er wünscht sich einen Handtaster, und im Zuge dessen schafften wir uns auch einen Raspberry Pi 5 an, damit niemand seinen Laptop eine Woche lang auf der F.re.e lassen muss.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;20241120&#x2F;images&#x2F;hardware.jpeg&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Den Taster habe ich bei AliExpress gekauft, zusammen mit einem Atmega32u4. Der Chip kann wie eine Tastatur agieren und sendet bei Tastendruck die &quot;1&quot; an die Web-App. Er lässt sich sehr einfach mit der Arduino-IDE programmieren und kann direkt per USB an den Raspberry angeschlossen werden.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;20241120&#x2F;images&#x2F;hardware1.jpeg&quot; alt=&quot;Screenshot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;codebeispiel&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#codebeispiel&quot; aria-label=&quot;Anchor link for: codebeispiel&quot;&gt;Codebeispiel&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Hier ist übrigens der einfache Code der per Arduino-IDE auf den Atmega32u4 hochgeladen wurde.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;cpp&quot; style=&quot;background-color:#fafafa;color:#61676c;&quot; class=&quot;language-cpp &quot;&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;#include &lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;Keyboard.h&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&#x2F;&#x2F; Deklaration der Pins 4 für den Button und 3 für die LED beide Pins müssen natürlich mit einem Ground verbunden werden
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;const int&lt;&#x2F;span&gt;&lt;span&gt; buttonPin &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;4&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;const int&lt;&#x2F;span&gt;&lt;span&gt; ledPin &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;3&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; previousButtonState &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; HIGH&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;setup&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&#x2F;&#x2F; Definition der Pins
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;pinMode&lt;&#x2F;span&gt;&lt;span&gt;(buttonPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; INPUT_PULLUP)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;pinMode&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; OUTPUT)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  Keyboard&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;begin&lt;&#x2F;span&gt;&lt;span&gt;()&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;void &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;loop&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&#x2F;&#x2F; Liest den Buttonstatus
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt; buttonState &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalRead&lt;&#x2F;span&gt;&lt;span&gt;(buttonPin)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalWrite&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; HIGH)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&#x2F;&#x2F; Wenn der Button gedrückt wurde:
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;(buttonState &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;==&lt;&#x2F;span&gt;&lt;span&gt; LOW &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;&amp;amp;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt; previousButtonState &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;==&lt;&#x2F;span&gt;&lt;span&gt; HIGH) {
+&lt;&#x2F;span&gt;&lt;span&gt;    Keyboard&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;print&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#86b300;&quot;&gt;&amp;quot;1&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&#x2F;&#x2F; Blinkt die LED 😃
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalWrite&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; LOW)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;delay&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;50&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalWrite&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; HIGH)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;delay&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;50&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalWrite&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; LOW)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;delay&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;50&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalWrite&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; HIGH)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;delay&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;50&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalWrite&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; LOW)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;delay&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;50&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;digitalWrite&lt;&#x2F;span&gt;&lt;span&gt;(ledPin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; HIGH)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;delay&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;50&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  }
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#fa6e32;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;(buttonState &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;==&lt;&#x2F;span&gt;&lt;span&gt; HIGH &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;&amp;amp;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt; previousButtonState &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;==&lt;&#x2F;span&gt;&lt;span&gt; LOW) {
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&#x2F;&#x2F; Hier passiert nichts
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29718;&quot;&gt;delay&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ff8f40;&quot;&gt;50&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  }
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#abb0b6;&quot;&gt;&#x2F;&#x2F; Speichert den aktuellen Buttonstatus
+&lt;&#x2F;span&gt;&lt;span&gt;  previousButtonState &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed9366;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; buttonState&lt;&#x2F;span&gt;&lt;span style=&quot;color:#61676ccc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Wie das Endergebnis schlussendlich aussehen wird, zeigt sich in den nächsten Wochen.&lt;&#x2F;p&gt;
+</description>
+      </item>
+    </channel>
+</rss>
