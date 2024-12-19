@@ -34,7 +34,7 @@
                 <div class="meta">
                     <div class="description">
                         {% if page.description %}
-                        {{ page.description }}
+                        {{ page.description | truncate(length=200, end="...") | safe }}
                         {% elif page.summary %}
                         {{ page.summary | safe }}&hellip;
                         {% else %}
@@ -109,6 +109,7 @@
             {#<h1 class="title">{{ page.title }}</h1>#}
             {{ post_macros::page_header(title=page.title) }}
         </div>
+        {{ page.description | safe }}
 
         {% if page.extra.tldr %}
             <div class="tldr">

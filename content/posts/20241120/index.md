@@ -1,6 +1,6 @@
 +++
 title = "Digitales Glücksrad: Lustiger Firlefanz für die Tourismuspastoral"
-description = "Ein digitales Glücksrad für die Veranstaltungen der Tourismuspastoral im Werdenfelser Land und die Tourismuspastoral der Erzdiözese München und Freising."
+description = "In diesem Artikel werde ich Ihnen ein digitales Glücksrad vorstellen, das für die Veranstaltungen der Tourismuspastoral im Werdenfelser Land und die Tourismuspastoral der Erzdiözese München und Freising entwickelt wurde. Wir werden die Idee, die technische Umsetzung und die Nutzung des Glücksrads Schritt für Schritt durchgehen und zeigen, wie es bei verschiedenen Veranstaltungen eingesetzt werden kann. Dieser Leitfaden richtet sich an alle, die nach kreativen und interaktiven Lösungen für ihre Events suchen."
 date = "2024-11-20"
 template = "page.html"
 

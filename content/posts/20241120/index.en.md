@@ -1,6 +1,6 @@
 +++
 title = "Digital Wheel of Fortune: Fun Gimmick for Tourism Pastoral Events"
-description = "A digital wheel of fortune for events of the Tourism Pastoral in the Werdenfels Region and the Tourism Pastoral of the Archdiocese of Munich and Freising."
+description = "In this article, I will introduce you to a digital wheel of fortune developed for the events of the Tourism Pastoral in the Werdenfelser Land and the Tourism Pastoral of the Archdiocese of Munich and Freising. We will go through the idea, technical implementation, and usage of the wheel of fortune step by step and show how it can be used at various events. This guide is aimed at anyone looking for creative and interactive solutions for their events."
 date = "2024-11-20"
 template = "page.html"
 
