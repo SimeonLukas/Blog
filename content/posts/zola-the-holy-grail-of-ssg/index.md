@@ -5,7 +5,7 @@ description = "Eine praktische Einführung in den SSG Zola und Github Pages"
 [taxonomies]
 tags = ["software", "html", "css", "javascript", "zola" ,"github-pages" ,"tutorial","rust"]
 [extra]
-image = "https://simeon.staneks.de/posts/20241125/images/zola00001.png"
+image = "https://simeon.staneks.de/posts/20241125/images/zola00001.jpg"
 comment =  true
 +++
 
