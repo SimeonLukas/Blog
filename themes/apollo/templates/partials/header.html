@@ -4,17 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords"
-    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
-    <meta name="author" content="Simeon Stanek" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="msapplication-TileColor" content="#00a300">
-    <meta name="theme-color" content="#ffffff">
-    <meta property="og:site_name" content="{{ config.title }}" />
 
     {% if page.extra.meta %}
     <!-- the meta data config goes here  -->
@@ -33,7 +22,7 @@
         {{ config.title | default(value="Home") }}
     </title>
     {% if not page_has_og_title %}
-    <meta property="og:title" content="{{ config.title | default(value=" Home") }}" />
+    <!-- <meta property="og:title" content="{{ config.title | default(value=" Home") }}" /> -->
     {% endif %}
 
     {% else %}
@@ -46,18 +35,9 @@
 
     {% if not page_has_description %}
     {% if page.description %}
-    <meta name="description" content="{{ page.description }}" />
+    <meta name="description" content="{{ page.description | truncate(length=157, end="...") }}" />
     {% elif config.description %}
-    <meta name="description" content="{{ config.description }}" />
-    {% endif %}
-    {% endif %}
-
-    {% if not page_has_og_title %}
-    <meta property="og:title"
-        content="{% if page.title -%}{{ page.title }}{% elif config.title -%}{{ config.title }}{% else -%}Post{% endif -%}" />
-    <!-- twitter title -->
-    <meta name="twitter:title"
-        content="{% if page.title -%}{{ page.title }}{% elif config.title -%}{{ config.title }}{% else -%}Post{% endif -%}">
+    <meta name="description" content="{{ config.description | truncate(length=157, end="...") }}" />
     {% endif %}
     {% endif %}
 
@@ -68,6 +48,13 @@
     <meta name="twitter:image" content="{{config.base_url}}{{ page.path }}images/{{lang}}/preview.jpg">
     {% elif config.extra.favicon %}
     <meta property="og:image" content="{{ config.extra.favicon }}" />
+    {% endif %}
+
+    {% if not page_has_og_title %}
+    <meta property="og:title" content="{% if page.title -%}{{ page.title }}{% elif config.title -%}{{ config.title }}{% else -%}Post{% endif -%}" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="{% if page.title -%}{{ page.title }}{% elif config.title -%}{{ config.title }}{% else -%}Post{% endif -%}">
+    {% endif %}
     {% endif %}
 
     {% if not page_has_og_description %}
@@ -87,6 +74,18 @@
     <meta property="og:url" content="{%if page.url %}{{ page.url }}{% else %}{{ config.base_url }}{% endif %}"/>
     <meta property="og:type" content="article" />
     <meta property="og:logo" content="{{ config.extra.favicon }}" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="{{ config.title }}" />
 
 
     {# Favicon #}
