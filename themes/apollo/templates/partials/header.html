@@ -53,6 +53,15 @@
     {% endif %}
     {% endif %}
 
+    {% if page.path %}
+    <meta property="og:image" content="{{config.base_url}}{{ page.path }}images/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{config.base_url}}{{ page.path }}images/preview.jpg">
+    {% elif config.extra.favicon %}
+    <meta property="og:image" content={{ config.extra.favicon }} />
+    {% endif %}
+
     {% if not page_has_og_description %}
     {% if page.description %}
     <meta property="og:description" content="{{ page.description | truncate(length=157, end="...")}}"/>
@@ -82,16 +91,6 @@
     {# Favicon #}
     {% if config.extra.favicon %}
     <link rel="icon" type="image/png" href={{ config.extra.favicon }} />
-    {% endif %}
-
-
-    {% if page.path %}
-    <meta property="og:image" content="{{config.base_url}}{{ page.path }}images/preview.jpg" />
-    <!-- twitter card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{config.base_url}}{{ page.path }}images/preview.jpg">
-    {% elif config.extra.favicon %}
-    <meta property="og:image" content={{ config.extra.favicon }} />
     {% endif %}
 
     {# Font from cdn or disk #}
