@@ -2,7 +2,7 @@
 
 # Deploy script for Simeon's Blog
 
-zola serve --base-port 1234 &&
+zola serve --base-port 1234
 bun run index.ts
 
 # stop the server
