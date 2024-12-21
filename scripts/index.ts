@@ -148,31 +148,31 @@ run("ogimage.json", "http://127.0.0.1:1234/rss.xml");
 
 setTimeout(() => {
   run("instagram1.json", "http://127.0.0.1:1234/rss.xml");
-}, 5000);
+}, 1000);
 
 setTimeout(() => {
   run("instagram2.json", "http://127.0.0.1:1234/rss.xml");
-}, 10000);
+}, 1000);
 
 setTimeout(() => {
   run("feed.json", "http://127.0.0.1:1234/rss.xml");
-}, 15000);
+}, 1000);
 
 setTimeout(() => {
   run("ogimage.json", "http://127.0.0.1:1234/en/rss.xml");
-}, 20000);
+}, 1000);
 
 setTimeout(() => {
   run("instagram1.json", "http://127.0.0.1:1234/en/rss.xml");
-}, 25000);
+}, 1000);
 
 setTimeout(() => {
   run("instagram2.json", "http://127.0.0.1:1234/en/rss.xml");
-}, 30000);
+}, 1000);
 
 setTimeout(() => {
   run("feed.json", "http://127.0.0.1:1234/en/rss.xml");
-}, 35000);
+}, 1000);
 }
 
 generate();
