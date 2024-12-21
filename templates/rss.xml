@@ -39,6 +39,7 @@
           <link>{{ page.permalink | escape_xml | safe }}</link>
           <guid>{{ page.permalink | escape_xml | safe }}</guid>
           <description xml:base="{{ page.permalink | escape_xml | safe }}"><![CDATA[<img src="{{config.base_url | escape_xml | safe}}{{page.path | escape_xml | safe}}images/feed.jpg" alt="{{page.title}}"/>]]>{% if page.summary %}{{ page.summary }}{% else %}{{ page.content }}{% endif %}</description>
+          <media:thumbnail url="{{config.base_url | escape_xml | safe}}{{page.path | escape_xml | safe}}images/feed.jpg" />
       </item>
       {%- endfor %}
     </channel>
