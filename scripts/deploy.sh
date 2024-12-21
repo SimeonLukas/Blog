@@ -5,7 +5,7 @@
 zola serve --port 1234 &
 
 sleep 5
-bun run index.ts &
+bun run index.ts 
 
 
 
