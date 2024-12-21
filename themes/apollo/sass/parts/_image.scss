@@ -8,7 +8,9 @@ main img{
   margin: 0 auto;
   display: block;
 }
-
+.feed-image {
+display: none;
+}
 figure {
   box-sizing: border-box;
   display: inline-block;
