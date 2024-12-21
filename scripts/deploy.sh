@@ -2,10 +2,9 @@
 
 # Deploy script for Simeon's Blog
 
-zola serve --base-port 1234
+zola serve --port 1234 &
 sleep 5
-bun run index.ts
-# wait for the server to start
+bun run index.ts -v
 
 # stop the server
 kill $(lsof -t -i:1234)
