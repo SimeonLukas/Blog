@@ -10,7 +10,7 @@ Ich bin beruflich Seelsorger und ein leidenschaftlicher Hobbyist mit Freude an s
 Meine Interessen umfassen:
 - Webentwicklung
 - Appentwicklung
-- Programmiering
+- Programmierung
 - Design
 - Gaming
 - Hardware

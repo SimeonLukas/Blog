@@ -57,11 +57,11 @@
     {% if page.description %}
     <meta property="og:description" content="{{ page.description | truncate(length=157, end="...")}}"/>
     <!-- twitter description -->
-    <meta name="twitter:description" content="{{ page.description }}">
+    <meta name="twitter:description" content="{{ page.description | truncate(length=157, end="...") }}">
     {% elif config.description %}
-    <meta property="og:description" content="{{ config.description }}" />
+    <meta property="og:description" content="{{ config.description | truncate(length=157, end="...") }}" />
     <!-- twitter description -->
-    <meta name="twitter:description" content="{{ config.description }}">
+    <meta name="twitter:description" content="{{ config.description | truncate(length=157, end="...") }}">
 
 
     {% endif %}
@@ -85,11 +85,11 @@
     {% endif %}
 
 
-    {% if page.extra.image %}
-    <meta property="og:image" content={{ page.extra.image }} />
+    {% if page.path %}
+    <meta property="og:image" content="{{config.base_url}}{{ page.path }}images/preview.jpg" />
     <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content={{ page.extra.image }}>
+    <meta name="twitter:image" content="{{config.base_url}}{{ page.path }}images/preview.jpg">
     {% elif config.extra.favicon %}
     <meta property="og:image" content={{ config.extra.favicon }} />
     {% endif %}
