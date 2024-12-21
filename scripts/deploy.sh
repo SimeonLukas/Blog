@@ -14,7 +14,9 @@ bun run index.ts
 # stop the server
 kill $(lsof -t -i:1234)
 
-# commit changes
-git add .
+# commit all changes
+cd /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog
+
+git add *
 git commit -m "update content on $(date)"
 git push
