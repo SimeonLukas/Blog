@@ -43,10 +43,10 @@
     {% endif %}
 
     {% if page.path %}
-    <meta property="og:image" content="{{config.base_url}}{{ page.path }}{{lang}}/images/preview.jpg" />
+    <meta property="og:image" content="{{config.base_url | safe}}{{ page.path | safe }}{{lang}}/images/preview.jpg" />
     <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{config.base_url}}{{ page.path }}images/{{lang}}/preview.jpg">
+    <meta name="twitter:image" content="{{config.base_url | safe}}{{ page.path | safe }}images/{{lang}}/preview.jpg">
     {% elif config.extra.favicon %}
     <meta property="og:image" content="{{ config.extra.favicon }}" />
     {% endif %}
