@@ -3,7 +3,7 @@ default_language = "de"
 taxonomies = [{ name = "tags" }]
 generate_feeds = true
 feed_filenames = ["rss.xml"]
-minify_html = true
+minify_html = false
 base_url = "https://simeon.staneks.de"
 title = "Simeon's Blog"
 description = "lieber unperfekt starten als perfekt warten"
