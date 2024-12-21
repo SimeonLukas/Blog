@@ -2,6 +2,8 @@
 
 # Deploy script for Simeon's Blog and Prieview Image Generator
 
+cd /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/scripts
+
 zola serve --port 1234 &
 
 sleep 5
