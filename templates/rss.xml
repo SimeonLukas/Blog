@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
     <channel>
         <title>{{ config.title }}
         {%- if term %} - {{ term.name }}
@@ -21,7 +21,7 @@
         </image>
         <generator>Zola</generator>
         <language>{{ lang }}</language>
-        <atom:link href="{{ feed_url | safe }}" rel="self" type="application/rss+xml"/>
+        <link href="{{ feed_url | safe }}" rel="self" type="application/rss+xml"/>
         <lastBuildDate>{{ last_updated | date(format="%a, %d %b %Y %H:%M:%S %z") }}</lastBuildDate>
       {%- for page in pages %}
         <item>
@@ -40,7 +40,7 @@
             <guid>{{ page.permalink | escape_xml | safe }}</guid>
             <description xml:base="{{ page.permalink | escape_xml | safe }}"><![CDATA[<img src="{{config.base_url | escape_xml | safe}}{{page.path | escape_xml | safe}}images/feed.jpg" alt="{{page.title}}"/>]]>{% if page.summary %}{{ page.summary }}{% else %}{{ page.content }}{% endif %}</description>
             <enclosure url="{{config.base_url | escape_xml | safe}}{{page.path | escape_xml | safe}}images/feed.jpg" length="1967" type="image/jpeg"/>
-            <itunes:image href="{{config.base_url | escape_xml | safe}}{{page.path | escape_xml | safe}}images/feed.jpg"/>
+            <media:thumbnail url="{{config.base_url | escape_xml | safe}}{{page.path | escape_xml | safe}}images/feed.jpg" width="1024" height="1024" time="0"/>
         </item>
       {%- endfor %}
     </channel>
