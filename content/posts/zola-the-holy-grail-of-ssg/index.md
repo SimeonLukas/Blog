@@ -5,7 +5,6 @@ description = "In diesem Artikel werde ich Ihnen eine detaillierte Einführung i
 [taxonomies]
 tags = ["software", "html", "css", "javascript", "zola" ,"github-pages" ,"tutorial","rust"]
 [extra]
-image = "https://simeon.staneks.de/posts/zola-the-holy-grail-of-ssg/images/zola00001.jpg"
 comment =  true
 +++
 

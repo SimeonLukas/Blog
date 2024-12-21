@@ -4,7 +4,7 @@
 
 zola serve --port 1234 &
 sleep 5
-bun run index.ts -v
+bun --watch run index.ts
 
 # stop the server
 kill $(lsof -t -i:1234)
