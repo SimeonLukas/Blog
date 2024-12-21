@@ -1,5 +1,4 @@
 import { hash } from "bun";
-
 const fs = require("fs");
 const { DOMParser } = require("xmldom");
 const { createInstance } = require("polotno-node");
@@ -70,25 +69,32 @@ async function run(x, lang) {
     });
 
   async function exporter(template, i, url, x , languages) {
-    let instance = await createInstance({
-      key: "BYTOqo8fIB_6kgfI5SkT",
-    });
-
-    let pdfBase64 = await instance.jsonToImageBase64(template, {
-      mimeType: "image/jpeg",
-    });
 
     fs.mkdirSync("../content/" + url + "/images/" + languages, { recursive: true });
 
-      if (x == "ogimage.json") {
+      if (x == "ogimage.json" && !fs.existsSync("../content/" + url + "/images/"+languages+ "/preview.jpg")) {
+        let instance = await createInstance({
+          key: "BYTOqo8fIB_6kgfI5SkT",
+        });
+    
+        let pdfBase64 = await instance.jsonToImageBase64(template, {
+          mimeType: "image/jpeg",
+        });
         fs.writeFileSync(
-          "output/" + url + "/images/"+languages+ "/preview.jpg",
+          "../content/" + url + "/images/"+languages+ "/preview.jpg",
           pdfBase64,
           "base64"
         );
         instance.close();
       }
-      if (x == "instagram1.json") {
+      if (x == "instagram1.json" && !fs.existsSync("../content/" + url + "/images/"+languages+ "/instagram1.jpg")) {
+        let instance = await createInstance({
+          key: "BYTOqo8fIB_6kgfI5SkT",
+        });
+    
+        let pdfBase64 = await instance.jsonToImageBase64(template, {
+          mimeType: "image/jpeg",
+        });
         fs.writeFileSync(
           "../content/" + url + "/images/"+languages+ "/instagram1.jpg",
           pdfBase64,
@@ -96,7 +102,14 @@ async function run(x, lang) {
         );
         instance.close();
       }
-      if (x == "instagram2.json") {
+      if (x == "instagram2.json" && !fs.existsSync("../content/" + url + "/images/"+languages+ "/instagram2.jpg")) {
+        let instance = await createInstance({
+          key: "BYTOqo8fIB_6kgfI5SkT",
+        });
+    
+        let pdfBase64 = await instance.jsonToImageBase64(template, {
+          mimeType: "image/jpeg",
+        });
         fs.writeFileSync(
           "../content/"  + url + "/images/"+languages+ "/instagram2.jpg",
           pdfBase64,
@@ -104,7 +117,14 @@ async function run(x, lang) {
         );
         instance.close();
       }
-      if (x == "feed.json") {
+      if (x == "feed.json" && !fs.existsSync("../content/" + url + "/images/"+languages+ "/feed.jpg")) {
+        let instance = await createInstance({
+          key: "BYTOqo8fIB_6kgfI5SkT",
+        });
+    
+        let pdfBase64 = await instance.jsonToImageBase64(template, {
+          mimeType: "image/jpeg",
+        });
         fs.writeFileSync(
           "../content/"  + url + "/images/"+languages+ "/feed.jpg",
           pdfBase64,

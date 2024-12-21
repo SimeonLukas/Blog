@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Deploy script for Simeon's Blog
+# Deploy script for Simeon's Blog and Prieview Image Generator
 
 zola serve --port 1234 &
 
