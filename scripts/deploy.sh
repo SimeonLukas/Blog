@@ -15,4 +15,6 @@ bun run index.ts
 kill $(lsof -t -i:1234)
 
 # commit changes
-git add . && git commit -m "update content on $(date)" && git push
+git add .
+git commit -m "update content on $(date)"
+git push
