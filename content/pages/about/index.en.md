@@ -17,7 +17,7 @@ My interests include:
 - Hardware
 ...and beyond!
 
-## Eperience
+## Experience
 ### Frontend & Programming
 <label for="file">HTML</label>
 <progress id="file" value="85" max="100"> 85% </progress>
