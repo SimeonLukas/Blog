@@ -4,7 +4,7 @@
 
 cd /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/scripts
 
-zola serve --port 1234 &
+zola serve --drafts --port 1234 &
 
 sleep 5
 bun run index.ts 
@@ -17,6 +17,7 @@ kill $(lsof -t -i:1234)
 # commit all changes
 cd /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog
 
+git pull
 git add *
 git commit -m "update content on $(date)"
 git push
