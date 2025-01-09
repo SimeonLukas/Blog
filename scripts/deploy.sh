@@ -4,7 +4,7 @@
 
 cd /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/scripts
 
-zola serve --drafts --port 1234 &
+zola serve --port 1234 &
 
 sleep 5
 bun run index.ts 
