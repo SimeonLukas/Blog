@@ -58,7 +58,8 @@ Folglich wird die Bibel zweimal geladen, einmal jedes Buch in einer Markdown-Dat
 Das Buch findet sich im Wurzelverzeichnis der Bibelversion und die Kapitel in einem Unterordner mit dem Namen des Buches.
 Die Dateien bzw. Ordner sind nach der ausgewählten Namenskonvention benannt, wie z.B. `1. Mose` oder `Genesis`.
 Das ist für die Nutzung in Obsidian sehr praktisch, da man mit dem Bible-Linker Plugin die Bibeltexte in Obsidian verlinken kann und sich nur eine Namenkonvention merken muss.
-Durch das neue Update des Bible Crawlers kann die Einheitsüberstzung je nach Gerät unter einer Minute heruntergeladen werden.
+
+Durch das neue Update des Bible Crawlers kann die Einheitsübersetzung je nach Gerät unter einer Minute heruntergeladen werden.
 
 Natürlich kann man die Dateien auch in anderen Programmen nutzen und weiterverarbeiten, doch ich nutze sie hauptsächlich in Obsidian und der folgende Abschnitt zeigt, wie man sie in Obsidian gut nutzen kann.
 

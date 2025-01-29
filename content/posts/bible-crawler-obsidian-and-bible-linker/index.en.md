@@ -57,6 +57,7 @@ Consequently, the Bible is loaded twice, once with each book in a markdown file 
 The book can be found in the root directory of the Bible version, and the chapters are in a subdirectory with the name of the book.
 The files or folders are named according to the selected naming convention, such as `1. Mose` or `Genesis`.
 This is very practical for use in Obsidian, as you can link the Bible texts in Obsidian using the Bible-Linker plugin and only need to remember one naming convention.
+
 Thanks to the new update of the Bible Crawler, the Einheitsübersetzung can be downloaded in under a minute depending on your device.
 
 Of course, you can also use and process the files in other programs, but I mainly use them in Obsidian, and the following section shows how to use them effectively in Obsidian.
