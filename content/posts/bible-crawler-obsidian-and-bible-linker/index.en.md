@@ -52,6 +52,9 @@ Which naming convention should be used?
 6. Latin (Genesis, Exodus, Leviticus, Numeri, Deuteronomium, etc.)
 ```
 
+<video loop autoplay width="100%"><source src="images/video.mp4" type="video/mp4"></video>
+
+
 After that, the Bible Crawler will download the Bible texts and save them in markdown files. The files are stored in a folder with the name of the selected Bible version, and the chapters are stored in individual files.
 Consequently, the Bible is loaded twice, once with each book in a markdown file and once with each chapter in a markdown file.
 The book can be found in the root directory of the Bible version, and the chapters are in a subdirectory with the name of the book.
