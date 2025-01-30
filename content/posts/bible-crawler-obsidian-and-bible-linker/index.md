@@ -53,7 +53,7 @@ Welche Namenskonvention soll verwendet werden?
 6. Latein (Genesis, Exodus, Leviticus, Numeri, Deuteronomium, etc.)
 ```
 
-<video loop autoplay width="100%"><source src="images/video.mp4" type="video/mp4"></video>
+<video loop autoplay controls width="100%"><source src="images/video.mp4" type="video/mp4"></video>
 
 Danach wird der Bible Crawler die Bibeltexte herunterladen und in Markdown-Dateien speichern. Die Dateien werden in einem Ordner mit dem Namen der ausgewählten Bibelversion gespeichert und die Kapitel werden in einzelnen Dateien gespeichert.
 Folglich wird die Bibel zweimal geladen, einmal jedes Buch in einer Markdown-Datei und einmal jedes Kapitel in einer Markdown-Datei.
