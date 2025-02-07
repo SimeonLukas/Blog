@@ -1,7 +1,7 @@
 +++
 title = "Bibelstudien mit Bible Crawler, Obsidian und Bible Linker"
 date = 2025-01-29
-description = "Ein von mir geschriebenes Programm, das unterschiedliche Bibelversionen herunterlädt, die man dann in Obsidian nutzen kann. Zudem kann man die Bibelversionen als Markdown-Dateien nutzen und mit Ihnen arbeiten und zu anderen Dokumenten konvertieren."
+description = "Ein von mir geschriebenes Programm, das unterschiedliche Bibelversionen herunterlädt, die man dann in Obsidian nutzen kann. Zudem kann man die Bibelversionen als Markdown-Dateien nutzen und mit ihnen arbeiten und zu anderen Dokumenten konvertieren."
 [taxonomies]
 tags = ["software", "rust", "bible", "obsidian", "tutorial","bible-linker", "markdown", "bibel-studien"]
 [extra]
