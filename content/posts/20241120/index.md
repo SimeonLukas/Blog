@@ -108,4 +108,7 @@ void loop() {
 }
 ```
 
-Wie das Endergebnis schlussendlich aussehen wird, zeigt sich in den nächsten Wochen.
+<s>Wie das Endergebnis schlussendlich aussehen wird, zeigt sich in den nächsten Wochen.</s>
+
+## Das Ergebnis
+<video loop controls width="50%" style="margin-left: 25%;"><source src="images/video.mp4" type="video/mp4"></video>
