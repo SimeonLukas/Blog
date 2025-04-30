@@ -21,13 +21,13 @@ Hier möchte ich kurz erklären, was du alles zur Erstellung von einem kurzen Ga
 ## Erstellung Anhand eines Beispiels
 ### Beispielbilder
 <style>
-    img {
+   .containerimg   img {
         width: 200px;
         height: auto;
         margin: 0 10px;
     }
 </style>
-<div style="
+<div  class="containerimg" style="
     text-align: center;
     display: flex;
     overflow: scroll;
@@ -55,13 +55,13 @@ Hier wird plakativ deutlich, dass die Gabe der Erkenntnis nicht nur eine intelle
 1. Zuerst erstelle ich die Grafiken, die ich für das Spiel brauche. Die meisten Assets habe ich bei [itch.io](https://itch.io/) gefunden und mit LDtk habe ich die passenden Hintergründe erstellt. Änderungen habe ich einfach mit [Gimp](https://www.gimp.org/) vorgenommen und [Polotno Studio](https://studio.polotno.com/).
 
 <style>
-    img {
+   .containerimg   img {
         width: 200px;
        min-height: 200px;
         margin: 0 10px;
     }
 </style>
-<div style="
+<div  class="containerimg" style="
     text-align: center;
     display: flex;
     overflow: scroll;
@@ -76,7 +76,7 @@ Hier wird plakativ deutlich, dass die Gabe der Erkenntnis nicht nur eine intelle
 
 2. Innerhalb von GB Studio erstelle ich dann die einzelnen Level und die Logik. Dies ist recht einfach und im Internet gibt es viele Tutorials, die dir helfen, das Tool zu verstehen. Ich habe mir ein paar Tutorials angeschaut und dann einfach drauf losgelegt. Hier ein paar Bilder zum besseren Verständnis, aber man kommt schnell rein und es macht wirklich Spaß.
 <style>
-    img {
+     .containerimg img {
         width: 200px;
        min-height: 200px;
         margin: 0 10px;
@@ -87,7 +87,7 @@ Hier wird plakativ deutlich, dass die Gabe der Erkenntnis nicht nur eine intelle
         margin: 0 10px;
     }
 </style>
-<div style="
+<div  class="containerimg" style="
     text-align: center;
     display: flex;
     overflow: scroll;
