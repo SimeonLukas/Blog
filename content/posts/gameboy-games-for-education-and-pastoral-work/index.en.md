@@ -90,7 +90,7 @@ This clearly demonstrates that the gift of knowledge is not just an intellectual
        min-height: 200px;
         margin: 0 10px;
     }
-    .full {
+  .containerimg  .full {
         width: 95%;
         height: auto;
         margin: 0 10px;

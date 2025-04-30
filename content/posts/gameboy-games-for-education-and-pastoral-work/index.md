@@ -81,7 +81,7 @@ Hier wird plakativ deutlich, dass die Gabe der Erkenntnis nicht nur eine intelle
        min-height: 200px;
         margin: 0 10px;
     }
-    .full {
+  .containerimg  .full {
         width: 95%;
         height: auto;
         margin: 0 10px;
