@@ -28,13 +28,13 @@ Here I'd like to briefly explain what you need to create a short Gameboy game:
 ### Example Images
 
 <style>
-    img {
+  .containerimg  img {
         width: 200px;
         height: auto;
         margin: 0 10px;
     }
 </style>
-<div style="
+<div class="containerimg" style="
     text-align: center;
     display: flex;
     overflow: scroll;
@@ -63,13 +63,13 @@ This clearly demonstrates that the gift of knowledge is not just an intellectual
 1. First, I create the graphics I need for the game. I found most assets on [itch.io](https://itch.io/) and created the appropriate backgrounds with LDtk. I made changes easily with [Gimp](https://www.gimp.org/) and [Polotno Studio](https://studio.polotno.com/).
 
 <style>
-    img {
+   .containerimg img {
         width: 200px;
        min-height: 200px;
         margin: 0 10px;
     }
 </style>
-<div style="
+<div class="containerimg" style="
     text-align: center;
     display: flex;
     overflow: scroll;
@@ -85,7 +85,7 @@ This clearly demonstrates that the gift of knowledge is not just an intellectual
 2. Within GB Studio, I then create the individual levels and logic. This is quite simple, and there are many tutorials online to help you understand the tool. I watched a few tutorials and then just got started. Here are some images for better understanding, but you get the hang of it quickly and it's really fun.
 
 <style>
-    img {
+   .containerimg img {
         width: 200px;
        min-height: 200px;
         margin: 0 10px;
@@ -96,7 +96,7 @@ This clearly demonstrates that the gift of knowledge is not just an intellectual
         margin: 0 10px;
     }
 </style>
-<div style="
+<div  class="containerimg" style="
     text-align: center;
     display: flex;
     overflow: scroll;
