@@ -200,6 +200,11 @@
     <script>setTheme(getSavedTheme());</script>
     {% endif %}
     <script src={{ get_url(path="js/index.js" ) }}></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
     <link rel="stylesheet" type="text/css" media="screen" href={{ get_url(path="main.css" ) }} />
 
     {% if config.extra.stylesheets %}
