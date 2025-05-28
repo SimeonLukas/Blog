@@ -20,8 +20,9 @@
     {% if current_path == "/" %}
     <title>
         {{ config.title | default(value="Home") }}
-        <meta property="og:logo" content="{{ config.extra.favicon }}" />
+      
     </title>
+      <meta property="og:logo" content="{{ config.extra.favicon }}" />
     {% if not page_has_og_title %}
     <!-- <meta property="og:title" content="{{ config.title | default(value=" Home") }}" /> -->
     {% endif %}
