@@ -7,10 +7,19 @@ function convertTextToJson(plainText) {
     const images = files.filter(file => file.endsWith('.jpg') || file.endsWith('.png')).map(file => {
         return `src/images/${file}`;
     });
-    const audio = fs.readdirSync('music');
-    const music = audio.filter(file => file.endsWith('.mp3') || file.endsWith('.wav')).map(file => {
-        return `src/music/${file}`;
-    });
+    const audio = fs.readdirSync('../public/src/music');
+    // get random audio files from the music directory
+    if (audio.length === 0) {
+        throw new Error('No audio files found in the music directory.');
+    }
+    let randomaudio = audio[Math.floor(Math.random() * audio.length)];
+    let music = [];
+    if (randomaudio.endsWith('.mp3')) {
+        music.push(`src/music/${randomaudio}`);
+    }
+    else {
+        throw new Error('No valid audio files found in the music directory.');
+    }
     const output = {
         audioUrl: music,
         images: images,
