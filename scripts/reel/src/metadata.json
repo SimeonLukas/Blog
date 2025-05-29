@@ -1,0 +1,234 @@
+{
+  "audioUrl": [
+    "src/music/funk.mp3"
+  ],
+  "images": [
+    "src/images/reel.jpg"
+  ],
+  "words": [
+    {
+      "word": "Imprint",
+      "start": 0,
+      "end": 0.76,
+      "confidence": "0.9513542",
+      "punctuated_word": "Imprint"
+    },
+    {
+      "word": "According",
+      "start": 0.78,
+      "end": 1.7,
+      "confidence": "0.9340928",
+      "punctuated_word": "According"
+    },
+    {
+      "word": "to",
+      "start": 1.72,
+      "end": 2.08,
+      "confidence": "0.9232995",
+      "punctuated_word": "to"
+    },
+    {
+      "word": "§",
+      "start": 2.1,
+      "end": 2.38,
+      "confidence": "0.9516986",
+      "punctuated_word": "§"
+    },
+    {
+      "word": "5",
+      "start": 2.4,
+      "end": 2.68,
+      "confidence": "0.9455913",
+      "punctuated_word": "5"
+    },
+    {
+      "word": "TMG:",
+      "start": 2.7,
+      "end": 3.22,
+      "confidence": "0.9553204",
+      "punctuated_word": "TMG:"
+    },
+    {
+      "word": "Simeon",
+      "start": 3.24,
+      "end": 3.92,
+      "confidence": "0.9090554",
+      "punctuated_word": "Simeon"
+    },
+    {
+      "word": "Stanek",
+      "start": 3.94,
+      "end": 4.62,
+      "confidence": "0.9261122",
+      "punctuated_word": "Stanek"
+    },
+    {
+      "word": "Schwabengasse",
+      "start": 4.64,
+      "end": 5.88,
+      "confidence": "0.9358801",
+      "punctuated_word": "Schwabengasse"
+    },
+    {
+      "word": "3",
+      "start": 5.9,
+      "end": 6.18,
+      "confidence": "0.9275647",
+      "punctuated_word": "3"
+    },
+    {
+      "word": "82487",
+      "start": 6.2,
+      "end": 6.8,
+      "confidence": "0.9932134",
+      "punctuated_word": "82487"
+    },
+    {
+      "word": "Oberammergau",
+      "start": 6.82,
+      "end": 7.98,
+      "confidence": "0.9849463",
+      "punctuated_word": "Oberammergau"
+    },
+    {
+      "word": "Contact:",
+      "start": 8,
+      "end": 8.84,
+      "confidence": "0.9703608",
+      "punctuated_word": "Contact:"
+    },
+    {
+      "word": "Telephone:",
+      "start": 8.86,
+      "end": 9.86,
+      "confidence": "0.9260800",
+      "punctuated_word": "Telephone:"
+    },
+    {
+      "word": "+49",
+      "start": 9.88,
+      "end": 10.32,
+      "confidence": "0.9043685",
+      "punctuated_word": "+49"
+    },
+    {
+      "word": "177",
+      "start": 10.34,
+      "end": 10.78,
+      "confidence": "0.9792552",
+      "punctuated_word": "177"
+    },
+    {
+      "word": "4419070",
+      "start": 10.8,
+      "end": 11.56,
+      "confidence": "0.9717616",
+      "punctuated_word": "4419070"
+    },
+    {
+      "word": "Email:",
+      "start": 11.58,
+      "end": 12.26,
+      "confidence": "0.9406883",
+      "punctuated_word": "Email:"
+    },
+    {
+      "word": "simeon@staneks.",
+      "start": 12.28,
+      "end": 13.68,
+      "confidence": "0.9852996",
+      "punctuated_word": "simeon@staneks."
+    },
+    {
+      "word": "de",
+      "start": 14,
+      "end": 14.36,
+      "confidence": "0.9484107",
+      "punctuated_word": "de"
+    },
+    {
+      "word": "Schau",
+      "start": 14.38,
+      "end": 14.98,
+      "confidence": "0.9657374",
+      "punctuated_word": "Schau"
+    },
+    {
+      "word": "auf",
+      "start": 15,
+      "end": 15.44,
+      "confidence": "0.9688304",
+      "punctuated_word": "auf"
+    },
+    {
+      "word": "meinen",
+      "start": 15.46,
+      "end": 16.14,
+      "confidence": "0.9862498",
+      "punctuated_word": "meinen"
+    },
+    {
+      "word": "Blog,",
+      "start": 16.16,
+      "end": 16.76,
+      "confidence": "0.9619037",
+      "punctuated_word": "Blog,"
+    },
+    {
+      "word": "um",
+      "start": 16.78,
+      "end": 17.14,
+      "confidence": "0.9762172",
+      "punctuated_word": "um"
+    },
+    {
+      "word": "mehr",
+      "start": 17.16,
+      "end": 17.68,
+      "confidence": "0.9631955",
+      "punctuated_word": "mehr"
+    },
+    {
+      "word": "zu",
+      "start": 17.7,
+      "end": 18.06,
+      "confidence": "0.9273535",
+      "punctuated_word": "zu"
+    },
+    {
+      "word": "erfahren.",
+      "start": 18.08,
+      "end": 19,
+      "confidence": "0.9484972",
+      "punctuated_word": "erfahren."
+    },
+    {
+      "word": "Link",
+      "start": 19.32,
+      "end": 19.84,
+      "confidence": "0.9948081",
+      "punctuated_word": "Link"
+    },
+    {
+      "word": "in",
+      "start": 19.86,
+      "end": 20.22,
+      "confidence": "0.9567562",
+      "punctuated_word": "in"
+    },
+    {
+      "word": "der",
+      "start": 20.24,
+      "end": 20.68,
+      "confidence": "0.9738474",
+      "punctuated_word": "der"
+    },
+    {
+      "word": "Bio.",
+      "start": 20.7,
+      "end": 21.22,
+      "confidence": "0.9272669",
+      "punctuated_word": "Bio."
+    }
+  ]
+}

@@ -37,11 +37,13 @@ async function run(x, lang) {
         let description =
           items[o].getElementsByTagName("description")[0].childNodes[0].nodeValue;
           // console.log(description)
+          // write description to file 
         if (description.length > 500) {
           description = description.substring(0, 500) + "...";
         }
         description = description.replace(/<[^>]*>?/gm, "");
         content.push(description);
+        fs.writeFileSync("reel/src/text/" + o + ".txt", description, "utf8");
       }
       for (let k = 0; k < titles.length; k++) {
         // random color by title
