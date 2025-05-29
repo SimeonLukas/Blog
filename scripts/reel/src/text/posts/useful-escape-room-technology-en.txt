@@ -1,0 +1,1 @@
+ In this article I describe how to use an old rotary phone as an input device for escape rooms. I explain the technical implementation, programming, and integration into an escape room concept. The article is aimed at technology enthusiasts and escape room aficionados. 

@@ -1,0 +1,1 @@
+ Ein von mir geschriebenes Programm, das unterschiedliche Bibelversionen herunterlädt, die man dann in Obsidian nutzen kann. Zudem kann man die Bibelversionen als Markdown-Dateien nutzen und mit ihnen arbeiten und zu anderen Dokumenten konvertieren. 

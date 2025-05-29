@@ -1,0 +1,1 @@
+ Ein Script, das aus den Metadaten von Blogbeiträgen automatisch verschiedene Bilder für verschiedene Plattformen generiert - mit einheitlichem Design, aber individuellen Elementen basierend auf dem Inhalt des jeweiligen Artikels. 

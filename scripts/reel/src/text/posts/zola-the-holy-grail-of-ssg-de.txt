@@ -1,0 +1,1 @@
+ In diesem Artikel gebe ich dir eine detaillierte Einführung in den Static-Site-Generator (SSG) Zola und die Nutzung von Github Pages. Wir werden die Installation, Konfiguration und den Einsatz von Zola Schritt für Schritt durchgehen und zeigen, wie du deine erstellten Seiten einfach auf Github Pages hosten kannst. 

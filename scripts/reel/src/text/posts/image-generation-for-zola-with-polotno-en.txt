@@ -1,0 +1,1 @@
+ A script that automatically generates various images for different platforms from blog post metadata - with consistent design but individual elements based on each article's content. 

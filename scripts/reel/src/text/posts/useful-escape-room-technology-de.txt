@@ -1,0 +1,1 @@
+ In diesem Artikel beschreibe ich wie man ein altes Drehscheibentelefon als Eingabegerät für Escape Rooms nutzen kann. Ich erkläre die technische Umsetzung, die Programmierung und die Integration in ein Escape Room Konzept. Der Artikel richtet sich an Technikbegeisterte und Escape Room Enthusiasten. 
