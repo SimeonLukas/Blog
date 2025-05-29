@@ -121,12 +121,26 @@ async function run(x, lang) {
         let instance = await createInstance({
           key: "BYTOqo8fIB_6kgfI5SkT",
         });
-    
         let pdfBase64 = await instance.jsonToImageBase64(template, {
           mimeType: "image/jpeg",
         });
         fs.writeFileSync(
           "../content/"  + url + "/images/"+languages+ "/feed.jpg",
+          pdfBase64,
+          "base64"
+        );
+        instance.close();
+      }
+
+        if (x == "reel.json" && !fs.existsSync("../content/" + url + "/images/"+languages+ "/reel.jpg")) {
+        let instance = await createInstance({
+          key: "BYTOqo8fIB_6kgfI5SkT",
+        });
+        let pdfBase64 = await instance.jsonToImageBase64(template, {
+          mimeType: "image/jpeg",
+        });
+        fs.writeFileSync(
+          "../content/"  + url + "/images/"+languages+ "/reel.jpg",
           pdfBase64,
           "base64"
         );
@@ -174,5 +188,9 @@ setTimeout(() => {
   run("feed.json", "http://127.0.0.1:1234/en/rss.xml");
 }, 1000);
 }
+
+setTimeout(() => {
+  run("reel.json", "http://127.0.0.1:1234/en/rss.xml");
+}, 1000);
 
 generate();
