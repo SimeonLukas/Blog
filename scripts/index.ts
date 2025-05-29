@@ -190,6 +190,10 @@ setTimeout(() => {
 }
 
 setTimeout(() => {
+  run("reel.json", "http://127.0.0.1:1234/rss.xml");
+}, 1000);
+
+setTimeout(() => {
   run("reel.json", "http://127.0.0.1:1234/en/rss.xml");
 }, 1000);
 
