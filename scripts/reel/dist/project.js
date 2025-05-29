@@ -31,7 +31,7 @@ const scene = (0, _2d_1.makeScene2D)('scene', function* (view) {
     const duration = words[words.length - 1].end + 0.5;
     const imageContainer = (0, core_1.createRef)();
     const textContainer = (0, core_1.createRef)();
-    yield view.add((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(_2d_1.Layout, { size: "100%", ref: imageContainer }), (0, jsx_runtime_1.jsx)(_2d_1.Layout, { size: "100%", position: { x: 0, y: -100 }, ref: textContainer }), (0, jsx_runtime_1.jsx)(_2d_1.Audio, { src: audioUrl[0], play: true, volume: 0.5 })] }));
+    yield view.add((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(_2d_1.Layout, { size: "100%", ref: imageContainer }), (0, jsx_runtime_1.jsx)(_2d_1.Layout, { size: "100%", position: { x: 0, y: -100 }, ref: textContainer }), (0, jsx_runtime_1.jsx)(_2d_1.Audio, { src: audioUrl[0], play: true, volume: 1 })] }));
     yield* (0, core_1.all)(displayImages(imageContainer, images, duration), displayWords(textContainer, words, textSettings));
 });
 function* displayImages(container, images, totalDuration) {

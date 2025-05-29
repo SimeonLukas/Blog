@@ -72,7 +72,7 @@ const scene = makeScene2D('scene', function* (view) {
       <Audio
         src={audioUrl[0]}
         play={true}
-        volume={0.5}
+        volume={1}
       />
     </>
 
@@ -127,7 +127,6 @@ function* displayWords(container: Reference<Layout>, words: Word[], settings: ca
     if(settings.stream){
       let nextWordStart = 0;
       yield container().add(<Txt width={`${settings.textBoxWidthInPercent}%`} textWrap={true} zIndex={2} textAlign={settings.textAlign} ref={textRef}/>);
-
       for(let j = 0; j < currentBatch.length; j++){
         const word = currentBatch[j];
         yield* waitFor(nextWordStart);
