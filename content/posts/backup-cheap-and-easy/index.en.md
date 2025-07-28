@@ -137,7 +137,7 @@ The nice thing about n8n is also that I get a notification via Telegram after th
 
 The following diagram shows the backup process:
 
-```mermaid
+{% mermaid %}
 flowchart TD
     A["Data<br/>3.62 TB"] --> B["Alpine LXC Container"]
     
@@ -164,7 +164,7 @@ flowchart TD
     style I fill:#ffebee
     style L fill:#f3e5f5
     style M fill:#f3e5f5
-```
+{% end %}
 
 ## Conclusion
 
