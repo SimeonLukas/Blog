@@ -30,7 +30,7 @@ For the backup itself, I use the tool [restic](https://restic.net/), which encry
 
 You probably don't need a separate system for backups, but I created an extra Alpine LXC (Linux Container) that is only responsible for backups. This has the advantage that I can easily rebuild the system if something goes wrong and it runs independently of my other systems. I use Proxmox for this, but that's optional of course.
 
-'rclone' and 'restic' are available for almost all operating systems anyway and can be easily installed.
+`rclone` and `restic` are available for almost all operating systems anyway and can be easily installed.
 
 You can find a more detailed guide for installing and configuring rclone and restic in the [restic documentation](https://restic.readthedocs.io/en/stable/) and the [rclone documentation](https://rclone.org/docs/).
 
