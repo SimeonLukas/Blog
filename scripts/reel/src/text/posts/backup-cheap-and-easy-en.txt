@@ -1,0 +1,1 @@
+ When it comes to backups, you should never wait too long. This article briefly describes how one of my backup solutions works. I use a Hetzner Storagebox and the tool restic to secure my data. The whole thing is simple, affordable, and works reliably. 

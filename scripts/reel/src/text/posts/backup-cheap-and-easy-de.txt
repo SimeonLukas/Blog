@@ -1,0 +1,1 @@
+ Wenn es um Backups geht, sollte man nie zu lang warten. Dieser Artikel beschreibt kurz, wie eine meiner Backuplösungen aussieht. Ich nutze eine Hetzner-Storagebox und das Tool restic, um meine Daten zu sichern. Das Ganze ist einfach, günstig und funktioniert zuverlässig. 
