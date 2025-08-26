@@ -1,0 +1,1 @@
+ Yarr! In this article, I show how I created an interactive Smart Home Dashboard with HTML, CSS, and JavaScript - essentially the three ingredients of a powerful voodoo spell. A story about point-and-click magic and modern technology. 
