@@ -36,7 +36,7 @@ There is a suitable binary file for virtually every operating system. On Gihtub 
 When Zola is installed, you can create the directory structure of a new project with `zola init`.
 Zola will then ask you:
 
-```shell
+```bash
 Welcome to Zola!
 Please answer a few questions to get started quickly.
 Any choices made can be changed by modifying the `config.toml` file later.

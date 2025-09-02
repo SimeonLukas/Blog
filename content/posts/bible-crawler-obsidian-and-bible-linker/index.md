@@ -21,7 +21,7 @@ Das kleine Programm habe ich auf [Github](https://github.com/SimeonLukas/Bible-C
 Der Bible Crawler fetcht das HTML der Webseiten der verschiedenen Bibelversionen (bibleserver.com und die-bibel.de) und extrahiert die Bibeltexte. Die Bibeltexte werden in Kapitel und Verse unterteilt und in einer für mich lesbaren Form gespeichert. Die Bibeltexte können dann in einem Texteditor wie Obsidian gelesen und bearbeitet werden.
 Folgende Bibelversionen stehen aktuell in der neuesten Version zur Verfügung:
 
-```shell
+```bash
 Übersetzungen von bibleserver.com:
 1. Einheitsübersetzung (EU)    | 2. Luther Bibel (LUT)          | 3. Elberfelder Bibel (ELB)     | 4. Hoffnung für alle (HFA)    
 5. Schlachter Bibel (SLT)      | 6. La Biblia Textual (BTX)     | 7. Gute Nachricht Bibel 2018 (GNB) | 8. Neue Evangelistische Übersetzung (NEUE / NeÜ)
@@ -43,7 +43,7 @@ Für MacOS Nutzer muss man zusätzlich in den Sicherheitseinstellungen die Ausf�
 Das Programm ist sehr einfach zu bedienen.
 Nachdem man per Nummer oder Kürzel die gewünschte Bibelversion ausgewählt hat, darf man in der neusten Version sich für eine Namenskonvention entscheiden.
 
-```shell
+```bash
 Welche Namenskonvention soll verwendet werden?
 1. Abkürzungen Großbuchstaben (GEN, EXO, LEV, NUM, DEU, etc.)
 2. Abkürzungen Groß und Kleinbuchstaben  (Gen, Exo, Lev, Num, Deu, etc.)

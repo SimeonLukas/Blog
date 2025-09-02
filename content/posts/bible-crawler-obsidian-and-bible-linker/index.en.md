@@ -21,7 +21,7 @@ I published the small program on [Github](https://github.com/SimeonLukas/Bible-C
 The Bible Crawler fetches the HTML from the websites of the various Bible versions (bibleserver.com and die-bibel.de) and extracts the Bible texts. The Bible texts are divided into chapters and verses and stored in a readable format for me. The Bible texts can then be read and edited in a text editor like Obsidian.
 The following Bible versions are currently available in the latest version:
 
-```shell
+```bash
 Translations from bibleserver.com:
 1. Einheitsübersetzung (EU)    | 2. Luther Bible (LUT)          | 3. Elberfelder Bible (ELB)     | 4. Hope for All (HFA)    
 5. Schlachter Bible (SLT)      | 6. La Biblia Textual (BTX)     | 7. Good News Bible 2018 (GNB)   | 8. New Evangelistic Translation (NEUE / NeÜ)
@@ -42,7 +42,7 @@ For MacOS users, you must additionally allow the execution of unsigned programs 
 The program is very easy to use.
 After selecting the desired Bible version by number or abbreviation, in the latest version you can choose a naming convention.
 
-```shell
+```bash
 Which naming convention should be used?
 1. Uppercase abbreviations (GEN, EXO, LEV, NUM, DEU, etc.)
 2. Mixed case abbreviations (Gen, Exo, Lev, Num, Deu, etc.)

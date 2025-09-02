@@ -31,7 +31,7 @@ Das Dashboard zeigt verschiedene Räume meines Zuhauses - quasi wie eine moderne
 - Schlafzimmer (perfekt für einen Powernap zwischen den Abenteuern)
 - Diele (der erste Eindruck zählt, auch ohne sprechenden Totenkopf)
 - Esszimmer (hier schmeckt sogar das Root Beer™)
-- Küche (für die unvergelichliche Hintergrundmusik beim Kochen)
+- Küche (für die unvergleichliche Hintergrundmusik beim Kochen)
 - 1. Stock (wo die geheimen Schätze lagern)
 - Fernseherzimmer (für die epischen Filmabende)
 

@@ -35,7 +35,7 @@ Es gibt quasi für jedes Betriebssystem eine passende Binärdatei. Auf Gihtub fi
 Wenn Zola installiert ist, kann man mit `zola init` die Verzeichisstruktur eines neuen Projekts erstellen.
 Zola frägt dich dann:
 
-```shell
+```bash
 Welcome to Zola!
 Please answer a few questions to get started quickly.
 Any choices made can be changed by modifying the `config.toml` file later.
