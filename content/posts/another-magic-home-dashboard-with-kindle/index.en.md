@@ -2,6 +2,7 @@
 title = "How to Brew a Magical Smart Home Dashboard with Three Ingredients"
 date = 2025-08-26 12:00:00+01:00
 description = "Yarr! In this article, I show how I created an interactive Smart Home Dashboard with HTML, CSS, and JavaScript - essentially the three ingredients of a powerful voodoo spell. A story about point-and-click magic and modern technology."
+draft = true
 [taxonomies]
 tags = ["programming", "javascript", "html", "css", "smarthome", "dashboard", "tutorial", "point-and-click"] 
 [extra]
