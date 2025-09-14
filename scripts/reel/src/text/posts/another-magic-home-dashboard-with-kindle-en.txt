@@ -1,1 +1,1 @@
- Yarr! In this article, I show how I created an interactive Smart Home Dashboard with HTML, CSS, and JavaScript - essentially the three ingredients of a powerful voodoo spell. A story about point-and-click magic and modern technology. 
+ Technology... technology never changes! - or does it? How I created a smart home dashboard on an old jailbroken Kindle 4 Touch using HTML, PHP, CSS, and JavaScript. A simple tutorial from jailbreaking to the finished dashboard. 

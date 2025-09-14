@@ -1,129 +1,143 @@
 +++
-title = "How to Brew a Magical Smart Home Dashboard with Three Ingredients"
-date = 2025-08-26 12:00:00+01:00
-description = "Yarr! In this article, I show how I created an interactive Smart Home Dashboard with HTML, CSS, and JavaScript - essentially the three ingredients of a powerful voodoo spell. A story about point-and-click magic and modern technology."
-draft = true
+title = "How a 2011 Kindle Became My Home's Pip-Boy"
+date = 2025-09-01 12:00:00+01:00
+description = "Technology... technology never changes! - or does it? How I created a smart home dashboard on an old jailbroken Kindle 4 Touch using HTML, PHP, CSS, and JavaScript. A simple tutorial from jailbreaking to the finished dashboard."
 [taxonomies]
-tags = ["programming", "javascript", "html", "css", "smarthome", "dashboard", "tutorial", "point-and-click"] 
+tags = ["programming", "javascript", "php", "html", "css", "smarthome", "dashboard", "tutorial", "kindle", "software", "jailbreak"]
 [extra]
 comment = true
 +++
 
-# How to Brew a Magical Smart Home Dashboard with Three Ingredients
-*or: "My name is Simeon Stanek and I want to become a pirate errr... programmer!"*
+# How a Kindle from the Past Became My Smart Home Hub
 
-As a tech enthusiast with a Smart Home system, I faced a puzzle that even the mighty Voodoo priest of Mêlée Island™ couldn't have solved: How do you control a modern home without getting lost in a maze of apps? The answer was as simple as mixing a grog: I would develop my own dashboard - with the three magical ingredients of the web: HTML, CSS, and JavaScript.
+This tutorial is for my dear friend [J.](https://enthusiastic.dev/) and everyone else who might have an old Kindle device lying around and wants to use it as a Smart Home dashboard - or simply because they enjoy such projects. In 2020, my brother-in-law gave me his old Kindle 4 Touch that he no longer needed. Originally, I wanted to use it as an e-book reader, but after a few weeks, I noticed I barely used it. So I started looking for other uses.
 
-## The Concept: An Interface That Would Even Impress LeChuck
-The dashboard should be one thing above all: functional. I needed an overview of different rooms and the ability to control lights and other devices. The user interface should be intuitive and adapt to my habits.
+## The Concept: An Interface That Survives Any Apocalypse
 
-### The Technical Implementation
-The project is based on three main components:
+The Kindle should be like a Pip-Boy. Well... um... at least a little bit. It should allow me to control my smart home and Squeezebox players without constantly having to use my smartphone or PC. The device is robust and uses little power. Plus, it has an E-Ink screen that's easily readable even in direct sunlight - perfect for use in various lighting conditions. It also serves as a display for different images (depending on the weather) and garbage collection schedules should be visible too. So almost like a Pip-Boy, except for weapons and the rest. The only thing that might remind you of it is the fact that the device controls music and is simply old.
 
-1. **HTML** for the structure
-2. **CSS** for the design
+## Technical Implementation
+
+The project is based on several technologies and components:
+
+#### Software
+1. **HTML** for structure
+2. **CSS** for design and proper display on the E-Ink screen
 3. **JavaScript** for interactivity
+4. **PHP** for server-side logic
 
-The data is stored in a JSON file that acts as a kind of simple database. This allows me to make changes to the configuration without touching the code.
+#### Hardware
+1. **Jailbroken Kindle 4 Touch** as display and control device
+2. **Micro-USB cable** for power supply
+3. **Picture frame** as case
 
-### The Rooms - My Personal SCUMM Bar
-The dashboard shows different rooms of my home - kind of like a modern version of the SCUMM Bar, only here instead of grog, various Smart Home beverages are served:
+### Jailbreaking with Current Developer Certificates
 
-- Living room (definitely better lighting than in the tavern)
-- Bedroom (perfect for a power nap between adventures)
-- Hallway (first impressions count, even without a talking skull)
-- Dining room (here even the Root Beer™ tastes good)
-- Kitchen (for unforgettable background music while cooking)
-- 1st Floor (where the secret treasures are stored)
-- TV room (for epic movie nights)
+This year, the old developer certificates for the Mobileread Kindlet Kit actually expired, and extensions, especially KUAL (Kindle Unified Application Launcher) on previously jailbroken Kindle devices no longer work. But don't worry, there's a solution! With the new certificates from [NiLuJe](https://www.mobileread.com/forums/showpost.php?p=4506164&postcount=1295), everything runs smoothly again.
 
-Each room is represented by its own image and shows the current status of the devices - completely without voodoo spells or talking skulls. I chose the images so they represent each room well while creating an atmospheric mood.
+Here's a brief guide on how to jailbreak your Kindle 4 Touch:
 
-### The Control: A Mini Point-and-Click Adventure
-As a big fan of point-and-click adventure games, I wanted to bring some of that playful charm to my dashboard. Instead of ordinary buttons, I opted for an HTML Image Map - a technique that many might still remember from classic adventure games. You simply click directly on the objects in the room you want to control, just like in an adventure game.
+1. **Preparation**: Connect your Kindle to the computer and back up all important data.
+2. **Download current updates for your Kindle**: Download the latest firmware from the [Amazon website](https://www.amazon.com/-/de/gp/help/customer/display.html?nodeId=GX3VVAQS4DYDE5KE#GUID-4C9EFFF2-2B4E-4DB8-997D-6DC9B3566220__SECTION_AA6BD2D5AAF04CE196510F7D3FA2B2F0). In this case (Kindle 4 Touch), your Kindle must be updated to version *5.3.7.3*. Copy the .bin file to the Kindle's root directory and install it via "Menu" -> "Settings" -> "Menu" -> "Update Kindle". The device will restart afterward.
+3. **Download jailbreak files**: Download the current [jailbreak files](https://storage.gra.cloud.ovh.net/v1/AUTH_2ac4bfee353948ec8ea7fd1710574097/mr-public/Touch/kindle-jailbreak-1.16.N-r19426.tar.xz).
+4. **Prepare the jailbreak**: Extract the downloaded files and copy the contents of *kindle-5.4-jailbreak.zip* to your Kindle's root directory.
+5. **Replace certificates**: Download the new certificates from [NiLuJe](https://storage.gra.cloud.ovh.net/v1/AUTH_2ac4bfee353948ec8ea7fd1710574097/mr-public/KUAL/developer.keystore) and replace the old *developer.keystore* file in your Kindle's root directory.
+6. **Install the jailbreak**: Activate the jailbreak via "Menu" -> "Settings" -> "Menu" -> "Update Kindle". If everything worked, **\*\*Jailbreak\*\*** should appear at the bottom of the screen. The device must be restarted afterward.
 
-For each device, there are clickable areas in the room image:
+### Guide for Previously Jailbroken Kindles with KUAL
 
-- Main lighting - a click on the ceiling lamp
-- Ambient lighting (like the floor lamp in the living room) - click directly on the lamp
-- Other devices (like music in the kitchen) - simply click the corresponding device
+If your Kindle is already jailbroken, you can directly replace the certificates by downloading the following file from [NiLuJe](https://www.mobileread.com/forums/attachment.php?attachmentid=215127&d=1745098511) and placing the appropriate .bin file for your Kindle in your Kindle's root directory. In this case, it would be *Update_mkk-20250419-k4-ALL_keystore-install.bin*. Then you can install the file via "Menu" -> "Settings" -> "Menu" -> "Update Kindle". KUAL should work again.
 
-Status changes are immediately displayed visually, so you can see at a glance which devices are turned on - almost like when you solve a puzzle in an adventure game and the environment changes. This playful interaction makes the control not only functional but also entertaining.
+### Installing KUAL and WebLaunch
 
-## Implementation Highlights
+1. **Download and install KUAL**: Download the latest version of [KUAL](https://www.mobileread.com/forums/showthread.php?t=225030). Extract the ZIP file and copy the *KUAL-KDK-2.0.azw2* file to your Kindle's *documents* directory.
+2. **Download and install WebLaunch**: Download the latest version of [WebLaunch](https://github.com/PaulFreund/WebLaunch). Extract the ZIP file and copy the entire contents into a directory named *WebLaunch* in your Kindle's *extensions* directory.
+3. **Configure WebLaunch**: Create a *settings.js* file in the *WebLaunch* directory and customize it (see below). Start KUAL on your Kindle's home screen, select WebLaunch, and the website should appear.
 
-### Efficient Data Management
-The data is stored in a JSON file:
-- `data.json`
-
-```json
-[
-{
-        "name": "wohnzimmer",
-        "items": [
-            {
-                "name": "Licht Wohnzimmer",
-                "coords": "972,194,120",
-                "shape": "circle",
-                "ip": "192.168.178.***",
-                "device": "shelly",
-                "onclick": "shelly('192.168.178.***', 'light', 'toggle')"
-            },
-            {
-                "name": "Stehlampe Wohnzimmer",
-                "coords": "1395,797,1467,489",
-                "shape": "rect",
-                "ip": "192.168.178.***",
-                "device": "shelly",
-                "onclick": "shelly('192.168.178.***', 'relay', 'toggle')"
-            }
-        ]
-    },
-    ...
-]
-```
-
-### Image Optimization
-The images were carefully selected and optimized to ensure fast loading times. For status changes, small, efficient PNG files or GIF files for animations are used.
-
-By the way: All images were generated with ChatGPT. I simply took photos of my rooms and then added them as attachments to the prompt "Transform this into a pixel art image like in a point-and-click adventure." The results turned out surprisingly good!
-
-## Structure and Examples
-
-### Structure
-
-The project follows a clear folder structure:
+### Structure and Configuration of the *settings.js* File
 
 ```
 /
-├── css/
-│   ├── style.css
-│   └── style.min.css
-├── js/
-│   ├── script.js
-│   └── script.min.js
-├── images/
-│   └── [various images for rooms and status]
-├── data.json
-└── index.html
+├── extensions/
+│   ├── WebLaunch/
+│   │   ├── All WebLaunch files and
+|   │   └── settings.js
+|── documents/
+│   ├── KUAL-KDK-2.0.azw2
 ```
 
-### Examples    
+```javascript
+var settings = { 
+	url: 'http://192.168.178.***', // IP address of your dashboard (make sure it's accessible via HTTP), you can also specify a local HTML file, e.g. 'control.html', which must then be in the 'bin' folder.
+	title: 'Pip-Boy Home', 
+	hideStatusbar: true,
+	enableWireless: true,
+	powerButtonClose: true,
+	enablePreventScreenSaver: false,
+	landscape: false
+};
+```
 
-<video controls style="max-width: 100%; height: auto;">
-  <source src="images/clip.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+### Now It's Your Turn!
 
-## Conclusion and Outlook - The End of This Developer Story
-The dashboard fulfills its purpose better than a rubber chicken with a pulley: It provides a simple, fast, and reliable way to control my Smart Home. Using web technologies makes it incredibly flexible.
+After successfully jailbreaking your Kindle and installing KUAL and WebLaunch, you can now create your own Smart Home dashboard. Here's a simple example of how you can design an HTML page for your dashboard:
 
-For the future, I'm planning some extensions (or as Murray would say: "Mighty plans!"):
-- Integration of additional Smart Home devices (maybe even a Root Beer™ dispenser?)
-- Automation rules directly in the dashboard (more complicated than the recipe for Monkey Island™ grog)
-- Usage statistics
-- Energy consumption monitoring
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Smart Home Dashboard</title>
+</head>
+<body>
+	<div class="dashboard">
+		<h1>Welcome to Your Smart Home Dashboard</h1>
+		<button onclick="toggleLight1()">Light On/Off</button>
+		<!-- Here you can add more Smart Home control elements -->
+	</div>
+	<script>
+		function toggleLight1() {
+			// Here goes the code to control your Smart Home light
+			let xmlhttp = new XMLHttpRequest();
+			// Example for a Shelly API request
+			xmlhttp.open("GET", "http://192.168.178.***/light/0?turn=toggle", true);
+			xmlhttp.send();
+			// Remember that Kindle only supports JavaScript with limited functionality. Modern features like fetch are missing.
+		}
+	</script>
+</body>
+</html>
+```
 
-The project shows that you can create an effective solution even with simple means - completely without a talking skull. Sometimes you just need three ingredients and the courage of a wannabe pirate to create something great.
+Here's what my result looks like:
 
-*As Guybrush Threepwood would say: "That's the second-best dashboard I've ever seen!" - "Second-best? What's the best?" - "Oh, I haven't found that yet, but with such a big ocean out there, there must be a better one somewhere!"*
+<style>
+     .containerimg img {
+        width: 200px;
+       min-height: 200px;
+        margin: 0 10px;
+    }
+  .containerimg  .full {
+        width: 95%;
+        height: auto;
+        margin: 0 10px;
+    }
+</style>
+<div  class="containerimg" style="
+    text-align: center;
+    display: flex;
+    overflow: scroll;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;">
+<img class="full" src="/posts/another-magic-home-dashboard-with-kindle/images/image1.jpeg" alt="Photo of the Kindle">
+<img  class="full" src="/posts/another-magic-home-dashboard-with-kindle/images/image2.jpeg" alt="Photo of the Kindle">
+<img  class="full" src="/posts/another-magic-home-dashboard-with-kindle/images/image3.jpeg" alt="Photo of the Kindle">
+</div>
+
+## Conclusion
+
+A dusty e-reader from 2011 has become a functional Smart Home dashboard - and with surprisingly little effort. The Kindle impresses with its power-efficient E-Ink screen, simple operation, and robust hardware.
+
+What started as an experiment has now been running reliably for months and controls lights, music, and other Smart Home devices daily. Old hardware doesn't have to gather dust in the closet - sometimes it just needs a new purpose. And if the apocalypse does come, we already have a working terminal.

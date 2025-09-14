@@ -31,7 +31,9 @@ socials = [
    { name = "instagram", url = "https://www.instagram.com/simeonstanek/", icon = "instagram" },
 
     { name = "github", url = "https://github.com/SimeonLukas", icon = "github" },
+     { name = "buy me a coffee", url = "https://buymeacoffee.com/simeonlukas", icon = "bmc-logo" },
     { name = "rss", url = "/rss.xml", icon = "rss" },
+   
 ]
 menu = [
   { name = "/posts", url = "/posts", weight = 1 },
