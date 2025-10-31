@@ -13,23 +13,23 @@ cd /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/scripts/reel/src
 kill $(lsof -t -i:1234)
 
 # read files in directory text and make for each .,txt file a .json file in the metadata directory
-for file in text/posts/*.txt; do
-    filename=$(basename "$file" .txt)
-    echo "Processing $file"
+# for file in text/posts/*.txt; do
+#     filename=$(basename "$file" .txt)
+#     echo "Processing $file"
     
-    # Skip if output video already exists
-    if [ -f "../output/$filename.mp4" ]; then
-        echo "Video for $filename already exists, skipping..."
-        continue
-    fi
+#     # Skip if output video already exists
+#     if [ -f "../output/$filename.mp4" ]; then
+#         echo "Video for $filename already exists, skipping..."
+#         continue
+#     fi
     
-    mv "background/posts/$filename.jpg" "images/reel.jpg"
-    bun run converter.js "$file" "metadata.json"
-    bun run render
-    echo "Processed $file"
-    mv ../output/video.mp4 ../output/"$filename".mp4
-    sleep 1
-done
+#     mv "background/posts/$filename.jpg" "images/reel.jpg"
+#     bun run converter.js "$file" "metadata.json"
+#     bun run render
+#     echo "Processed $file"
+#     mv ../output/video.mp4 ../output/"$filename".mp4
+#     sleep 1
+# done
 
 # commit all changes
 cd /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog
