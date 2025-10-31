@@ -1,205 +1,133 @@
-import { hash } from "bun";
-const fs = require("fs");
-const { DOMParser } = require("xmldom");
-const { createInstance } = require("polotno-node");
+import fs from "fs";
+import crypto from "crypto";
+import { DOMParser } from "xmldom";
+import { createInstance } from "polotno-node";
 
-async function run(x, lang) {
-  let titles = [];
-  let dates = [];
-  let urls = [];
-  let content = [];
-  let languages = "de"
-  const data = fetch(lang)
-    .then((response) => response.text())
-    .then((str) => {
-      // convert xml to json without domparser
-      let parser = new DOMParser();
-      let xml = parser.parseFromString(str, "text/xml");
-      let items = xml.getElementsByTagName("item");
-      languages = xml.getElementsByTagName("language")[0].childNodes[0].nodeValue;
-      for (let o = 0; o < items.length; o++) {
-        titles.push(
-          items[o].getElementsByTagName("title")[0].childNodes[0].nodeValue
-        );
-  
-        let date = new Date(
-          items[o].getElementsByTagName("pubDate")[0].childNodes[0].nodeValue
-        );
-        let options = { year: "numeric", month: "long", day: "numeric" };
-        let formattedDate = date.toLocaleDateString("de-DE", options);
-        dates.push(formattedDate);
+async function fetchText(url: string) {
+  if (typeof fetch === "undefined") {
+    // Node <18 fallback (install node-fetch wenn nötig)
+    // npm i node-fetch
+    // @ts-ignore
+    const nodeFetch = await import("node-fetch");
+    return (await nodeFetch.default(url)).text();
+  }
+  return (await fetch(url)).text();
+}
 
-        let url =
-          items[o].getElementsByTagName("link")[0].childNodes[0].nodeValue;
-        url = url.split("/");
-        url = url[url.length - 3] + "/" + url[url.length - 2];
-        urls.push(url);
-        let description =
-          items[o].getElementsByTagName("description")[0].childNodes[0].nodeValue;
-          // console.log(description)
-          // write description to file 
-        if (description.length > 500) {
-          description = description.substring(0, 500) + "...";
+function getRGB(str: string) {
+  const hash = crypto.createHash("sha1").update(str).digest("hex");
+  return `#${hash.slice(0, 6)}`;
+}
+
+async function exporter(instance: any, template: any, url: string, x: string, languages: string) {
+  fs.mkdirSync(`../../content/${url}/images/${languages}`, { recursive: true });
+
+  const outPaths: Record<string, string> = {
+    "ogimage.json": `../../content/${url}/images/${languages}/preview.jpg`,
+    "instagram1.json": `../../content/${url}/images/${languages}/instagram1.jpg`,
+    "instagram2.json": `../../content/${url}/images/${languages}/instagram2.jpg`,
+    "feed.json": `../../content/${url}/images/${languages}/feed.jpg`,
+    "reel.json": `../reel/src/background/${url}-${languages}.jpg`,
+  };
+
+  const outPath = outPaths[x];
+  if (!outPath) return;
+
+  if (fs.existsSync(outPath)) return;
+
+  const pdfBase64 = await instance.jsonToImageBase64(template, { mimeType: "image/jpeg" });
+  fs.writeFileSync(outPath, pdfBase64, "base64");
+}
+
+async function run(instance: any, x: string, langUrl: string) {
+  try {
+    const text = await fetchText(langUrl);
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(text, "text/xml");
+    const items = Array.from(xml.getElementsByTagName("item"));
+    const languageNode = xml.getElementsByTagName("language")[0];
+    const languages = (languageNode && languageNode.textContent) ? languageNode.textContent : "de";
+
+    for (let o = 0; o < items.length; o++) {
+      const item = items[o];
+      const titleNode = item.getElementsByTagName("title")[0];
+      const pubDateNode = item.getElementsByTagName("pubDate")[0];
+      const linkNode = item.getElementsByTagName("link")[0];
+      const descNode = item.getElementsByTagName("description")[0];
+      const infoNode = item.getElementsByTagName("info")[0];
+
+      const title = titleNode?.textContent ?? `post-${o}`;
+      const pubDate = pubDateNode?.textContent ?? "";
+      const link = linkNode?.textContent ?? "";
+      const description = (descNode?.textContent ?? "").replace(/<[^>]*>?/gm, "");
+      const information = infoNode?.textContent ?? "";
+
+      const date = pubDate ? new Date(pubDate) : new Date();
+      const formattedDate = date.toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "numeric" });
+
+      let url = link.split("/");
+      url = url.length >= 3 ? `${url[url.length - 3]}/${url[url.length - 2]}` : `post-${o}`;
+
+      // write info text file (keeps original behaviour)
+      fs.mkdirSync("../reel/src/text", { recursive: true });
+      fs.writeFileSync(`../reel/src/text/${url}-${languages}.txt`, information, "utf8");
+
+      // load template and inject data
+      const templateRaw = fs.readFileSync(`data/${x}`, "utf8");
+      const template = JSON.parse(templateRaw);
+
+      for (let i = 0; i < template.pages.length; i++) {
+        template.pages[i].background = `linear-gradient(228deg,white 0%,${getRGB(title)} 100%)`;
+        for (let j = 0; j < template.pages[i].children.length; j++) {
+          const child = template.pages[i].children[j];
+          if (child.name === "title") child.text = title;
+          if (child.name === "date") child.text = `Simeon Stanek :: ${formattedDate}`;
+          if (child.name === "hintergrundtext") child.text = description.length > 500 ? description.substring(0, 500) + "..." : description;
         }
-        description = description.replace(/<[^>]*>?/gm, "");
-        content.push(description);
-
-        let information = items[o].getElementsByTagName("info")[0].childNodes[0].nodeValue;
-        fs.writeFileSync("../reel/src/text/" + url + "-" + languages + ".txt", information, "utf8");
-      }
-      for (let k = 0; k < titles.length; k++) {
-        // random color by title
-      
-        let template = JSON.parse(fs.readFileSync("data" + "/" + x, "utf8"));
-        for (let i = 0; i < template.pages.length; i++) {
-          template.pages[i].background = "linear-gradient(228deg,white 0%," + getRGB(titles[k]) + " 100%)";
-          for (let j = 0; j < template.pages[i].children.length; j++) {
-            if (template.pages[i].children[j].name == "title") {
-              template.pages[i].children[j].text = titles[k];
-            }
-            if (template.pages[i].children[j].name == "date") {
-              template.pages[i].children[j].text =
-                "Simeon Stanek :: " + dates[k];
-            }
-            if (template.pages[i].children[j].name == "hintergrundtext") {
-              template.pages[i].children[j].text = content[k];
-            }
-          }
-        }
-        
-
-        exporter(template, k, urls[k], x, languages);
-      }
-    });
-
-  async function exporter(template, i, url, x , languages) {
-
-    fs.mkdirSync("../../content/" + url + "/images/" + languages, { recursive: true });
-
-      if (x == "ogimage.json" && !fs.existsSync("../../content/" + url + "/images/"+languages+ "/preview.jpg")) {
-        let instance = await createInstance({
-          key: "BYTOqo8fIB_6kgfI5SkT",
-        });
-    
-        let pdfBase64 = await instance.jsonToImageBase64(template, {
-          mimeType: "image/jpeg",
-        });
-        fs.writeFileSync(
-          "../../content/" + url + "/images/"+languages+ "/preview.jpg",
-          pdfBase64,
-          "base64"
-        );
-        instance.close();
-      }
-      if (x == "instagram1.json" && !fs.existsSync("../../content/" + url + "/images/"+languages+ "/instagram1.jpg")) {
-        let instance = await createInstance({
-          key: "BYTOqo8fIB_6kgfI5SkT",
-        });
-    
-        let pdfBase64 = await instance.jsonToImageBase64(template, {
-          mimeType: "image/jpeg",
-        });
-        fs.writeFileSync(
-          "../../content/" + url + "/images/"+languages+ "/instagram1.jpg",
-          pdfBase64,
-          "base64"
-        );
-        instance.close();
-      }
-      if (x == "instagram2.json" && !fs.existsSync("../../content/" + url + "/images/"+languages+ "/instagram2.jpg")) {
-        let instance = await createInstance({
-          key: "BYTOqo8fIB_6kgfI5SkT",
-        });
-    
-        let pdfBase64 = await instance.jsonToImageBase64(template, {
-          mimeType: "image/jpeg",
-        });
-        fs.writeFileSync(
-          "../../content/"  + url + "/images/"+languages+ "/instagram2.jpg",
-          pdfBase64,
-          "base64"
-        );
-        instance.close();
-      }
-      
-      if (x == "reel.json" && !fs.existsSync("../reel/src/background/" + url + "-" + languages + ".jpg")) {
-        let instance = await createInstance({
-          key: "BYTOqo8fIB_6kgfI5SkT",
-        });
-        let pdfBase64 = await instance.jsonToImageBase64(template, {
-          mimeType: "image/jpeg",
-        });
-        fs.writeFileSync(
-          "../reel/src/background/"  + url + "-" + languages+ ".jpg",
-          pdfBase64,
-          "base64"
-        );
-        instance.close();
       }
 
-        if (x == "feed.json" && !fs.existsSync("../../content/" + url + "/images/"+languages+ "/feed.jpg")) {
-        let instance = await createInstance({
-          key: "BYTOqo8fIB_6kgfI5SkT",
-        });
-        let pdfBase64 = await instance.jsonToImageBase64(template, {
-          mimeType: "image/jpeg",
-        });
-        fs.writeFileSync(
-          "../../content/"  + url + "/images/"+languages+ "/feed.jpg",
-          pdfBase64,
-          "base64"
-        );
-        instance.close();
-      }
-    
+      await exporter(instance, template, url, x, languages);
+    }
+  } catch (err) {
+    console.error(`Fehler bei run(${x}, ${langUrl}):`, err);
   }
 }
 
-function getRGB(str) {
-let hashed = hash(str);
-let result = hashed.toString(16).substring(0, 6);
-return "#" + result;
+export async function generateAll() {
+  const key = process.env.POLOTNO_KEY || "BYTOqo8fIB_6kgfI5SkT";
+  const instance = await createInstance({ key });
+  try {
+    const tasks = [
+      ["ogimage.json", "http://127.0.0.1:1234/rss.xml"],
+      ["instagram1.json", "http://127.0.0.1:1234/rss.xml"],
+      ["instagram2.json", "http://127.0.0.1:1234/rss.xml"],
+      ["feed.json", "http://127.0.0.1:1234/rss.xml"],
+      ["ogimage.json", "http://127.0.0.1:1234/en/rss.xml"],
+      ["instagram1.json", "http://127.0.0.1:1234/en/rss.xml"],
+      ["instagram2.json", "http://127.0.0.1:1234/en/rss.xml"],
+      ["feed.json", "http://127.0.0.1:1234/en/rss.xml"],
+      ["reel.json", "http://127.0.0.1:1234/rss.xml"],
+      ["reel.json", "http://127.0.0.1:1234/en/rss.xml"],
+    ];
+
+    // sequenziell ausführen, damit die API nicht überlastet wird
+    for (const [x, lang] of tasks) {
+      // kleine Pause zwischen Requests, falls nötig
+      await run(instance, x, lang);
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  } finally {
+    try {
+      instance.close();
+    } catch (e) {
+      // ignore
+    }
+  }
 }
 
-async function generate() {
-
-run("ogimage.json", "http://127.0.0.1:1234/rss.xml");
-
-setTimeout(() => {
-  run("instagram1.json", "http://127.0.0.1:1234/rss.xml");
-}, 1000);
-
-setTimeout(() => {
-  run("instagram2.json", "http://127.0.0.1:1234/rss.xml");
-}, 1000);
-
-setTimeout(() => {
-  run("feed.json", "http://127.0.0.1:1234/rss.xml");
-}, 1000);
-
-setTimeout(() => {
-  run("ogimage.json", "http://127.0.0.1:1234/en/rss.xml");
-}, 1000);
-
-setTimeout(() => {
-  run("instagram1.json", "http://127.0.0.1:1234/en/rss.xml");
-}, 1000);
-
-setTimeout(() => {
-  run("instagram2.json", "http://127.0.0.1:1234/en/rss.xml");
-}, 1000);
-
-setTimeout(() => {
-  run("feed.json", "http://127.0.0.1:1234/en/rss.xml");
-}, 1000);
+if (require.main === module) {
+  generateAll().catch((e) => {
+    console.error("generateAll failed:", e);
+    process.exitCode = 1;
+  });
 }
-
-setTimeout(() => {
-  run("reel.json", "http://127.0.0.1:1234/rss.xml");
-}, 1000);
-
-setTimeout(() => {
-  run("reel.json", "http://127.0.0.1:1234/en/rss.xml");
-}, 1000);
-
-generate();
