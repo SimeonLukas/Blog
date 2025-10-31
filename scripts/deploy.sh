@@ -9,7 +9,6 @@ zola serve --port 1234 &
 sleep 5
 bun run index.ts
 cd /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/scripts/reel/src
-
 # stop the server
 kill $(lsof -t -i:1234)
 
