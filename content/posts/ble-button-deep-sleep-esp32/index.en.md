@@ -7,7 +7,7 @@ description = "A power-efficient Bluetooth button for the tourism wheel of fortu
 tags = ["ESP32", "BLE", "Deep Sleep", "Hardware", "IoT", "Tourismuspastoral"]
 
 [extra]
-toc = true
+comment = true
 +++
 
 ## The Starting Point: A Wheel of Fortune Needs a Button

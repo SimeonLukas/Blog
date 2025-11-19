@@ -7,7 +7,7 @@ description = "Ein stromsparender Bluetooth-Button für das Tourismus-Glücksrad
 tags = ["ESP32", "BLE", "Deep Sleep", "Hardware", "IoT", "Tourismuspastoral"]
 
 [extra]
-toc = true
+comment = true
 +++
 
 ## Die Ausgangslage: Ein Glücksrad braucht einen Button
