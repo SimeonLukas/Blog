@@ -16,18 +16,27 @@ kill $(lsof -t -i:1234)
 for file in text/posts/*.txt; do
     filename=$(basename "$file" .txt)
     echo "Processing $file"
-    
+
+    # Extract base article name (remove -de/-en suffix)
+    base_name="${filename%-de}"
+    base_name="${base_name%-en}"
+
     # Skip if output video already exists
-    if [ -f "../output/$filename.mp4" ]; then
+    if [ -f "/Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/content/posts/$base_name/video/$filename.mp4" ]; then
         echo "Video for $filename already exists, skipping..."
         continue
     fi
-    
+
     mv "background/posts/$filename.jpg" "images/reel.jpg"
     bun run converter.js "$file" "metadata.json"
     bun run render
     echo "Processed $file"
-    mv ../output/video.mp4 ../output/"$filename".mp4
+
+    # Create video directory if it doesn't exist
+    mkdir -p "/Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/content/posts/$base_name/video"
+
+    # Move video to posts folder
+    mv ../output/video.mp4 "/Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/content/posts/$base_name/video/$filename.mp4"
     sleep 1
 done
 
