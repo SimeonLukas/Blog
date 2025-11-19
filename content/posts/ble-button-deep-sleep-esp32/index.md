@@ -497,8 +497,6 @@ Hier findest du alle Komponenten, die du für dieses Projekt benötigst. Die Lin
 
 Viel Spaß beim Nachbauen! 🛠️
 
----
-
 *Verwendete Hardware:*
 - ESP32-S3 Dev Module
 - 100mm Arcade Button
@@ -516,5 +514,3 @@ Viel Spaß beim Nachbauen! 🛠️
 *Stromversorgung:*
 - Für Entwicklung/Flashen: USB-C Kabel
 - Für Produktivbetrieb: CR123A Batterie mit Batteriehalter (siehe Einkaufsliste)
-
----

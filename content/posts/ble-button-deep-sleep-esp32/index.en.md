@@ -497,8 +497,6 @@ Here you'll find all the components you need for this project. The links go to A
 
 Have fun building! 🛠️
 
----
-
 *Hardware Used:*
 - ESP32-S3 Dev Module
 - 100mm Arcade Button
@@ -516,5 +514,3 @@ Have fun building! 🛠️
 *Power Supply:*
 - For Development/Flashing: USB-C Cable
 - For Production Use: CR123A Battery with Battery Holder (see shopping list)
-
----
