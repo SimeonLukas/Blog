@@ -197,6 +197,35 @@
         {% endif %}
 
     </div>
+
+    {# Video link if available #}
+    {% if page.lang %}
+        {% set video_lang = page.lang %}
+    {% else %}
+        {% set video_lang = "de" %}
+    {% endif %}
+
+    {% if video_lang == "de" or video_lang == "en" %}
+        {# Get the parent directory name (article slug) from the page path #}
+        {% set_global article_slug = "" %}
+        {% set path_parts = page.path | trim_end_matches(pat="/") | split(pat="/") %}
+        {% for part in path_parts %}
+            {% if loop.last %}
+                {% set_global article_slug = part %}
+            {% endif %}
+        {% endfor %}
+
+        {% set video_file = article_slug ~ "-" ~ video_lang ~ ".mp4" %}
+        {% set video_path = page.permalink ~ "video/" ~ video_file %}
+
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;">
+            {% if video_lang == "de" %}
+                <strong>📹 </strong> <a href="{{ video_path }}">Video ansehen</a>
+            {% else %}
+                <strong>📹 </strong> <a href="{{ video_path }}">Watch Video</a>
+            {% endif %}
+        </div>
+    {% endif %}
 </main>
 {% endmacro content %}
 
