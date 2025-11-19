@@ -1,0 +1,1 @@
+ A power-efficient Bluetooth button for the tourism wheel of fortune - with Deep Sleep, Bonding, and months of battery life. From failures, debugging sessions, and the final breakthrough. 
