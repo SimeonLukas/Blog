@@ -218,11 +218,17 @@
         {% set video_file = article_slug ~ "-" ~ video_lang ~ ".mp4" %}
         {% set video_path = page.permalink ~ "video/" ~ video_file %}
 
-        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;">
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
             {% if video_lang == "de" %}
-                <strong>📹 </strong> <a href="{{ video_path }}">Video ansehen</a>
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="{{ video_path }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             {% else %}
-                <strong>📹 </strong> <a href="{{ video_path }}">Watch Video</a>
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="{{ video_path }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             {% endif %}
         </div>
     {% endif %}
