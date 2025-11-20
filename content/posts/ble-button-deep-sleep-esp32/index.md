@@ -4,7 +4,7 @@ date = 2025-11-19 12:00:00+01:00
 description = "Ein stromsparender Bluetooth-Button für das Tourismus-Glücksrad - mit Deep Sleep, Bonding und monatelanger Batterielebensdauer. Von Fehlschlägen, Debugging-Sessions und dem finalen Durchbruch."
 
 [taxonomies]
-tags = ["ESP32", "BLE", "Deep Sleep", "Hardware", "IoT", "Tourismuspastoral"]
+tags = ["ESP32S3", "BLE", "Deep Sleep", "Hardware", "IoT", "Tourismuspastoral","ESP32C3"]
 
 [extra]
 comment = true
@@ -514,3 +514,173 @@ Viel Spaß beim Nachbauen! 🛠️
 *Stromversorgung:*
 - Für Entwicklung/Flashen: USB-C Kabel
 - Für Produktivbetrieb: CR123A Batterie mit Batteriehalter (siehe Einkaufsliste)
+
+Hier der komplette Code für den ESP32-C3 BLE-Button mit Deep Sleep:
+- Fork des ESP32-BLE-Keyboard von T-vK wurde verwendet, der mit dem ESP32-C3 kompatibel ist:
+[Fork von lewisxhe](https://github.com/lewisxhe/ESP32-BLE-Keyboard-fork)
+- Außerdem braucht man die Bibliothek NimBLEDevice.h für die Security Einstellungen.
+
+```cpp
+#include <BleKeyboard.h>
+#include <Preferences.h>
+#include "esp_sleep.h"
+#include "driver/gpio.h"
+#include "esp_system.h"
+#include <NimBLEDevice.h>
+
+BleKeyboard bleKeyboard("Blauer Button", "Espressif", 100);
+Preferences preferences;
+
+const int buttonPin = 3;  // ESP32-C3 GPIO3
+const unsigned long awakeTime = 10000;      // 10 Sekunden wach
+const unsigned long bleTimeout = 15000;     // 15 Sekunden für BLE
+bool lastButtonState = HIGH;
+unsigned long startTime;
+bool alreadySentOnWake = false;
+
+void goToSleep() {
+  Serial.println("\n>>> Bereite Deep Sleep vor...");
+  
+  // Warte bis Button losgelassen
+  while(digitalRead(buttonPin) == LOW) {
+    delay(100);
+  }
+  delay(500);
+  
+  // BLE sauber beenden
+  Serial.println(">>> Beende BLE...");
+  bleKeyboard.end();
+  delay(500);
+  
+  Serial.println("\n>>> Konfiguriere Deep Sleep GPIO Wakeup...");
+  
+  // GPIO Pin Maske erstellen
+  uint64_t gpio_pin_mask = (1ULL << buttonPin);
+  
+  // Deep Sleep GPIO Wakeup aktivieren
+  esp_err_t err = esp_deep_sleep_enable_gpio_wakeup(
+    gpio_pin_mask, 
+    ESP_GPIO_WAKEUP_GPIO_LOW
+  );
+  
+  if (err == ESP_OK) {
+    Serial.printf("OK - Deep Sleep Wakeup fuer GPIO %d aktiviert\n", buttonPin);
+  } else {
+    Serial.printf("FEHLER bei GPIO Wakeup Config: %d\n", err);
+  }
+  
+  Serial.printf("GPIO %d Status vor Sleep: %d\n", buttonPin, digitalRead(buttonPin));
+  Serial.println("\n>>> Gehe schlafen... (Druecke Button zum Aufwachen)");
+  Serial.flush();
+  delay(200);
+  
+  esp_deep_sleep_start();
+}
+
+void setup() {
+  Serial.begin(115200);
+  delay(2000);
+  
+  pinMode(buttonPin, INPUT_PULLUP);
+  
+  Serial.println("\n=============================");
+  Serial.println("=== ESP32-C3 AUFGEWACHT! ===");
+  Serial.println("=============================");
+  
+  esp_sleep_wakeup_cause_t wakeup_reason = esp_sleep_get_wakeup_cause();
+  Serial.printf("Wakeup Cause: %d\n", wakeup_reason);
+  
+  switch(wakeup_reason) {
+    case ESP_SLEEP_WAKEUP_GPIO:
+      Serial.println(">>> ERFOLG: Wakeup durch GPIO!");
+      break;
+    case ESP_SLEEP_WAKEUP_TIMER:
+      Serial.println(">>> Wakeup durch Timer!");
+      break;
+    case ESP_SLEEP_WAKEUP_UNDEFINED:
+    default:
+      Serial.println(">>> Power-On / Reset / Upload");
+      break;
+  }
+  
+  Serial.printf("GPIO %d Status: %d\n", buttonPin, digitalRead(buttonPin));
+  
+  // ERST BleKeyboard starten
+  Serial.println("\n>>> Starte BLE Keyboard...");
+  bleKeyboard.begin();
+  delay(1000);  // Wichtig: Warten bis BLE komplett initialisiert ist!
+  
+  // DANN Security konfigurieren
+  Serial.println(">>> Konfiguriere Bonding...");
+  NimBLEDevice::setSecurityAuth(BLE_SM_PAIR_AUTHREQ_BOND);
+  NimBLEDevice::setSecurityIOCap(BLE_HS_IO_NO_INPUT_OUTPUT);
+  
+  Serial.println("OK - Just Works Bonding aktiviert!");
+  Serial.println("==============================");
+  Serial.println("  PAIRING: Keine PIN noetig!");
+  Serial.println("==============================");
+  Serial.println("\nPAIRING-ANLEITUNG:");
+  Serial.println("  1. Bluetooth-Einstellungen oeffnen");
+  Serial.println("  2. 'Blauer Button' suchen");
+  Serial.println("  3. Auf 'Verbinden' tippen");
+  Serial.println("  4. Pairing bestaetigen (kein PIN!)");
+  Serial.println("  5. Verbindung wird gespeichert!");
+  Serial.println("  6. Bei erneutem Wake-up: Auto-Reconnect!\n");
+  
+  Serial.println("BLE gestartet - warte auf Verbindung...");
+  startTime = millis();
+  alreadySentOnWake = false;
+}
+
+void loop() {
+  // Warte auf BLE und sende dann
+  if(!alreadySentOnWake) {
+    if(bleKeyboard.isConnected()) {
+      Serial.println("\n>>> BLE VERBUNDEN!");
+      Serial.println(">>> Sende '2'...");
+      delay(500);
+      bleKeyboard.print("2");
+      delay(300);
+      Serial.println(">>> '2' erfolgreich gesendet!");
+      alreadySentOnWake = true;
+      startTime = millis();
+    } else {
+      // Zeige Wartezeit an
+      unsigned long elapsed = millis() - startTime;
+      if(elapsed % 2000 < 50) {  // Alle 2 Sekunden
+        Serial.printf("Warte auf BLE... (%lu/%lu ms)\n", elapsed, bleTimeout);
+      }
+      
+      if(elapsed > bleTimeout) {
+        Serial.println("\n>>> BLE Timeout - gehe schlafen");
+        Serial.println("Tipp: Pairing in Bluetooth-Einstellungen pruefen!");
+        goToSleep();
+      }
+    }
+  }
+  
+  // Nach Senden: 10 Sekunden wach
+  if(alreadySentOnWake && millis() - startTime >= awakeTime) {
+    Serial.println("\n>>> Awake-Timeout erreicht!");
+    goToSleep();
+  }
+  
+  // Button während Wachzeit
+  bool buttonState = digitalRead(buttonPin);
+  if(buttonState == LOW && lastButtonState == HIGH) {
+    if(bleKeyboard.isConnected()) {
+      Serial.println("\n>>> Button gedrueckt - Sende '2'");
+      bleKeyboard.print("2");
+      delay(300);
+      Serial.println(">>> '2' gesendet!");
+      startTime = millis();  // Timer zurücksetzen
+    } else {
+      Serial.println("\n>>> Button gedrueckt - aber nicht verbunden!");
+    }
+    delay(50);
+  }
+  lastButtonState = buttonState;
+  
+  delay(10);
+}
+```
