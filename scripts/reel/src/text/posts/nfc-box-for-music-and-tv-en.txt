@@ -1,0 +1,1 @@
+ How I built a smart music box with an ESP32, NFC tags, and n8n that even plays our Advent calendar. A cost-effective DIY solution for children. 
