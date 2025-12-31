@@ -4,7 +4,7 @@ date = 2025-12-31 12:00:00+01:00
 description = "How I built a smart music box with an ESP32, NFC tags, and n8n that even plays our Advent calendar. A cost-effective DIY solution for children."
 
 [taxonomies]
-tags = ["diy", "smart-home", "esp32", "nfc", "kids", "hardware", "iot", "project", "n8n", "spotify", "home-automation"]
+tags = ["diy", "smart-home", "esp32", "nfc", "kids", "hardware", "iot", "project", "n8n", "spotify", "home-automation", "toniebox"]
 
 [extra]
 comment =  true

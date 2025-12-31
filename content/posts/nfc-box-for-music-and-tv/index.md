@@ -4,7 +4,7 @@ date = 2025-12-31 12:00:00+01:00
 description = "Wie ich mit einem ESP32, NFC-Tags und n8n eine smarte Musikbox gebaut habe, die sogar unseren Adventskalender spielt. Eine kostengünstige DIY-Lösung für Kinder."
 
 [taxonomies]
-tags = ["diy", "smart-home", "esp32", "nfc", "kids", "hardware", "iot", "project", "n8n", "spotify", "home-automation"]
+tags = ["diy", "smart-home", "esp32", "nfc", "kids", "hardware", "iot", "project", "n8n", "spotify", "home-automation", "toniebox"]
 
 [extra]
 comment =  true
