@@ -6,6 +6,9 @@ description = "Wie ich mit einem ESP32, NFC-Tags und n8n eine smarte Musikbox ge
 [taxonomies]
 tags = ["diy", "smart-home", "esp32", "nfc", "kids", "hardware", "iot", "project", "n8n", "spotify", "home-automation"]
 
+[extra]
+comment =  true
+
 +++
 
 ## Die Idee: Musik für kleine Hände

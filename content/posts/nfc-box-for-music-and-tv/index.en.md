@@ -6,6 +6,9 @@ description = "How I built a smart music box with an ESP32, NFC tags, and n8n th
 [taxonomies]
 tags = ["diy", "smart-home", "esp32", "nfc", "kids", "hardware", "iot", "project", "n8n", "spotify", "home-automation"]
 
+[extra]
+comment =  true
+
 +++
 
 ## The Idea: Music for Little Hands
