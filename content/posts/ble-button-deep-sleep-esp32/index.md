@@ -462,33 +462,32 @@ Hier findest du alle Komponenten, die du für dieses Projekt benötigst. Die Lin
 ### Hauptkomponenten
 
 **ESP32-S3 Development Board**
-- [ESP32-S3 DevKit (2er Set)](https://amzn.eu/d/0T1NcSH/?tag=simeonstaneks-21)
+- [ESP32-S3 DevKit (2er Set)](https://amzn.to/3M3FQGv)
 - Empfehlung: Das 2er-Set ist günstiger pro Board und du hast Ersatz für weitere Projekte
 
 **100mm Arcade Button**
-- [LED Arcade Button 100mm (verschiedene Farben)](https://amzn.eu/d/6UCftt8/?tag=simeonstaneks-21)
+- [LED Arcade Button 100mm (verschiedene Farben)](https://amzn.to/45Gditn)
 - Große, gut fühlbare Taste - perfekt für Events
-- Alternative: [Standard Arcade Button 60mm](https://amzn.eu/d/j9O9DTu/?tag=simeonstaneks-21)
+- Alternative: [Standard Arcade Button 60mm](https://amzn.to/4ro8TDG)
 
 ### Stromversorgung
 
 **CR123A Batterien**
-- [Varta CR123A Lithium Batterien (2er Pack)](https://amzn.eu/d/ejrz6xh/?tag=simeonstaneks-21)
+- [Varta CR123A Lithium Batterien (2er Pack)](https://amzn.to/4rlJ1YZ)
 - Hochwertige Markenbatterien mit langer Lebensdauer
 
 **Batteriehalter für CR123A**
-- [CR123A Batteriehalter mit Anschlusskabel](https://amzn.eu/d/abbsqNz/?tag=simeonstaneks-21)
+- [CR123A Batteriehalter mit Anschlusskabel](https://amzn.to/45GdmcB)
 - Mit Schalter zum einfachen Ein/Ausschalten
-- Alternative: [CR123A Halter ohne Schalter (günstiger)](https://www.amazon.de/dp/B07VPVCKC4/?tag=simeonstaneks-21)
 
 ### Optional aber nützlich
 
 **USB-C Kabel zum Flashen**
-- [USB-C Datenkabel](https://amzn.eu/d/j8toLfn/?tag=simeonstaneks-21)
+- [USB-C Datenkabel](https://amzn.to/3M4jxAu)
 - Wichtig: Datenkabel verwenden, nicht nur Ladekabel!
 
 **Jumper Kabel**
-- [Dupont Jumper Kabel Set](https://www.amazon.de/dp/B07K8PVKBP/?tag=simeonstaneks-21)
+- [Dupont Jumper Kabel Set](https://amzn.to/4a1duoc)
 - Zum einfachen Verbinden während des Prototypings
 
 ### Geschätzte Gesamtkosten
