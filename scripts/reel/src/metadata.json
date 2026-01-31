@@ -1,261 +1,254 @@
 {
   "audioUrl": [
-    "src/music/music00009.mp3"
+    "src/music/music00010.mp3"
   ],
   "images": [
     "src/images/reel.jpg"
   ],
   "words": [
     {
-      "word": "My",
+      "word": "Meine",
       "start": 0,
-      "end": 0.36,
-      "confidence": "0.9971663",
-      "punctuated_word": "My"
+      "end": 0.6,
+      "confidence": "0.9911539",
+      "punctuated_word": "Meine"
     },
     {
-      "word": "first",
-      "start": 0.38,
-      "end": 0.98,
-      "confidence": "0.9742426",
-      "punctuated_word": "first"
+      "word": "ersten",
+      "start": 0.62,
+      "end": 1.3,
+      "confidence": "0.9867239",
+      "punctuated_word": "ersten"
     },
     {
-      "word": "experiences",
-      "start": 1,
-      "end": 2.08,
-      "confidence": "0.9139788",
-      "punctuated_word": "experiences"
+      "word": "Erfahrungen",
+      "start": 1.32,
+      "end": 2.4,
+      "confidence": "0.9080575",
+      "punctuated_word": "Erfahrungen"
     },
     {
-      "word": "with",
-      "start": 2.1,
-      "end": 2.62,
-      "confidence": "0.9542653",
-      "punctuated_word": "with"
+      "word": "mit",
+      "start": 2.42,
+      "end": 2.86,
+      "confidence": "0.9077075",
+      "punctuated_word": "mit"
     },
     {
-      "word": "my",
-      "start": 2.64,
-      "end": 3,
-      "confidence": "0.9896985",
-      "punctuated_word": "my"
+      "word": "meinem",
+      "start": 2.88,
+      "end": 3.56,
+      "confidence": "0.9889304",
+      "punctuated_word": "meinem"
     },
     {
-      "word": "own",
-      "start": 3.02,
-      "end": 3.46,
-      "confidence": "0.9520896",
-      "punctuated_word": "own"
+      "word": "eigenen",
+      "start": 3.58,
+      "end": 4.34,
+      "confidence": "0.9338521",
+      "punctuated_word": "eigenen"
     },
     {
-      "word": "3D",
-      "start": 3.48,
-      "end": 3.84,
-      "confidence": "0.9427282",
-      "punctuated_word": "3D"
+      "word": "3D-Drucker,",
+      "start": 4.36,
+      "end": 5.44,
+      "confidence": "0.9380838",
+      "punctuated_word": "3D-Drucker,"
     },
     {
-      "word": "printer,",
-      "start": 3.86,
-      "end": 4.7,
-      "confidence": "0.9652600",
-      "punctuated_word": "printer,"
+      "word": "den",
+      "start": 5.46,
+      "end": 5.9,
+      "confidence": "0.9820869",
+      "punctuated_word": "den"
     },
     {
-      "word": "the",
-      "start": 4.72,
-      "end": 5.16,
-      "confidence": "0.9248214",
-      "punctuated_word": "the"
+      "word": "Herausforderungen",
+      "start": 5.92,
+      "end": 7.48,
+      "confidence": "0.9803747",
+      "punctuated_word": "Herausforderungen"
     },
     {
-      "word": "challenges",
-      "start": 5.18,
-      "end": 6.18,
-      "confidence": "0.9888344",
-      "punctuated_word": "challenges"
+      "word": "und",
+      "start": 7.5,
+      "end": 7.94,
+      "confidence": "0.9152287",
+      "punctuated_word": "und"
     },
     {
-      "word": "and",
-      "start": 6.2,
-      "end": 6.64,
-      "confidence": "0.9528783",
-      "punctuated_word": "and"
+      "word": "unnötigen",
+      "start": 7.96,
+      "end": 8.88,
+      "confidence": "0.9952785",
+      "punctuated_word": "unnötigen"
     },
     {
-      "word": "unnecessary",
-      "start": 6.66,
-      "end": 7.74,
-      "confidence": "0.9474518",
-      "punctuated_word": "unnecessary"
-    },
-    {
-      "word": "adventures",
-      "start": 7.76,
-      "end": 8.76,
-      "confidence": "0.9300421",
-      "punctuated_word": "adventures"
+      "word": "Abenteuern",
+      "start": 8.9,
+      "end": 9.9,
+      "confidence": "0.9140908",
+      "punctuated_word": "Abenteuern"
     },
     {
       "word": "in",
-      "start": 8.78,
-      "end": 9.14,
-      "confidence": "0.9845849",
-      "punctuated_word": "in"
-    },
-    {
-      "word": "the",
-      "start": 9.16,
-      "end": 9.6,
-      "confidence": "0.9875424",
-      "punctuated_word": "the"
-    },
-    {
-      "word": "world",
-      "start": 9.62,
-      "end": 10.22,
-      "confidence": "0.9519121",
-      "punctuated_word": "world"
-    },
-    {
-      "word": "of",
-      "start": 10.24,
-      "end": 10.6,
-      "confidence": "0.9357457",
-      "punctuated_word": "of"
-    },
-    {
-      "word": "3D",
-      "start": 10.62,
-      "end": 10.98,
-      "confidence": "0.9427471",
-      "punctuated_word": "3D"
-    },
-    {
-      "word": "printing,",
-      "start": 11,
-      "end": 11.92,
-      "confidence": "0.9771855",
-      "punctuated_word": "printing,"
-    },
-    {
-      "word": "up",
-      "start": 11.94,
-      "end": 12.3,
-      "confidence": "0.9360559",
-      "punctuated_word": "up"
-    },
-    {
-      "word": "to",
-      "start": 12.32,
-      "end": 12.68,
-      "confidence": "0.9474054",
-      "punctuated_word": "to"
-    },
-    {
-      "word": "actually",
-      "start": 12.7,
-      "end": 13.54,
-      "confidence": "0.9497489",
-      "punctuated_word": "actually"
-    },
-    {
-      "word": "practical",
-      "start": 13.56,
-      "end": 14.48,
-      "confidence": "0.9219727",
-      "punctuated_word": "practical"
-    },
-    {
-      "word": "prints.",
-      "start": 14.5,
-      "end": 15.26,
-      "confidence": "0.9543799",
-      "punctuated_word": "prints."
-    },
-    {
-      "word": "Schau",
-      "start": 15.58,
-      "end": 16.18,
-      "confidence": "0.9203092",
-      "punctuated_word": "Schau"
-    },
-    {
-      "word": "auf",
-      "start": 16.2,
-      "end": 16.64,
-      "confidence": "0.9602820",
-      "punctuated_word": "auf"
-    },
-    {
-      "word": "meinen",
-      "start": 16.66,
-      "end": 17.34,
-      "confidence": "0.9506118",
-      "punctuated_word": "meinen"
-    },
-    {
-      "word": "Blog,",
-      "start": 17.36,
-      "end": 17.96,
-      "confidence": "0.9948077",
-      "punctuated_word": "Blog,"
-    },
-    {
-      "word": "um",
-      "start": 17.98,
-      "end": 18.34,
-      "confidence": "0.9075012",
-      "punctuated_word": "um"
-    },
-    {
-      "word": "mehr",
-      "start": 18.36,
-      "end": 18.88,
-      "confidence": "0.9318702",
-      "punctuated_word": "mehr"
-    },
-    {
-      "word": "zu",
-      "start": 18.9,
-      "end": 19.26,
-      "confidence": "0.9534931",
-      "punctuated_word": "zu"
-    },
-    {
-      "word": "erfahren.",
-      "start": 19.28,
-      "end": 20.2,
-      "confidence": "0.9261648",
-      "punctuated_word": "erfahren."
-    },
-    {
-      "word": "Link",
-      "start": 20.52,
-      "end": 21.04,
-      "confidence": "0.9158062",
-      "punctuated_word": "Link"
-    },
-    {
-      "word": "in",
-      "start": 21.06,
-      "end": 21.42,
-      "confidence": "0.9075024",
+      "start": 9.92,
+      "end": 10.28,
+      "confidence": "0.9197898",
       "punctuated_word": "in"
     },
     {
       "word": "der",
-      "start": 21.44,
-      "end": 21.88,
-      "confidence": "0.9120701",
+      "start": 10.3,
+      "end": 10.74,
+      "confidence": "0.9429589",
+      "punctuated_word": "der"
+    },
+    {
+      "word": "Welt",
+      "start": 10.76,
+      "end": 11.28,
+      "confidence": "0.9982537",
+      "punctuated_word": "Welt"
+    },
+    {
+      "word": "des",
+      "start": 11.3,
+      "end": 11.74,
+      "confidence": "0.9208793",
+      "punctuated_word": "des"
+    },
+    {
+      "word": "3D-Drucks,",
+      "start": 11.76,
+      "end": 12.76,
+      "confidence": "0.9064916",
+      "punctuated_word": "3D-Drucks,"
+    },
+    {
+      "word": "bis",
+      "start": 12.78,
+      "end": 13.22,
+      "confidence": "0.9748113",
+      "punctuated_word": "bis"
+    },
+    {
+      "word": "hin",
+      "start": 13.24,
+      "end": 13.68,
+      "confidence": "0.9784251",
+      "punctuated_word": "hin"
+    },
+    {
+      "word": "zu",
+      "start": 13.7,
+      "end": 14.06,
+      "confidence": "0.9809294",
+      "punctuated_word": "zu"
+    },
+    {
+      "word": "tatsächlich",
+      "start": 14.08,
+      "end": 15.16,
+      "confidence": "0.9504092",
+      "punctuated_word": "tatsächlich"
+    },
+    {
+      "word": "praktischen",
+      "start": 15.18,
+      "end": 16.26,
+      "confidence": "0.9835320",
+      "punctuated_word": "praktischen"
+    },
+    {
+      "word": "Drucken.",
+      "start": 16.28,
+      "end": 17.12,
+      "confidence": "0.9069319",
+      "punctuated_word": "Drucken."
+    },
+    {
+      "word": "Schau",
+      "start": 17.44,
+      "end": 18.04,
+      "confidence": "0.9466116",
+      "punctuated_word": "Schau"
+    },
+    {
+      "word": "auf",
+      "start": 18.06,
+      "end": 18.5,
+      "confidence": "0.9614644",
+      "punctuated_word": "auf"
+    },
+    {
+      "word": "meinen",
+      "start": 18.52,
+      "end": 19.2,
+      "confidence": "0.9947840",
+      "punctuated_word": "meinen"
+    },
+    {
+      "word": "Blog,",
+      "start": 19.22,
+      "end": 19.82,
+      "confidence": "0.9891265",
+      "punctuated_word": "Blog,"
+    },
+    {
+      "word": "um",
+      "start": 19.84,
+      "end": 20.2,
+      "confidence": "0.9733047",
+      "punctuated_word": "um"
+    },
+    {
+      "word": "mehr",
+      "start": 20.22,
+      "end": 20.74,
+      "confidence": "0.9705584",
+      "punctuated_word": "mehr"
+    },
+    {
+      "word": "zu",
+      "start": 20.76,
+      "end": 21.12,
+      "confidence": "0.9962563",
+      "punctuated_word": "zu"
+    },
+    {
+      "word": "erfahren.",
+      "start": 21.14,
+      "end": 22.06,
+      "confidence": "0.9572910",
+      "punctuated_word": "erfahren."
+    },
+    {
+      "word": "Link",
+      "start": 22.38,
+      "end": 22.9,
+      "confidence": "0.9365634",
+      "punctuated_word": "Link"
+    },
+    {
+      "word": "in",
+      "start": 22.92,
+      "end": 23.28,
+      "confidence": "0.9601647",
+      "punctuated_word": "in"
+    },
+    {
+      "word": "der",
+      "start": 23.3,
+      "end": 23.74,
+      "confidence": "0.9988528",
       "punctuated_word": "der"
     },
     {
       "word": "Bio.",
-      "start": 21.9,
-      "end": 22.42,
-      "confidence": "0.9124942",
+      "start": 23.76,
+      "end": 24.28,
+      "confidence": "0.9969262",
       "punctuated_word": "Bio."
     }
   ]
