@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="de">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Nützliche Escape Room Technik: Drehscheibentelefon als Eingabegerät
+        
+    </title>
+
+    
+    
+    <meta name="description" content="In diesem Artikel beschreibe ich wie man ein altes Drehscheibentelefon als Eingabegerät für Escape Rooms nutzen kann. Ich erkläre die technische Umsetzung, d..." />
+    
+    
+
+    
+    <meta property="og:image" content="https://simeon.staneks.de/posts/useful-escape-room-technology//images/de/preview.jpg" />
+    <meta property="og:logo" content="https://simeon.staneks.de/posts/useful-escape-room-technology//imagesde/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://simeon.staneks.de/posts/useful-escape-room-technology/images/de/preview.jpg">
+    
+
+    
+    <meta property="og:title" content="Nützliche Escape Room Technik: Drehscheibentelefon als Eingabegerät" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="Nützliche Escape Room Technik: Drehscheibentelefon als Eingabegerät">
+    
+    
+
+    
+    
+    <meta property="og:description" content="In diesem Artikel beschreibe ich wie man ein altes Drehscheibentelefon als Eingabegerät für Escape Rooms nutzen kann. Ich erkläre die technische Umsetzung, d..."/>
+    <!-- twitter description -->
+    <meta name="twitter:description" content="In diesem Artikel beschreibe ich wie man ein altes Drehscheibentelefon als Eingabegerät für Escape Rooms nutzen kann. Ich erkläre die technische Umsetzung, d...">
+    
+    
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;simeon.staneks.de"/>
+    <meta property="og:type" content="article" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Simeon&#x27;s Blog" />
+
+
+    
+    
+    <link rel="icon" type="image/png" href=https:&#x2F;&#x2F;simeon.staneks.de&#x2F;android-chrome-512x512.png />
+    
+
+    
+    
+    <link href=https://simeon.staneks.de/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/codeblock.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/toc.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/note.js></script>
+    
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Simeon&#x27;s Blog" href="https://simeon.staneks.de/ atom.xml">
+
+
+    
+    
+    <link rel="stylesheet" type="text/css" href=https://simeon.staneks.de/theme/light.css />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://simeon.staneks.de/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://simeon.staneks.de/js/themetoggle.js></script>
+    
+    <script>setTheme(getSavedTheme());</script>
+    
+    <script src=https://simeon.staneks.de/js/index.js></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://simeon.staneks.de/main.css />
+
+    
+</head>
+
+<body onload="updatelanguage()">
+    <div class="content">
+        <header>
+    <div class="main">
+        <div> <a id="navigation_start" href=https:&#x2F;&#x2F;simeon.staneks.de>Simeon&#x27;s Blog </a> 
+            <p style="font-size: xx-small;">lieber unperfekt starten als perfekt warten</p> 
+        </div>
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl" class="social mastodon">
+                <img alt=mastodon src=https://simeon.staneks.de/social_icons/mastodon.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;" class="social instagram">
+                <img alt=instagram src=https://simeon.staneks.de/social_icons/instagram.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas" class="social github">
+                <img alt=github src=https://simeon.staneks.de/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;buymeacoffee.com&#x2F;simeonlukas" class="social buy me a coffee">
+                <img alt=buy me a coffee src=https://simeon.staneks.de/social_icons/bmc-logo.svg>
+            </a>
+            
+            <a rel="me" href="&#x2F;rss.xml" class="social rss">
+                <img alt=rss src=https://simeon.staneks.de/social_icons/rss.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a class="navigation_lang &#x2F;posts" href=&#x2F;posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a class="navigation_lang &#x2F;pages" href=&#x2F;pages style="margin-left: 0.5em">&#x2F;pages</a>
+        
+        <a class="navigation_lang &#x2F;about" href=&#x2F;pages&#x2F;about style="margin-left: 0.5em">&#x2F;about</a>
+        
+        <a class="navigation_lang &#x2F;tags" href=&#x2F;tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://simeon.staneks.de/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+        <a id="language-toggle" onclick="toggleLanguage(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/globe.svg alt="Change Language" /><span style="font-size: xx-small;" id="language-name">de</span>
+        </a>
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <h1 class="page-header">
+        Nützliche Escape Room Technik: Drehscheibentelefon als Eingabegerät<span class="primary-color" style="font-size: 1.6em">.</span>
+    </h1>
+
+        </div>
+        In diesem Artikel beschreibe ich wie man ein altes Drehscheibentelefon als Eingabegerät für Escape Rooms nutzen kann. Ich erkläre die technische Umsetzung, die Programmierung und die Integration in ein Escape Room Konzept. Der Artikel richtet sich an Technikbegeisterte und Escape Room Enthusiasten.
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/useful-escape-room-technology/#die-genese-wenn-nostalgie-auf-technik-trifft">Die Genese: Wenn Nostalgie auf Technik trifft</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/useful-escape-room-technology/#das-konzept-drei-drahte-unendliche-moglichkeiten">Das Konzept: Drei Drähte, unendliche Möglichkeiten</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/useful-escape-room-technology/#hardware-keep-it-simple">Hardware - Keep it simple!</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/useful-escape-room-technology/#software-von-analog-zu-digital">Software - Von analog zu digital</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/useful-escape-room-technology/#die-moglichkeiten-mehr-als-nur-telefon">Die Möglichkeiten: Mehr als nur Telefon</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/useful-escape-room-technology/#der-webhook-zauber-n8n-macht-s-moglich">Der Webhook-Zauber: n8n macht&#x27;s möglich</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/useful-escape-room-technology/#warum-du-es-selbst-ausprobieren-solltest">Warum du es selbst ausprobieren solltest</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/useful-escape-room-technology/#los-geht-s-muscle">Los geht&#x27;s! 💪</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h1 id="die-genese-wenn-nostalgie-auf-technik-trifft"><a class="zola-anchor" href="#die-genese-wenn-nostalgie-auf-technik-trifft" aria-label="Anchor link for: die-genese-wenn-nostalgie-auf-technik-trifft">Die Genese: Wenn Nostalgie auf Technik trifft</a></h1>
+<p>Als kleiner Hobbyist bin ich ständig auf der Suche nach kreativen Lösungen für meine Escape Rooms in der Firmvorbereitung. Seit drei Jahren baue ich für die Firmvorbereitung im Dekanat Werdenfels-Rottenbuch regelmäßig knifflige Rätselparcours und experimentiere dabei gerne mit ungewöhnlichen Eingabegeräten.</p>
+<p>Die Idee kam mir, als ich bei meinem Vater im Keller ein altes Drehwähltelefon entdeckte. "Das wäre doch perfekt für einen Escape Room!", dachte ich mir. Stell dir vor: Die Teilnehmer müssen eine geheime Nummer wählen, und erst wenn sie die richtige Kombination eingeben, öffnet sich die nächste Rätseletappe. Pure Nostalgie meets moderne Technik!</p>
+<h2 id="das-konzept-drei-drahte-unendliche-moglichkeiten"><a class="zola-anchor" href="#das-konzept-drei-drahte-unendliche-moglichkeiten" aria-label="Anchor link for: das-konzept-drei-drahte-unendliche-moglichkeiten">Das Konzept: Drei Drähte, unendliche Möglichkeiten</a></h2>
+<h3 id="hardware-keep-it-simple"><a class="zola-anchor" href="#hardware-keep-it-simple" aria-label="Anchor link for: hardware-keep-it-simple">Hardware - Keep it simple!</a></h3>
+<p>Für dieses Projekt brauchst du wirklich nicht viel:</p>
+<ul>
+<li>Ein altes Drehwähltelefon (Flohmarkt, eBay, Kleinanzeigen, Oma's Dachboden 😉)</li>
+<li>Einen WemosD1 Mini (ESP8266) - kostet keine 5 Euro</li>
+<li>Drei simple Jumperkabel</li>
+<li>Eine passende Telefonbuchse (Telekommunikations-Anschluss-Einheit auch TAE genannt)</li>
+</ul>
+<p>Das Geniale: Du musst nur drei Jumperkabel an die Telefonbuchse anschließen! Kein kompliziertes Löten, keine aufwendige Verkabelung. Der ESP8266 liest die Drehimpulse über den analogen Pin und interpretiert sie als Ziffern. Genaueres siehst du im Diagramm unten.</p>
+<style>
+.mermaid svg{
+max-height: 100% !important;
+}
+</style>
+<pre class="mermaid">
+flowchart TD
+    A[👤 Spieler dreht Wählscheibe] --&gt; B{📞 Drehwähltelefon}
+    B --&gt; C[⚡ Impulse über 3 Drähte]
+    C --&gt; D[🔧 WemosD1 Mini ESP8266]
+    
+    D --&gt; E[📊 Analoger Pin A0&lt;br&#x2F;&gt;liest Impulse]
+    E --&gt; F[🧮 Impulse zählen&lt;br&#x2F;&gt;&amp; entprellen]
+    F --&gt; G[🔢 Ziffer erkennen&lt;br&#x2F;&gt;1 Impuls = 1&lt;br&#x2F;&gt;10 Impulse = 0]
+    
+    G --&gt; H[📝 Komplette Nummer&lt;br&#x2F;&gt;zusammenbauen]
+    H --&gt; I{⏱️ Pause erkannt?&lt;br&#x2F;&gt;3 Sekunden ohne Eingabe}
+    
+    I --&gt;|Nein| G
+    I --&gt;|Ja| J[📡 WLAN-Verbindung prüfen]
+    
+    J --&gt; K[🌐 HTTP GET Request&lt;br&#x2F;&gt;an n8n Webhook]
+    K --&gt; L[🎯 n8n Workflow]
+    
+    L --&gt; M[🔓 Escape Room Aktion]
+    M --&gt; N1[💡 Smart Home steuern]
+    M --&gt; N2[📧 E-Mail senden]  
+    M --&gt; N3[🔊 Sound abspielen]
+    M --&gt; N4[🚪 Schloss öffnen]
+    
+    D --&gt; B[📞 Drehwähltelefon &amp; Telefonhörer für Feedback]
+    B --&gt; P1[📢 Impuls-Beep]
+    B --&gt; P2[🎵 Ziffer-Beep]
+    B --&gt; P3[✅ Erfolgs-Melodie]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style D fill:#fff3e0
+    style L fill:#e8f5e8
+    style M fill:#fff8e1
+</pre><h3 id="software-von-analog-zu-digital"><a class="zola-anchor" href="#software-von-analog-zu-digital" aria-label="Anchor link for: software-von-analog-zu-digital">Software - Von analog zu digital</a></h3>
+<p>Der Code ist überraschend simpel gehalten. Das Drehwähltelefon erzeugt bei jeder gewählten Ziffer eine bestimmte Anzahl von Impulsen:</p>
+<ul>
+<li>Ziffer 1 = 1 Impuls</li>
+<li>Ziffer 2 = 2 Impulse</li>
+<li>...</li>
+<li>Ziffer 0 = 10 Impulse</li>
+</ul>
+<p>Der ESP8266 zählt diese Impulse, erkennt Pausen zwischen den Ziffern und baut daraus die komplette gewählte Nummer zusammen. Sobald eine vollständige Nummer erkannt wurde, sendet er diese via HTTP-Request an einen n8n-Webhook weiter.</p>
+<pre data-lang="cpp" style="background-color:#fafafa;color:#61676c;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="font-style:italic;color:#abb0b6;">// Kurzer Code-Ausschnitt
+</span><span style="font-style:italic;color:#abb0b6;">// Wenn wir eine Ziffer zählen und es gibt eine Pause, interpretiere die Ziffer
+</span><span>  </span><span style="color:#fa6e32;">if </span><span>(countingDigit </span><span style="color:#ed9366;">&amp;&amp; </span><span>(</span><span style="color:#f29718;">millis</span><span>() </span><span style="color:#ed9366;">-</span><span> lastPulseTime </span><span style="color:#ed9366;">&gt;</span><span> interDigitDelay)) {
+</span><span>    </span><span style="color:#fa6e32;">int</span><span> dialedDigit </span><span style="color:#ed9366;">= </span><span>(pulseCount </span><span style="color:#ed9366;">== </span><span style="color:#ff8f40;">10</span><span>) </span><span style="color:#ed9366;">? </span><span style="color:#ff8f40;">0 </span><span style="color:#ed9366;">:</span><span> pulseCount</span><span style="color:#61676ccc;">;
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;Gewählte Ziffer: &quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(dialedDigit)</span><span style="color:#61676ccc;">;
+</span><span>    
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Spiele einen Ton für die erkannte Ziffer
+</span><span>    </span><span style="color:#f29718;">playDigitBeep</span><span>(dialedDigit)</span><span style="color:#61676ccc;">;
+</span><span>    
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Füge die Ziffer zur gewählten Nummer hinzu
+</span><span>    dialedNumber </span><span style="color:#ed9366;">+= </span><span style="color:#f29718;">String</span><span>(dialedDigit)</span><span style="color:#61676ccc;">;
+</span><span>    lastDigitTime </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">millis</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>    
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Zurücksetzen für die nächste Ziffer
+</span><span>    pulseCount </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">;
+</span><span>    countingDigit </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">false</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span></code></pre>
+<br>
+<details>
+  <summary>Kompletter Code </summary>
+<pre data-lang="cpp" style="background-color:#fafafa;color:#61676c;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#fa6e32;">#include </span><span style="color:#86b300;">&lt;ESP8266WiFi.h&gt;
+</span><span style="color:#fa6e32;">#include </span><span style="color:#86b300;">&lt;ESP8266HTTPClient.h&gt;
+</span><span style="color:#fa6e32;">#include </span><span style="color:#86b300;">&lt;WiFiClient.h&gt;
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">// WLAN-Konfiguration
+</span><span style="color:#fa6e32;">const char</span><span style="color:#ed9366;">*</span><span> ssid </span><span style="color:#ed9366;">= </span><span style="color:#86b300;">&quot;MeinWLAN&quot;</span><span style="color:#61676ccc;">;       </span><span style="font-style:italic;color:#abb0b6;">// Ändern Sie dies zu Ihrem WLAN-Namen
+</span><span style="color:#fa6e32;">const char</span><span style="color:#ed9366;">*</span><span> password </span><span style="color:#ed9366;">= </span><span style="color:#86b300;">&quot;**********&quot;</span><span style="color:#61676ccc;">; </span><span style="font-style:italic;color:#abb0b6;">// Ändern Sie dies zu Ihrem WLAN-Passwort
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">// Webhook-Konfiguration
+</span><span style="color:#fa6e32;">const char</span><span style="color:#ed9366;">*</span><span> webhookUrl </span><span style="color:#ed9366;">= </span><span style="color:#86b300;">&quot;http://example.com/webhook&quot;</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// Ändern Sie dies zu Ihrer Webhook-URL sie darf in diesem Fall nicht SSL sein, da der ESP8266 kein SSL unterstützt
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">// Konfiguration für das Drehwähltelefon
+</span><span style="color:#fa6e32;">const int</span><span> phonePin </span><span style="color:#ed9366;">=</span><span> A0</span><span style="color:#61676ccc;">;           </span><span style="font-style:italic;color:#abb0b6;">// Analoger Pin für das Drehwähltelefon
+</span><span style="color:#fa6e32;">const int</span><span> threshold </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">1000</span><span style="color:#61676ccc;">;        </span><span style="font-style:italic;color:#abb0b6;">// Schwellenwert für die Impulserkennung
+</span><span style="color:#fa6e32;">const int</span><span> debounceDelay </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">20</span><span style="color:#61676ccc;">;      </span><span style="font-style:italic;color:#abb0b6;">// Entprellzeit in Millisekunden
+</span><span style="color:#fa6e32;">const int</span><span> interDigitDelay </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">700</span><span style="color:#61676ccc;">;   </span><span style="font-style:italic;color:#abb0b6;">// Zeit zum Warten vor der Erkennung einer neuen Ziffer
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">// Buzzer / Sound Output
+</span><span style="color:#fa6e32;">const int</span><span> buzzerPin </span><span style="color:#ed9366;">=</span><span> D5</span><span style="color:#61676ccc;">;          </span><span style="font-style:italic;color:#abb0b6;">// Pin für den Buzzer oder Lautsprecher
+</span><span style="color:#fa6e32;">const int</span><span> pulseBeepDuration </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">50</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// Dauer des Beep-Tons in Millisekunden
+</span><span style="color:#fa6e32;">const int</span><span> digitBeepDuration </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">200</span><span style="color:#61676ccc;">; </span><span style="font-style:italic;color:#abb0b6;">// Dauer des Beep-Tons für erkannte Ziffern
+</span><span style="color:#fa6e32;">const int</span><span> digitBeepFrequency </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">1000</span><span style="color:#61676ccc;">; </span><span style="font-style:italic;color:#abb0b6;">// Tonhöhe für erkannte Ziffern
+</span><span>
+</span><span style="color:#fa6e32;">bool</span><span> pulseState </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">false</span><span style="color:#61676ccc;">;           </span><span style="font-style:italic;color:#abb0b6;">// Aktueller Impulszustand
+</span><span style="color:#fa6e32;">bool</span><span> lastPulseState </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">false</span><span style="color:#61676ccc;">;       </span><span style="font-style:italic;color:#abb0b6;">// Vorheriger Impulszustand
+</span><span style="color:#fa6e32;">int</span><span> pulseCount </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">;                </span><span style="font-style:italic;color:#abb0b6;">// Anzahl der Impulse (Drehklicks)
+</span><span style="color:#fa6e32;">unsigned long</span><span> lastPulseTime </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">;   </span><span style="font-style:italic;color:#abb0b6;">// Zeit des letzten Impulses
+</span><span style="color:#fa6e32;">bool</span><span> countingDigit </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">false</span><span style="color:#61676ccc;">;        </span><span style="font-style:italic;color:#abb0b6;">// Ob wir gerade dabei sind, eine Ziffer zu zählen
+</span><span>
+</span><span>String dialedNumber </span><span style="color:#ed9366;">= </span><span style="color:#86b300;">&quot;&quot;</span><span style="color:#61676ccc;">;          </span><span style="font-style:italic;color:#abb0b6;">// Speichert die komplette gewählte Nummer
+</span><span style="color:#fa6e32;">unsigned long</span><span> lastDigitTime </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">;   </span><span style="font-style:italic;color:#abb0b6;">// Zeit der letzten erkannten Ziffer
+</span><span style="color:#fa6e32;">const int</span><span> completeNumberDelay </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">3000</span><span style="color:#61676ccc;">; </span><span style="font-style:italic;color:#abb0b6;">// Zeit nach der letzten Ziffer, bevor die Nummer als vollständig betrachtet wird
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">// WLAN-Management
+</span><span style="color:#fa6e32;">unsigned long</span><span> lastWifiCheckTime </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">;
+</span><span style="color:#fa6e32;">const int</span><span> wifiCheckInterval </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">30000</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// Überprüfe WLAN alle 30 Sekunden
+</span><span>
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">setup</span><span>() {
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">begin</span><span>(</span><span style="color:#ff8f40;">9600</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">pinMode</span><span>(phonePin</span><span style="color:#61676ccc;">,</span><span> INPUT)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">pinMode</span><span>(buzzerPin</span><span style="color:#61676ccc;">,</span><span> OUTPUT)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Deaktiviere WiFi-Schlafmodus für stabilere Verbindung
+</span><span>  WiFi</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">setSleepMode</span><span>(WIFI_NONE_SLEEP)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Verbinde mit WLAN mit höherem Timeout-Wert
+</span><span>  </span><span style="color:#f29718;">connectToWifi</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;Drehwähltelefon-Leser gestartet&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;-------------------------&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Startup sound
+</span><span>  </span><span style="color:#f29718;">playSuccessSound</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>}
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">// Einfacher Ton mit der angegebenen Frequenz und Dauer
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">playTone</span><span>(</span><span style="color:#fa6e32;">int </span><span style="color:#ff8f40;">frequency</span><span style="color:#61676ccc;">, </span><span style="color:#fa6e32;">int </span><span style="color:#ff8f40;">duration</span><span>) {
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Wir verwenden einen einfachen On/Off-Ton für ESP8266
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Die Frequenz wird durch die Verzögerung zwischen den Umschaltungen simuliert
+</span><span>  </span><span style="color:#fa6e32;">long</span><span> delayValue </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">1000000 </span><span style="color:#ed9366;">/</span><span> frequency </span><span style="color:#ed9366;">/ </span><span style="color:#ff8f40;">2</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#fa6e32;">long</span><span> numCycles </span><span style="color:#ed9366;">=</span><span> frequency </span><span style="color:#ed9366;">*</span><span> duration </span><span style="color:#ed9366;">/ </span><span style="color:#ff8f40;">1000</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#fa6e32;">for </span><span>(</span><span style="color:#fa6e32;">long</span><span> i </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">;</span><span> i </span><span style="color:#ed9366;">&lt;</span><span> numCycles</span><span style="color:#61676ccc;">;</span><span> i</span><span style="color:#ed9366;">++</span><span>) {
+</span><span>    </span><span style="color:#f29718;">digitalWrite</span><span>(buzzerPin</span><span style="color:#61676ccc;">,</span><span> HIGH)</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#f29718;">delayMicroseconds</span><span>(delayValue)</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#f29718;">digitalWrite</span><span>(buzzerPin</span><span style="color:#61676ccc;">,</span><span> LOW)</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#f29718;">delayMicroseconds</span><span>(delayValue)</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>}
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">// Kurzer Ton für erkannte Impulse
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">playPulseBeep</span><span>() {
+</span><span>  </span><span style="color:#f29718;">digitalWrite</span><span>(buzzerPin</span><span style="color:#61676ccc;">,</span><span> HIGH)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(pulseBeepDuration)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">digitalWrite</span><span>(buzzerPin</span><span style="color:#61676ccc;">,</span><span> LOW)</span><span style="color:#61676ccc;">;
+</span><span>}
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">// Ton für erkannte Ziffer
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">playDigitBeep</span><span>(</span><span style="color:#fa6e32;">int </span><span style="color:#ff8f40;">digit</span><span>) {
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Spiele einen Ton mit der Frequenz proportional zur Ziffer
+</span><span>  </span><span style="color:#fa6e32;">int</span><span> freq </span><span style="color:#ed9366;">=</span><span> digitBeepFrequency </span><span style="color:#ed9366;">+ </span><span>(digit </span><span style="color:#ed9366;">* </span><span style="color:#ff8f40;">100</span><span>)</span><span style="color:#61676ccc;">; </span><span style="font-style:italic;color:#abb0b6;">// Höherer Ton für höhere Ziffern
+</span><span>  </span><span style="color:#f29718;">playTone</span><span>(freq</span><span style="color:#61676ccc;">,</span><span> digitBeepDuration)</span><span style="color:#61676ccc;">;
+</span><span>}
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">// Erfolgsmelodie für erfolgreiches Senden
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">playSuccessSound</span><span>() {
+</span><span>  </span><span style="color:#f29718;">playTone</span><span>(</span><span style="color:#ff8f40;">1000</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">100</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">50</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">playTone</span><span>(</span><span style="color:#ff8f40;">1500</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">100</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">50</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">playTone</span><span>(</span><span style="color:#ff8f40;">2000</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">200</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>}
+</span><span>
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">connectToWifi</span><span>() {
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;Verbinde mit WLAN &quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(ssid)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  WiFi</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">mode</span><span>(WIFI_STA)</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// Setze explizit den Station-Modus
+</span><span>  WiFi</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">begin</span><span>(ssid</span><span style="color:#61676ccc;">,</span><span> password)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Setze einen höheren Timeout-Wert für die Verbindung (10 Sekunden)
+</span><span>  </span><span style="color:#fa6e32;">int</span><span> timeout </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">20</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// 10 Sekunden Timeout
+</span><span>  </span><span style="color:#fa6e32;">while </span><span>(WiFi</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">status</span><span>() </span><span style="color:#ed9366;">!=</span><span> WL_CONNECTED </span><span style="color:#ed9366;">&amp;&amp;</span><span> timeout </span><span style="color:#ed9366;">&gt; </span><span style="color:#ff8f40;">0</span><span>) {
+</span><span>    </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">500</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;.&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    timeout</span><span style="color:#ed9366;">--</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>  
+</span><span>  </span><span style="color:#fa6e32;">if </span><span>(WiFi</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">status</span><span>() </span><span style="color:#ed9366;">==</span><span> WL_CONNECTED) {
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;WiFi verbunden!&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;IP-Adresse: &quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(WiFi</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">localIP</span><span>())</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#f29718;">playSuccessSound</span><span>()</span><span style="color:#61676ccc;">; </span><span style="font-style:italic;color:#abb0b6;">// Ton für erfolgreiche Verbindung
+</span><span>  } </span><span style="color:#fa6e32;">else </span><span>{
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;WiFi-Verbindung fehlgeschlagen. Versuche es später erneut.&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Fehlerton für fehlgeschlagene Verbindung
+</span><span>    </span><span style="color:#f29718;">playTone</span><span>(</span><span style="color:#ff8f40;">300</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">500</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>}
+</span><span>
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">checkWifiConnection</span><span>() {
+</span><span>  </span><span style="color:#fa6e32;">if </span><span>(</span><span style="color:#f29718;">millis</span><span>() </span><span style="color:#ed9366;">-</span><span> lastWifiCheckTime </span><span style="color:#ed9366;">&gt;</span><span> wifiCheckInterval) {
+</span><span>    lastWifiCheckTime </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">millis</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>    
+</span><span>    </span><span style="color:#fa6e32;">if </span><span>(WiFi</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">status</span><span>() </span><span style="color:#ed9366;">!=</span><span> WL_CONNECTED) {
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;WLAN-Verbindung verloren. Versuche Wiederverbindung...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      WiFi</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">disconnect</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>      </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">1000</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      </span><span style="color:#f29718;">connectToWifi</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>    } </span><span style="color:#fa6e32;">else </span><span>{
+</span><span>      </span><span style="font-style:italic;color:#abb0b6;">// Optional: Bestätigung, dass WLAN noch verbunden ist
+</span><span>      </span><span style="font-style:italic;color:#abb0b6;">// Serial.println(&quot;WLAN-Verbindung OK&quot;);
+</span><span>    }
+</span><span>  }
+</span><span>}
+</span><span>
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">loop</span><span>() {
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Überprüfe regelmäßig die WLAN-Verbindung
+</span><span>  </span><span style="color:#f29718;">checkWifiConnection</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Lese den Eingang vom Drehwähltelefon
+</span><span>  </span><span style="color:#fa6e32;">int</span><span> sensorValue </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">analogRead</span><span>(phonePin)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Bestimme den Impulszustand (hoch oder niedrig)
+</span><span>  pulseState </span><span style="color:#ed9366;">= </span><span>(sensorValue </span><span style="color:#ed9366;">&lt;</span><span> threshold)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Erkennung einer fallenden Flanke (Impulsbeginn)
+</span><span>  </span><span style="color:#fa6e32;">if </span><span>(pulseState </span><span style="color:#ed9366;">&amp;&amp; !</span><span>lastPulseState) {
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Entprellen
+</span><span>    </span><span style="color:#f29718;">delay</span><span>(debounceDelay)</span><span style="color:#61676ccc;">;
+</span><span>    
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Nochmals lesen zur Bestätigung
+</span><span>    sensorValue </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">analogRead</span><span>(phonePin)</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#fa6e32;">if </span><span>(sensorValue </span><span style="color:#ed9366;">&lt;</span><span> threshold) {
+</span><span>      </span><span style="font-style:italic;color:#abb0b6;">// Gültiger Impuls erkannt
+</span><span>      countingDigit </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">true</span><span style="color:#61676ccc;">;
+</span><span>      pulseCount</span><span style="color:#ed9366;">++</span><span style="color:#61676ccc;">;
+</span><span>      lastPulseTime </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">millis</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>      
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;Impuls erkannt! Zählung: &quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(pulseCount)</span><span style="color:#61676ccc;">;
+</span><span>      
+</span><span>      </span><span style="font-style:italic;color:#abb0b6;">// Erzeugt einen kurzen Signalton für jeden erkannten Impuls
+</span><span>      </span><span style="color:#f29718;">playPulseBeep</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>    }
+</span><span>  }
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Wenn wir eine Ziffer zählen und es gibt eine Pause, interpretiere die Ziffer
+</span><span>  </span><span style="color:#fa6e32;">if </span><span>(countingDigit </span><span style="color:#ed9366;">&amp;&amp; </span><span>(</span><span style="color:#f29718;">millis</span><span>() </span><span style="color:#ed9366;">-</span><span> lastPulseTime </span><span style="color:#ed9366;">&gt;</span><span> interDigitDelay)) {
+</span><span>    </span><span style="color:#fa6e32;">int</span><span> dialedDigit </span><span style="color:#ed9366;">= </span><span>(pulseCount </span><span style="color:#ed9366;">== </span><span style="color:#ff8f40;">10</span><span>) </span><span style="color:#ed9366;">? </span><span style="color:#ff8f40;">0 </span><span style="color:#ed9366;">:</span><span> pulseCount</span><span style="color:#61676ccc;">;
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;Gewählte Ziffer: &quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(dialedDigit)</span><span style="color:#61676ccc;">;
+</span><span>    
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Spiele einen Ton für die erkannte Ziffer
+</span><span>    </span><span style="color:#f29718;">playDigitBeep</span><span>(dialedDigit)</span><span style="color:#61676ccc;">;
+</span><span>    
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Füge die Ziffer zur gewählten Nummer hinzu
+</span><span>    dialedNumber </span><span style="color:#ed9366;">+= </span><span style="color:#f29718;">String</span><span>(dialedDigit)</span><span style="color:#61676ccc;">;
+</span><span>    lastDigitTime </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">millis</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>    
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Zurücksetzen für die nächste Ziffer
+</span><span>    pulseCount </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">;
+</span><span>    countingDigit </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">false</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Prüfe, ob die komplette Nummer gewählt wurde (keine neue Ziffer seit X Sekunden)
+</span><span>  </span><span style="color:#fa6e32;">if </span><span>(dialedNumber</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">length</span><span>() </span><span style="color:#ed9366;">&gt; </span><span style="color:#ff8f40;">0 </span><span style="color:#ed9366;">&amp;&amp; </span><span>(</span><span style="color:#f29718;">millis</span><span>() </span><span style="color:#ed9366;">-</span><span> lastDigitTime </span><span style="color:#ed9366;">&gt;</span><span> completeNumberDelay)) {
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;Komplette gewählte Nummer: &quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(dialedNumber)</span><span style="color:#61676ccc;">;
+</span><span>    
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Sende die Nummer an den Webhook
+</span><span>    </span><span style="color:#f29718;">sendNumberToWebhook</span><span>(dialedNumber)</span><span style="color:#61676ccc;">;
+</span><span>    
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Zurücksetzen für die nächste Nummer
+</span><span>    dialedNumber </span><span style="color:#ed9366;">= </span><span style="color:#86b300;">&quot;&quot;</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Speichere aktuellen Zustand für den nächsten Vergleich
+</span><span>  lastPulseState </span><span style="color:#ed9366;">=</span><span> pulseState</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">1</span><span>)</span><span style="color:#61676ccc;">; </span><span style="font-style:italic;color:#abb0b6;">// Kleine Verzögerung für Stabilität
+</span><span>}
+</span><span>
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">sendNumberToWebhook</span><span>(String </span><span style="color:#ff8f40;">number</span><span>) {
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Überprüfen der WLAN-Verbindung
+</span><span>  </span><span style="color:#fa6e32;">if </span><span>(WiFi</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">status</span><span>() </span><span style="color:#ed9366;">==</span><span> WL_CONNECTED) {
+</span><span>    WiFiClient client</span><span style="color:#61676ccc;">;
+</span><span>    HTTPClient http</span><span style="color:#61676ccc;">;
+</span><span>    
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// URL mit der gewählten Nummer erstellen
+</span><span>    String url </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">String</span><span>(webhookUrl) </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;?number=&quot; </span><span style="color:#ed9366;">+</span><span> number</span><span style="color:#61676ccc;">;
+</span><span>    
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;Sende Nummer an Webhook: &quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(url)</span><span style="color:#61676ccc;">;
+</span><span>    
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Beginne HTTP-Verbindung mit höherem Timeout
+</span><span>    http</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">begin</span><span>(client</span><span style="color:#61676ccc;">,</span><span> url)</span><span style="color:#61676ccc;">;
+</span><span>    http</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">setTimeout</span><span>(</span><span style="color:#ff8f40;">10000</span><span>)</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// 10 Sekunden Timeout für HTTP-Verbindung
+</span><span>    
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Sende HTTP GET-Request
+</span><span>    </span><span style="color:#fa6e32;">int</span><span> httpResponseCode </span><span style="color:#ed9366;">=</span><span> http</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">GET</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>    
+</span><span>    </span><span style="color:#fa6e32;">if </span><span>(httpResponseCode </span><span style="color:#ed9366;">&gt; </span><span style="color:#ff8f40;">0</span><span>) {
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;HTTP Antwort-Code: &quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(httpResponseCode)</span><span style="color:#61676ccc;">;
+</span><span>      String payload </span><span style="color:#ed9366;">=</span><span> http</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">getString</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(payload)</span><span style="color:#61676ccc;">;
+</span><span>      
+</span><span>      </span><span style="font-style:italic;color:#abb0b6;">// Erfolgssound spielen
+</span><span>      </span><span style="color:#f29718;">playSuccessSound</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>    } </span><span style="color:#fa6e32;">else </span><span>{
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;Fehler beim HTTP-Request. Fehlercode: &quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(httpResponseCode)</span><span style="color:#61676ccc;">;
+</span><span>      
+</span><span>      </span><span style="font-style:italic;color:#abb0b6;">// Fehlerton spielen
+</span><span>      </span><span style="color:#f29718;">playTone</span><span>(</span><span style="color:#ff8f40;">300</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">500</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Beende HTTP-Verbindung
+</span><span>    http</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">end</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  } </span><span style="color:#fa6e32;">else </span><span>{
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;WLAN nicht verbunden. Nummer wird zwischengespeichert und später gesendet.&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Fehlerton spielen
+</span><span>    </span><span style="color:#f29718;">playTone</span><span>(</span><span style="color:#ff8f40;">300</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">500</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>}
+</span></code></pre>
+</details>
+<br>
+<style>
+  .containerimg  img {
+        width: 200px;
+        height: auto;
+        margin: 0 10px;
+    }
+</style>
+<div class="containerimg" style="
+    text-align: center;
+    display: flex;
+    overflow: scroll;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;">
+<img src="/posts/useful-escape-room-technology/images/drehscheibe00001.jpg" alt="Drehwähltelefon">
+<img src="/posts/useful-escape-room-technology/images/drehscheibe00003.jpg" alt="TAE Buchse">
+<img src="/posts/useful-escape-room-technology/images/drehscheibe00004.jpg" alt="TAE Buchse Anschluss">
+<img src="/posts/useful-escape-room-technology/images/drehscheibe00002.jpg" alt="ESP8266">
+</div>
+<h2 id="die-moglichkeiten-mehr-als-nur-telefon"><a class="zola-anchor" href="#die-moglichkeiten-mehr-als-nur-telefon" aria-label="Anchor link for: die-moglichkeiten-mehr-als-nur-telefon">Die Möglichkeiten: Mehr als nur Telefon</a></h2>
+<p>Auch wenn ich das Telefon noch nicht in einem meiner Escape Rooms eingesetzt habe, schwirren mir schon unzählige Ideen im Kopf herum:</p>
+<p><strong>🔐 Klassischer Safe-Code:</strong> Die Teilnehmer müssen eine bestimmte Nummer wählen, um den nächsten Hinweis zu erhalten.</p>
+<p><strong>📋 Kontaktliste-Rätsel:</strong> "Rufe deinen Großvater an!" - Die Spieler müssen erst herausfinden, welche Nummer sie wählen müssen.</p>
+<p><strong>🎵 Musikalische Codes:</strong> Jede Ziffer spielt einen anderen Ton - die richtige Melodie öffnet das Schloss.</p>
+<p><strong>⏰ Zeitreise-Szenarien:</strong> Perfekt für 70er/80er-Jahre Settings - authentischer geht's nicht!</p>
+<p><strong>🔄 Sequenz-Rätsel:</strong> Mehrere Nummern müssen in einer bestimmten Reihenfolge gewählt werden.</p>
+<h2 id="der-webhook-zauber-n8n-macht-s-moglich"><a class="zola-anchor" href="#der-webhook-zauber-n8n-macht-s-moglich" aria-label="Anchor link for: der-webhook-zauber-n8n-macht-s-moglich">Der Webhook-Zauber: n8n macht's möglich</a></h2>
+<p>Das Schöne an dieser Lösung: Über n8n kannst du die gewählten Nummern mit praktisch allem verknüpfen:</p>
+<ul>
+<li>Smart Home Geräte steuern</li>
+<li>E-Mails versenden</li>
+<li>Andere APIs ansprechen</li>
+<li>Datenbanken füllen</li>
+<li>Und vieles mehr!</li>
+</ul>
+<p>Ein einfacher HTTP-Request genügt, und schon reagiert dein gesamtes Escape Room-System auf die gewählte Nummer.</p>
+<h2 id="warum-du-es-selbst-ausprobieren-solltest"><a class="zola-anchor" href="#warum-du-es-selbst-ausprobieren-solltest" aria-label="Anchor link for: warum-du-es-selbst-ausprobieren-solltest">Warum du es selbst ausprobieren solltest</a></h2>
+<p>Dieses Projekt ist perfekt für Tüftler, die gerne mit Technik spielen.
+Du lernst:</p>
+<ul>
+<li><strong>Analoge Signale lesen</strong> - Wie Hardware und Software zusammenspielen</li>
+<li><strong>WLAN-Kommunikation</strong> - Webhooks und HTTP-Requests verstehen</li>
+<li><strong>Entprellung und Timing</strong> - Komplizierte aber spannende Programmierkonzepte</li>
+<li><strong>Audio-Feedback</strong> - Benutzerinteraktion verbessern</li>
+</ul>
+<p>Und das Beste: Das Erfolgserlebnis ist garantiert! Wenn das erste Mal der Webhook aufgerufen wird, nachdem du eine Nummer gewählt hast, ist das ein magischer Moment.</p>
+<h2 id="los-geht-s-muscle"><a class="zola-anchor" href="#los-geht-s-muscle" aria-label="Anchor link for: los-geht-s-muscle">Los geht's! 💪</a></h2>
+<p>Du hast Lust bekommen, selbst ein Drehwähltelefon zu hacken? Perfekt! Schnapp dir ein altes Telefon, bestell einen ESP8266 und leg einfach los. Der Code ist simpel, die Hardware überschaubar, und die Möglichkeiten sind endlos.</p>
+<p><strong>Happy Hacking!</strong></p>
+
+        </section>
+    </article>
+    <hr>
+    <br>
+    <div class="meta">
+        
+            <span class="date-label-posted">:: Posted on </span><time>2025-05-28</time>
+        
+
+        
+
+        
+
+        
+        
+                <span class="tags-label"> :: Tags:</span>
+                <span class="tags">
+                        <a href="https://simeon.staneks.de/tags/programmierung/" class="post-tag">programmierung</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/hardware/" class="post-tag">hardware</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/arduino/" class="post-tag">arduino</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/escape-room/" class="post-tag">escape-room</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/tutorial/" class="post-tag">tutorial</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/retro/" class="post-tag">retro</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/diy/" class="post-tag">diy</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/n8n/" class="post-tag">n8n</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/esp8266/" class="post-tag">esp8266</a>
+                    
+                </span>
+        
+
+        
+       
+                
+     
+
+            
+                
+                :: <a href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;Blog&#x2F;tree&#x2F;main&#x2F;content&#x2F;posts&#x2F;useful-escape-room-technology&#x2F;index.md" target="_blank" rel="noopener noreferrer"> Source Code</a>
+            
+
+        
+
+    </div>
+
+    
+    
+        
+    
+
+    
+        
+        
+        
+        
+            
+        
+            
+        
+            
+                
+            
+        
+
+        
+        
+
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
+            
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;useful-escape-room-technology&#x2F;video&#x2F;useful-escape-room-technology-de.mp4" onerror="this.parentElement.parentElement.style.display='none';" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+        </div>
+    
+</main>
+
+
+
+        
+            
+        
+
+        
+        <br>
+        <hr>
+        <div class="giscus" >
+        <script src="https://giscus.app/client.js"
+        data-repo="SimeonLukas/Blog"
+        data-repo-id="R_kgDONSw5PA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONSw5PM4CkoL8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https:&#x2F;&#x2F;simeon.staneks.de/css/giscus.css"
+        data-lang="de"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+        
+
+    </div>
+</body>
+
+</html>

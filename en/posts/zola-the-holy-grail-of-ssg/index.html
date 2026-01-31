@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="de">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Zola: The Holy Grail of Static Site Generators
+        
+    </title>
+
+    
+    
+    <meta name="description" content="In this article, I will provide you with a detailed introduction to the Static-Site-Generator (SSG) Zola and the use of Github Pages. We will go through the ..." />
+    
+    
+
+    
+    <meta property="og:image" content="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg//images/en/preview.jpg" />
+    <meta property="og:logo" content="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg//imagesen/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/images/en/preview.jpg">
+    
+
+    
+    <meta property="og:title" content="Zola: The Holy Grail of Static Site Generators" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="Zola: The Holy Grail of Static Site Generators">
+    
+    
+
+    
+    
+    <meta property="og:description" content="In this article, I will provide you with a detailed introduction to the Static-Site-Generator (SSG) Zola and the use of Github Pages. We will go through the ..."/>
+    <!-- twitter description -->
+    <meta name="twitter:description" content="In this article, I will provide you with a detailed introduction to the Static-Site-Generator (SSG) Zola and the use of Github Pages. We will go through the ...">
+    
+    
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;simeon.staneks.de"/>
+    <meta property="og:type" content="article" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Blog by Simeon" />
+
+
+    
+    
+    <link rel="icon" type="image/png" href=https:&#x2F;&#x2F;simeon.staneks.de&#x2F;android-chrome-512x512.png />
+    
+
+    
+    
+    <link href=https://simeon.staneks.de/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/codeblock.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/toc.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/note.js></script>
+    
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Blog by Simeon" href="https://simeon.staneks.de/ atom.xml">
+
+
+    
+    
+    <link rel="stylesheet" type="text/css" href=https://simeon.staneks.de/theme/light.css />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://simeon.staneks.de/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://simeon.staneks.de/js/themetoggle.js></script>
+    
+    <script>setTheme(getSavedTheme());</script>
+    
+    <script src=https://simeon.staneks.de/js/index.js></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://simeon.staneks.de/main.css />
+
+    
+</head>
+
+<body onload="updatelanguage()">
+    <div class="content">
+        <header>
+    <div class="main">
+        <div> <a id="navigation_start" href=https:&#x2F;&#x2F;simeon.staneks.de>Blog by Simeon </a> 
+            <p style="font-size: xx-small;">It&#x27;s better to start imperfectly than wait perfectly</p> 
+        </div>
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl" class="social mastodon">
+                <img alt=mastodon src=https://simeon.staneks.de/social_icons/mastodon.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;" class="social instagram">
+                <img alt=instagram src=https://simeon.staneks.de/social_icons/instagram.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas" class="social github">
+                <img alt=github src=https://simeon.staneks.de/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;buymeacoffee.com&#x2F;simeonlukas" class="social buy me a coffee">
+                <img alt=buy me a coffee src=https://simeon.staneks.de/social_icons/bmc-logo.svg>
+            </a>
+            
+            <a rel="me" href="&#x2F;rss.xml" class="social rss">
+                <img alt=rss src=https://simeon.staneks.de/social_icons/rss.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a class="navigation_lang &#x2F;posts" href=&#x2F;posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a class="navigation_lang &#x2F;pages" href=&#x2F;pages style="margin-left: 0.5em">&#x2F;pages</a>
+        
+        <a class="navigation_lang &#x2F;about" href=&#x2F;pages&#x2F;about style="margin-left: 0.5em">&#x2F;about</a>
+        
+        <a class="navigation_lang &#x2F;tags" href=&#x2F;tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://simeon.staneks.de/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+        <a id="language-toggle" onclick="toggleLanguage(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/globe.svg alt="Change Language" /><span style="font-size: xx-small;" id="language-name">de</span>
+        </a>
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <h1 class="page-header">
+        Zola: The Holy Grail of Static Site Generators<span class="primary-color" style="font-size: 1.6em">.</span>
+    </h1>
+
+        </div>
+        In this article, I will provide you with a detailed introduction to the Static-Site-Generator (SSG) Zola and the use of Github Pages. We will go through the installation, configuration, and usage of Zola step by step and show you how you can easily host your created pages on Github Pages.
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/#genesis">Genesis</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/#zola-a-rusty-path">Zola - A rusty path</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/#what-does-zola-do">What does Zola do?</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/#departure-with-zola">Departure with Zola</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/#installation">Installation</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/#initialization">Initialization</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/#zola-serve">zola serve</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/#configuration">Configuration</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/#content">Content</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/#upload-the-website-to-github-pages">Upload the website to Github Pages</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/#add-a-domain-to-github">Add a domain to Github</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/#gihtub-pages">Gihtub Pages</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/#conclusion">Conclusion</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h1 id="genesis"><a class="zola-anchor" href="#genesis" aria-label="Anchor link for: genesis">Genesis</a></h1>
+<p>At our weekly jogging meetups, J. and I talk about God and the world, but 90% of our nerd talks are about hosting, programming and all the tech stuff you can imagine. The talks are probably the first reason for jogging and recently J. came up with the great idea that we should both blog. Let's do it! At least one article, once a month. An article about your own blog is a good idea. - Because there are as many ways to blog as there are people.</p>
+<h1 id="zola-a-rusty-path"><a class="zola-anchor" href="#zola-a-rusty-path" aria-label="Anchor link for: zola-a-rusty-path">Zola - A rusty path</a></h1>
+<p>As a bit of a fan of the Rust programming language, I'm always on the lookout for Rust software. Zola is a static site generator that really packs a punch. Here is the website of the software under development: <a href="https://www.getzola.org/">getzola.org</a>
+If you don't shy away from CLI tools, then I recommend giving the software a try.
+Of course, there are other alternatives, such as <a href="https://gohugo.io/">HUGO</a>, <a href="https://nextjs.org/">Next.js</a>, <a href="https://www.gatsbyjs.com/">Gatsby</a>, <a href="https://astro.build/">Astro</a>, etc. J. chose Astro in this case, but since I already had good experiences with Zola, I decided to go with it.</p>
+<h2 id="what-does-zola-do"><a class="zola-anchor" href="#what-does-zola-do" aria-label="Anchor link for: what-does-zola-do">What does Zola do?</a></h2>
+<p>Zola creates a so-called static website from static content, from <a href="https://keats.github.io/tera/">Tera templates</a> and Markdown files. Everything is configured in a so-called <code>config.toml</code>, which is located in the root directory of the project or repositories. The generated website can then be found in the <code>public</code> directory and can then be provided by any web server (e.g. <a href="https://httpd.apache.org/">Apache</a>, <a href="https://caddyserver.com/">Caddy</a>, <a href="https://www.nginx.com/">nginx</a>, etc.). For my project I use the infrastructure of Github Pages, but more on that later.</p>
+<h2 id="departure-with-zola"><a class="zola-anchor" href="#departure-with-zola" aria-label="Anchor link for: departure-with-zola">Departure with Zola</a></h2>
+<p>Zola is easy to install and use, but also to configure. In this article I will go through the individual steps.</p>
+<h3 id="installation"><a class="zola-anchor" href="#installation" aria-label="Anchor link for: installation">Installation</a></h3>
+<p>There is a suitable binary file for virtually every operating system. On Gihtub you will find the appropriate <a href="https://github.com/getzola/zola/releases">release</a> in most cases, if you can't find it, you can also find installation scripts and instructions for compiling Zola on <a href="https://www.getzola.org/documentation/getting-started/installation/">getzola.org</a>.</p>
+<h3 id="initialization"><a class="zola-anchor" href="#initialization" aria-label="Anchor link for: initialization">Initialization</a></h3>
+<p>When Zola is installed, you can create the directory structure of a new project with <code>zola init</code>.
+Zola will then ask you:</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f29718;">Welcome</span><span> to Zola!
+</span><span style="color:#f29718;">Please</span><span> answer a few questions to get started quickly.
+</span><span style="color:#f29718;">Any</span><span> choices made can be changed by modifying the `</span><span style="color:#f29718;">config.toml</span><span>` file later.
+</span><span style="color:#ed9366;">&gt;</span><span> What </span><span style="color:#f29718;">is</span><span> the URL of your site</span><span style="color:#ed9366;">?</span><span> (https://example.com)</span><span style="color:#f07171;">:</span><span> https://test.staneks.de
+</span><span style="color:#ed9366;">&gt;</span><span> Do </span><span style="color:#f29718;">you</span><span> want to enable Sass compilation</span><span style="color:#ed9366;">? </span><span style="color:#fa6e32;">[</span><span>Y/n</span><span style="color:#fa6e32;">]</span><span>: n
+</span><span style="color:#ed9366;">&gt;</span><span> Do </span><span style="color:#f29718;">you</span><span> want to enable syntax highlighting</span><span style="color:#ed9366;">? </span><span style="color:#fa6e32;">[</span><span>y/N</span><span style="color:#fa6e32;">]</span><span>: y
+</span><span style="color:#ed9366;">&gt;</span><span> Do </span><span style="color:#f29718;">you</span><span> want to build a search index of the content</span><span style="color:#ed9366;">? </span><span style="color:#fa6e32;">[</span><span>y/N</span><span style="color:#fa6e32;">]</span><span>: n
+</span><span>
+</span><span style="color:#f29718;">Done!</span><span> Your site was created in /Users/simeon/zola/testblog.
+</span><span>
+</span><span style="color:#f29718;">Get</span><span> started by moving into the directory and using the built-in server: `</span><span style="color:#f29718;">zola</span><span> serve`
+</span><span style="color:#f29718;">Visit</span><span> https://www.getzola.org for the full documentation.
+</span></code></pre>
+<h3 id="zola-serve"><a class="zola-anchor" href="#zola-serve" aria-label="Anchor link for: zola-serve">zola serve</a></h3>
+<p>With the command <code>zola serve</code> you can now view the website on <code>localhost:1111</code>. The page will then adapt to any changes.</p>
+<p><img src="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/images/zola00002.png" alt="Screenshot" /></p>
+<h3 id="configuration"><a class="zola-anchor" href="#configuration" aria-label="Anchor link for: configuration">Configuration</a></h3>
+<p>The configuration file <code>config.toml</code> is located in the root directory of the project. It is the linchpin for the project. All possible configurations can be found in the <a href="https://www.getzola.org/documentation/getting-started/configuration/">documentation</a>.</p>
+<p>Depending on the situation, Zola recommends that you create an <code>ìndex.html</code> file under <code>templates</code>, or you can directly install a theme that already contains templates and possible static content. More detailed instructions can be found under <a href="https://www.getzola.org/documentation/themes/installing-and-using-themes/">Installing &amp; using themes</a>. For my blog, I use the theme <a href="https://www.getzola.org/themes/apollo/">Apollo</a>. This theme already has a dark mode. You can then decide whether to customize the templates in the theme or add more in the <code>/templates</code> folder.</p>
+<h4 id="theme"><a class="zola-anchor" href="#theme" aria-label="Anchor link for: theme">Theme</a></h4>
+<p>After the theme has been installed via git, or the data has been extracted from a .zip archive into the <code>/themes</code> directory, the <code>config.toml</code> file must be adapted accordingly:</p>
+<pre data-lang="toml" style="background-color:#fafafa;color:#61676c;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="font-style:italic;color:#abb0b6;"># The URL of the website
+</span><span style="color:#399ee6;">base_url </span><span>= </span><span style="color:#86b300;">&quot;https://test.staneks.de&quot;
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Name of the theme that is located in the `/themes/apollo` folder
+</span><span>
+</span><span style="color:#399ee6;">theme </span><span>=</span><span style="color:#86b300;">&quot;apollo&quot;
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Title of the website
+</span><span style="color:#399ee6;">title </span><span>= </span><span style="color:#86b300;">&quot;Testing&quot;
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Name of the keywords that should be assigned to the articles
+</span><span style="color:#399ee6;">taxonomies </span><span>= [{ </span><span style="color:#399ee6;">name </span><span>= </span><span style="color:#86b300;">&quot;tags&quot; </span><span>}]
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Generate a CSS file from sass
+</span><span style="color:#399ee6;">compile_sass </span><span>= </span><span style="color:#ff8f40;">false
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Create a search index
+</span><span style="color:#399ee6;">build_search_index </span><span>= </span><span style="color:#ff8f40;">false
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">#Markdown dependent settings
+</span><span>[</span><span style="color:#399ee6;">markdown</span><span>]
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Allow syntax highlighting
+</span><span style="color:#399ee6;">highlight_code </span><span>= </span><span style="color:#ff8f40;">true
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Theme dependent settings
+</span><span>[</span><span style="color:#399ee6;">extra</span><span>]
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Activate the Dark mode
+</span><span style="color:#399ee6;">theme </span><span>= </span><span style="color:#86b300;">&quot;auto&quot;
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Social links
+</span><span style="color:#399ee6;">socials </span><span>= [
+</span><span> { </span><span style="color:#399ee6;">name </span><span>= </span><span style="color:#86b300;">&quot;mastodon&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">url </span><span>= </span><span style="color:#86b300;">&quot;https://indieweb.social/@simerl&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">icon </span><span>= </span><span style="color:#86b300;">&quot;mastodon&quot; </span><span>}</span><span style="color:#61676ccc;">,
+</span><span> { </span><span style="color:#399ee6;">name </span><span>= </span><span style="color:#86b300;">&quot;instagram&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">url </span><span>= </span><span style="color:#86b300;">&quot;https://www.instagram.com/simeonstanek/&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">icon </span><span>= </span><span style="color:#86b300;">&quot;instagram&quot; </span><span>}</span><span style="color:#61676ccc;">,
+</span><span> { </span><span style="color:#399ee6;">name </span><span>= </span><span style="color:#86b300;">&quot;github&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">url </span><span>= </span><span style="color:#86b300;">&quot;https://github.com/SimeonLukas&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">icon </span><span>= </span><span style="color:#86b300;">&quot;github&quot; </span><span>}</span><span style="color:#61676ccc;">,
+</span><span> { </span><span style="color:#399ee6;">name </span><span>= </span><span style="color:#86b300;">&quot;rss&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">url </span><span>= </span><span style="color:#86b300;">&quot;/rss.xml&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">icon </span><span>= </span><span style="color:#86b300;">&quot;rss&quot; </span><span>}</span><span style="color:#61676ccc;">,
+</span><span>]
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Navigation bar
+</span><span style="color:#399ee6;">menu </span><span>= [
+</span><span> { </span><span style="color:#399ee6;">name </span><span>= </span><span style="color:#86b300;">&quot;/posts&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">url </span><span>= </span><span style="color:#86b300;">&quot;/posts&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">weight </span><span>= </span><span style="color:#ff8f40;">1 </span><span>}</span><span style="color:#61676ccc;">,
+</span><span> { </span><span style="color:#399ee6;">name </span><span>= </span><span style="color:#86b300;">&quot;/pages&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">url </span><span>= </span><span style="color:#86b300;">&quot;/pages&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">weight </span><span>= </span><span style="color:#ff8f40;">1 </span><span>}</span><span style="color:#61676ccc;">,
+</span><span> { </span><span style="color:#399ee6;">name </span><span>= </span><span style="color:#86b300;">&quot;/about&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">url </span><span>= </span><span style="color:#86b300;">&quot;/pages/about&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">weight </span><span>= </span><span style="color:#ff8f40;">2 </span><span>}</span><span style="color:#61676ccc;">,
+</span><span> { </span><span style="color:#399ee6;">name </span><span>= </span><span style="color:#86b300;">&quot;/tags&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">url </span><span>= </span><span style="color:#86b300;">&quot;/tags&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#399ee6;">weight </span><span>= </span><span style="color:#ff8f40;">3 </span><span>}</span><span style="color:#61676ccc;">,
+</span><span>]
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Space for variables that are available for the entire website.
+</span></code></pre>
+<p>The website then looks like this:</p>
+<p><img src="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/images/zola00003.png" alt="Screenshot" /></p>
+<p>Depending on how the developer of the theme created his templates, you can find the different .html files under <code>themes/apollo/templates</code> that were marked up with the template engine <a href="https://keats.github.io/tera/">Tera</a>.</p>
+<p>These templates can then be gradually adapted to your own needs. The syntax can be quickly understood using the documentation and the templates that have already been created. Here are a few examples:</p>
+<pre data-lang="html" style="background-color:#fafafa;color:#61676c;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">title</span><span style="color:#55b4d490;">&gt;
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- If there is a title for a specific page, then use that. --&gt;
+</span><span>{% if page.title %} {{ page.title }}
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- If there is a title for a specific section, use that. --&gt;
+</span><span>{% elif section.title %} {{ section.title }}
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- If there is no title, use the title of the web page. --&gt;
+</span><span> {% else %} {{ config.title }}
+</span><span> {% endif %}
+</span><span> </span><span style="color:#55b4d490;">&lt;/</span><span style="color:#399ee6;">title</span><span style="color:#55b4d490;">&gt;
+</span></code></pre>
+<pre data-lang="html" style="background-color:#fafafa;color:#61676c;" class="language-html "><code class="language-html" data-lang="html"><span style="font-style:italic;color:#abb0b6;">&lt;!-- templates/base.html --&gt;
+</span><span style="color:#55b4d490;">&lt;!</span><span style="color:#fa6e32;">DOCTYPE </span><span style="color:#ff8f40;">html</span><span style="color:#55b4d490;">&gt;
+</span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">html </span><span style="color:#f29718;">lang</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;en&quot;</span><span style="color:#55b4d490;">&gt;
+</span><span>
+</span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">head</span><span style="color:#55b4d490;">&gt;
+</span><span> </span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">meta </span><span style="color:#f29718;">charset</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;utf-8&quot;</span><span style="color:#55b4d490;">&gt;
+</span><span> </span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">title</span><span style="color:#55b4d490;">&gt;</span><span>Testing</span><span style="color:#55b4d490;">&lt;/</span><span style="color:#399ee6;">title</span><span style="color:#55b4d490;">&gt;
+</span><span style="color:#55b4d490;">&lt;/</span><span style="color:#399ee6;">head</span><span style="color:#55b4d490;">&gt;
+</span><span>
+</span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">body</span><span style="color:#55b4d490;">&gt;
+</span><span> </span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">section </span><span style="color:#f29718;">class</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;section&quot;</span><span style="color:#55b4d490;">&gt;
+</span><span> </span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">div </span><span style="color:#f29718;">class</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;container&quot;</span><span style="color:#55b4d490;">&gt;
+</span><span> {% block content %} {% endblock %}
+</span><span> </span><span style="color:#55b4d490;">&lt;/</span><span style="color:#399ee6;">div</span><span style="color:#55b4d490;">&gt;
+</span><span> </span><span style="color:#55b4d490;">&lt;/</span><span style="color:#399ee6;">section</span><span style="color:#55b4d490;">&gt;
+</span><span style="color:#55b4d490;">&lt;/</span><span style="color:#399ee6;">body</span><span style="color:#55b4d490;">&gt;
+</span><span>
+</span><span style="color:#55b4d490;">&lt;/</span><span style="color:#399ee6;">html</span><span style="color:#55b4d490;">&gt;
+</span></code></pre>
+<pre data-lang="html" style="background-color:#fafafa;color:#61676c;" class="language-html "><code class="language-html" data-lang="html"><span style="font-style:italic;color:#abb0b6;">&lt;!-- templates/index.html --&gt;
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Expand the base template and insert it --&gt;
+</span><span> {% extends &quot;base.html&quot; %}
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Contents of the page --&gt;
+</span><span>{% block content %}
+</span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">h1 </span><span style="color:#f29718;">class</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;title&quot;</span><span style="color:#55b4d490;">&gt;
+</span><span> This is my blog made with Zola.
+</span><span style="color:#55b4d490;">&lt;/</span><span style="color:#399ee6;">h1</span><span style="color:#55b4d490;">&gt;
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Content of the page that is in Markdown below the configuration --&gt;
+</span><span>{{ page.content }}
+</span><span>{% endblock content %}
+</span></code></pre>
+<p>Every .md file that has <code>template = "index.html"</code> set in the configuration is rendered as described above.</p>
+<p>Thankfully, the zola compiler indicates when keys are missing in the configuration. This means that simple HTML can be written within these templates and the contents of the pages can be adapted using the engine's logic. As with other SSGs, sections are necessary to group individual pages. Section files are located in the source directory of a folder and are marked with an underscore <code>_index.md</code>. These sections then have different values ​​and you can iterate through a section over other pages that are also in the folder.</p>
+<pre data-lang="html" style="background-color:#fafafa;color:#61676c;" class="language-html "><code class="language-html" data-lang="html"><span style="font-style:italic;color:#abb0b6;">&lt;!-- templates/section.html --&gt;
+</span><span>{% block post_list %}
+</span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">main </span><span style="color:#f29718;">class</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;list&quot;</span><span style="color:#55b4d490;">&gt;
+</span><span>{%- if paginator %}
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- get section --&gt;
+</span><span>{%- set show_pages = paginator.pages -%}
+</span><span>{% else %}
+</span><span>{%- set show_pages = section.pages -%}
+</span><span>{% endif -%}
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- macros can be stored in another template and loaded by importing, they are then available globally --&gt;
+</span><span>{{ post_macros::list_posts(pages=show_pages) }}
+</span><span style="color:#55b4d490;">&lt;/</span><span style="color:#399ee6;">main</span><span style="color:#55b4d490;">&gt;
+</span><span>{% endblock post_list %}
+</span></code></pre>
+<h3 id="content"><a class="zola-anchor" href="#content" aria-label="Anchor link for: content">Content</a></h3>
+<p>The content is simply stored under <code>/content</code>. Simple .md files with a toml configuration in the header, which is marked with three plus signs. Zola then renders these files to html and adds them to the sitemap and, if desired, to the RSS feed and the search index.</p>
+<pre data-lang="md" style="background-color:#fafafa;color:#61676c;" class="language-md "><code class="language-md" data-lang="md"><span>+++
+</span><span>title = &quot;Zola&quot;
+</span><span>template = &quot;index.html&quot;
+</span><span>date = 2025-01-01
+</span><span>+++
+</span></code></pre>
+<p>After the page has been created and the content has been inserted, it is a matter of making the website public. I would like to give a rough guide here using Github Pages:</p>
+<h2 id="upload-the-website-to-github-pages"><a class="zola-anchor" href="#upload-the-website-to-github-pages" aria-label="Anchor link for: upload-the-website-to-github-pages">Upload the website to Github Pages</a></h2>
+<h3 id="add-a-domain-to-github"><a class="zola-anchor" href="#add-a-domain-to-github" aria-label="Anchor link for: add-a-domain-to-github">Add a domain to Github</a></h3>
+<p>As a first step, you need to add a domain name in Github Settings. You can see this in the following screenshots:</p>
+<p><img src="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/images/zola00005.png" alt="Screenshot" /></p>
+<p><img src="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/images/zola00006.png" alt="Screenshot" /></p>
+<h3 id="gihtub-pages"><a class="zola-anchor" href="#gihtub-pages" aria-label="Anchor link for: gihtub-pages">Gihtub Pages</a></h3>
+<ol>
+<li>
+<p>Create a public repository on Github</p>
+</li>
+<li>
+<p>Create a branch called <code>gh-pages</code></p>
+</li>
+<li>
+<p>Copy the files created by <code>zola build</code> in the <code>public</code> directory to the <code>gh-pages</code> branch or render the page using Github Actions to the <code>gh-pages</code> branch</p>
+</li>
+</ol>
+<pre data-lang="yaml" style="background-color:#fafafa;color:#61676c;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="font-style:italic;color:#abb0b6;"># Put this file in `.github/workflows` and name it `zola.yml` or `main.yml`
+</span><span style="font-style:italic;color:#abb0b6;"># Your repository must be public
+</span><span style="color:#ff8f40;">on</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">push
+</span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">Build and deploy GH Pages
+</span><span style="color:#399ee6;">jobs</span><span style="color:#61676ccc;">:
+</span><span style="color:#399ee6;">build</span><span style="color:#61676ccc;">:
+</span><span style="color:#399ee6;">runs-on</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">ubuntu-latest
+</span><span style="color:#399ee6;">if</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">github.ref == &#39;refs/heads/main&#39;
+</span><span>
+</span><span style="color:#399ee6;">steps</span><span style="color:#61676ccc;">:
+</span><span>- </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">checkout
+</span><span style="color:#399ee6;">uses</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">actions/checkout@v4
+</span><span>- </span><span style="color:#399ee6;">name</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">build_and_deploy
+</span><span style="color:#399ee6;">uses</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">shalzz/zola-deploy-action@v0.19.2
+</span><span>
+</span><span style="color:#399ee6;">env</span><span style="color:#61676ccc;">:
+</span><span>
+</span><span style="color:#399ee6;">TOKEN</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">${{ secrets.GITHUB_TOKEN }}
+</span><span>
+</span></code></pre>
+<ol start="4">
+<li>
+<p>Create a CNAME file in the <code>gh-pages</code> directory with the domain of your website. You can save it directly in the <code>static</code> folder, then it is always in the right place.</p>
+</li>
+<li>
+<p>Change the A record of your domain to the A record of Github Pages: <code>185.199.108.153</code></p>
+</li>
+<li>
+<p>Adjust your settings on Github as you can see in the following picture:</p>
+</li>
+</ol>
+<p><img src="https://simeon.staneks.de/en/posts/zola-the-holy-grail-of-ssg/images/zola00004.png" alt="Screenshot" /></p>
+<p>If everything worked, the website should be visible on your domain.</p>
+<h2 id="conclusion"><a class="zola-anchor" href="#conclusion" aria-label="Anchor link for: conclusion">Conclusion</a></h2>
+<p>Zola is a convincing lightweight, high-performance static site generator that makes optimal use of the advantages of Rust. The combination of easy configuration, powerful Tera templating and seamless GitHub Pages deployment makes it a great choice for developers who value simplicity and control.
+The learning curve is moderate - with basic Markdown and HTML knowledge you can quickly build a functional website. The flexibility in themes and templates allows for customization, while the Rust-based architecture ensures speed and reliability.
+For anyone looking for a straightforward, fast and customizable static site generator, Zola is definitely worth a closer look.</p>
+
+        </section>
+    </article>
+    <hr>
+    <br>
+    <div class="meta">
+        
+            <span class="date-label-posted">:: Posted on </span><time>2024-12-16</time>
+        
+
+        
+
+        
+
+        
+        
+                <span class="tags-label"> :: Tags:</span>
+                <span class="tags">
+                        <a href="https://simeon.staneks.de/tags/software/" class="post-tag">software</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/html/" class="post-tag">html</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/css/" class="post-tag">css</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/javascript/" class="post-tag">javascript</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/zola/" class="post-tag">zola</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/github-pages/" class="post-tag">github-pages</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/tutorial/" class="post-tag">tutorial</a>
+                    
+                </span>
+        
+
+        
+       
+                
+     
+
+            
+                
+                :: <a href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;Blog&#x2F;tree&#x2F;main&#x2F;content&#x2F;posts&#x2F;zola-the-holy-grail-of-ssg&#x2F;index.en.md" target="_blank" rel="noopener noreferrer"> Source Code</a>
+            
+
+        
+
+    </div>
+
+    
+    
+        
+    
+
+    
+        
+        
+        
+        
+            
+        
+            
+        
+            
+        
+            
+                
+            
+        
+
+        
+        
+
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
+            
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;zola-the-holy-grail-of-ssg&#x2F;video&#x2F;zola-the-holy-grail-of-ssg-en.mp4" onerror="this.parentElement.parentElement.style.display='none';" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+        </div>
+    
+</main>
+
+
+
+        
+            
+        
+
+        
+        <br>
+        <hr>
+        <div class="giscus" >
+        <script src="https://giscus.app/client.js"
+        data-repo="SimeonLukas/Blog"
+        data-repo-id="R_kgDONSw5PA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONSw5PM4CkoL8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https:&#x2F;&#x2F;simeon.staneks.de/css/giscus.css"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+        
+
+    </div>
+</body>
+
+</html>
