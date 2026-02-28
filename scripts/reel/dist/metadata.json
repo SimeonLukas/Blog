@@ -1,254 +1,366 @@
 {
     "audioUrl": [
-        "src/music/music00010.mp3"
+        "src/music/music00007.mp3"
     ],
     "images": [
         "src/images/reel.jpg"
     ],
     "words": [
         {
-            "word": "Meine",
+            "word": "How",
             "start": 0,
-            "end": 0.6,
-            "confidence": "0.9911539",
-            "punctuated_word": "Meine"
+            "end": 0.44,
+            "confidence": "0.9941361",
+            "punctuated_word": "How"
         },
         {
-            "word": "ersten",
-            "start": 0.62,
-            "end": 1.3,
-            "confidence": "0.9867239",
-            "punctuated_word": "ersten"
+            "word": "I",
+            "start": 0.46,
+            "end": 0.74,
+            "confidence": "0.9432788",
+            "punctuated_word": "I"
         },
         {
-            "word": "Erfahrungen",
-            "start": 1.32,
-            "end": 2.4,
-            "confidence": "0.9080575",
-            "punctuated_word": "Erfahrungen"
+            "word": "built",
+            "start": 0.76,
+            "end": 1.36,
+            "confidence": "0.9071227",
+            "punctuated_word": "built"
         },
         {
-            "word": "mit",
-            "start": 2.42,
-            "end": 2.86,
-            "confidence": "0.9077075",
-            "punctuated_word": "mit"
+            "word": "a",
+            "start": 1.38,
+            "end": 1.66,
+            "confidence": "0.9477403",
+            "punctuated_word": "a"
         },
         {
-            "word": "meinem",
-            "start": 2.88,
-            "end": 3.56,
-            "confidence": "0.9889304",
-            "punctuated_word": "meinem"
+            "word": "Steam",
+            "start": 1.68,
+            "end": 2.28,
+            "confidence": "0.9542091",
+            "punctuated_word": "Steam"
         },
         {
-            "word": "eigenen",
-            "start": 3.58,
-            "end": 4.34,
-            "confidence": "0.9338521",
-            "punctuated_word": "eigenen"
+            "word": "Machine",
+            "start": 2.3,
+            "end": 3.06,
+            "confidence": "0.9198008",
+            "punctuated_word": "Machine"
         },
         {
-            "word": "3D-Drucker,",
-            "start": 4.36,
-            "end": 5.44,
-            "confidence": "0.9380838",
-            "punctuated_word": "3D-Drucker,"
+            "word": "Lite",
+            "start": 3.08,
+            "end": 3.6,
+            "confidence": "0.9041091",
+            "punctuated_word": "Lite"
         },
         {
-            "word": "den",
-            "start": 5.46,
-            "end": 5.9,
-            "confidence": "0.9820869",
-            "punctuated_word": "den"
+            "word": "from",
+            "start": 3.62,
+            "end": 4.14,
+            "confidence": "0.9383429",
+            "punctuated_word": "from"
         },
         {
-            "word": "Herausforderungen",
-            "start": 5.92,
-            "end": 7.48,
-            "confidence": "0.9803747",
-            "punctuated_word": "Herausforderungen"
+            "word": "an",
+            "start": 4.16,
+            "end": 4.52,
+            "confidence": "0.9634012",
+            "punctuated_word": "an"
         },
         {
-            "word": "und",
-            "start": 7.5,
-            "end": 7.94,
-            "confidence": "0.9152287",
-            "punctuated_word": "und"
+            "word": "AWOW",
+            "start": 4.54,
+            "end": 5.06,
+            "confidence": "0.9635612",
+            "punctuated_word": "AWOW"
         },
         {
-            "word": "unnötigen",
-            "start": 7.96,
-            "end": 8.88,
-            "confidence": "0.9952785",
-            "punctuated_word": "unnötigen"
+            "word": "Mini",
+            "start": 5.08,
+            "end": 5.6,
+            "confidence": "0.9653270",
+            "punctuated_word": "Mini"
         },
         {
-            "word": "Abenteuern",
-            "start": 8.9,
-            "end": 9.9,
-            "confidence": "0.9140908",
-            "punctuated_word": "Abenteuern"
+            "word": "Gaming",
+            "start": 5.62,
+            "end": 6.3,
+            "confidence": "0.9304150",
+            "punctuated_word": "Gaming"
+        },
+        {
+            "word": "PC",
+            "start": 6.32,
+            "end": 6.68,
+            "confidence": "0.9795766",
+            "punctuated_word": "PC"
+        },
+        {
+            "word": "with",
+            "start": 6.7,
+            "end": 7.22,
+            "confidence": "0.9087609",
+            "punctuated_word": "with"
+        },
+        {
+            "word": "Ryzen",
+            "start": 7.24,
+            "end": 7.84,
+            "confidence": "0.9570774",
+            "punctuated_word": "Ryzen"
+        },
+        {
+            "word": "7",
+            "start": 7.86,
+            "end": 8.14,
+            "confidence": "0.9032498",
+            "punctuated_word": "7"
+        },
+        {
+            "word": "7840HS,",
+            "start": 8.16,
+            "end": 8.92,
+            "confidence": "0.9782759",
+            "punctuated_word": "7840HS,"
+        },
+        {
+            "word": "32",
+            "start": 8.94,
+            "end": 9.3,
+            "confidence": "0.9330064",
+            "punctuated_word": "32"
+        },
+        {
+            "word": "GB",
+            "start": 9.32,
+            "end": 9.68,
+            "confidence": "0.9938598",
+            "punctuated_word": "GB"
+        },
+        {
+            "word": "RAM",
+            "start": 9.7,
+            "end": 10.14,
+            "confidence": "0.9231906",
+            "punctuated_word": "RAM"
+        },
+        {
+            "word": "and",
+            "start": 10.16,
+            "end": 10.6,
+            "confidence": "0.9582093",
+            "punctuated_word": "and"
+        },
+        {
+            "word": "1",
+            "start": 10.62,
+            "end": 10.9,
+            "confidence": "0.9120129",
+            "punctuated_word": "1"
+        },
+        {
+            "word": "TB",
+            "start": 10.92,
+            "end": 11.28,
+            "confidence": "0.9750807",
+            "punctuated_word": "TB"
+        },
+        {
+            "word": "SSD",
+            "start": 11.3,
+            "end": 11.74,
+            "confidence": "0.9106266",
+            "punctuated_word": "SSD"
+        },
+        {
+            "word": "–",
+            "start": 11.76,
+            "end": 12.04,
+            "confidence": "0.9894891",
+            "punctuated_word": "–"
+        },
+        {
+            "word": "using",
+            "start": 12.06,
+            "end": 12.66,
+            "confidence": "0.9653311",
+            "punctuated_word": "using"
+        },
+        {
+            "word": "Bazzite,",
+            "start": 12.68,
+            "end": 13.52,
+            "confidence": "0.9625242",
+            "punctuated_word": "Bazzite,"
+        },
+        {
+            "word": "EmuDeck,",
+            "start": 13.54,
+            "end": 14.38,
+            "confidence": "0.9129914",
+            "punctuated_word": "EmuDeck,"
+        },
+        {
+            "word": "Heroic,",
+            "start": 14.4,
+            "end": 15.16,
+            "confidence": "0.9846033",
+            "punctuated_word": "Heroic,"
+        },
+        {
+            "word": "Citron",
+            "start": 15.18,
+            "end": 15.86,
+            "confidence": "0.9613819",
+            "punctuated_word": "Citron"
+        },
+        {
+            "word": "and",
+            "start": 15.88,
+            "end": 16.32,
+            "confidence": "0.9080833",
+            "punctuated_word": "and"
+        },
+        {
+            "word": "running",
+            "start": 16.34,
+            "end": 17.1,
+            "confidence": "0.9814281",
+            "punctuated_word": "running"
+        },
+        {
+            "word": "Hogwarts",
+            "start": 17.12,
+            "end": 17.96,
+            "confidence": "0.9505057",
+            "punctuated_word": "Hogwarts"
+        },
+        {
+            "word": "Legacy",
+            "start": 17.98,
+            "end": 18.66,
+            "confidence": "0.9033011",
+            "punctuated_word": "Legacy"
         },
         {
             "word": "in",
-            "start": 9.92,
-            "end": 10.28,
-            "confidence": "0.9197898",
+            "start": 18.68,
+            "end": 19.04,
+            "confidence": "0.9391492",
             "punctuated_word": "in"
         },
         {
-            "word": "der",
-            "start": 10.3,
-            "end": 10.74,
-            "confidence": "0.9429589",
-            "punctuated_word": "der"
+            "word": "Full",
+            "start": 19.06,
+            "end": 19.58,
+            "confidence": "0.9642042",
+            "punctuated_word": "Full"
         },
         {
-            "word": "Welt",
-            "start": 10.76,
-            "end": 11.28,
-            "confidence": "0.9982537",
-            "punctuated_word": "Welt"
+            "word": "HD",
+            "start": 19.6,
+            "end": 19.96,
+            "confidence": "0.9250793",
+            "punctuated_word": "HD"
         },
         {
-            "word": "des",
-            "start": 11.3,
-            "end": 11.74,
-            "confidence": "0.9208793",
-            "punctuated_word": "des"
+            "word": "with",
+            "start": 19.98,
+            "end": 20.5,
+            "confidence": "0.9783581",
+            "punctuated_word": "with"
         },
         {
-            "word": "3D-Drucks,",
-            "start": 11.76,
-            "end": 12.76,
-            "confidence": "0.9064916",
-            "punctuated_word": "3D-Drucks,"
-        },
-        {
-            "word": "bis",
-            "start": 12.78,
-            "end": 13.22,
-            "confidence": "0.9748113",
-            "punctuated_word": "bis"
-        },
-        {
-            "word": "hin",
-            "start": 13.24,
-            "end": 13.68,
-            "confidence": "0.9784251",
-            "punctuated_word": "hin"
-        },
-        {
-            "word": "zu",
-            "start": 13.7,
-            "end": 14.06,
-            "confidence": "0.9809294",
-            "punctuated_word": "zu"
-        },
-        {
-            "word": "tatsächlich",
-            "start": 14.08,
-            "end": 15.16,
-            "confidence": "0.9504092",
-            "punctuated_word": "tatsächlich"
-        },
-        {
-            "word": "praktischen",
-            "start": 15.18,
-            "end": 16.26,
-            "confidence": "0.9835320",
-            "punctuated_word": "praktischen"
-        },
-        {
-            "word": "Drucken.",
-            "start": 16.28,
-            "end": 17.12,
-            "confidence": "0.9069319",
-            "punctuated_word": "Drucken."
+            "word": "Raytracing.",
+            "start": 20.52,
+            "end": 21.6,
+            "confidence": "0.9997022",
+            "punctuated_word": "Raytracing."
         },
         {
             "word": "Schau",
-            "start": 17.44,
-            "end": 18.04,
-            "confidence": "0.9466116",
+            "start": 21.92,
+            "end": 22.52,
+            "confidence": "0.9341382",
             "punctuated_word": "Schau"
         },
         {
             "word": "auf",
-            "start": 18.06,
-            "end": 18.5,
-            "confidence": "0.9614644",
+            "start": 22.54,
+            "end": 22.98,
+            "confidence": "0.9862550",
             "punctuated_word": "auf"
         },
         {
             "word": "meinen",
-            "start": 18.52,
-            "end": 19.2,
-            "confidence": "0.9947840",
+            "start": 23,
+            "end": 23.68,
+            "confidence": "0.9939462",
             "punctuated_word": "meinen"
         },
         {
             "word": "Blog,",
-            "start": 19.22,
-            "end": 19.82,
-            "confidence": "0.9891265",
+            "start": 23.7,
+            "end": 24.3,
+            "confidence": "0.9290729",
             "punctuated_word": "Blog,"
         },
         {
             "word": "um",
-            "start": 19.84,
-            "end": 20.2,
-            "confidence": "0.9733047",
+            "start": 24.32,
+            "end": 24.68,
+            "confidence": "0.9120050",
             "punctuated_word": "um"
         },
         {
             "word": "mehr",
-            "start": 20.22,
-            "end": 20.74,
-            "confidence": "0.9705584",
+            "start": 24.7,
+            "end": 25.22,
+            "confidence": "0.9264257",
             "punctuated_word": "mehr"
         },
         {
             "word": "zu",
-            "start": 20.76,
-            "end": 21.12,
-            "confidence": "0.9962563",
+            "start": 25.24,
+            "end": 25.6,
+            "confidence": "0.9185914",
             "punctuated_word": "zu"
         },
         {
             "word": "erfahren.",
-            "start": 21.14,
-            "end": 22.06,
-            "confidence": "0.9572910",
+            "start": 25.62,
+            "end": 26.54,
+            "confidence": "0.9675084",
             "punctuated_word": "erfahren."
         },
         {
             "word": "Link",
-            "start": 22.38,
-            "end": 22.9,
-            "confidence": "0.9365634",
+            "start": 26.86,
+            "end": 27.38,
+            "confidence": "0.9419510",
             "punctuated_word": "Link"
         },
         {
             "word": "in",
-            "start": 22.92,
-            "end": 23.28,
-            "confidence": "0.9601647",
+            "start": 27.4,
+            "end": 27.76,
+            "confidence": "0.9687858",
             "punctuated_word": "in"
         },
         {
             "word": "der",
-            "start": 23.3,
-            "end": 23.74,
-            "confidence": "0.9988528",
+            "start": 27.78,
+            "end": 28.22,
+            "confidence": "0.9462772",
             "punctuated_word": "der"
         },
         {
             "word": "Bio.",
-            "start": 23.76,
-            "end": 24.28,
-            "confidence": "0.9969262",
+            "start": 28.24,
+            "end": 28.76,
+            "confidence": "0.9055923",
             "punctuated_word": "Bio."
         }
     ]
