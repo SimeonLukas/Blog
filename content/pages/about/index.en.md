@@ -1,13 +1,13 @@
 +++
 title="About me"
 template = "page.html"
-description = "freier Hobbyist mit Freude an spannenden und individuellen Projekten in Webentwicklung, Appentwicklung, Programmiering, und mehr."
+description = "Pastoral counselor and passionate hobbyist with a love for exciting and individual projects in web development, app development, programming, and more."
 date="2024-11-20"
 +++
 
 # Simeon Stanek
 
-Driven by a passion for creating unique digital experiences, I'm a freelance hobbyist specializing in web development, app development, programming, and more. I love taking on custom projects and bringing ideas to life. 
+Professionally, I'm a pastoral counselor and a passionate hobbyist with a love for exciting and individual projects in web development, app development, programming, and more. I also create websites, web applications, and apps on request.
 My interests include:
 - Web development
 - App development
