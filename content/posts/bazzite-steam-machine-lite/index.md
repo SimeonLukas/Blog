@@ -155,4 +155,4 @@ Für mich ist das die perfekte Mischung aus:
 - genug Flexibilität für Emulation bis in die aktuelle Konsolengeneration
 - genug Komfort, um das Ganze tatsächlich zu nutzen – und nicht nur als „Projekt“ im Hinterkopf zu haben
 - dafür kann ich getrost meinen alten Gamingrechner verkaufen, da die alte 1050Ti jetzt überflüssig ist, und das Geld in neue Spiele investieren, die ich auf der Steam Machine Lite zocken kann.
-- By the way das Gerät ist viel perofmanter als mein Steam Deck, deshlab nutze ich mein Steam Deck als quasi Streaming Client für die Steam Machine Lite, wenn ich mal auf der Couch zocken will, was auch super funktioniert.
+- By the way das Gerät ist viel perofmanter als mein Steam Deck, deshalb nutze ich mein Steam Deck als quasi Streaming Client für die Steam Machine Lite, wenn ich mal auf der Couch zocken will, was auch super funktioniert.
