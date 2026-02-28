@@ -21,6 +21,10 @@ Drin steckt:
 
 Also alles in allem: Ein sehr kompakter Klotz mit ernstzunehmender Hardware. Perfekt, um daraus meine ganz persönliche **„Steam Machine Lite“** zu bauen – und das Ganze für rund **420€** Gesamtbudget.
 
+> **Hinweis:** Der folgende Link ist ein Amazon Affiliate-Link. Wenn du über diesen Link einkaufst, erhalte ich eine kleine Provision, ohne dass dir zusätzliche Kosten entstehen.
+
+**[AWOW Mini Gaming PC auf Amazon ansehen →](https://amzn.to/4bgi1os)**
+
 
 ![AWOW Mini Gaming PC](images/steam-machine-lite.png)
 

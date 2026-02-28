@@ -21,6 +21,10 @@ It packs:
 
 So basically: A very compact brick with serious hardware. Perfect for building my own personal **"Steam Machine Lite"** – and the whole thing for around **€420** total budget.
 
+> **Note:** The following link is an Amazon Affiliate link. If you purchase through this link, I receive a small commission at no additional cost to you.
+
+**[View AWOW Mini Gaming PC on Amazon →](https://amzn.to/4bgi1os)**
+
 
 ![AWOW Mini Gaming PC](images/steam-machine-lite.png)
 
