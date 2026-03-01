@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="de">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Bibelstudien mit Bible Crawler, Obsidian und Bible Linker
+        
+    </title>
+
+    
+    
+    <meta name="description" content="Ein von mir geschriebenes Programm, das unterschiedliche Bibelversionen herunterlädt, die man dann in Obsidian nutzen kann. Zudem kann man die Bibelversionen..." />
+    
+    
+
+    
+    <meta property="og:image" content="https://simeon.staneks.de/posts/bible-crawler-obsidian-and-bible-linker//images/de/preview.jpg" />
+    <meta property="og:logo" content="https://simeon.staneks.de/posts/bible-crawler-obsidian-and-bible-linker//imagesde/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://simeon.staneks.de/posts/bible-crawler-obsidian-and-bible-linker/images/de/preview.jpg">
+    
+
+    
+    <meta property="og:title" content="Bibelstudien mit Bible Crawler, Obsidian und Bible Linker" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="Bibelstudien mit Bible Crawler, Obsidian und Bible Linker">
+    
+    
+
+    
+    
+    <meta property="og:description" content="Ein von mir geschriebenes Programm, das unterschiedliche Bibelversionen herunterlädt, die man dann in Obsidian nutzen kann. Zudem kann man die Bibelversionen..."/>
+    <!-- twitter description -->
+    <meta name="twitter:description" content="Ein von mir geschriebenes Programm, das unterschiedliche Bibelversionen herunterlädt, die man dann in Obsidian nutzen kann. Zudem kann man die Bibelversionen...">
+    
+    
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;simeon.staneks.de"/>
+    <meta property="og:type" content="article" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Simeon&#x27;s Blog" />
+
+
+    
+    
+    <link rel="icon" type="image/png" href=https:&#x2F;&#x2F;simeon.staneks.de&#x2F;android-chrome-512x512.png />
+    
+
+    
+    
+    <link href=https://simeon.staneks.de/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/codeblock.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/toc.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/note.js></script>
+    
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Simeon&#x27;s Blog" href="https://simeon.staneks.de/ atom.xml">
+
+
+    
+    
+    <link rel="stylesheet" type="text/css" href=https://simeon.staneks.de/theme/light.css />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://simeon.staneks.de/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://simeon.staneks.de/js/themetoggle.js></script>
+    
+    <script>setTheme(getSavedTheme());</script>
+    
+    <script src=https://simeon.staneks.de/js/index.js></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://simeon.staneks.de/main.css />
+
+    
+</head>
+
+<body onload="updatelanguage()">
+    <div class="content">
+        <header>
+    <div class="main">
+        <div> <a id="navigation_start" href=https:&#x2F;&#x2F;simeon.staneks.de>Simeon&#x27;s Blog </a> 
+            <p style="font-size: xx-small;">lieber unperfekt starten als perfekt warten</p> 
+        </div>
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl" class="social mastodon">
+                <img alt=mastodon src=https://simeon.staneks.de/social_icons/mastodon.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;" class="social instagram">
+                <img alt=instagram src=https://simeon.staneks.de/social_icons/instagram.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas" class="social github">
+                <img alt=github src=https://simeon.staneks.de/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;buymeacoffee.com&#x2F;simeonlukas" class="social buy me a coffee">
+                <img alt=buy me a coffee src=https://simeon.staneks.de/social_icons/bmc-logo.svg>
+            </a>
+            
+            <a rel="me" href="&#x2F;rss.xml" class="social rss">
+                <img alt=rss src=https://simeon.staneks.de/social_icons/rss.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a class="navigation_lang &#x2F;posts" href=&#x2F;posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a class="navigation_lang &#x2F;pages" href=&#x2F;pages style="margin-left: 0.5em">&#x2F;pages</a>
+        
+        <a class="navigation_lang &#x2F;about" href=&#x2F;pages&#x2F;about style="margin-left: 0.5em">&#x2F;about</a>
+        
+        <a class="navigation_lang &#x2F;tags" href=&#x2F;tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://simeon.staneks.de/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+        <a id="language-toggle" onclick="toggleLanguage(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/globe.svg alt="Change Language" /><span style="font-size: xx-small;" id="language-name">de</span>
+        </a>
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <h1 class="page-header">
+        Bibelstudien mit Bible Crawler, Obsidian und Bible Linker<span class="primary-color" style="font-size: 1.6em">.</span>
+    </h1>
+
+        </div>
+        Ein von mir geschriebenes Programm, das unterschiedliche Bibelversionen herunterlädt, die man dann in Obsidian nutzen kann. Zudem kann man die Bibelversionen als Markdown-Dateien nutzen und mit ihnen arbeiten und zu anderen Dokumenten konvertieren.
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/bible-crawler-obsidian-and-bible-linker/#genese">Genese</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/bible-crawler-obsidian-and-bible-linker/#bible-crawler">Bible Crawler</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/bible-crawler-obsidian-and-bible-linker/#was-macht-der-bible-crawler">Was macht der Bible Crawler?</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/bible-crawler-obsidian-and-bible-linker/#installation">Installation</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/bible-crawler-obsidian-and-bible-linker/#nutzung">Nutzung</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/bible-crawler-obsidian-and-bible-linker/#obsidian">Obsidian</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/bible-crawler-obsidian-and-bible-linker/#bible-linker">Bible Linker</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/bible-crawler-obsidian-and-bible-linker/#fazit">Fazit</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h1 id="genese"><a class="zola-anchor" href="#genese" aria-label="Anchor link for: genese">Genese</a></h1>
+<p>Vor ca. drei Jahren wollte ich meine Bibelstudien digitalisieren. Ich wollte die Bibel in verschiedenen Versionen lesen und vergleichen können, doch leider ist es in Deutschland geradezu unmöglich, an die Texte der Bibel in digitaler Form zu kommen. Die meisten Bibelversionen sind urheberrechtlich geschützt. Zum Glück gibt es aber eine Menge Webseiten, die die Bibeltexte in digitaler Form lesbar anbieten. So kam ich auf die Idee, ein Programm zu schreiben, das die Bibeltexte von diesen Webseiten "crawled" und in einer für mich nutzbaren Form speichert, da vor kurzem ein paar Issues auf Github aufgetaucht sind, habe ich mich entschieden, das Programm zu verbessern und zu erweitern und natürlich einen Blogpost darüber zu schreiben.</p>
+<h2 id="bible-crawler"><a class="zola-anchor" href="#bible-crawler" aria-label="Anchor link for: bible-crawler">Bible Crawler</a></h2>
+<p>Das kleine Programm habe ich auf <a href="https://github.com/SimeonLukas/Bible-Crawler-Rust">Github</a> veröffentlicht und es gibt 3 Versionen: eine für Windows, eine für Linux und eine für MacOS, so dass jeder der möchte sich die Bibeltexte in Markdown-Dateien herunterladen kann. Da ich zu der Zeit ein großes Interesse an der Programmiersprache Rust hatte, habe ich das Programm in Rust geschrieben. Rust ist eine moderne, performante und sichere Programmiersprache, die sich besonders für Systemprogrammierung eignet. Das Programm ist sehr einfach gehalten und besteht aus nur einer Datei und den enstprechenden JSON-Dateien, die die Konfiguration für die Bibelversionen enthalten.</p>
+<h3 id="was-macht-der-bible-crawler"><a class="zola-anchor" href="#was-macht-der-bible-crawler" aria-label="Anchor link for: was-macht-der-bible-crawler">Was macht der Bible Crawler?</a></h3>
+<p>Der Bible Crawler fetcht das HTML der Webseiten der verschiedenen Bibelversionen (bibleserver.com und die-bibel.de) und extrahiert die Bibeltexte. Die Bibeltexte werden in Kapitel und Verse unterteilt und in einer für mich lesbaren Form gespeichert. Die Bibeltexte können dann in einem Texteditor wie Obsidian gelesen und bearbeitet werden.
+Folgende Bibelversionen stehen aktuell in der neuesten Version zur Verfügung:</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f29718;">Übersetzungen</span><span> von bibleserver.com:
+</span><span style="color:#f29718;">1.</span><span> Einheitsübersetzung (EU)    </span><span style="color:#ed9366;">| </span><span style="color:#f29718;">2.</span><span> Luther Bibel (LUT)          </span><span style="color:#ed9366;">| </span><span style="color:#f29718;">3.</span><span> Elberfelder Bibel (ELB)     </span><span style="color:#ed9366;">| </span><span style="color:#f29718;">4.</span><span> Hoffnung für alle (HFA)    
+</span><span style="color:#f29718;">5.</span><span> Schlachter Bibel (SLT)      </span><span style="color:#ed9366;">| </span><span style="color:#f29718;">6.</span><span> La Biblia Textual (BTX)     </span><span style="color:#ed9366;">| </span><span style="color:#f29718;">7.</span><span> Gute Nachricht Bibel 2018 (GNB) </span><span style="color:#ed9366;">| </span><span style="color:#f29718;">8.</span><span> Neue Evangelistische Übersetzung (NEUE / NeÜ)
+</span><span style="color:#f29718;">Übersetzungen</span><span> von die-bibel.de:
+</span><span style="color:#f29718;">9.</span><span> Basis Bibel (BB)            </span><span style="color:#ed9366;">| </span><span style="color:#f29718;">10.</span><span> Nestle-Aland 28 (NA28)     </span><span style="color:#ed9366;">| </span><span style="color:#f29718;">11.</span><span> Biblia Hebraica Stuttgartensia (BHS)
+</span></code></pre>
+<h3 id="installation"><a class="zola-anchor" href="#installation" aria-label="Anchor link for: installation">Installation</a></h3>
+<p>Man muss einfach nur das <a href="https://github.com/SimeonLukas/Bible-Crawler-Rust/releases/latest">Programm</a> herunterladen und ausführen. Es gibt keine weiteren Abhängigkeiten. Das Programm ist sehr einfach gehalten.</p>
+<p>Als Nutzer von MacOS oder Linux muss man lediglich die Datei mit <code>chmod +x ./biblecrawler</code> ausführbar machen, damit man sie per <code>./biblecrawler</code> ausführen kann.</p>
+<p>Für MacOS Nutzer muss man zusätzlich in den Sicherheitseinstellungen die Ausführung von nicht signierten Programmen erlauben.</p>
+<h3 id="nutzung"><a class="zola-anchor" href="#nutzung" aria-label="Anchor link for: nutzung">Nutzung</a></h3>
+<p>Das Programm ist sehr einfach zu bedienen.
+Nachdem man per Nummer oder Kürzel die gewünschte Bibelversion ausgewählt hat, darf man in der neusten Version sich für eine Namenskonvention entscheiden.</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f29718;">Welche</span><span> Namenskonvention soll verwendet werden</span><span style="color:#ed9366;">?
+</span><span style="color:#f29718;">1.</span><span> Abkürzungen Großbuchstaben (GEN, EXO, LEV, NUM, DEU, etc.)
+</span><span style="color:#f29718;">2.</span><span> Abkürzungen Groß und Kleinbuchstaben  (Gen, Exo, Lev, Num, Deu, etc.)
+</span><span style="color:#f29718;">3.</span><span> Deutsch typisch evangelisch (1. Mose, 2. Mose, 3. Mose, 4. Mose, 5. Mose, etc.)
+</span><span style="color:#f29718;">4.</span><span> Deutsch typisch katholisch (Genesis, Exodus, Levitikus, Numeri, Deuteronomium, etc.)
+</span><span style="color:#f29718;">5.</span><span> Englisch (Genesis, Exodus, Leviticus, Numbers, Deuteronomy, etc.)
+</span><span style="color:#f29718;">6.</span><span> Latein (Genesis, Exodus, Leviticus, Numeri, Deuteronomium, etc.)
+</span></code></pre>
+<p><video loop autoplay controls width="100%"><source src="images/video.mp4" type="video/mp4"></video></p>
+<p>Danach wird der Bible Crawler die Bibeltexte herunterladen und in Markdown-Dateien speichern. Die Dateien werden in einem Ordner mit dem Namen der ausgewählten Bibelversion gespeichert und die Kapitel werden in einzelnen Dateien gespeichert.
+Folglich wird die Bibel zweimal geladen, einmal jedes Buch in einer Markdown-Datei und einmal jedes Kapitel in einer Markdown-Datei.
+Das Buch findet sich im Wurzelverzeichnis der Bibelversion und die Kapitel in einem Unterordner mit dem Namen des Buches.
+Die Dateien bzw. Ordner sind nach der ausgewählten Namenskonvention benannt, wie z.B. <code>1. Mose</code> oder <code>Genesis</code>.
+Das ist für die Nutzung in Obsidian sehr praktisch, da man mit dem Bible-Linker Plugin die Bibeltexte in Obsidian verlinken kann und sich nur eine Namenkonvention merken muss.</p>
+<p>Durch das neue Update des Bible Crawlers kann die Einheitsübersetzung je nach Gerät unter einer Minute heruntergeladen werden.</p>
+<p>Natürlich kann man die Dateien auch in anderen Programmen nutzen und weiterverarbeiten, doch ich nutze sie hauptsächlich in Obsidian und der folgende Abschnitt zeigt, wie man sie in Obsidian gut nutzen kann.</p>
+<h2 id="obsidian"><a class="zola-anchor" href="#obsidian" aria-label="Anchor link for: obsidian">Obsidian</a></h2>
+<p>Die heruntergeladenen Bibeltexte müssen dann in das Obsidian Vault importiert werden. Am besten legt man die Bibeltexte in einem Ordner namens <code>Bible</code> im Wurzelverzeichnis der Vault ab.</p>
+<p><img src="https://simeon.staneks.de/posts/bible-crawler-obsidian-and-bible-linker/images/crawler00001.png" alt="Screenshot" /></p>
+<h3 id="bible-linker"><a class="zola-anchor" href="#bible-linker" aria-label="Anchor link for: bible-linker">Bible Linker</a></h3>
+<p>Nachdem man unter den Community Plugins das Bible Linker Plugin installiert hat, kann der Spaß beginnen. Dabei müssen ein paar Einstellungen vorgenommen werden:</p>
+<p>Verse offset: -1<br />
+Enable muliple translations: true<br />
+Paths to translations with their names: Bible/NeÜ, Bible/BB, Bible/NA28, Bible/BHS, Bible/EU, Bible/LUT, Bible/ELB, Bible/HFA, Bible/SLT, Bible/BTX, Bible/GNB</p>
+<p>Nun kann man während des Schreibens in Obsidian einfach die Bibelverse in der gewünschten Version verlinken. Das Plugin erkennt die Bibelverse und verlinkt sie automatisch.</p>
+<p><img src="https://simeon.staneks.de/posts/bible-crawler-obsidian-and-bible-linker/images/crawler00003.png" alt="Screenshot" /></p>
+<p><img src="https://simeon.staneks.de/posts/bible-crawler-obsidian-and-bible-linker/images/crawler00002.jpg" alt="Screenshot" /></p>
+<h2 id="fazit"><a class="zola-anchor" href="#fazit" aria-label="Anchor link for: fazit">Fazit</a></h2>
+<p>Nach stetiger Entwicklung und Nutzung bin ich sehr zufrieden mit meinem Bible Crawler. Was als persönliche Lösung für mein digitales Bibelstudium begann, ist zu einem nützlichen Tool geworden, das auch anderen hilft, Bibeltexte digital zu erschließen. Die Kombination aus dem Crawler und Obsidian ermöglicht mir genau das, was ich ursprünglich wollte: verschiedene Bibelübersetzungen einfach lesen, vergleichen und in meine Studien einbinden zu können.
+Besonders freut es mich, dass durch die Performance-Verbesserungen das Herunterladen nun so schnell geht und die Unterstützung verschiedener Namenskonventionen die Nutzung noch flexibler macht. Das Projekt zeigt mir, wie aus einer persönlichen Herausforderung eine praktische Lösung entstehen kann, die auch für andere einen Mehrwert bietet.</p>
+
+        </section>
+    </article>
+    <hr>
+    <br>
+    <div class="meta">
+        
+            <span class="date-label-posted">:: Posted on </span><time>2025-01-29</time>
+        
+
+        
+
+        
+
+        
+        
+                <span class="tags-label"> :: Tags:</span>
+                <span class="tags">
+                        <a href="https://simeon.staneks.de/tags/software/" class="post-tag">software</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/rust/" class="post-tag">rust</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/bible/" class="post-tag">bible</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/obsidian/" class="post-tag">obsidian</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/tutorial/" class="post-tag">tutorial</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/bible-linker/" class="post-tag">bible-linker</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/markdown/" class="post-tag">markdown</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/bibel-studien/" class="post-tag">bibel-studien</a>
+                    
+                </span>
+        
+
+        
+       
+                
+     
+
+            
+                
+                :: <a href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;Blog&#x2F;tree&#x2F;main&#x2F;content&#x2F;posts&#x2F;bible-crawler-obsidian-and-bible-linker&#x2F;index.md" target="_blank" rel="noopener noreferrer"> Source Code</a>
+            
+
+        
+
+    </div>
+
+    
+    
+        
+    
+
+    
+        
+        
+        
+        
+            
+        
+            
+        
+            
+                
+            
+        
+
+        
+        
+
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
+            
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;bible-crawler-obsidian-and-bible-linker&#x2F;video&#x2F;bible-crawler-obsidian-and-bible-linker-de.mp4" onerror="this.parentElement.parentElement.style.display='none';" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+        </div>
+    
+</main>
+
+
+
+        
+            
+        
+
+        
+        <br>
+        <hr>
+        <div class="giscus" >
+        <script src="https://giscus.app/client.js"
+        data-repo="SimeonLukas/Blog"
+        data-repo-id="R_kgDONSw5PA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONSw5PM4CkoL8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https:&#x2F;&#x2F;simeon.staneks.de/css/giscus.css"
+        data-lang="de"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+        
+
+    </div>
+</body>
+
+</html>

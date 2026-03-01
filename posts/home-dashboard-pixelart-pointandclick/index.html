@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="de">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Wie man mit drei Ingredienzien ein magisches Smart Home Dashboard braut
+        
+    </title>
+
+    
+    
+    <meta name="description" content="Yarr! In diesem Artikel zeige ich, wie ich mit HTML, CSS und JavaScript - quasi den drei Zutaten eines mächtigen Voodoo-Zaubers - ein interaktives Smart Home..." />
+    
+    
+
+    
+    <meta property="og:image" content="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick//images/de/preview.jpg" />
+    <meta property="og:logo" content="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick//imagesde/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick/images/de/preview.jpg">
+    
+
+    
+    <meta property="og:title" content="Wie man mit drei Ingredienzien ein magisches Smart Home Dashboard braut" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="Wie man mit drei Ingredienzien ein magisches Smart Home Dashboard braut">
+    
+    
+
+    
+    
+    <meta property="og:description" content="Yarr! In diesem Artikel zeige ich, wie ich mit HTML, CSS und JavaScript - quasi den drei Zutaten eines mächtigen Voodoo-Zaubers - ein interaktives Smart Home..."/>
+    <!-- twitter description -->
+    <meta name="twitter:description" content="Yarr! In diesem Artikel zeige ich, wie ich mit HTML, CSS und JavaScript - quasi den drei Zutaten eines mächtigen Voodoo-Zaubers - ein interaktives Smart Home...">
+    
+    
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;simeon.staneks.de"/>
+    <meta property="og:type" content="article" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Simeon&#x27;s Blog" />
+
+
+    
+    
+    <link rel="icon" type="image/png" href=https:&#x2F;&#x2F;simeon.staneks.de&#x2F;android-chrome-512x512.png />
+    
+
+    
+    
+    <link href=https://simeon.staneks.de/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/codeblock.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/toc.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/note.js></script>
+    
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Simeon&#x27;s Blog" href="https://simeon.staneks.de/ atom.xml">
+
+
+    
+    
+    <link rel="stylesheet" type="text/css" href=https://simeon.staneks.de/theme/light.css />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://simeon.staneks.de/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://simeon.staneks.de/js/themetoggle.js></script>
+    
+    <script>setTheme(getSavedTheme());</script>
+    
+    <script src=https://simeon.staneks.de/js/index.js></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://simeon.staneks.de/main.css />
+
+    
+</head>
+
+<body onload="updatelanguage()">
+    <div class="content">
+        <header>
+    <div class="main">
+        <div> <a id="navigation_start" href=https:&#x2F;&#x2F;simeon.staneks.de>Simeon&#x27;s Blog </a> 
+            <p style="font-size: xx-small;">lieber unperfekt starten als perfekt warten</p> 
+        </div>
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl" class="social mastodon">
+                <img alt=mastodon src=https://simeon.staneks.de/social_icons/mastodon.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;" class="social instagram">
+                <img alt=instagram src=https://simeon.staneks.de/social_icons/instagram.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas" class="social github">
+                <img alt=github src=https://simeon.staneks.de/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;buymeacoffee.com&#x2F;simeonlukas" class="social buy me a coffee">
+                <img alt=buy me a coffee src=https://simeon.staneks.de/social_icons/bmc-logo.svg>
+            </a>
+            
+            <a rel="me" href="&#x2F;rss.xml" class="social rss">
+                <img alt=rss src=https://simeon.staneks.de/social_icons/rss.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a class="navigation_lang &#x2F;posts" href=&#x2F;posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a class="navigation_lang &#x2F;pages" href=&#x2F;pages style="margin-left: 0.5em">&#x2F;pages</a>
+        
+        <a class="navigation_lang &#x2F;about" href=&#x2F;pages&#x2F;about style="margin-left: 0.5em">&#x2F;about</a>
+        
+        <a class="navigation_lang &#x2F;tags" href=&#x2F;tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://simeon.staneks.de/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+        <a id="language-toggle" onclick="toggleLanguage(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/globe.svg alt="Change Language" /><span style="font-size: xx-small;" id="language-name">de</span>
+        </a>
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <h1 class="page-header">
+        Wie man mit drei Ingredienzien ein magisches Smart Home Dashboard braut<span class="primary-color" style="font-size: 1.6em">.</span>
+    </h1>
+
+        </div>
+        Yarr! In diesem Artikel zeige ich, wie ich mit HTML, CSS und JavaScript - quasi den drei Zutaten eines mächtigen Voodoo-Zaubers - ein interaktives Smart Home Dashboard erschaffen habe. Eine Geschichte über Point-and-Click Magie und moderne Technologie.
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick/#wie-man-mit-drei-ingredienzien-ein-magisches-smart-home-dashboard-braut">Wie man mit drei Ingredienzien ein magisches Smart Home Dashboard braut</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick/#das-konzept-ein-interface-das-selbst-lechuck-beeindrucken-wurde">Das Konzept: Ein Interface, das selbst LeChuck beeindrucken würde</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick/#die-technische-umsetzung">Die technische Umsetzung</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick/#die-raume-meine-personliche-scumm-bar">Die Räume - Meine persönliche SCUMM-Bar</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick/#die-steuerung-ein-mini-point-and-click-adventure">Die Steuerung: Ein Mini-Point-and-Click-Adventure</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick/#besonderheiten-der-implementierung">Besonderheiten der Implementierung</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick/#performante-datenhaltung">Performante Datenhaltung</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick/#bildoptimierung">Bildoptimierung</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick/#struktur-und-beispiele">Struktur und Beispiele</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick/#struktur">Struktur</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick/#beispiele">Beispiele</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/home-dashboard-pixelart-pointandclick/#fazit-und-ausblick-das-ende-dieser-entwickler-geschichte">Fazit und Ausblick - Das Ende dieser Entwickler-Geschichte</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h1 id="wie-man-mit-drei-ingredienzien-ein-magisches-smart-home-dashboard-braut"><a class="zola-anchor" href="#wie-man-mit-drei-ingredienzien-ein-magisches-smart-home-dashboard-braut" aria-label="Anchor link for: wie-man-mit-drei-ingredienzien-ein-magisches-smart-home-dashboard-braut">Wie man mit drei Ingredienzien ein magisches Smart Home Dashboard braut</a></h1>
+<p><em>oder: "Mein Name ist Simeon Stanek und ich will Pirat ähhhh. Programmierer werden!"</em>
+Als technikbegeisterter Mensch mit einem Smart Home System stand ich vor einem Rätsel, das selbst der mächtige Voodoo-Priester von Mêlée Island™ nicht hätte lösen können: Wie steuert man ein modernes Zuhause, ohne sich in einem Labyrinth aus Apps zu verlieren? Die Antwort war so einfach wie das Mischen eines Grog: Ich würde mein eigenes Dashboard entwickeln - mit den drei magischen Zutaten des Webs: HTML, CSS und JavaScript.</p>
+<h2 id="das-konzept-ein-interface-das-selbst-lechuck-beeindrucken-wurde"><a class="zola-anchor" href="#das-konzept-ein-interface-das-selbst-lechuck-beeindrucken-wurde" aria-label="Anchor link for: das-konzept-ein-interface-das-selbst-lechuck-beeindrucken-wurde">Das Konzept: Ein Interface, das selbst LeChuck beeindrucken würde</a></h2>
+<p>Das Dashboard sollte vor allem eines sein: funktional. Ich brauchte eine Übersicht über verschiedene Räume und die Möglichkeit, Lichter und andere Geräte zu steuern. Die Benutzeroberfläche sollte intuitiv sein und sich an meine Gewohnheiten anpassen.</p>
+<h3 id="die-technische-umsetzung"><a class="zola-anchor" href="#die-technische-umsetzung" aria-label="Anchor link for: die-technische-umsetzung">Die technische Umsetzung</a></h3>
+<p>Das Projekt basiert auf drei Hauptkomponenten:</p>
+<ol>
+<li><strong>HTML</strong> für die Struktur</li>
+<li><strong>CSS</strong> für das Design</li>
+<li><strong>JavaScript</strong> für die Interaktivität</li>
+</ol>
+<p>Die Daten werden in einer JSON-Datei gespeichert, die als eine Art einfache Datenbank fungiert. Dies ermöglicht es mir, Änderungen an der Konfiguration vorzunehmen, ohne den Code anzufassen.</p>
+<h3 id="die-raume-meine-personliche-scumm-bar"><a class="zola-anchor" href="#die-raume-meine-personliche-scumm-bar" aria-label="Anchor link for: die-raume-meine-personliche-scumm-bar">Die Räume - Meine persönliche SCUMM-Bar</a></h3>
+<p>Das Dashboard zeigt verschiedene Räume meines Zuhauses - quasi wie eine moderne Version der SCUMM-Bar, nur dass hier statt Grog verschiedene Smart-Home-Getränke ausgeschenkt werden:</p>
+<ul>
+<li>Wohnzimmer (hier gibt's definitiv besseres Licht als in der Taverne)</li>
+<li>Schlafzimmer (perfekt für einen Powernap zwischen den Abenteuern)</li>
+<li>Diele (der erste Eindruck zählt, auch ohne sprechenden Totenkopf)</li>
+<li>Esszimmer (hier schmeckt sogar das Root Beer™)</li>
+<li>Küche (für die unvergleichliche Hintergrundmusik beim Kochen)</li>
+<li>
+<ol>
+<li>Stock (wo die geheimen Schätze lagern)</li>
+</ol>
+</li>
+<li>Fernseherzimmer (für die epischen Filmabende)</li>
+</ul>
+<p>Jeder Raum wird durch ein eigenes Bild repräsentiert und zeigt den aktuellen Status der Geräte an - ganz ohne Voodoo-Zauber oder sprechende Schädel. Die Bilder habe ich so gewählt, dass sie den jeweiligen Raum gut repräsentieren und gleichzeitig eine atmosphärische Stimmung schaffen.</p>
+<h3 id="die-steuerung-ein-mini-point-and-click-adventure"><a class="zola-anchor" href="#die-steuerung-ein-mini-point-and-click-adventure" aria-label="Anchor link for: die-steuerung-ein-mini-point-and-click-adventure">Die Steuerung: Ein Mini-Point-and-Click-Adventure</a></h3>
+<p>Als großer Fan von Point-and-Click-Adventurespielen wollte ich etwas von diesem spielerischen Charme in mein Dashboard bringen. Statt gewöhnlicher Buttons habe ich mich für eine HTML Image Map entschieden - eine Technik, die viele vielleicht noch aus den klassischen Adventure-Spielen kennen. Man klickt einfach direkt auf die Objekte im Raum, die man steuern möchte, ganz wie bei einem Adventure-Spiel.</p>
+<p>Für jedes Gerät gibt es klickbare Bereiche im Raumbild:</p>
+<ul>
+<li>Hauptbeleuchtung - ein Klick auf die Deckenlampe</li>
+<li>Ambientebeleuchtung (wie die Stehlampe im Wohnzimmer) - direkt auf die Lampe klicken</li>
+<li>Andere Geräte (wie Musik in der Küche) - einfach das entsprechende Gerät anklicken</li>
+</ul>
+<p>Die Statusänderungen werden sofort visuell dargestellt, sodass man auf einen Blick sehen kann, welche Geräte eingeschaltet sind - fast wie wenn man in einem Adventure-Spiel ein Rätsel gelöst hat und sich die Umgebung verändert. Diese spielerische Interaktion macht die Steuerung nicht nur funktional, sondern auch unterhaltsam.</p>
+<h2 id="besonderheiten-der-implementierung"><a class="zola-anchor" href="#besonderheiten-der-implementierung" aria-label="Anchor link for: besonderheiten-der-implementierung">Besonderheiten der Implementierung</a></h2>
+<h3 id="performante-datenhaltung"><a class="zola-anchor" href="#performante-datenhaltung" aria-label="Anchor link for: performante-datenhaltung">Performante Datenhaltung</a></h3>
+<p>Die Daten werden in einer JSON-Datei gespeichert:</p>
+<ul>
+<li><code>data.json</code></li>
+</ul>
+<pre data-lang="json" style="background-color:#fafafa;color:#61676c;" class="language-json "><code class="language-json" data-lang="json"><span>[
+</span><span>{
+</span><span>        </span><span style="color:#86b300;">&quot;name&quot;</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;wohnzimmer&quot;</span><span style="color:#61676ccc;">,
+</span><span>        </span><span style="color:#86b300;">&quot;items&quot;</span><span style="color:#61676ccc;">: </span><span>[
+</span><span>            {
+</span><span>                </span><span style="color:#86b300;">&quot;name&quot;</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;Licht Wohnzimmer&quot;</span><span style="color:#61676ccc;">,
+</span><span>                </span><span style="color:#86b300;">&quot;coords&quot;</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;972,194,120&quot;</span><span style="color:#61676ccc;">,
+</span><span>                </span><span style="color:#86b300;">&quot;shape&quot;</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;circle&quot;</span><span style="color:#61676ccc;">,
+</span><span>                </span><span style="color:#86b300;">&quot;ip&quot;</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;192.168.178.***&quot;</span><span style="color:#61676ccc;">,
+</span><span>                </span><span style="color:#86b300;">&quot;device&quot;</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;shelly&quot;</span><span style="color:#61676ccc;">,
+</span><span>                </span><span style="color:#86b300;">&quot;onclick&quot;</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;shelly(&#39;192.168.178.***&#39;, &#39;light&#39;, &#39;toggle&#39;)&quot;
+</span><span>            }</span><span style="color:#61676ccc;">,
+</span><span>            {
+</span><span>                </span><span style="color:#86b300;">&quot;name&quot;</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;Stehlampe Wohnzimmer&quot;</span><span style="color:#61676ccc;">,
+</span><span>                </span><span style="color:#86b300;">&quot;coords&quot;</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;1395,797,1467,489&quot;</span><span style="color:#61676ccc;">,
+</span><span>                </span><span style="color:#86b300;">&quot;shape&quot;</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;rect&quot;</span><span style="color:#61676ccc;">,
+</span><span>                </span><span style="color:#86b300;">&quot;ip&quot;</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;192.168.178.***&quot;</span><span style="color:#61676ccc;">,
+</span><span>                </span><span style="color:#86b300;">&quot;device&quot;</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;shelly&quot;</span><span style="color:#61676ccc;">,
+</span><span>                </span><span style="color:#86b300;">&quot;onclick&quot;</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;shelly(&#39;192.168.178.***&#39;, &#39;relay&#39;, &#39;toggle&#39;)&quot;
+</span><span>            }
+</span><span>        ]
+</span><span>    }</span><span style="color:#61676ccc;">,
+</span><span>    </span><span style="color:#f51818;">...
+</span><span>]
+</span></code></pre>
+<h3 id="bildoptimierung"><a class="zola-anchor" href="#bildoptimierung" aria-label="Anchor link for: bildoptimierung">Bildoptimierung</a></h3>
+<p>Die Bilder wurden sorgfältig ausgewählt und optimiert, um schnelle Ladezeiten zu gewährleisten. Für Status-Änderungen werden kleine, effiziente PNG-Dateien oder für Animationen GIF-Dateien verwendet.</p>
+<p>By the way: Die Bilder wurden alle mit ChatGPT generiert. Ich habe einfach Fotos von meinen Räumen gemacht und diese dann als Anhang zum Prompt "Verwandle das in ein Pixelart-Image wie bei einem Point-and-Click-Adventure" hinzugefügt. Die Ergebnisse sind überraschend gut geworden!</p>
+<h2 id="struktur-und-beispiele"><a class="zola-anchor" href="#struktur-und-beispiele" aria-label="Anchor link for: struktur-und-beispiele">Struktur und Beispiele</a></h2>
+<h3 id="struktur"><a class="zola-anchor" href="#struktur" aria-label="Anchor link for: struktur">Struktur</a></h3>
+<p>Das Projekt folgt einer klaren Ordnerstruktur:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>/
+</span><span>├── css/
+</span><span>│   ├── style.css
+</span><span>│   └── style.min.css
+</span><span>├── js/
+</span><span>│   ├── script.js
+</span><span>│   └── script.min.js
+</span><span>├── images/
+</span><span>│   └── [verschiedene Bilder für Räume und Status]
+</span><span>├── data.json
+</span><span>└── index.html
+</span></code></pre>
+<h3 id="beispiele"><a class="zola-anchor" href="#beispiele" aria-label="Anchor link for: beispiele">Beispiele</a></h3>
+<video controls style="max-width: 100%; height: auto;">
+  <source src="images/clip.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<h2 id="fazit-und-ausblick-das-ende-dieser-entwickler-geschichte"><a class="zola-anchor" href="#fazit-und-ausblick-das-ende-dieser-entwickler-geschichte" aria-label="Anchor link for: fazit-und-ausblick-das-ende-dieser-entwickler-geschichte">Fazit und Ausblick - Das Ende dieser Entwickler-Geschichte</a></h2>
+<p>Das Dashboard erfüllt seinen Zweck perfekter als ein Gummihühnchen mit Rolle: Es bietet eine einfache, schnelle und zuverlässige Möglichkeit, mein Smart Home zu steuern. Die Verwendung von Webtechnologien macht es so flexibel.</p>
+<p>Für die Zukunft plane ich einige Erweiterungen (oder wie Murray sagen würde: "Mächtige Pläne!"):</p>
+<ul>
+<li>Integration weiterer Smart Home Geräte (vielleicht sogar ein Root Beer™ Dispenser?)</li>
+<li>Automatisierungsregeln direkt im Dashboard (komplizierter als das Rezept für Monkey Island™ Grog)</li>
+<li>Statistiken zur Nutzung</li>
+<li>Energieverbrauchsüberwachung</li>
+</ul>
+<p>Das Projekt zeigt, dass man auch mit einfachen Mitteln eine effektive Lösung schaffen kann - ganz ohne einen sprechenden Totenkopf. Manchmal braucht man eben nur drei Zutaten und den Mut eines Möchtegern-Piraten, um etwas Großartiges zu erschaffen.</p>
+<p><em>Wie würde Guybrush Threepwood sagen? "Das ist das zweitbeste Dashboard, das ich je gesehen habe!" - "Das zweitbeste? Was ist denn das beste?" - "Oh, das habe ich noch nicht gefunden, aber bei einem so großen Ozean muss es da draußen noch ein besseres geben!"</em></p>
+
+        </section>
+    </article>
+    <hr>
+    <br>
+    <div class="meta">
+        
+            <span class="date-label-posted">:: Posted on </span><time>2025-08-26</time>
+        
+
+        
+
+        
+
+        
+        
+                <span class="tags-label"> :: Tags:</span>
+                <span class="tags">
+                        <a href="https://simeon.staneks.de/tags/programming/" class="post-tag">programming</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/javascript/" class="post-tag">javascript</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/html/" class="post-tag">html</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/css/" class="post-tag">css</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/smarthome/" class="post-tag">smarthome</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/dashboard/" class="post-tag">dashboard</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/tutorial/" class="post-tag">tutorial</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/point-and-click/" class="post-tag">point-and-click</a>
+                    
+                </span>
+        
+
+        
+       
+                
+     
+
+            
+                
+                :: <a href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;Blog&#x2F;tree&#x2F;main&#x2F;content&#x2F;posts&#x2F;home-dashboard-pixelart-pointandclick&#x2F;index.md" target="_blank" rel="noopener noreferrer"> Source Code</a>
+            
+
+        
+
+    </div>
+
+    
+    
+        
+    
+
+    
+        
+        
+        
+        
+            
+        
+            
+        
+            
+                
+            
+        
+
+        
+        
+
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
+            
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;home-dashboard-pixelart-pointandclick&#x2F;video&#x2F;home-dashboard-pixelart-pointandclick-de.mp4" onerror="this.parentElement.parentElement.style.display='none';" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+        </div>
+    
+</main>
+
+
+
+        
+            
+        
+
+        
+        <br>
+        <hr>
+        <div class="giscus" >
+        <script src="https://giscus.app/client.js"
+        data-repo="SimeonLukas/Blog"
+        data-repo-id="R_kgDONSw5PA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONSw5PM4CkoL8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https:&#x2F;&#x2F;simeon.staneks.de/css/giscus.css"
+        data-lang="de"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+        
+
+    </div>
+</body>
+
+</html>

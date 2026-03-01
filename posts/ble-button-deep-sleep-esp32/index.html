@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="de">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         BLE-Button mit Deep Sleep: Wenn ein ESP32-S3 zum Foto-Auslöser wird
+        
+    </title>
+
+    
+    
+    <meta name="description" content="Ein stromsparender Bluetooth-Button für das Tourismus-Glücksrad - mit Deep Sleep, Bonding und monatelanger Batterielebensdauer. Von Fehlschlägen, Debugging-S..." />
+    
+    
+
+    
+    <meta property="og:image" content="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32//images/de/preview.jpg" />
+    <meta property="og:logo" content="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32//imagesde/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/images/de/preview.jpg">
+    
+
+    
+    <meta property="og:title" content="BLE-Button mit Deep Sleep: Wenn ein ESP32-S3 zum Foto-Auslöser wird" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="BLE-Button mit Deep Sleep: Wenn ein ESP32-S3 zum Foto-Auslöser wird">
+    
+    
+
+    
+    
+    <meta property="og:description" content="Ein stromsparender Bluetooth-Button für das Tourismus-Glücksrad - mit Deep Sleep, Bonding und monatelanger Batterielebensdauer. Von Fehlschlägen, Debugging-S..."/>
+    <!-- twitter description -->
+    <meta name="twitter:description" content="Ein stromsparender Bluetooth-Button für das Tourismus-Glücksrad - mit Deep Sleep, Bonding und monatelanger Batterielebensdauer. Von Fehlschlägen, Debugging-S...">
+    
+    
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;simeon.staneks.de"/>
+    <meta property="og:type" content="article" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Simeon&#x27;s Blog" />
+
+
+    
+    
+    <link rel="icon" type="image/png" href=https:&#x2F;&#x2F;simeon.staneks.de&#x2F;android-chrome-512x512.png />
+    
+
+    
+    
+    <link href=https://simeon.staneks.de/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/codeblock.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/toc.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/note.js></script>
+    
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Simeon&#x27;s Blog" href="https://simeon.staneks.de/ atom.xml">
+
+
+    
+    
+    <link rel="stylesheet" type="text/css" href=https://simeon.staneks.de/theme/light.css />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://simeon.staneks.de/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://simeon.staneks.de/js/themetoggle.js></script>
+    
+    <script>setTheme(getSavedTheme());</script>
+    
+    <script src=https://simeon.staneks.de/js/index.js></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://simeon.staneks.de/main.css />
+
+    
+</head>
+
+<body onload="updatelanguage()">
+    <div class="content">
+        <header>
+    <div class="main">
+        <div> <a id="navigation_start" href=https:&#x2F;&#x2F;simeon.staneks.de>Simeon&#x27;s Blog </a> 
+            <p style="font-size: xx-small;">lieber unperfekt starten als perfekt warten</p> 
+        </div>
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl" class="social mastodon">
+                <img alt=mastodon src=https://simeon.staneks.de/social_icons/mastodon.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;" class="social instagram">
+                <img alt=instagram src=https://simeon.staneks.de/social_icons/instagram.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas" class="social github">
+                <img alt=github src=https://simeon.staneks.de/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;buymeacoffee.com&#x2F;simeonlukas" class="social buy me a coffee">
+                <img alt=buy me a coffee src=https://simeon.staneks.de/social_icons/bmc-logo.svg>
+            </a>
+            
+            <a rel="me" href="&#x2F;rss.xml" class="social rss">
+                <img alt=rss src=https://simeon.staneks.de/social_icons/rss.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a class="navigation_lang &#x2F;posts" href=&#x2F;posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a class="navigation_lang &#x2F;pages" href=&#x2F;pages style="margin-left: 0.5em">&#x2F;pages</a>
+        
+        <a class="navigation_lang &#x2F;about" href=&#x2F;pages&#x2F;about style="margin-left: 0.5em">&#x2F;about</a>
+        
+        <a class="navigation_lang &#x2F;tags" href=&#x2F;tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://simeon.staneks.de/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+        <a id="language-toggle" onclick="toggleLanguage(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/globe.svg alt="Change Language" /><span style="font-size: xx-small;" id="language-name">de</span>
+        </a>
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <h1 class="page-header">
+        BLE-Button mit Deep Sleep: Wenn ein ESP32-S3 zum Foto-Auslöser wird<span class="primary-color" style="font-size: 1.6em">.</span>
+    </h1>
+
+        </div>
+        Ein stromsparender Bluetooth-Button für das Tourismus-Glücksrad - mit Deep Sleep, Bonding und monatelanger Batterielebensdauer. Von Fehlschlägen, Debugging-Sessions und dem finalen Durchbruch.
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#die-ausgangslage-ein-glucksrad-braucht-einen-button">Die Ausgangslage: Ein Glücksrad braucht einen Button</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#das-konzept-drei-anforderungen">Das Konzept: Drei Anforderungen</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#hardware-keep-it-simple">Hardware - Keep it simple!</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#die-herausforderungen-ein-steiniger-weg-zum-erfolg">Die Herausforderungen: Ein steiniger Weg zum Erfolg</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#problem-1-esp-ging-nicht-in-deep-sleep">Problem #1: ESP ging nicht in Deep Sleep</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#problem-2-esp-wachte-sofort-wieder-auf">Problem #2: ESP wachte sofort wieder auf</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#problem-3-rtc-gpio-konfiguration">Problem #3: RTC GPIO Konfiguration</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#problem-4-2-wurde-nicht-gesendet">Problem #4: &quot;2&quot; wurde nicht gesendet</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#problem-5-verbindung-brach-standig-ab">Problem #5: Verbindung brach ständig ab</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#der-code-kompakt-und-durchdacht">Der Code: Kompakt und durchdacht</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#wie-es-funktioniert-der-ablauf">Wie es funktioniert: Der Ablauf</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#stromversorgung-mit-cr123a-batterie">Stromversorgung mit CR123A Batterie</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#warum-cr123a">Warum CR123A?</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#anschluss">Anschluss</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#stromverbrauch-die-zahlen">Stromverbrauch: Die Zahlen</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#die-wichtigsten-erkenntnisse">Die wichtigsten Erkenntnisse</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#1-esp32-s3-ist-anders">1. ESP32-S3 ist anders</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#2-deep-sleep-ist-pingelig">2. Deep Sleep ist pingelig</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#3-ble-braucht-zeit">3. BLE braucht Zeit</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#4-bonding-ist-gold-wert">4. Bonding ist Gold wert</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#5-feste-mac-happy-life">5. Feste MAC = Happy Life</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#warum-du-es-selbst-ausprobieren-solltest">Warum du es selbst ausprobieren solltest</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#einsatz-beim-glucksrad">Einsatz beim Glücksrad</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#ausblick-was-noch-moglich-ware">Ausblick: Was noch möglich wäre</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#los-geht-s">Los geht&#x27;s!</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#einkaufsliste-alles-was-du-brauchst">Einkaufsliste - Alles was du brauchst</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#hauptkomponenten">Hauptkomponenten</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#stromversorgung">Stromversorgung</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#optional-aber-nutzlich">Optional aber nützlich</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/ble-button-deep-sleep-esp32/#geschatzte-gesamtkosten">Geschätzte Gesamtkosten</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h2 id="die-ausgangslage-ein-glucksrad-braucht-einen-button"><a class="zola-anchor" href="#die-ausgangslage-ein-glucksrad-braucht-einen-button" aria-label="Anchor link for: die-ausgangslage-ein-glucksrad-braucht-einen-button">Die Ausgangslage: Ein Glücksrad braucht einen Button</a></h2>
+<p>Vor einiger Zeit habe ich für die Tourismuspastoral ein <a href="https://simeon.staneks.de/posts/20241120/">digitales Glücksrad</a> entwickelt. Bei Veranstaltungen drücken die Leute einen roten Button, der per USB verbunden ist, damit sich das Rad dreht. Und wenn sie auf dem richtigen Feld landen, soll ein Foto gemacht werden - für die Erinnerung, fürs Gästebuch, für Instagram. Doch nicht jedes Feld löst ein Foto aus. Deshalb brauchte ich eine einfache Möglichkeit, den Foto-Auslöser zu betätigen.</p>
+<p>Die Idee: Ein kabelloser Button, den die Besucher drücken können, um das Foto auszulösen. Simpel, oder?</p>
+<p><strong>Spoiler</strong>: War es nicht. Aber am Ende läuft's - und wie! 🎉</p>
+<h2 id="das-konzept-drei-anforderungen"><a class="zola-anchor" href="#das-konzept-drei-anforderungen" aria-label="Anchor link for: das-konzept-drei-anforderungen">Das Konzept: Drei Anforderungen</a></h2>
+<p>Ich hatte klare Vorstellungen, was der Button können sollte:</p>
+<ol>
+<li><strong>Batteriebetrieben</strong>: Keine Kabel bei Veranstaltungen, bitte!</li>
+<li><strong>Zuverlässig</strong>: Beim Drücken soll die Taste "2" gesendet werden (die löst in meinem Setup die Fotofunktion aus)</li>
+<li><strong>Lange Laufzeit</strong>: Ich will nicht ständig Batterien wechseln</li>
+</ol>
+<p>Die Lösung: Ein <strong>ESP32-S3</strong> mit <strong>BLE</strong> (Bluetooth Low Energy), der sich als Tastatur ausgibt und im <strong>Deep Sleep</strong> auf Button-Drücke wartet.</p>
+<h2 id="hardware-keep-it-simple"><a class="zola-anchor" href="#hardware-keep-it-simple" aria-label="Anchor link for: hardware-keep-it-simple">Hardware - Keep it simple!</a></h2>
+<p>Für dieses Projekt brauchst du wirklich nicht viel:</p>
+<ul>
+<li>ESP32-S3 Dev Module (~5-10 Euro)</li>
+<li>Ein Taster/Button (z.B. 100mm Arcade-Button)</li>
+<li>CR123A Batterie + Batteriehalter (siehe Einkaufsliste unten)</li>
+<li>Optional: Ein Gehäuse (3D-Druck, Projektbox, Aschenbecher vom Tedi, etc.)</li>
+</ul>
+<p><strong>Das Setup:</strong></p>
+<ul>
+<li>Button an GPIO5 und GND</li>
+<li>Interne Pullup-Widerstände nutzen (keine externe Elektronik nötig!)</li>
+<li>Bei Button-Druck: Pin wird LOW → ESP wacht auf</li>
+</ul>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>┌─────────────┐
+</span><span>│   ESP32-S3  │
+</span><span>│             │
+</span><span>│  GPIO5 ◄────┼──── Button ──── GND
+</span><span>│             │
+</span><span>│  (Pullup    │
+</span><span>│   intern)   │
+</span><span>└─────────────┘
+</span></code></pre>
+<h2 id="die-herausforderungen-ein-steiniger-weg-zum-erfolg"><a class="zola-anchor" href="#die-herausforderungen-ein-steiniger-weg-zum-erfolg" aria-label="Anchor link for: die-herausforderungen-ein-steiniger-weg-zum-erfolg">Die Herausforderungen: Ein steiniger Weg zum Erfolg</a></h2>
+<h3 id="problem-1-esp-ging-nicht-in-deep-sleep"><a class="zola-anchor" href="#problem-1-esp-ging-nicht-in-deep-sleep" aria-label="Anchor link for: problem-1-esp-ging-nicht-in-deep-sleep">Problem #1: ESP ging nicht in Deep Sleep</a></h3>
+<p><strong>Symptom</strong>: Der ESP wollte einfach nicht schlafen. Stromverbrauch blieb hoch, Battery Monitor zeigte 80-120mA statt der erwarteten ~10µA.</p>
+<p><strong>Diagnose</strong>: Beim ESP32-S3 verhindert die aktive USB-Serial-Verbindung den Deep Sleep! Außerdem war BLE noch nicht vollständig deaktiviert.</p>
+<p><strong>Lösung</strong>:</p>
+<pre data-lang="cpp" style="background-color:#fafafa;color:#61676c;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span>Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">end</span><span>()</span><span style="color:#61676ccc;">;        </span><span style="font-style:italic;color:#abb0b6;">// Serial beenden
+</span><span>USBSerial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">end</span><span>()</span><span style="color:#61676ccc;">;     </span><span style="font-style:italic;color:#abb0b6;">// ESP32-S3 spezifisch!
+</span><span style="color:#f29718;">btStop</span><span>()</span><span style="color:#61676ccc;">;            </span><span style="font-style:italic;color:#abb0b6;">// Bluetooth komplett stoppen
+</span><span style="color:#f29718;">esp_deep_sleep_start</span><span>()</span><span style="color:#61676ccc;">;
+</span></code></pre>
+<h3 id="problem-2-esp-wachte-sofort-wieder-auf"><a class="zola-anchor" href="#problem-2-esp-wachte-sofort-wieder-auf" aria-label="Anchor link for: problem-2-esp-wachte-sofort-wieder-auf">Problem #2: ESP wachte sofort wieder auf</a></h3>
+<p>Das war frustrierend: Der ESP ging schlafen... und 300ms später war er wieder wach. Endlos-Schleife!</p>
+<p><strong>Ursache</strong>: Der Button-Pin war beim Einschlafen noch LOW (gedrückt). Der ext0-Wakeup triggerte sofort, weil die Bedingung "wache auf bei LOW" schon erfüllt war.</p>
+<p><strong>Lösung</strong>: Warten bis der Button losgelassen wird!</p>
+<pre data-lang="cpp" style="background-color:#fafafa;color:#61676c;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#fa6e32;">while</span><span>(</span><span style="color:#f29718;">digitalRead</span><span>(buttonPin) </span><span style="color:#ed9366;">==</span><span> LOW) {
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;Button gedrückt - warte...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">100</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>}
+</span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">500</span><span>)</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// Sicherheitspuffer
+</span></code></pre>
+<h3 id="problem-3-rtc-gpio-konfiguration"><a class="zola-anchor" href="#problem-3-rtc-gpio-konfiguration" aria-label="Anchor link for: problem-3-rtc-gpio-konfiguration">Problem #3: RTC GPIO Konfiguration</a></h3>
+<p>Der ESP32-S3 hat eine Besonderheit: Für ext0-Wakeup muss man die <strong>RTC GPIO</strong> explizit konfigurieren. Ohne das funktioniert der Wakeup nicht zuverlässig.</p>
+<pre data-lang="cpp" style="background-color:#fafafa;color:#61676c;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#f29718;">rtc_gpio_init</span><span>((gpio_num_t)buttonPin)</span><span style="color:#61676ccc;">;
+</span><span style="color:#f29718;">rtc_gpio_set_direction</span><span>((gpio_num_t)buttonPin</span><span style="color:#61676ccc;">,</span><span> RTC_GPIO_MODE_INPUT_ONLY)</span><span style="color:#61676ccc;">;
+</span><span style="color:#f29718;">rtc_gpio_pullup_en</span><span>((gpio_num_t)buttonPin)</span><span style="color:#61676ccc;">;
+</span><span style="color:#f29718;">rtc_gpio_hold_en</span><span>((gpio_num_t)buttonPin)</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// Config im Sleep halten!
+</span></code></pre>
+<p>Das <code>rtc_gpio_hold_en()</code> ist crucial - es sorgt dafür, dass die Pin-Konfiguration im Deep Sleep erhalten bleibt.</p>
+<h3 id="problem-4-2-wurde-nicht-gesendet"><a class="zola-anchor" href="#problem-4-2-wurde-nicht-gesendet" aria-label="Anchor link for: problem-4-2-wurde-nicht-gesendet">Problem #4: "2" wurde nicht gesendet</a></h3>
+<p>Der ESP wachte auf, BLE startete... aber keine Taste wurde gesendet. Dann kam der Timeout und er ging wieder schlafen.</p>
+<p><strong>Ursache</strong>: BLE braucht 5-10 Sekunden zum Verbinden! Der ursprüngliche 10-Sekunden-Timer lief aber schon beim Aufwachen los.</p>
+<p><strong>Lösung</strong>: Timer wird <strong>nach</strong> erfolgreichem Senden zurückgesetzt:</p>
+<pre data-lang="cpp" style="background-color:#fafafa;color:#61676c;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#fa6e32;">if</span><span>(bleKeyboard</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">isConnected</span><span>()) {
+</span><span>  bleKeyboard</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;2&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  startTime </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">millis</span><span>()</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// JETZT Timer neu starten!
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;Timer neu gestartet - 10 Sekunden wach&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>}
+</span></code></pre>
+<h3 id="problem-5-verbindung-brach-standig-ab"><a class="zola-anchor" href="#problem-5-verbindung-brach-standig-ab" aria-label="Anchor link for: problem-5-verbindung-brach-standig-ab">Problem #5: Verbindung brach ständig ab</a></h3>
+<p>Nach jedem Deep Sleep musste das Gerät neu gepairt werden. Nervig!</p>
+<p><strong>Ursache</strong>: Keine Bonding-Informationen wurden gespeichert. Der Computer sah nach jedem Aufwachen ein "neues" Gerät.</p>
+<p><strong>Lösung</strong>: BLE Security mit Bonding aktivieren:</p>
+<pre data-lang="cpp" style="background-color:#fafafa;color:#61676c;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span>esp_ble_auth_req_t auth_req </span><span style="color:#ed9366;">=</span><span> ESP_LE_AUTH_REQ_SC_MITM_BOND</span><span style="color:#61676ccc;">;
+</span><span style="color:#f29718;">esp_ble_gap_set_security_param</span><span>(ESP_BLE_SM_AUTHEN_REQ_MODE</span><span style="color:#61676ccc;">, </span><span style="color:#ed9366;">&amp;</span><span>auth_req</span><span style="color:#61676ccc;">, </span><span style="color:#fa6e32;">sizeof</span><span>(</span><span style="font-style:italic;color:#55b4d4;">uint8_t</span><span>))</span><span style="color:#61676ccc;">;
+</span><span style="font-style:italic;color:#abb0b6;">// ... weitere Security-Parameter
+</span></code></pre>
+<p>Und eine <strong>feste MAC-Adresse</strong> im Flash speichern:</p>
+<pre data-lang="cpp" style="background-color:#fafafa;color:#61676c;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#fa6e32;">void </span><span style="color:#f29718;">setCustomMacAddress</span><span>() {
+</span><span>  preferences</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">begin</span><span>(</span><span style="color:#86b300;">&quot;ble-button&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">false</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#fa6e32;">if </span><span>(</span><span style="color:#ed9366;">!</span><span>preferences</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">getBool</span><span>(</span><span style="color:#86b300;">&quot;mac_set&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">false</span><span>)) {
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Beim ersten Start: Zufällige MAC generieren
+</span><span>    </span><span style="font-style:italic;color:#55b4d4;">uint8_t</span><span> newMac[</span><span style="color:#ff8f40;">6</span><span>]</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#f29718;">esp_fill_random</span><span>(newMac</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">6</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    newMac[</span><span style="color:#ff8f40;">0</span><span>] </span><span style="color:#ed9366;">= </span><span>(newMac[</span><span style="color:#ff8f40;">0</span><span>] </span><span style="color:#ed9366;">&amp; </span><span style="color:#ff8f40;">0xFE</span><span>) </span><span style="color:#ed9366;">| </span><span style="color:#ff8f40;">0x02</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// Locally administered
+</span><span>    preferences</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">putBytes</span><span>(</span><span style="color:#86b300;">&quot;mac_addr&quot;</span><span style="color:#61676ccc;">,</span><span> newMac</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">6</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    preferences</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">putBool</span><span>(</span><span style="color:#86b300;">&quot;mac_set&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">true</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#55b4d4;">uint8_t</span><span> customMac[</span><span style="color:#ff8f40;">6</span><span>]</span><span style="color:#61676ccc;">;
+</span><span>  preferences</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">getBytes</span><span>(</span><span style="color:#86b300;">&quot;mac_addr&quot;</span><span style="color:#61676ccc;">,</span><span> customMac</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">6</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">esp_base_mac_addr_set</span><span>(customMac)</span><span style="color:#61676ccc;">;
+</span><span>}
+</span></code></pre>
+<h2 id="der-code-kompakt-und-durchdacht"><a class="zola-anchor" href="#der-code-kompakt-und-durchdacht" aria-label="Anchor link for: der-code-kompakt-und-durchdacht">Der Code: Kompakt und durchdacht</a></h2>
+<p>Hier ist der finale, funktionierende Code:</p>
+<pre data-lang="cpp" style="background-color:#fafafa;color:#61676c;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#fa6e32;">#include </span><span style="color:#86b300;">&lt;BleKeyboard.h&gt;
+</span><span style="color:#fa6e32;">#include </span><span style="color:#86b300;">&lt;Preferences.h&gt;
+</span><span style="color:#fa6e32;">#include </span><span style="color:#86b300;">&quot;driver/rtc_io.h&quot;
+</span><span style="color:#fa6e32;">#include </span><span style="color:#86b300;">&quot;esp_bt_device.h&quot;
+</span><span style="color:#fa6e32;">#include </span><span style="color:#86b300;">&quot;esp_gap_ble_api.h&quot;
+</span><span>
+</span><span>BleKeyboard </span><span style="color:#f29718;">bleKeyboard</span><span>(</span><span style="color:#86b300;">&quot;Blauer Button&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;Espressif&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">100</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>Preferences preferences</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span style="color:#fa6e32;">const int</span><span> buttonPin </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">5</span><span style="color:#61676ccc;">;
+</span><span style="color:#fa6e32;">const unsigned long</span><span> awakeTime </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">10000</span><span style="color:#61676ccc;">;      </span><span style="font-style:italic;color:#abb0b6;">// 10 Sekunden wach
+</span><span style="color:#fa6e32;">const unsigned long</span><span> bleTimeout </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">15000</span><span style="color:#61676ccc;">;     </span><span style="font-style:italic;color:#abb0b6;">// 15 Sekunden für BLE
+</span><span style="color:#fa6e32;">bool</span><span> lastButtonState </span><span style="color:#ed9366;">=</span><span> HIGH</span><span style="color:#61676ccc;">;
+</span><span style="color:#fa6e32;">unsigned long</span><span> startTime</span><span style="color:#61676ccc;">;
+</span><span style="color:#fa6e32;">bool</span><span> alreadySentOnWake </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">false</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">setCustomMacAddress</span><span>() {
+</span><span>  preferences</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">begin</span><span>(</span><span style="color:#86b300;">&quot;ble-button&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">false</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#fa6e32;">bool</span><span> macExists </span><span style="color:#ed9366;">=</span><span> preferences</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">getBool</span><span>(</span><span style="color:#86b300;">&quot;mac_set&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">false</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#fa6e32;">if </span><span>(</span><span style="color:#ed9366;">!</span><span>macExists) {
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&gt;&gt;&gt; Erster Start - generiere neue MAC...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="font-style:italic;color:#55b4d4;">uint8_t</span><span> newMac[</span><span style="color:#ff8f40;">6</span><span>]</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#f29718;">esp_fill_random</span><span>(newMac</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">6</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    newMac[</span><span style="color:#ff8f40;">0</span><span>] </span><span style="color:#ed9366;">= </span><span>(newMac[</span><span style="color:#ff8f40;">0</span><span>] </span><span style="color:#ed9366;">&amp; </span><span style="color:#ff8f40;">0xFE</span><span>) </span><span style="color:#ed9366;">| </span><span style="color:#ff8f40;">0x02</span><span style="color:#61676ccc;">;
+</span><span>    preferences</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">putBytes</span><span>(</span><span style="color:#86b300;">&quot;mac_addr&quot;</span><span style="color:#61676ccc;">,</span><span> newMac</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">6</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    preferences</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">putBool</span><span>(</span><span style="color:#86b300;">&quot;mac_set&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">true</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#55b4d4;">uint8_t</span><span> customMac[</span><span style="color:#ff8f40;">6</span><span>]</span><span style="color:#61676ccc;">;
+</span><span>  preferences</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">getBytes</span><span>(</span><span style="color:#86b300;">&quot;mac_addr&quot;</span><span style="color:#61676ccc;">,</span><span> customMac</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">6</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  preferences</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">end</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#f29718;">esp_base_mac_addr_set</span><span>(customMac)</span><span style="color:#61676ccc;">;
+</span><span>}
+</span><span>
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">setupBLESecurity</span><span>() {
+</span><span>  esp_ble_auth_req_t auth_req </span><span style="color:#ed9366;">=</span><span> ESP_LE_AUTH_REQ_SC_MITM_BOND</span><span style="color:#61676ccc;">;
+</span><span>  esp_ble_io_cap_t iocap </span><span style="color:#ed9366;">=</span><span> ESP_IO_CAP_NONE</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="font-style:italic;color:#55b4d4;">uint8_t</span><span> key_size </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">16</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="font-style:italic;color:#55b4d4;">uint8_t</span><span> init_key </span><span style="color:#ed9366;">=</span><span> ESP_BLE_ENC_KEY_MASK </span><span style="color:#ed9366;">|</span><span> ESP_BLE_ID_KEY_MASK</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="font-style:italic;color:#55b4d4;">uint8_t</span><span> rsp_key </span><span style="color:#ed9366;">=</span><span> ESP_BLE_ENC_KEY_MASK </span><span style="color:#ed9366;">|</span><span> ESP_BLE_ID_KEY_MASK</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#f29718;">esp_ble_gap_set_security_param</span><span>(ESP_BLE_SM_AUTHEN_REQ_MODE</span><span style="color:#61676ccc;">, </span><span style="color:#ed9366;">&amp;</span><span>auth_req</span><span style="color:#61676ccc;">, </span><span style="color:#fa6e32;">sizeof</span><span>(</span><span style="font-style:italic;color:#55b4d4;">uint8_t</span><span>))</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">esp_ble_gap_set_security_param</span><span>(ESP_BLE_SM_IOCAP_MODE</span><span style="color:#61676ccc;">, </span><span style="color:#ed9366;">&amp;</span><span>iocap</span><span style="color:#61676ccc;">, </span><span style="color:#fa6e32;">sizeof</span><span>(</span><span style="font-style:italic;color:#55b4d4;">uint8_t</span><span>))</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">esp_ble_gap_set_security_param</span><span>(ESP_BLE_SM_MAX_KEY_SIZE</span><span style="color:#61676ccc;">, </span><span style="color:#ed9366;">&amp;</span><span>key_size</span><span style="color:#61676ccc;">, </span><span style="color:#fa6e32;">sizeof</span><span>(</span><span style="font-style:italic;color:#55b4d4;">uint8_t</span><span>))</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">esp_ble_gap_set_security_param</span><span>(ESP_BLE_SM_SET_INIT_KEY</span><span style="color:#61676ccc;">, </span><span style="color:#ed9366;">&amp;</span><span>init_key</span><span style="color:#61676ccc;">, </span><span style="color:#fa6e32;">sizeof</span><span>(</span><span style="font-style:italic;color:#55b4d4;">uint8_t</span><span>))</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">esp_ble_gap_set_security_param</span><span>(ESP_BLE_SM_SET_RSP_KEY</span><span style="color:#61676ccc;">, </span><span style="color:#ed9366;">&amp;</span><span>rsp_key</span><span style="color:#61676ccc;">, </span><span style="color:#fa6e32;">sizeof</span><span>(</span><span style="font-style:italic;color:#55b4d4;">uint8_t</span><span>))</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&gt;&gt;&gt; BLE Security aktiviert&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>}
+</span><span>
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">goToSleep</span><span>() {
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&gt;&gt;&gt; Bereite Deep Sleep vor...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Warte bis Button losgelassen
+</span><span>  </span><span style="color:#fa6e32;">while</span><span>(</span><span style="color:#f29718;">digitalRead</span><span>(buttonPin) </span><span style="color:#ed9366;">==</span><span> LOW) {
+</span><span>    </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">100</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">500</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// BLE sauber beenden
+</span><span>  bleKeyboard</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">end</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">500</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">btStop</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">200</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// RTC GPIO konfigurieren
+</span><span>  </span><span style="color:#f29718;">rtc_gpio_init</span><span>((gpio_num_t)buttonPin)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">rtc_gpio_set_direction</span><span>((gpio_num_t)buttonPin</span><span style="color:#61676ccc;">,</span><span> RTC_GPIO_MODE_INPUT_ONLY)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">rtc_gpio_pullup_en</span><span>((gpio_num_t)buttonPin)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">rtc_gpio_pulldown_dis</span><span>((gpio_num_t)buttonPin)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">rtc_gpio_hold_en</span><span>((gpio_num_t)buttonPin)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#f29718;">esp_sleep_enable_ext0_wakeup</span><span>((gpio_num_t)buttonPin</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">0</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&gt;&gt;&gt; Gehe schlafen...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">flush</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">end</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  USBSerial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">end</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">100</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#f29718;">esp_deep_sleep_start</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>}
+</span><span>
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">setup</span><span>() {
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">begin</span><span>(</span><span style="color:#ff8f40;">115200</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">1000</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#f29718;">rtc_gpio_deinit</span><span>((gpio_num_t)buttonPin)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">rtc_gpio_hold_dis</span><span>((gpio_num_t)buttonPin)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#f29718;">pinMode</span><span>(buttonPin</span><span style="color:#61676ccc;">,</span><span> INPUT_PULLUP)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">=== AUFGEWACHT! ===&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#f29718;">setCustomMacAddress</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  bleKeyboard</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">begin</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">setupBLESecurity</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;BLE gestartet - warte auf Verbindung...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  startTime </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">millis</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>}
+</span><span>
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">loop</span><span>() {
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Warte auf BLE und sende dann
+</span><span>  </span><span style="color:#fa6e32;">if</span><span>(</span><span style="color:#ed9366;">!</span><span>alreadySentOnWake) {
+</span><span>    </span><span style="color:#fa6e32;">if</span><span>(bleKeyboard</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">isConnected</span><span>()) {
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&gt;&gt;&gt; BLE VERBUNDEN! Sende &#39;2&#39;...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">500</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      bleKeyboard</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;2&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">300</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&gt;&gt;&gt; &#39;2&#39; gesendet!&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      alreadySentOnWake </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">true</span><span style="color:#61676ccc;">;
+</span><span>      startTime </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">millis</span><span>()</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// Timer zurücksetzen
+</span><span>    } </span><span style="color:#fa6e32;">else </span><span>{
+</span><span>      </span><span style="color:#fa6e32;">if</span><span>(</span><span style="color:#f29718;">millis</span><span>() </span><span style="color:#ed9366;">-</span><span> startTime </span><span style="color:#ed9366;">&gt;</span><span> bleTimeout) {
+</span><span>        Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&gt;&gt;&gt; Timeout - schlafen ohne Senden&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>        </span><span style="color:#f29718;">goToSleep</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>      }
+</span><span>    }
+</span><span>  }
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Nach Senden: 10 Sekunden wach
+</span><span>  </span><span style="color:#fa6e32;">if</span><span>(alreadySentOnWake </span><span style="color:#ed9366;">&amp;&amp; </span><span style="color:#f29718;">millis</span><span>() </span><span style="color:#ed9366;">-</span><span> startTime </span><span style="color:#ed9366;">&gt;=</span><span> awakeTime) {
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&gt;&gt;&gt; Timeout!&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#f29718;">goToSleep</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Button während Wachzeit
+</span><span>  </span><span style="color:#fa6e32;">bool</span><span> buttonState </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">digitalRead</span><span>(buttonPin)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#fa6e32;">if</span><span>(buttonState </span><span style="color:#ed9366;">==</span><span> LOW </span><span style="color:#ed9366;">&amp;&amp;</span><span> lastButtonState </span><span style="color:#ed9366;">==</span><span> HIGH) {
+</span><span>    </span><span style="color:#fa6e32;">if</span><span>(bleKeyboard</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">isConnected</span><span>()) {
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;Button: Sende &#39;2&#39;&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      bleKeyboard</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;2&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">300</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      startTime </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">millis</span><span>()</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// Timer zurücksetzen
+</span><span>    }
+</span><span>    </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">50</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>  lastButtonState </span><span style="color:#ed9366;">=</span><span> buttonState</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">10</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>}
+</span></code></pre>
+<h2 id="wie-es-funktioniert-der-ablauf"><a class="zola-anchor" href="#wie-es-funktioniert-der-ablauf" aria-label="Anchor link for: wie-es-funktioniert-der-ablauf">Wie es funktioniert: Der Ablauf</a></h2>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>┌─────────────────────────────┐
+</span><span>│   DEEP SLEEP (~10µA)        │
+</span><span>│   CPU: OFF                  │
+</span><span>│   RAM: OFF                  │
+</span><span>│   BLE: OFF                  │
+</span><span>│   RTC: ON (wartet)          │
+</span><span>└─────────────────────────────┘
+</span><span>            │
+</span><span>            │ [Button gedrückt!]
+</span><span>            ▼
+</span><span>┌─────────────────────────────┐
+</span><span>│   WAKEUP (~300ms)           │
+</span><span>│   - CPU startet             │
+</span><span>│   - setup() läuft           │
+</span><span>│   - MAC laden               │
+</span><span>│   - BLE starten             │
+</span><span>└─────────────────────────────┘
+</span><span>            │
+</span><span>            │ [BLE Verbindung]
+</span><span>            ▼
+</span><span>┌─────────────────────────────┐
+</span><span>│   VERBINDUNG (2-10 Sek)     │
+</span><span>│   - Bonding-Keys prüfen     │
+</span><span>│   - Sichere Verbindung      │
+</span><span>└─────────────────────────────┘
+</span><span>            │
+</span><span>            │ [isConnected()]
+</span><span>            ▼
+</span><span>┌─────────────────────────────┐
+</span><span>│   TASTE SENDEN              │
+</span><span>│   bleKeyboard.print(&quot;2&quot;)    │
+</span><span>│   Timer zurücksetzen        │
+</span><span>└─────────────────────────────┘
+</span><span>            │
+</span><span>            │ [10 Sekunden warten]
+</span><span>            ▼
+</span><span>┌─────────────────────────────┐
+</span><span>│   ZURÜCK IN SLEEP           │
+</span><span>│   - BLE trennen             │
+</span><span>│   - RTC GPIO config         │
+</span><span>│   - esp_deep_sleep_start()  │
+</span><span>└─────────────────────────────┘
+</span></code></pre>
+<h2 id="stromversorgung-mit-cr123a-batterie"><a class="zola-anchor" href="#stromversorgung-mit-cr123a-batterie" aria-label="Anchor link for: stromversorgung-mit-cr123a-batterie">Stromversorgung mit CR123A Batterie</a></h2>
+<p>Für den mobilen Einsatz habe ich mich für eine <strong>CR123A Batterie</strong> entschieden - eine geniale Lösung für dieses Projekt!</p>
+<h3 id="warum-cr123a"><a class="zola-anchor" href="#warum-cr123a" aria-label="Anchor link for: warum-cr123a">Warum CR123A?</a></h3>
+<ul>
+<li><strong>Hohe Kapazität</strong>: 1.500-1.700mAh bei 3V</li>
+<li><strong>Kompakte Bauform</strong>: Perfekt für portable Geräte</li>
+<li><strong>Lange Haltbarkeit</strong>: Bis zu 10 Jahre Lagerfähigkeit</li>
+<li><strong>Stabile Spannung</strong>: 3V passt perfekt zum ESP32 (2,3V-3,6V toleriert)</li>
+<li><strong>Überall verfügbar</strong>: In jedem Elektronik- oder Fotogeschäft</li>
+</ul>
+<h3 id="anschluss"><a class="zola-anchor" href="#anschluss" aria-label="Anchor link for: anschluss">Anschluss</a></h3>
+<p>Der ESP32-S3 kann direkt mit 3V betrieben werden:</p>
+<ul>
+<li>CR123A Batterie: Plus (+) an 3V3-Pin</li>
+<li>CR123A Batterie: Minus (-) an GND</li>
+<li>Batteriehalter mit Schalter empfohlen</li>
+</ul>
+<p><strong>Achtung</strong>: Bei USB-Betrieb den 3V3-Pin nicht nutzen, sondern über USB versorgen! Beim Flashen die Batterie trennen oder einen Batteriehalter mit Schalter verwenden.</p>
+<h2 id="stromverbrauch-die-zahlen"><a class="zola-anchor" href="#stromverbrauch-die-zahlen" aria-label="Anchor link for: stromverbrauch-die-zahlen">Stromverbrauch: Die Zahlen</a></h2>
+<table><thead><tr><th>Zustand</th><th>Verbrauch</th><th>Dauer</th></tr></thead><tbody>
+<tr><td>Deep Sleep</td><td>~10-150µA</td><td>99% der Zeit</td></tr>
+<tr><td>Wakeup + BLE</td><td>~80-120mA</td><td>2-10 Sekunden</td></tr>
+<tr><td>Connected</td><td>~40-80mA</td><td>10 Sekunden</td></tr>
+<tr><td>Senden</td><td>~100-150mA</td><td>&lt;1 Sekunde</td></tr>
+</tbody></table>
+<p><strong>Mit CR123A (1.600mAh)</strong>: Theoretisch <strong>Monate bis Jahre</strong> Laufzeit, abhängig von der Häufigkeit der Button-Drücke.</p>
+<p>Bei 10 Foto-Auslösungen pro Tag:</p>
+<ul>
+<li>10 × 15 Sekunden wach = 150 Sekunden = 2,5 Minuten</li>
+<li>Verbrauch während Wachzeit: ~80mA × 2,5min = ~3,3mAh pro Tag</li>
+<li>Deep Sleep restliche Zeit: ~23,96h × 0,1mA = ~2,4mAh pro Tag</li>
+<li><strong>Gesamt: ~5,7mAh pro Tag</strong></li>
+<li><strong>Laufzeit mit CR123A: ca. 280 Tage (9+ Monate)!</strong></li>
+</ul>
+<p>Mit der CR123A Batterie hält der Button also fast ein Jahr durch - perfekt für Events und Veranstaltungen!</p>
+<h2 id="die-wichtigsten-erkenntnisse"><a class="zola-anchor" href="#die-wichtigsten-erkenntnisse" aria-label="Anchor link for: die-wichtigsten-erkenntnisse">Die wichtigsten Erkenntnisse</a></h2>
+<h3 id="1-esp32-s3-ist-anders"><a class="zola-anchor" href="#1-esp32-s3-ist-anders" aria-label="Anchor link for: 1-esp32-s3-ist-anders">1. ESP32-S3 ist anders</a></h3>
+<p>Der S3 braucht explizite RTC GPIO-Konfiguration und das Beenden von USBSerial. Die "normalen" ESP32-Beispiele funktionieren oft nicht 1:1.</p>
+<h3 id="2-deep-sleep-ist-pingelig"><a class="zola-anchor" href="#2-deep-sleep-ist-pingelig" aria-label="Anchor link for: 2-deep-sleep-ist-pingelig">2. Deep Sleep ist pingelig</a></h3>
+<p>Der Pin-Status beim Einschlafen ist entscheidend. Immer warten bis der Button wirklich losgelassen ist!</p>
+<h3 id="3-ble-braucht-zeit"><a class="zola-anchor" href="#3-ble-braucht-zeit" aria-label="Anchor link for: 3-ble-braucht-zeit">3. BLE braucht Zeit</a></h3>
+<p>5-10 Sekunden für eine Verbindung sind normal. Plant euren Timeout entsprechend.</p>
+<h3 id="4-bonding-ist-gold-wert"><a class="zola-anchor" href="#4-bonding-ist-gold-wert" aria-label="Anchor link for: 4-bonding-ist-gold-wert">4. Bonding ist Gold wert</a></h3>
+<p>Mit Bonding verbindet sich das Gerät nach jedem Aufwachen automatisch wieder. Ohne Bonding muss man jedes Mal neu pairen.</p>
+<h3 id="5-feste-mac-happy-life"><a class="zola-anchor" href="#5-feste-mac-happy-life" aria-label="Anchor link for: 5-feste-mac-happy-life">5. Feste MAC = Happy Life</a></h3>
+<p>Ohne feste MAC sieht der Computer nach jedem Sleep ein "neues" Gerät. Die MAC im Flash speichern löst das Problem elegant.</p>
+<h2 id="warum-du-es-selbst-ausprobieren-solltest"><a class="zola-anchor" href="#warum-du-es-selbst-ausprobieren-solltest" aria-label="Anchor link for: warum-du-es-selbst-ausprobieren-solltest">Warum du es selbst ausprobieren solltest</a></h2>
+<p>Dieses Projekt ist perfekt zum Lernen:</p>
+<ul>
+<li><strong>Analoge Hardware trifft digitale Logik</strong>: RTC GPIO, Pullups, Wakeup-Quellen</li>
+<li><strong>Power Management</strong>: Deep Sleep, Stromverbrauch optimieren</li>
+<li><strong>BLE verstehen</strong>: Bonding, Security, Pairing</li>
+<li><strong>Persistente Daten</strong>: Preferences Library für Flash-Speicher</li>
+<li><strong>Debugging</strong>: Serial Monitor, Logik-Analyse, Trial &amp; Error</li>
+</ul>
+<p>Und das Beste: Am Ende hast du ein <strong>praktisches Gerät</strong>, das wirklich nützlich ist!</p>
+<h2 id="einsatz-beim-glucksrad"><a class="zola-anchor" href="#einsatz-beim-glucksrad" aria-label="Anchor link for: einsatz-beim-glucksrad">Einsatz beim Glücksrad</a></h2>
+<p>Der Button wird beim Tourismus-Glücksrad eingesetzt: Besucher drücken den Button, die Taste "2" wird gesendet, das Javascript auf dem Raspberry Pi löst die Fotofunktion aus. Simpel, zuverlässig, keine Kabel.</p>
+<p>Die Besucher lieben es - besonders die haptische Komponente. Ein echter Button fühlt sich einfach besser an als "Drück mal auf den Bildschirm".</p>
+<style>
+   .containerimg   img {
+        width: 200px;
+       min-height: 200px;
+        margin: 0 10px;
+    }
+</style>
+<div  class="containerimg" style="
+    text-align: center;
+    display: flex;
+    overflow: scroll;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;">
+<img onclick="location.href='/posts/ble-button-deep-sleep-esp32/images/image00001.jpg'" src="/posts/ble-button-deep-sleep-esp32/images/image00001.jpg" alt="Blauer Button">
+<img onclick="location.href='/posts/ble-button-deep-sleep-esp32/images/image00002.jpg'" src="/posts/ble-button-deep-sleep-esp32/images/image00002.jpg" alt="Blauer Button">
+<img onclick="location.href='/posts/ble-button-deep-sleep-esp32/images/image00003.jpg'" src="/posts/ble-button-deep-sleep-esp32/images/image00003.jpg" alt="Blauer Button">
+<img onclick="location.href='/posts/ble-button-deep-sleep-esp32/images/image00004.jpg'" src="/posts/ble-button-deep-sleep-esp32/images/image00004.jpg" alt="Blauer Button">
+<img onclick="location.href='/posts/ble-button-deep-sleep-esp32/images/image00005.jpg'" src="/posts/ble-button-deep-sleep-esp32/images/image00005.jpg" alt="Blauer Button">
+</div>
+<h2 id="ausblick-was-noch-moglich-ware"><a class="zola-anchor" href="#ausblick-was-noch-moglich-ware" aria-label="Anchor link for: ausblick-was-noch-moglich-ware">Ausblick: Was noch möglich wäre</a></h2>
+<p>Mit diesem Setup könnte man noch viel mehr machen:</p>
+<ul>
+<li><strong>LED-Feedback</strong>: Kurzes Blinken bei erfolgreicher Übertragung</li>
+<li><strong>Battery Monitoring</strong>: Batteriespannung messen und warnen</li>
+<li><strong>Multi-Button</strong>: Verschiedene Tasten je nach Druck-Dauer</li>
+<li><strong>OTA Updates</strong>: Firmware über BLE aktualisieren</li>
+<li><strong>Bewegungssensor</strong>: Zusätzlicher Wakeup per Accelerometer</li>
+</ul>
+<h2 id="los-geht-s"><a class="zola-anchor" href="#los-geht-s" aria-label="Anchor link for: los-geht-s">Los geht's!</a></h2>
+<p>Du hast Lust bekommen, selbst einen BLE-Button zu bauen? Perfekt! Besorg dir einen ESP32-S3, einen Taster und leg los. Der Code ist da, die Erklärungen auch.</p>
+<p>Und wenn du Fragen hast oder dein Projekt teilen möchtest - melde dich gerne!</p>
+<p><strong>Happy Hacking!</strong></p>
+<h2 id="einkaufsliste-alles-was-du-brauchst"><a class="zola-anchor" href="#einkaufsliste-alles-was-du-brauchst" aria-label="Anchor link for: einkaufsliste-alles-was-du-brauchst">Einkaufsliste - Alles was du brauchst</a></h2>
+<p>Hier findest du alle Komponenten, die du für dieses Projekt benötigst. Die Links führen zu Amazon und sind Affiliate-Links, wo du die Teile direkt bestellen kannst:</p>
+<h3 id="hauptkomponenten"><a class="zola-anchor" href="#hauptkomponenten" aria-label="Anchor link for: hauptkomponenten">Hauptkomponenten</a></h3>
+<p><strong>ESP32-S3 Development Board</strong></p>
+<ul>
+<li><a href="https://amzn.to/3M3FQGv">ESP32-S3 DevKit (2er Set)</a></li>
+<li>Empfehlung: Das 2er-Set ist günstiger pro Board und du hast Ersatz für weitere Projekte</li>
+</ul>
+<p><strong>100mm Arcade Button</strong></p>
+<ul>
+<li><a href="https://amzn.to/45Gditn">LED Arcade Button 100mm (verschiedene Farben)</a></li>
+<li>Große, gut fühlbare Taste - perfekt für Events</li>
+<li>Alternative: <a href="https://amzn.to/4ro8TDG">Standard Arcade Button 60mm</a></li>
+</ul>
+<h3 id="stromversorgung"><a class="zola-anchor" href="#stromversorgung" aria-label="Anchor link for: stromversorgung">Stromversorgung</a></h3>
+<p><strong>CR123A Batterien</strong></p>
+<ul>
+<li><a href="https://amzn.to/4rlJ1YZ">Varta CR123A Lithium Batterien (2er Pack)</a></li>
+<li>Hochwertige Markenbatterien mit langer Lebensdauer</li>
+</ul>
+<p><strong>Batteriehalter für CR123A</strong></p>
+<ul>
+<li><a href="https://amzn.to/45GdmcB">CR123A Batteriehalter mit Anschlusskabel</a></li>
+<li>Mit Schalter zum einfachen Ein/Ausschalten</li>
+</ul>
+<h3 id="optional-aber-nutzlich"><a class="zola-anchor" href="#optional-aber-nutzlich" aria-label="Anchor link for: optional-aber-nutzlich">Optional aber nützlich</a></h3>
+<p><strong>USB-C Kabel zum Flashen</strong></p>
+<ul>
+<li><a href="https://amzn.to/3M4jxAu">USB-C Datenkabel</a></li>
+<li>Wichtig: Datenkabel verwenden, nicht nur Ladekabel!</li>
+</ul>
+<p><strong>Jumper Kabel</strong></p>
+<ul>
+<li><a href="https://amzn.to/4a1duoc">Dupont Jumper Kabel Set</a></li>
+<li>Zum einfachen Verbinden während des Prototypings</li>
+</ul>
+<h3 id="geschatzte-gesamtkosten"><a class="zola-anchor" href="#geschatzte-gesamtkosten" aria-label="Anchor link for: geschatzte-gesamtkosten">Geschätzte Gesamtkosten</a></h3>
+<ul>
+<li><strong>Minimal-Setup</strong>: ~25-30 Euro (ESP32, Button, Batterie + Halter)</li>
+</ul>
+<p>Viel Spaß beim Nachbauen! 🛠️</p>
+<p><em>Verwendete Hardware:</em></p>
+<ul>
+<li>ESP32-S3 Dev Module</li>
+<li>100mm Arcade Button</li>
+<li>CR123A Batterie + Batteriehalter</li>
+<li>Optional: Gehäuse</li>
+</ul>
+<p><em>Benötigte Libraries:</em></p>
+<ul>
+<li><a href="https://github.com/T-vK/ESP32-BLE-Keyboard">ESP32-BLE-Keyboard</a></li>
+<li>Preferences (ESP32 Core)</li>
+<li>driver/rtc_io.h (ESP32 Core)</li>
+</ul>
+<p><em>Board Manager für ESP32:</em></p>
+<ul>
+<li>Version 2.0.17 !!!</li>
+</ul>
+<p><em>Stromversorgung:</em></p>
+<ul>
+<li>Für Entwicklung/Flashen: USB-C Kabel</li>
+<li>Für Produktivbetrieb: CR123A Batterie mit Batteriehalter (siehe Einkaufsliste)</li>
+</ul>
+<p>Hier der komplette Code für den ESP32-C3 BLE-Button mit Deep Sleep:</p>
+<ul>
+<li>Fork des ESP32-BLE-Keyboard von T-vK wurde verwendet, der mit dem ESP32-C3 kompatibel ist:
+<a href="https://github.com/lewisxhe/ESP32-BLE-Keyboard-fork">Fork von lewisxhe</a></li>
+<li>Außerdem braucht man die Bibliothek NimBLEDevice.h für die Security Einstellungen.</li>
+</ul>
+<pre data-lang="cpp" style="background-color:#fafafa;color:#61676c;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#fa6e32;">#include </span><span style="color:#86b300;">&lt;BleKeyboard.h&gt;
+</span><span style="color:#fa6e32;">#include </span><span style="color:#86b300;">&lt;Preferences.h&gt;
+</span><span style="color:#fa6e32;">#include </span><span style="color:#86b300;">&quot;esp_sleep.h&quot;
+</span><span style="color:#fa6e32;">#include </span><span style="color:#86b300;">&quot;driver/gpio.h&quot;
+</span><span style="color:#fa6e32;">#include </span><span style="color:#86b300;">&quot;esp_system.h&quot;
+</span><span style="color:#fa6e32;">#include </span><span style="color:#86b300;">&lt;NimBLEDevice.h&gt;
+</span><span>
+</span><span>BleKeyboard </span><span style="color:#f29718;">bleKeyboard</span><span>(</span><span style="color:#86b300;">&quot;Blauer Button&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;Espressif&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">100</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>Preferences preferences</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span style="color:#fa6e32;">const int</span><span> buttonPin </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">3</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// ESP32-C3 GPIO3
+</span><span style="color:#fa6e32;">const unsigned long</span><span> awakeTime </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">10000</span><span style="color:#61676ccc;">;      </span><span style="font-style:italic;color:#abb0b6;">// 10 Sekunden wach
+</span><span style="color:#fa6e32;">const unsigned long</span><span> bleTimeout </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">15000</span><span style="color:#61676ccc;">;     </span><span style="font-style:italic;color:#abb0b6;">// 15 Sekunden für BLE
+</span><span style="color:#fa6e32;">bool</span><span> lastButtonState </span><span style="color:#ed9366;">=</span><span> HIGH</span><span style="color:#61676ccc;">;
+</span><span style="color:#fa6e32;">unsigned long</span><span> startTime</span><span style="color:#61676ccc;">;
+</span><span style="color:#fa6e32;">bool</span><span> alreadySentOnWake </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">false</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">goToSleep</span><span>() {
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&gt;&gt;&gt; Bereite Deep Sleep vor...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Warte bis Button losgelassen
+</span><span>  </span><span style="color:#fa6e32;">while</span><span>(</span><span style="color:#f29718;">digitalRead</span><span>(buttonPin) </span><span style="color:#ed9366;">==</span><span> LOW) {
+</span><span>    </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">100</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">500</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// BLE sauber beenden
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&gt;&gt;&gt; Beende BLE...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  bleKeyboard</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">end</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">500</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&gt;&gt;&gt; Konfiguriere Deep Sleep GPIO Wakeup...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// GPIO Pin Maske erstellen
+</span><span>  </span><span style="font-style:italic;color:#55b4d4;">uint64_t</span><span> gpio_pin_mask </span><span style="color:#ed9366;">= </span><span>(</span><span style="color:#ff8f40;">1</span><span style="color:#fa6e32;">ULL </span><span style="color:#ed9366;">&lt;&lt;</span><span> buttonPin)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Deep Sleep GPIO Wakeup aktivieren
+</span><span>  esp_err_t err </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">esp_deep_sleep_enable_gpio_wakeup</span><span>(
+</span><span>    gpio_pin_mask</span><span style="color:#61676ccc;">, 
+</span><span>    ESP_GPIO_WAKEUP_GPIO_LOW
+</span><span>  )</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#fa6e32;">if </span><span>(err </span><span style="color:#ed9366;">==</span><span> ESP_OK) {
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">printf</span><span>(</span><span style="color:#86b300;">&quot;OK - Deep Sleep Wakeup fuer GPIO </span><span style="color:#ff8f40;">%d</span><span style="color:#86b300;"> aktiviert</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&quot;</span><span style="color:#61676ccc;">,</span><span> buttonPin)</span><span style="color:#61676ccc;">;
+</span><span>  } </span><span style="color:#fa6e32;">else </span><span>{
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">printf</span><span>(</span><span style="color:#86b300;">&quot;FEHLER bei GPIO Wakeup Config: </span><span style="color:#ff8f40;">%d</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&quot;</span><span style="color:#61676ccc;">,</span><span> err)</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>  
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">printf</span><span>(</span><span style="color:#86b300;">&quot;GPIO </span><span style="color:#ff8f40;">%d</span><span style="color:#86b300;"> Status vor Sleep: </span><span style="color:#ff8f40;">%d</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&quot;</span><span style="color:#61676ccc;">,</span><span> buttonPin</span><span style="color:#61676ccc;">, </span><span style="color:#f29718;">digitalRead</span><span>(buttonPin))</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&gt;&gt;&gt; Gehe schlafen... (Druecke Button zum Aufwachen)&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">flush</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">200</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#f29718;">esp_deep_sleep_start</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>}
+</span><span>
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">setup</span><span>() {
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">begin</span><span>(</span><span style="color:#ff8f40;">115200</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">2000</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#f29718;">pinMode</span><span>(buttonPin</span><span style="color:#61676ccc;">,</span><span> INPUT_PULLUP)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">=============================&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;=== ESP32-C3 AUFGEWACHT! ===&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;=============================&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  esp_sleep_wakeup_cause_t wakeup_reason </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">esp_sleep_get_wakeup_cause</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">printf</span><span>(</span><span style="color:#86b300;">&quot;Wakeup Cause: </span><span style="color:#ff8f40;">%d</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&quot;</span><span style="color:#61676ccc;">,</span><span> wakeup_reason)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#fa6e32;">switch</span><span>(wakeup_reason) {
+</span><span>    </span><span style="color:#fa6e32;">case</span><span> ESP_SLEEP_WAKEUP_GPIO</span><span style="color:#61676ccc;">:
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&gt;&gt;&gt; ERFOLG: Wakeup durch GPIO!&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      </span><span style="color:#fa6e32;">break</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#fa6e32;">case</span><span> ESP_SLEEP_WAKEUP_TIMER</span><span style="color:#61676ccc;">:
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&gt;&gt;&gt; Wakeup durch Timer!&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      </span><span style="color:#fa6e32;">break</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#fa6e32;">case</span><span> ESP_SLEEP_WAKEUP_UNDEFINED</span><span style="color:#61676ccc;">:
+</span><span>    </span><span style="color:#fa6e32;">default</span><span style="color:#61676ccc;">:
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&gt;&gt;&gt; Power-On / Reset / Upload&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      </span><span style="color:#fa6e32;">break</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>  
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">printf</span><span>(</span><span style="color:#86b300;">&quot;GPIO </span><span style="color:#ff8f40;">%d</span><span style="color:#86b300;"> Status: </span><span style="color:#ff8f40;">%d</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&quot;</span><span style="color:#61676ccc;">,</span><span> buttonPin</span><span style="color:#61676ccc;">, </span><span style="color:#f29718;">digitalRead</span><span>(buttonPin))</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// ERST BleKeyboard starten
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&gt;&gt;&gt; Starte BLE Keyboard...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  bleKeyboard</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">begin</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">1000</span><span>)</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// Wichtig: Warten bis BLE komplett initialisiert ist!
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// DANN Security konfigurieren
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&gt;&gt;&gt; Konfiguriere Bonding...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  NimBLEDevice</span><span style="color:#ed9366;">::</span><span style="color:#f29718;">setSecurityAuth</span><span>(BLE_SM_PAIR_AUTHREQ_BOND)</span><span style="color:#61676ccc;">;
+</span><span>  NimBLEDevice</span><span style="color:#ed9366;">::</span><span style="color:#f29718;">setSecurityIOCap</span><span>(BLE_HS_IO_NO_INPUT_OUTPUT)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;OK - Just Works Bonding aktiviert!&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;==============================&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;  PAIRING: Keine PIN noetig!&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;==============================&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">PAIRING-ANLEITUNG:&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;  1. Bluetooth-Einstellungen oeffnen&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;  2. &#39;Blauer Button&#39; suchen&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;  3. Auf &#39;Verbinden&#39; tippen&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;  4. Pairing bestaetigen (kein PIN!)&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;  5. Verbindung wird gespeichert!&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;  6. Bei erneutem Wake-up: Auto-Reconnect!</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;BLE gestartet - warte auf Verbindung...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  startTime </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">millis</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  alreadySentOnWake </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">false</span><span style="color:#61676ccc;">;
+</span><span>}
+</span><span>
+</span><span style="color:#fa6e32;">void </span><span style="color:#f29718;">loop</span><span>() {
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Warte auf BLE und sende dann
+</span><span>  </span><span style="color:#fa6e32;">if</span><span>(</span><span style="color:#ed9366;">!</span><span>alreadySentOnWake) {
+</span><span>    </span><span style="color:#fa6e32;">if</span><span>(bleKeyboard</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">isConnected</span><span>()) {
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&gt;&gt;&gt; BLE VERBUNDEN!&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&gt;&gt;&gt; Sende &#39;2&#39;...&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">500</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      bleKeyboard</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;2&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">300</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&gt;&gt;&gt; &#39;2&#39; erfolgreich gesendet!&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      alreadySentOnWake </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">true</span><span style="color:#61676ccc;">;
+</span><span>      startTime </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">millis</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>    } </span><span style="color:#fa6e32;">else </span><span>{
+</span><span>      </span><span style="font-style:italic;color:#abb0b6;">// Zeige Wartezeit an
+</span><span>      </span><span style="color:#fa6e32;">unsigned long</span><span> elapsed </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">millis</span><span>() </span><span style="color:#ed9366;">-</span><span> startTime</span><span style="color:#61676ccc;">;
+</span><span>      </span><span style="color:#fa6e32;">if</span><span>(elapsed </span><span style="color:#ed9366;">% </span><span style="color:#ff8f40;">2000 </span><span style="color:#ed9366;">&lt; </span><span style="color:#ff8f40;">50</span><span>) {  </span><span style="font-style:italic;color:#abb0b6;">// Alle 2 Sekunden
+</span><span>        Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">printf</span><span>(</span><span style="color:#86b300;">&quot;Warte auf BLE... (</span><span style="color:#ff8f40;">%lu</span><span style="color:#86b300;">/</span><span style="color:#ff8f40;">%lu</span><span style="color:#86b300;"> ms)</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&quot;</span><span style="color:#61676ccc;">,</span><span> elapsed</span><span style="color:#61676ccc;">,</span><span> bleTimeout)</span><span style="color:#61676ccc;">;
+</span><span>      }
+</span><span>      
+</span><span>      </span><span style="color:#fa6e32;">if</span><span>(elapsed </span><span style="color:#ed9366;">&gt;</span><span> bleTimeout) {
+</span><span>        Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&gt;&gt;&gt; BLE Timeout - gehe schlafen&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>        Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;Tipp: Pairing in Bluetooth-Einstellungen pruefen!&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>        </span><span style="color:#f29718;">goToSleep</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>      }
+</span><span>    }
+</span><span>  }
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Nach Senden: 10 Sekunden wach
+</span><span>  </span><span style="color:#fa6e32;">if</span><span>(alreadySentOnWake </span><span style="color:#ed9366;">&amp;&amp; </span><span style="color:#f29718;">millis</span><span>() </span><span style="color:#ed9366;">-</span><span> startTime </span><span style="color:#ed9366;">&gt;=</span><span> awakeTime) {
+</span><span>    Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&gt;&gt;&gt; Awake-Timeout erreicht!&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#f29718;">goToSleep</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>  
+</span><span>  </span><span style="font-style:italic;color:#abb0b6;">// Button während Wachzeit
+</span><span>  </span><span style="color:#fa6e32;">bool</span><span> buttonState </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">digitalRead</span><span>(buttonPin)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#fa6e32;">if</span><span>(buttonState </span><span style="color:#ed9366;">==</span><span> LOW </span><span style="color:#ed9366;">&amp;&amp;</span><span> lastButtonState </span><span style="color:#ed9366;">==</span><span> HIGH) {
+</span><span>    </span><span style="color:#fa6e32;">if</span><span>(bleKeyboard</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">isConnected</span><span>()) {
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&gt;&gt;&gt; Button gedrueckt - Sende &#39;2&#39;&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      bleKeyboard</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">print</span><span>(</span><span style="color:#86b300;">&quot;2&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">300</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;&gt;&gt;&gt; &#39;2&#39; gesendet!&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>      startTime </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">millis</span><span>()</span><span style="color:#61676ccc;">;  </span><span style="font-style:italic;color:#abb0b6;">// Timer zurücksetzen
+</span><span>    } </span><span style="color:#fa6e32;">else </span><span>{
+</span><span>      Serial</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">println</span><span>(</span><span style="color:#86b300;">&quot;</span><span style="color:#4cbf99;">\n</span><span style="color:#86b300;">&gt;&gt;&gt; Button gedrueckt - aber nicht verbunden!&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    }
+</span><span>    </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">50</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  }
+</span><span>  lastButtonState </span><span style="color:#ed9366;">=</span><span> buttonState</span><span style="color:#61676ccc;">;
+</span><span>  
+</span><span>  </span><span style="color:#f29718;">delay</span><span>(</span><span style="color:#ff8f40;">10</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>}
+</span></code></pre>
+
+        </section>
+    </article>
+    <hr>
+    <br>
+    <div class="meta">
+        
+            <span class="date-label-posted">:: Posted on </span><time>2025-11-19</time>
+        
+
+        
+
+        
+
+        
+        
+                <span class="tags-label"> :: Tags:</span>
+                <span class="tags">
+                        <a href="https://simeon.staneks.de/tags/esp32s3/" class="post-tag">ESP32S3</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/ble/" class="post-tag">BLE</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/deep-sleep/" class="post-tag">Deep Sleep</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/hardware/" class="post-tag">Hardware</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/iot/" class="post-tag">IoT</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/tourismuspastoral/" class="post-tag">Tourismuspastoral</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/esp32c3/" class="post-tag">ESP32C3</a>
+                    
+                </span>
+        
+
+        
+       
+                
+     
+
+            
+                
+                :: <a href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;Blog&#x2F;tree&#x2F;main&#x2F;content&#x2F;posts&#x2F;ble-button-deep-sleep-esp32&#x2F;index.md" target="_blank" rel="noopener noreferrer"> Source Code</a>
+            
+
+        
+
+    </div>
+
+    
+    
+        
+    
+
+    
+        
+        
+        
+        
+            
+        
+            
+        
+            
+                
+            
+        
+
+        
+        
+
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
+            
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;ble-button-deep-sleep-esp32&#x2F;video&#x2F;ble-button-deep-sleep-esp32-de.mp4" onerror="this.parentElement.parentElement.style.display='none';" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+        </div>
+    
+</main>
+
+
+
+        
+            
+        
+
+        
+        <br>
+        <hr>
+        <div class="giscus" >
+        <script src="https://giscus.app/client.js"
+        data-repo="SimeonLukas/Blog"
+        data-repo-id="R_kgDONSw5PA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONSw5PM4CkoL8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https:&#x2F;&#x2F;simeon.staneks.de/css/giscus.css"
+        data-lang="de"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+        
+
+    </div>
+</body>
+
+</html>

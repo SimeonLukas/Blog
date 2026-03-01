@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="de">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Automatic Cover Image Generation for Zola Blogs with Bun, TypeScript and Polotno
+        
+    </title>
+
+    
+    
+    <meta name="description" content="A script that automatically generates various images for different platforms from blog post metadata - with consistent design but individual elements based o..." />
+    
+    
+
+    
+    <meta property="og:image" content="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno//images/en/preview.jpg" />
+    <meta property="og:logo" content="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno//imagesen/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/images/en/preview.jpg">
+    
+
+    
+    <meta property="og:title" content="Automatic Cover Image Generation for Zola Blogs with Bun, TypeScript and Polotno" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="Automatic Cover Image Generation for Zola Blogs with Bun, TypeScript and Polotno">
+    
+    
+
+    
+    
+    <meta property="og:description" content="A script that automatically generates various images for different platforms from blog post metadata - with consistent design but individual elements based o..."/>
+    <!-- twitter description -->
+    <meta name="twitter:description" content="A script that automatically generates various images for different platforms from blog post metadata - with consistent design but individual elements based o...">
+    
+    
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;simeon.staneks.de"/>
+    <meta property="og:type" content="article" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Blog by Simeon" />
+
+
+    
+    
+    <link rel="icon" type="image/png" href=https:&#x2F;&#x2F;simeon.staneks.de&#x2F;android-chrome-512x512.png />
+    
+
+    
+    
+    <link href=https://simeon.staneks.de/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/codeblock.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/toc.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/note.js></script>
+    
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Blog by Simeon" href="https://simeon.staneks.de/ atom.xml">
+
+
+    
+    
+    <link rel="stylesheet" type="text/css" href=https://simeon.staneks.de/theme/light.css />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://simeon.staneks.de/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://simeon.staneks.de/js/themetoggle.js></script>
+    
+    <script>setTheme(getSavedTheme());</script>
+    
+    <script src=https://simeon.staneks.de/js/index.js></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://simeon.staneks.de/main.css />
+
+    
+</head>
+
+<body onload="updatelanguage()">
+    <div class="content">
+        <header>
+    <div class="main">
+        <div> <a id="navigation_start" href=https:&#x2F;&#x2F;simeon.staneks.de>Blog by Simeon </a> 
+            <p style="font-size: xx-small;">It&#x27;s better to start imperfectly than wait perfectly</p> 
+        </div>
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl" class="social mastodon">
+                <img alt=mastodon src=https://simeon.staneks.de/social_icons/mastodon.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;" class="social instagram">
+                <img alt=instagram src=https://simeon.staneks.de/social_icons/instagram.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas" class="social github">
+                <img alt=github src=https://simeon.staneks.de/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;buymeacoffee.com&#x2F;simeonlukas" class="social buy me a coffee">
+                <img alt=buy me a coffee src=https://simeon.staneks.de/social_icons/bmc-logo.svg>
+            </a>
+            
+            <a rel="me" href="&#x2F;rss.xml" class="social rss">
+                <img alt=rss src=https://simeon.staneks.de/social_icons/rss.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a class="navigation_lang &#x2F;posts" href=&#x2F;posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a class="navigation_lang &#x2F;pages" href=&#x2F;pages style="margin-left: 0.5em">&#x2F;pages</a>
+        
+        <a class="navigation_lang &#x2F;about" href=&#x2F;pages&#x2F;about style="margin-left: 0.5em">&#x2F;about</a>
+        
+        <a class="navigation_lang &#x2F;tags" href=&#x2F;tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://simeon.staneks.de/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+        <a id="language-toggle" onclick="toggleLanguage(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/globe.svg alt="Change Language" /><span style="font-size: xx-small;" id="language-name">de</span>
+        </a>
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <h1 class="page-header">
+        Automatic Cover Image Generation for Zola Blogs with Bun, TypeScript and Polotno<span class="primary-color" style="font-size: 1.6em">.</span>
+    </h1>
+
+        </div>
+        A script that automatically generates various images for different platforms from blog post metadata - with consistent design but individual elements based on each article's content.
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#the-genesis-why-generate-images-automatically">The Genesis: Why Generate Images Automatically?</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#the-technology-zola-bun-typescript-and-polotno">The Technology: Zola, Bun, TypeScript, and Polotno</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#technical-solution-overview">Technical Solution Overview</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#the-deployment-script">The Deployment Script</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#the-image-generator-under-the-hood">The Image Generator: Under the Hood</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#the-process-in-detail">The Process in Detail</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#1-reading-data-from-rss-feed">1. Reading Data from RSS Feed</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#2-individual-color-scheme-per-article">2. Individual Color Scheme per Article</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#3-template-customization-for-each-article">3. Template Customization for Each Article</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#4-image-generation-with-polotno">4. Image Generation with Polotno</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#5-storing-images-in-blog-structure">5. Storing Images in Blog Structure</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#6-multilingual-support">6. Multilingual Support</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#zola-configuration-for-image-usage">Zola Configuration for Image Usage</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#the-benefits-of-automation">The Benefits of Automation</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/#conclusion">Conclusion</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h1 id="the-genesis-why-generate-images-automatically"><a class="zola-anchor" href="#the-genesis-why-generate-images-automatically" aria-label="Anchor link for: the-genesis-why-generate-images-automatically">The Genesis: Why Generate Images Automatically?</a></h1>
+<p>I love podcasts and listen to them a lot, which is why I have <a href="https://antennapod.org/">Antennapod</a> installed on my Android phone. It's my favorite podcatcher, which occasionally doubles as a feed reader. I noticed that simple RSS feeds lack cover images, and I wanted to change that for my feed, plus I needed preview images for social media anyway. Every blog post needs an attractive title image to grab attention on social media, RSS feeds, and the website itself. However, manually creating individual images for each article is time-consuming and requires significant effort.</p>
+<p>I decided to automate this process: A script that automatically generates various images for different platforms from my blog post metadata - with consistent design but individual elements based on each article's content.</p>
+<div style="
+    text-align: center;
+    display: flex;
+    overflow: scroll;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;">
+<img src="/posts/20241120//images/de/feed.jpg" alt="RSS Feed Image">
+<img src="/posts/20241120//images/en/feed.jpg" alt="RSS Feed Image">
+<img src="/posts/20241120//images/de/instagram1.jpg" alt="Instagram Image 1">
+<img src="/posts/20241120//images/de/instagram2.jpg" alt="Instagram Image 2">
+<img src="/posts/20241120//images/en/instagram1.jpg" alt="Instagram Image 1">
+<img src="/posts/20241120//images/en/instagram2.jpg" alt="Instagram Image 2">
+<img src="/posts/20241120//images/de/preview.jpg" alt="OG Image">
+<img src="/posts/20241120//images/en/preview.jpg" alt="OG Image">
+</div>
+<h1 id="the-technology-zola-bun-typescript-and-polotno"><a class="zola-anchor" href="#the-technology-zola-bun-typescript-and-polotno" aria-label="Anchor link for: the-technology-zola-bun-typescript-and-polotno">The Technology: Zola, Bun, TypeScript, and Polotno</a></h1>
+<h2 id="technical-solution-overview"><a class="zola-anchor" href="#technical-solution-overview" aria-label="Anchor link for: technical-solution-overview">Technical Solution Overview</a></h2>
+<p>My solution uses the following technologies:</p>
+<ul>
+<li><strong>Zola</strong> as static site generator for the blog and RSS feed server</li>
+<li><strong>Bun</strong> as JavaScript runtime (faster than Node.js)</li>
+<li><strong>TypeScript</strong> for programming logic</li>
+<li><strong>Polotno</strong> for programmatic image generation</li>
+<li><strong>RSS feeds</strong> as data source for post information</li>
+</ul>
+<p>The system generates four different image formats for each blog post:</p>
+<ol>
+<li>An OG image for social media previews</li>
+<li>An Instagram format 1</li>
+<li>An Instagram format 2</li>
+<li>A feed image for RSS readers</li>
+</ol>
+<p>Additionally, all images are automatically created for different language versions of the blog.</p>
+<h2 id="the-deployment-script"><a class="zola-anchor" href="#the-deployment-script" aria-label="Anchor link for: the-deployment-script">The Deployment Script</a></h2>
+<p>Here's the bash script that starts the entire process:</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#abb0b6;">#!/bin/bash
+</span><span style="font-style:italic;color:#abb0b6;"># Blog publishing script
+</span><span style="color:#f07171;">cd</span><span> /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/scripts
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># start the server
+</span><span style="color:#f29718;">zola</span><span> serve</span><span style="color:#ff8f40;"> --port</span><span> 1234 </span><span style="color:#ed9366;">&amp;
+</span><span style="color:#f29718;">sleep</span><span> 5
+</span><span style="font-style:italic;color:#abb0b6;"># run the generator
+</span><span style="color:#f29718;">bun</span><span> run index.ts
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># stop the server
+</span><span style="color:#f07171;">kill </span><span>$(</span><span style="color:#f29718;">lsof</span><span style="color:#ff8f40;"> -t -i</span><span>:1234)
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># commit all changes
+</span><span style="color:#f07171;">cd</span><span> /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog
+</span><span style="color:#f29718;">git</span><span> pull
+</span><span style="color:#f29718;">git</span><span> add </span><span style="color:#ed9366;">*
+</span><span style="color:#f29718;">git</span><span> commit</span><span style="color:#ff8f40;"> -m </span><span style="color:#86b300;">&quot;update content on $</span><span>(</span><span style="color:#f29718;">date</span><span>)</span><span style="color:#86b300;">&quot;
+</span><span style="color:#f29718;">git</span><span> push
+</span></code></pre>
+<p>This script performs the following steps:</p>
+<ol>
+<li>Changes to the scripts directory</li>
+<li>Starts the Zola server in the background (for RSS feed)</li>
+<li>Waits 5 seconds for the server to fully start</li>
+<li>Runs the TypeScript script with Bun</li>
+<li>Stops the Zola server</li>
+<li>Commits changes and pushes to Git repository</li>
+</ol>
+<h2 id="the-image-generator-under-the-hood"><a class="zola-anchor" href="#the-image-generator-under-the-hood" aria-label="Anchor link for: the-image-generator-under-the-hood">The Image Generator: Under the Hood</a></h2>
+<p>Now let's look at the core of the solution - the TypeScript script that does the actual work:</p>
+<pre data-lang="typescript" style="background-color:#fafafa;color:#61676c;" class="language-typescript "><code class="language-typescript" data-lang="typescript"><span style="color:#fa6e32;">import </span><span>{ hash } </span><span style="color:#fa6e32;">from </span><span style="color:#86b300;">&quot;bun&quot;</span><span style="color:#61676ccc;">;
+</span><span style="color:#fa6e32;">const </span><span>fs </span><span style="color:#ed9366;">= </span><span style="color:#f07171;">require</span><span>(</span><span style="color:#86b300;">&quot;fs&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span style="color:#fa6e32;">const </span><span>{ DOMParser } </span><span style="color:#ed9366;">= </span><span style="color:#f07171;">require</span><span>(</span><span style="color:#86b300;">&quot;xmldom&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span style="color:#fa6e32;">const </span><span>{ createInstance } </span><span style="color:#ed9366;">= </span><span style="color:#f07171;">require</span><span>(</span><span style="color:#86b300;">&quot;polotno-node&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">// Main function controlling the entire process
+</span><span style="color:#fa6e32;">async function </span><span style="color:#f29718;">run</span><span>(</span><span style="color:#ff8f40;">x</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">lang</span><span>) {
+</span><span>    </span><span style="color:#fa6e32;">let </span><span>titles </span><span style="color:#ed9366;">= </span><span>[]</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#fa6e32;">let </span><span>dates </span><span style="color:#ed9366;">= </span><span>[]</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#fa6e32;">let </span><span>urls </span><span style="color:#ed9366;">= </span><span>[]</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#fa6e32;">let </span><span>content </span><span style="color:#ed9366;">= </span><span>[]</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#fa6e32;">let </span><span>languages </span><span style="color:#ed9366;">= </span><span style="color:#86b300;">&quot;de&quot;</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Fetch and process RSS feed
+</span><span>    </span><span style="color:#fa6e32;">const </span><span>data </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">fetch</span><span>(lang)
+</span><span>        </span><span style="color:#ed9366;">.</span><span style="color:#f07171;">then</span><span>((</span><span style="color:#ff8f40;">response</span><span>) </span><span style="color:#fa6e32;">=&gt; </span><span>response</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">text</span><span>())
+</span><span>        </span><span style="color:#ed9366;">.</span><span style="color:#f07171;">then</span><span>((</span><span style="color:#ff8f40;">str</span><span>) </span><span style="color:#fa6e32;">=&gt; </span><span>{
+</span><span>            </span><span style="color:#fa6e32;">let </span><span>parser </span><span style="color:#ed9366;">= new </span><span style="color:#399ee6;">DOMParser</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>            </span><span style="color:#fa6e32;">let </span><span>xml </span><span style="color:#ed9366;">= </span><span>parser</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">parseFromString</span><span>(str</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;text/xml&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>            </span><span style="color:#fa6e32;">let </span><span>items </span><span style="color:#ed9366;">= </span><span>xml</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">getElementsByTagName</span><span>(</span><span style="color:#86b300;">&quot;item&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>            languages </span><span style="color:#ed9366;">= </span><span>xml</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">getElementsByTagName</span><span>(</span><span style="color:#86b300;">&quot;language&quot;</span><span>)[</span><span style="color:#ff8f40;">0</span><span>]</span><span style="color:#ed9366;">.</span><span>childNodes[</span><span style="color:#ff8f40;">0</span><span>]</span><span style="color:#ed9366;">.</span><span>nodeValue</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span>            </span><span style="font-style:italic;color:#abb0b6;">// Extract information from RSS feed
+</span><span>            </span><span style="color:#fa6e32;">for </span><span>(</span><span style="color:#fa6e32;">let </span><span>o </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">; </span><span>o </span><span style="color:#ed9366;">&lt; </span><span>items</span><span style="color:#ed9366;">.</span><span>length</span><span style="color:#61676ccc;">; </span><span>o</span><span style="color:#ed9366;">++</span><span>) {
+</span><span>                titles</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">push</span><span>(items[o]</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">getElementsByTagName</span><span>(</span><span style="color:#86b300;">&quot;title&quot;</span><span>)[</span><span style="color:#ff8f40;">0</span><span>]</span><span style="color:#ed9366;">.</span><span>childNodes[</span><span style="color:#ff8f40;">0</span><span>]</span><span style="color:#ed9366;">.</span><span>nodeValue)</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span>                </span><span style="color:#fa6e32;">let </span><span>date </span><span style="color:#ed9366;">= new </span><span style="color:#399ee6;">Date</span><span>(items[o]</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">getElementsByTagName</span><span>(</span><span style="color:#86b300;">&quot;pubDate&quot;</span><span>)[</span><span style="color:#ff8f40;">0</span><span>]</span><span style="color:#ed9366;">.</span><span>childNodes[</span><span style="color:#ff8f40;">0</span><span>]</span><span style="color:#ed9366;">.</span><span>nodeValue)</span><span style="color:#61676ccc;">;
+</span><span>                </span><span style="color:#fa6e32;">let </span><span>options </span><span style="color:#ed9366;">= </span><span>{ year</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;numeric&quot;</span><span style="color:#61676ccc;">, </span><span>month</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;long&quot;</span><span style="color:#61676ccc;">, </span><span>day</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;numeric&quot; </span><span>}</span><span style="color:#61676ccc;">;
+</span><span>                </span><span style="color:#fa6e32;">let </span><span>formattedDate </span><span style="color:#ed9366;">= </span><span>date</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">toLocaleDateString</span><span>(</span><span style="color:#86b300;">&quot;de-DE&quot;</span><span style="color:#61676ccc;">, </span><span>options)</span><span style="color:#61676ccc;">;
+</span><span>                dates</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">push</span><span>(formattedDate)</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span>                </span><span style="color:#fa6e32;">let </span><span>url </span><span style="color:#ed9366;">= </span><span>items[o]</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">getElementsByTagName</span><span>(</span><span style="color:#86b300;">&quot;link&quot;</span><span>)[</span><span style="color:#ff8f40;">0</span><span>]</span><span style="color:#ed9366;">.</span><span>childNodes[</span><span style="color:#ff8f40;">0</span><span>]</span><span style="color:#ed9366;">.</span><span>nodeValue</span><span style="color:#61676ccc;">;
+</span><span>                url </span><span style="color:#ed9366;">= </span><span>url</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">split</span><span>(</span><span style="color:#86b300;">&quot;/&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>                url </span><span style="color:#ed9366;">= </span><span>url[url</span><span style="color:#ed9366;">.</span><span>length </span><span style="color:#ed9366;">- </span><span style="color:#ff8f40;">3</span><span>] </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/&quot; </span><span style="color:#ed9366;">+ </span><span>url[url</span><span style="color:#ed9366;">.</span><span>length </span><span style="color:#ed9366;">- </span><span style="color:#ff8f40;">2</span><span>]</span><span style="color:#61676ccc;">;
+</span><span>                urls</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">push</span><span>(url)</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span>                </span><span style="color:#fa6e32;">let </span><span>description </span><span style="color:#ed9366;">= </span><span>items[o]</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">getElementsByTagName</span><span>(</span><span style="color:#86b300;">&quot;description&quot;</span><span>)[</span><span style="color:#ff8f40;">0</span><span>]</span><span style="color:#ed9366;">.</span><span>childNodes[</span><span style="color:#ff8f40;">0</span><span>]</span><span style="color:#ed9366;">.</span><span>nodeValue</span><span style="color:#61676ccc;">;
+</span><span>                </span><span style="color:#fa6e32;">if </span><span>(description</span><span style="color:#ed9366;">.</span><span>length </span><span style="color:#ed9366;">&gt; </span><span style="color:#ff8f40;">500</span><span>) {
+</span><span>                    description </span><span style="color:#ed9366;">= </span><span>description</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">substring</span><span>(</span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">500</span><span>) </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;...&quot;</span><span style="color:#61676ccc;">;
+</span><span>                }
+</span><span>                description </span><span style="color:#ed9366;">= </span><span>description</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">replace</span><span>(</span><span style="color:#4cbf99;">/&lt;</span><span style="color:#ff8f40;">[</span><span style="color:#ed9366;">^</span><span style="color:#ff8f40;">&gt;]</span><span style="color:#ed9366;">*</span><span style="color:#4cbf99;">&gt;</span><span style="color:#ed9366;">?</span><span style="color:#4cbf99;">/</span><span style="color:#fa6e32;">gm</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>                content</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">push</span><span>(description)</span><span style="color:#61676ccc;">;
+</span><span>            }
+</span><span>
+</span><span>            </span><span style="font-style:italic;color:#abb0b6;">// Adjust templates and generate images
+</span><span>            </span><span style="color:#fa6e32;">for </span><span>(</span><span style="color:#fa6e32;">let </span><span>k </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">; </span><span>k </span><span style="color:#ed9366;">&lt; </span><span>titles</span><span style="color:#ed9366;">.</span><span>length</span><span style="color:#61676ccc;">; </span><span>k</span><span style="color:#ed9366;">++</span><span>) {
+</span><span>                </span><span style="color:#fa6e32;">let </span><span>template </span><span style="color:#ed9366;">= </span><span style="font-style:italic;color:#ed9366;">JSON</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">parse</span><span>(fs</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">readFileSync</span><span>(</span><span style="color:#86b300;">&quot;data&quot; </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/&quot; </span><span style="color:#ed9366;">+ </span><span>x</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;utf8&quot;</span><span>))</span><span style="color:#61676ccc;">;
+</span><span>                </span><span style="color:#fa6e32;">for </span><span>(</span><span style="color:#fa6e32;">let </span><span>i </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">; </span><span>i </span><span style="color:#ed9366;">&lt; </span><span>template</span><span style="color:#ed9366;">.</span><span>pages</span><span style="color:#ed9366;">.</span><span>length</span><span style="color:#61676ccc;">; </span><span>i</span><span style="color:#ed9366;">++</span><span>) {
+</span><span>                    template</span><span style="color:#ed9366;">.</span><span>pages[i]</span><span style="color:#ed9366;">.</span><span>background </span><span style="color:#ed9366;">= </span><span style="color:#86b300;">&quot;linear-gradient(228deg,white 0%,&quot; </span><span style="color:#ed9366;">+ </span><span style="color:#f29718;">getRGB</span><span>(titles[k]) </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot; 100%)&quot;</span><span style="color:#61676ccc;">;
+</span><span>                    </span><span style="color:#fa6e32;">for </span><span>(</span><span style="color:#fa6e32;">let </span><span>j </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">; </span><span>j </span><span style="color:#ed9366;">&lt; </span><span>template</span><span style="color:#ed9366;">.</span><span>pages[i]</span><span style="color:#ed9366;">.</span><span>children</span><span style="color:#ed9366;">.</span><span>length</span><span style="color:#61676ccc;">; </span><span>j</span><span style="color:#ed9366;">++</span><span>) {
+</span><span>                        </span><span style="color:#fa6e32;">if </span><span>(template</span><span style="color:#ed9366;">.</span><span>pages[i]</span><span style="color:#ed9366;">.</span><span>children[j]</span><span style="color:#ed9366;">.</span><span>name </span><span style="color:#ed9366;">== </span><span style="color:#86b300;">&quot;title&quot;</span><span>) {
+</span><span>                            template</span><span style="color:#ed9366;">.</span><span>pages[i]</span><span style="color:#ed9366;">.</span><span>children[j]</span><span style="color:#ed9366;">.</span><span>text </span><span style="color:#ed9366;">= </span><span>titles[k]</span><span style="color:#61676ccc;">;
+</span><span>                        }
+</span><span>                        </span><span style="color:#fa6e32;">if </span><span>(template</span><span style="color:#ed9366;">.</span><span>pages[i]</span><span style="color:#ed9366;">.</span><span>children[j]</span><span style="color:#ed9366;">.</span><span>name </span><span style="color:#ed9366;">== </span><span style="color:#86b300;">&quot;date&quot;</span><span>) {
+</span><span>                            template</span><span style="color:#ed9366;">.</span><span>pages[i]</span><span style="color:#ed9366;">.</span><span>children[j]</span><span style="color:#ed9366;">.</span><span>text </span><span style="color:#ed9366;">= </span><span style="color:#86b300;">&quot;Simeon Stanek :: &quot; </span><span style="color:#ed9366;">+ </span><span>dates[k]</span><span style="color:#61676ccc;">;
+</span><span>                        }
+</span><span>                        </span><span style="color:#fa6e32;">if </span><span>(template</span><span style="color:#ed9366;">.</span><span>pages[i]</span><span style="color:#ed9366;">.</span><span>children[j]</span><span style="color:#ed9366;">.</span><span>name </span><span style="color:#ed9366;">== </span><span style="color:#86b300;">&quot;hintergrundtext&quot;</span><span>) {
+</span><span>                            template</span><span style="color:#ed9366;">.</span><span>pages[i]</span><span style="color:#ed9366;">.</span><span>children[j]</span><span style="color:#ed9366;">.</span><span>text </span><span style="color:#ed9366;">= </span><span>content[k]</span><span style="color:#61676ccc;">;
+</span><span>                        }
+</span><span>                    }
+</span><span>                }
+</span><span>                </span><span style="color:#f29718;">exporter</span><span>(template</span><span style="color:#61676ccc;">, </span><span>k</span><span style="color:#61676ccc;">, </span><span>urls[k]</span><span style="color:#61676ccc;">, </span><span>x</span><span style="color:#61676ccc;">, </span><span>languages)</span><span style="color:#61676ccc;">;
+</span><span>            }
+</span><span>        })</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">// Function for image generation and storage
+</span><span>    </span><span style="color:#fa6e32;">async function </span><span style="color:#f29718;">exporter</span><span>(</span><span style="color:#ff8f40;">template</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">i</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">url</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">x</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">languages</span><span>) {
+</span><span>        fs</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">mkdirSync</span><span>(</span><span style="color:#86b300;">&quot;../content/&quot; </span><span style="color:#ed9366;">+ </span><span>url </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/images/&quot; </span><span style="color:#ed9366;">+ </span><span>languages</span><span style="color:#61676ccc;">, </span><span>{ recursive</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">true </span><span>})</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span>        </span><span style="color:#fa6e32;">if </span><span>(x </span><span style="color:#ed9366;">== </span><span style="color:#86b300;">&quot;ogimage.json&quot; </span><span style="color:#ed9366;">&amp;&amp; !</span><span>fs</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">existsSync</span><span>(</span><span style="color:#86b300;">&quot;../content/&quot; </span><span style="color:#ed9366;">+ </span><span>url </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/images/&quot; </span><span style="color:#ed9366;">+ </span><span>languages </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/preview.jpg&quot;</span><span>)) {
+</span><span>            </span><span style="color:#fa6e32;">let </span><span>instance </span><span style="color:#ed9366;">= </span><span style="color:#fa6e32;">await </span><span style="color:#f29718;">createInstance</span><span>({ key</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;[your-api-key]&quot; </span><span>})</span><span style="color:#61676ccc;">;
+</span><span>            </span><span style="color:#fa6e32;">let </span><span>pdfBase64 </span><span style="color:#ed9366;">= </span><span style="color:#fa6e32;">await </span><span>instance</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">jsonToImageBase64</span><span>(template</span><span style="color:#61676ccc;">, </span><span>{ mimeType</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;image/jpeg&quot; </span><span>})</span><span style="color:#61676ccc;">;
+</span><span>            fs</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">writeFileSync</span><span>(</span><span style="color:#86b300;">&quot;../content/&quot; </span><span style="color:#ed9366;">+ </span><span>url </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/images/&quot; </span><span style="color:#ed9366;">+ </span><span>languages </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/preview.jpg&quot;</span><span style="color:#61676ccc;">, </span><span>pdfBase64</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;base64&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>            instance</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">close</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>        }
+</span><span>        </span><span style="color:#fa6e32;">if </span><span>(x </span><span style="color:#ed9366;">== </span><span style="color:#86b300;">&quot;instagram1.json&quot; </span><span style="color:#ed9366;">&amp;&amp; !</span><span>fs</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">existsSync</span><span>(</span><span style="color:#86b300;">&quot;../content/&quot; </span><span style="color:#ed9366;">+ </span><span>url </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/images/&quot; </span><span style="color:#ed9366;">+ </span><span>languages </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/instagram1.jpg&quot;</span><span>)) {
+</span><span>            </span><span style="color:#fa6e32;">let </span><span>instance </span><span style="color:#ed9366;">= </span><span style="color:#fa6e32;">await </span><span style="color:#f29718;">createInstance</span><span>({ key</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;[your-api-key]&quot; </span><span>})</span><span style="color:#61676ccc;">;
+</span><span>            </span><span style="color:#fa6e32;">let </span><span>pdfBase64 </span><span style="color:#ed9366;">= </span><span style="color:#fa6e32;">await </span><span>instance</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">jsonToImageBase64</span><span>(template</span><span style="color:#61676ccc;">, </span><span>{ mimeType</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;image/jpeg&quot; </span><span>})</span><span style="color:#61676ccc;">;
+</span><span>            fs</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">writeFileSync</span><span>(</span><span style="color:#86b300;">&quot;../content/&quot; </span><span style="color:#ed9366;">+ </span><span>url </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/images/&quot; </span><span style="color:#ed9366;">+ </span><span>languages </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/instagram1.jpg&quot;</span><span style="color:#61676ccc;">, </span><span>pdfBase64</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;base64&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>            instance</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">close</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>        }
+</span><span>        </span><span style="color:#fa6e32;">if </span><span>(x </span><span style="color:#ed9366;">== </span><span style="color:#86b300;">&quot;instagram2.json&quot; </span><span style="color:#ed9366;">&amp;&amp; !</span><span>fs</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">existsSync</span><span>(</span><span style="color:#86b300;">&quot;../content/&quot; </span><span style="color:#ed9366;">+ </span><span>url </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/images/&quot; </span><span style="color:#ed9366;">+ </span><span>languages </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/instagram2.jpg&quot;</span><span>)) {
+</span><span>            </span><span style="color:#fa6e32;">let </span><span>instance </span><span style="color:#ed9366;">= </span><span style="color:#fa6e32;">await </span><span style="color:#f29718;">createInstance</span><span>({ key</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;[your-api-key]&quot; </span><span>})</span><span style="color:#61676ccc;">;
+</span><span>            </span><span style="color:#fa6e32;">let </span><span>pdfBase64 </span><span style="color:#ed9366;">= </span><span style="color:#fa6e32;">await </span><span>instance</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">jsonToImageBase64</span><span>(template</span><span style="color:#61676ccc;">, </span><span>{ mimeType</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;image/jpeg&quot; </span><span>})</span><span style="color:#61676ccc;">;
+</span><span>            fs</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">writeFileSync</span><span>(</span><span style="color:#86b300;">&quot;../content/&quot; </span><span style="color:#ed9366;">+ </span><span>url </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/images/&quot; </span><span style="color:#ed9366;">+ </span><span>languages </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/instagram2.jpg&quot;</span><span style="color:#61676ccc;">, </span><span>pdfBase64</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;base64&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>            instance</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">close</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>        }
+</span><span>        </span><span style="color:#fa6e32;">if </span><span>(x </span><span style="color:#ed9366;">== </span><span style="color:#86b300;">&quot;feed.json&quot; </span><span style="color:#ed9366;">&amp;&amp; !</span><span>fs</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">existsSync</span><span>(</span><span style="color:#86b300;">&quot;../content/&quot; </span><span style="color:#ed9366;">+ </span><span>url </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/images/&quot; </span><span style="color:#ed9366;">+ </span><span>languages </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/feed.jpg&quot;</span><span>)) {
+</span><span>            </span><span style="color:#fa6e32;">let </span><span>instance </span><span style="color:#ed9366;">= </span><span style="color:#fa6e32;">await </span><span style="color:#f29718;">createInstance</span><span>({ key</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;[your-api-key]&quot; </span><span>})</span><span style="color:#61676ccc;">;
+</span><span>            </span><span style="color:#fa6e32;">let </span><span>pdfBase64 </span><span style="color:#ed9366;">= </span><span style="color:#fa6e32;">await </span><span>instance</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">jsonToImageBase64</span><span>(template</span><span style="color:#61676ccc;">, </span><span>{ mimeType</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;image/jpeg&quot; </span><span>})</span><span style="color:#61676ccc;">;
+</span><span>            fs</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">writeFileSync</span><span>(</span><span style="color:#86b300;">&quot;../content/&quot; </span><span style="color:#ed9366;">+ </span><span>url </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/images/&quot; </span><span style="color:#ed9366;">+ </span><span>languages </span><span style="color:#ed9366;">+ </span><span style="color:#86b300;">&quot;/feed.jpg&quot;</span><span style="color:#61676ccc;">, </span><span>pdfBase64</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;base64&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>            instance</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">close</span><span>()</span><span style="color:#61676ccc;">;
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">// Function to generate RGB color from string
+</span><span style="color:#fa6e32;">function </span><span style="color:#f29718;">getRGB</span><span>(</span><span style="color:#ff8f40;">str</span><span>) {
+</span><span>    </span><span style="color:#fa6e32;">let </span><span>hashed </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">hash</span><span>(str)</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#fa6e32;">let </span><span>result </span><span style="color:#ed9366;">= </span><span>hashed</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">toString</span><span>(</span><span style="color:#ff8f40;">16</span><span>)</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">substring</span><span>(</span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">6</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    </span><span style="color:#fa6e32;">return </span><span style="color:#86b300;">&quot;#&quot; </span><span style="color:#ed9366;">+ </span><span>result</span><span style="color:#61676ccc;">;
+</span><span>}
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">// Main function for image generation
+</span><span style="color:#fa6e32;">async function </span><span style="color:#f29718;">generate</span><span>() {
+</span><span>    </span><span style="color:#f29718;">run</span><span>(</span><span style="color:#86b300;">&quot;ogimage.json&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;http://127.0.0.1:1234/rss.xml&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span>    </span><span style="color:#f07171;">setTimeout</span><span>(() </span><span style="color:#fa6e32;">=&gt; </span><span>{
+</span><span>        </span><span style="color:#f29718;">run</span><span>(</span><span style="color:#86b300;">&quot;instagram1.json&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;http://127.0.0.1:1234/rss.xml&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    }</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">1000</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span>    </span><span style="color:#f07171;">setTimeout</span><span>(() </span><span style="color:#fa6e32;">=&gt; </span><span>{
+</span><span>        </span><span style="color:#f29718;">run</span><span>(</span><span style="color:#86b300;">&quot;instagram2.json&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;http://127.0.0.1:1234/rss.xml&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    }</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">1000</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span>    </span><span style="color:#f07171;">setTimeout</span><span>(() </span><span style="color:#fa6e32;">=&gt; </span><span>{
+</span><span>        </span><span style="color:#f29718;">run</span><span>(</span><span style="color:#86b300;">&quot;feed.json&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;http://127.0.0.1:1234/rss.xml&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    }</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">1000</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span>    </span><span style="color:#f07171;">setTimeout</span><span>(() </span><span style="color:#fa6e32;">=&gt; </span><span>{
+</span><span>        </span><span style="color:#f29718;">run</span><span>(</span><span style="color:#86b300;">&quot;ogimage.json&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;http://127.0.0.1:1234/en/rss.xml&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    }</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">1000</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span>    </span><span style="color:#f07171;">setTimeout</span><span>(() </span><span style="color:#fa6e32;">=&gt; </span><span>{
+</span><span>        </span><span style="color:#f29718;">run</span><span>(</span><span style="color:#86b300;">&quot;instagram1.json&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;http://127.0.0.1:1234/en/rss.xml&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    }</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">1000</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span>    </span><span style="color:#f07171;">setTimeout</span><span>(() </span><span style="color:#fa6e32;">=&gt; </span><span>{
+</span><span>        </span><span style="color:#f29718;">run</span><span>(</span><span style="color:#86b300;">&quot;instagram2.json&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;http://127.0.0.1:1234/en/rss.xml&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    }</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">1000</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>
+</span><span>    </span><span style="color:#f07171;">setTimeout</span><span>(() </span><span style="color:#fa6e32;">=&gt; </span><span>{
+</span><span>        </span><span style="color:#f29718;">run</span><span>(</span><span style="color:#86b300;">&quot;feed.json&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;http://127.0.0.1:1234/en/rss.xml&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>    }</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">1000</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>}
+</span><span>
+</span><span style="color:#f29718;">generate</span><span>()</span><span style="color:#61676ccc;">;
+</span></code></pre>
+<h2 id="the-process-in-detail"><a class="zola-anchor" href="#the-process-in-detail" aria-label="Anchor link for: the-process-in-detail">The Process in Detail</a></h2>
+<h3 id="1-reading-data-from-rss-feed"><a class="zola-anchor" href="#1-reading-data-from-rss-feed" aria-label="Anchor link for: 1-reading-data-from-rss-feed">1. Reading Data from RSS Feed</a></h3>
+<p>The script starts by fetching the blog's RSS feed and extracting relevant information:</p>
+<ul>
+<li>Post titles</li>
+<li>Publication dates (formatted)</li>
+<li>Post URLs</li>
+<li>Brief descriptions (truncated to 500 characters)</li>
+</ul>
+<p>The feed is parsed as XML and data is stored in arrays.</p>
+<h3 id="2-individual-color-scheme-per-article"><a class="zola-anchor" href="#2-individual-color-scheme-per-article" aria-label="Anchor link for: 2-individual-color-scheme-per-article">2. Individual Color Scheme per Article</a></h3>
+<p>A clever feature of the script is automatic color generation for each article:</p>
+<pre data-lang="typescript" style="background-color:#fafafa;color:#61676c;" class="language-typescript "><code class="language-typescript" data-lang="typescript"><span style="color:#fa6e32;">function </span><span style="color:#f29718;">getRGB</span><span>(</span><span style="color:#ff8f40;">str</span><span>) {
+</span><span>  </span><span style="color:#fa6e32;">let </span><span>hashed </span><span style="color:#ed9366;">= </span><span style="color:#f29718;">hash</span><span>(str)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#fa6e32;">let </span><span>result </span><span style="color:#ed9366;">= </span><span>hashed</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">toString</span><span>(</span><span style="color:#ff8f40;">16</span><span>)</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">substring</span><span>(</span><span style="color:#ff8f40;">0</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">6</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  </span><span style="color:#fa6e32;">return </span><span style="color:#86b300;">&quot;#&quot; </span><span style="color:#ed9366;">+ </span><span>result</span><span style="color:#61676ccc;">;
+</span><span>}
+</span></code></pre>
+<p>This function generates a hash value from the article title and converts it to a HEX color code. This gives each article a unique but consistent color scheme that remains the same with each run.</p>
+<h3 id="3-template-customization-for-each-article"><a class="zola-anchor" href="#3-template-customization-for-each-article" aria-label="Anchor link for: 3-template-customization-for-each-article">3. Template Customization for Each Article</a></h3>
+<p>For each image type (OG image, Instagram, Feed), there's a JSON template in the "data" directory. These templates are dynamically adjusted for each article. I created the templates using <a href="https://studio.polotno.com/">Polotno Studio</a>:</p>
+<ul>
+<li>The background gets an individual color gradient</li>
+<li>The title is inserted</li>
+<li>The date with author name is added</li>
+<li>A content excerpt is used as background text
+Make sure the layers in your JSON templates match the names referenced in the TypeScript script.</li>
+</ul>
+<p><img src="https://simeon.staneks.de/en/posts/image-generation-for-zola-with-polotno/images/polotno00001.png" alt="Polotno Studio" /></p>
+<h3 id="4-image-generation-with-polotno"><a class="zola-anchor" href="#4-image-generation-with-polotno" aria-label="Anchor link for: 4-image-generation-with-polotno">4. Image Generation with Polotno</a></h3>
+<p>The customized templates are converted to JPEG images using Polotno:</p>
+<pre data-lang="typescript" style="background-color:#fafafa;color:#61676c;" class="language-typescript "><code class="language-typescript" data-lang="typescript"><span style="color:#fa6e32;">let </span><span>instance </span><span style="color:#ed9366;">= </span><span style="color:#fa6e32;">await </span><span style="color:#f29718;">createInstance</span><span>({
+</span><span>  key</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;[your-api-key]&quot;</span><span style="color:#61676ccc;">,
+</span><span>})</span><span style="color:#61676ccc;">;
+</span><span style="color:#fa6e32;">let </span><span>pdfBase64 </span><span style="color:#ed9366;">= </span><span style="color:#fa6e32;">await </span><span>instance</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">jsonToImageBase64</span><span>(template</span><span style="color:#61676ccc;">, </span><span>{
+</span><span>  mimeType</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">&quot;image/jpeg&quot;</span><span style="color:#61676ccc;">,
+</span><span>})</span><span style="color:#61676ccc;">;
+</span></code></pre>
+<h3 id="5-storing-images-in-blog-structure"><a class="zola-anchor" href="#5-storing-images-in-blog-structure" aria-label="Anchor link for: 5-storing-images-in-blog-structure">5. Storing Images in Blog Structure</a></h3>
+<p>The generated images are stored in a structured directory tree:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>/content/[article-name]/images/[language]/[image-type].jpg
+</span></code></pre>
+<h3 id="6-multilingual-support"><a class="zola-anchor" href="#6-multilingual-support" aria-label="Anchor link for: 6-multilingual-support">6. Multilingual Support</a></h3>
+<p>The script automatically generates images for all language versions of the blog (in this example, German and English).</p>
+<h2 id="zola-configuration-for-image-usage"><a class="zola-anchor" href="#zola-configuration-for-image-usage" aria-label="Anchor link for: zola-configuration-for-image-usage">Zola Configuration for Image Usage</a></h2>
+<p>For Zola to properly use the generated images, here's an example of the corresponding template configuration:</p>
+<pre data-lang="html" style="background-color:#fafafa;color:#61676c;" class="language-html "><code class="language-html" data-lang="html"><span>    {% if page.path %}
+</span><span>    </span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">meta </span><span style="color:#f29718;">property</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;og:image&quot; </span><span style="color:#f29718;">content</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;{{config.base_url | safe}}{{ page.path | safe }}/images/{{lang}}/preview.jpg&quot; </span><span style="color:#55b4d490;">/&gt;
+</span><span>    </span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">meta </span><span style="color:#f29718;">property</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;og:logo&quot; </span><span style="color:#f29718;">content</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;{{config.base_url | safe}}{{ page.path | safe }}/images{{lang}}/preview.jpg&quot; </span><span style="color:#55b4d490;">/&gt;
+</span><span>    </span><span style="font-style:italic;color:#abb0b6;">&lt;!-- twitter card --&gt;
+</span><span>    </span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">meta </span><span style="color:#f29718;">name</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;twitter:card&quot; </span><span style="color:#f29718;">content</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;summary_large_image&quot;</span><span style="color:#55b4d490;">&gt;
+</span><span>    </span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">meta </span><span style="color:#f29718;">name</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;twitter:image&quot; </span><span style="color:#f29718;">content</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;{{config.base_url | safe}}{{ page.path | safe }}images/{{lang}}/preview.jpg&quot;</span><span style="color:#55b4d490;">&gt;
+</span><span>    {% elif config.extra.favicon %}
+</span><span>    </span><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">meta </span><span style="color:#f29718;">property</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;og:image&quot; </span><span style="color:#f29718;">content</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;{{ config.extra.favicon }}&quot; </span><span style="color:#55b4d490;">/&gt;
+</span><span>    {% endif %}
+</span></code></pre>
+<h2 id="the-benefits-of-automation"><a class="zola-anchor" href="#the-benefits-of-automation" aria-label="Anchor link for: the-benefits-of-automation">The Benefits of Automation</a></h2>
+<p>This solution offers several advantages:</p>
+<ol>
+<li><strong>Consistent Design</strong>: All images follow the same design scheme, strengthening brand identity (if I had one).</li>
+<li><strong>Individual Touch</strong>: Each article still gets its own color scheme and content as visual elements.</li>
+<li><strong>Time Savings</strong>: Image generation happens before article publication by simply running the deployment script.</li>
+<li><strong>Multilingual Support</strong>: All language versions are supported without additional effort.</li>
+<li><strong>Complete Integration</strong>: Through Git integration, all changes are published immediately.</li>
+</ol>
+<h2 id="conclusion"><a class="zola-anchor" href="#conclusion" aria-label="Anchor link for: conclusion">Conclusion</a></h2>
+<p>With this combination of Zola, Bun, TypeScript, and Polotno, I've found an elegant solution to improve my blog workflow. The automatic image generation ensures that each article is visually appealing without requiring additional effort.</p>
+<p>The solution is flexible and can be easily adapted to other requirements - whether by changing templates, adding more image formats, or adjusting visual elements.</p>
+<p>If you want to use this approach for your own blog, make sure to get your own Polotno API key and adjust the templates to your own design.</p>
+
+        </section>
+    </article>
+    <hr>
+    <br>
+    <div class="meta">
+        
+            <span class="date-label-posted">:: Posted on </span><time>2025-02-27</time>
+        
+
+        
+
+        
+
+        
+        
+                <span class="tags-label"> :: Tags:</span>
+                <span class="tags">
+                        <a href="https://simeon.staneks.de/tags/programmierung/" class="post-tag">programmierung</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/zola/" class="post-tag">zola</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/typescript/" class="post-tag">typescript</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/polotno/" class="post-tag">polotno</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/bun/" class="post-tag">bun</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/automatisierung/" class="post-tag">automatisierung</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/bloggen/" class="post-tag">bloggen</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/rss/" class="post-tag">rss</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/bildgenerierung/" class="post-tag">bildgenerierung</a>
+                    
+                </span>
+        
+
+        
+       
+                
+     
+
+            
+                
+                :: <a href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;Blog&#x2F;tree&#x2F;main&#x2F;content&#x2F;posts&#x2F;image-generation-for-zola-with-polotno&#x2F;index.en.md" target="_blank" rel="noopener noreferrer"> Source Code</a>
+            
+
+        
+
+    </div>
+
+    
+    
+        
+    
+
+    
+        
+        
+        
+        
+            
+        
+            
+        
+            
+        
+            
+                
+            
+        
+
+        
+        
+
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
+            
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;image-generation-for-zola-with-polotno&#x2F;video&#x2F;image-generation-for-zola-with-polotno-en.mp4" onerror="this.parentElement.parentElement.style.display='none';" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+        </div>
+    
+</main>
+
+
+
+        
+            
+        
+
+        
+        <br>
+        <hr>
+        <div class="giscus" >
+        <script src="https://giscus.app/client.js"
+        data-repo="SimeonLukas/Blog"
+        data-repo-id="R_kgDONSw5PA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONSw5PM4CkoL8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https:&#x2F;&#x2F;simeon.staneks.de/css/giscus.css"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+        
+
+    </div>
+</body>
+
+</html>
