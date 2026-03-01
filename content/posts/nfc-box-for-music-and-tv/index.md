@@ -21,7 +21,7 @@ Deshalb habe ich eine NFC-Holzbox gebaut, die du ganz einfach nachbauen kannst. 
 
 ## Das Herz: Ein schlafender ESP32
 
-Der ESP32 schläft die meiste Zeit und wacht alle 3 Sekunden kurz auf, um nach NFC-Tags zu schauen. So sparst ich enorm viel Strom, da der Interupt-Modus des MFRC522 NFC-Readers nicht zuverlässig funktioniert, habe ich mich für diese Polling-Lösung entschieden:
+Der ESP32 schläft die meiste Zeit und wacht alle 3 Sekunden kurz auf, um nach NFC-Tags zu schauen. So spart man enorm viel Strom und da der Interupt-Modus des MFRC522 NFC-Readers nicht zuverlässig funktioniert, habe ich mich für diese Polling-Lösung entschieden:
 
 ```cpp
 #define WAKEUP_INTERVAL 3000000    // 3 Sekunden
