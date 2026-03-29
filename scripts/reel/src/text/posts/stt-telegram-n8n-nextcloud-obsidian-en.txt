@@ -1,0 +1,1 @@
+ How I use a Telegram bot, a local Whisper server, n8n and Nextcloud to automatically beam my spoken thoughts into my Obsidian vault as Markdown memos. 
