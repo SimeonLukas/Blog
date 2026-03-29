@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="de">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Papierloses Arbeiten mit Obsidian, Epubs und Ebook-Reader
+        
+    </title>
+
+    
+    
+    <meta name="description" content="Einblicke in meinen papierlosen Workflow mit Obsidian, Epubs und Ebook-Readern. Tipps zur Nutzung von Obsidian für Notizen und das Erstellen von Epubs aus Ma..." />
+    
+    
+
+    
+    <meta property="og:image" content="https://simeon.staneks.de/posts/work-paperlesse-with-obsidian-epub-and-ebookreader//images/de/preview.jpg" />
+    <meta property="og:logo" content="https://simeon.staneks.de/posts/work-paperlesse-with-obsidian-epub-and-ebookreader//imagesde/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://simeon.staneks.de/posts/work-paperlesse-with-obsidian-epub-and-ebookreader/images/de/preview.jpg">
+    
+
+    
+    <meta property="og:title" content="Papierloses Arbeiten mit Obsidian, Epubs und Ebook-Reader" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="Papierloses Arbeiten mit Obsidian, Epubs und Ebook-Reader">
+    
+    
+
+    
+    
+    <meta property="og:description" content="Einblicke in meinen papierlosen Workflow mit Obsidian, Epubs und Ebook-Readern. Tipps zur Nutzung von Obsidian für Notizen und das Erstellen von Epubs aus Ma..."/>
+    <!-- twitter description -->
+    <meta name="twitter:description" content="Einblicke in meinen papierlosen Workflow mit Obsidian, Epubs und Ebook-Readern. Tipps zur Nutzung von Obsidian für Notizen und das Erstellen von Epubs aus Ma...">
+    
+    
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;simeon.staneks.de"/>
+    <meta property="og:type" content="article" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Simeon&#x27;s Blog" />
+
+
+    
+    
+    <link rel="icon" type="image/png" href=https:&#x2F;&#x2F;simeon.staneks.de&#x2F;android-chrome-512x512.png />
+    
+
+    
+    
+    <link href=https://simeon.staneks.de/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/codeblock.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/toc.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/note.js></script>
+    
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Simeon&#x27;s Blog" href="https://simeon.staneks.de/ atom.xml">
+
+
+    
+    
+    <link rel="stylesheet" type="text/css" href=https://simeon.staneks.de/theme/light.css />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://simeon.staneks.de/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://simeon.staneks.de/js/themetoggle.js></script>
+    
+    <script>setTheme(getSavedTheme());</script>
+    
+    <script src=https://simeon.staneks.de/js/index.js></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://simeon.staneks.de/main.css />
+
+    
+</head>
+
+<body onload="updatelanguage()">
+    <div class="content">
+        <header>
+    <div class="main">
+        <div> <a id="navigation_start" href=https:&#x2F;&#x2F;simeon.staneks.de>Simeon&#x27;s Blog </a> 
+            <p style="font-size: xx-small;">lieber unperfekt starten als perfekt warten</p> 
+        </div>
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl" class="social mastodon">
+                <img alt=mastodon src=https://simeon.staneks.de/social_icons/mastodon.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;" class="social instagram">
+                <img alt=instagram src=https://simeon.staneks.de/social_icons/instagram.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas" class="social github">
+                <img alt=github src=https://simeon.staneks.de/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;buymeacoffee.com&#x2F;simeonlukas" class="social buy me a coffee">
+                <img alt=buy me a coffee src=https://simeon.staneks.de/social_icons/bmc-logo.svg>
+            </a>
+            
+            <a rel="me" href="&#x2F;rss.xml" class="social rss">
+                <img alt=rss src=https://simeon.staneks.de/social_icons/rss.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a class="navigation_lang &#x2F;posts" href=&#x2F;posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a class="navigation_lang &#x2F;pages" href=&#x2F;pages style="margin-left: 0.5em">&#x2F;pages</a>
+        
+        <a class="navigation_lang &#x2F;about" href=&#x2F;pages&#x2F;about style="margin-left: 0.5em">&#x2F;about</a>
+        
+        <a class="navigation_lang &#x2F;tags" href=&#x2F;tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://simeon.staneks.de/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+        <a id="language-toggle" onclick="toggleLanguage(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/globe.svg alt="Change Language" /><span style="font-size: xx-small;" id="language-name">de</span>
+        </a>
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <h1 class="page-header">
+        Papierloses Arbeiten mit Obsidian, Epubs und Ebook-Reader<span class="primary-color" style="font-size: 1.6em">.</span>
+    </h1>
+
+        </div>
+        Einblicke in meinen papierlosen Workflow mit Obsidian, Epubs und Ebook-Readern. Tipps zur Nutzung von Obsidian für Notizen und das Erstellen von Epubs aus Markdown-Dateien. Vorstellung meiner Nutzung von Epubs und Ebook-Readern für das papierlose Arbeiten.
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/work-paperlesse-with-obsidian-epub-and-ebookreader/#die-genese-papierloses-arbeiten-in-der-pastoral">Die Genese: Papierloses Arbeiten in der Pastoral</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/work-paperlesse-with-obsidian-epub-and-ebookreader/#vorteile-der-nutzung-von-obsidian">Vorteile der Nutzung von Obsidian</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/work-paperlesse-with-obsidian-epub-and-ebookreader/#praktischer-workflow-ein-beispiel">Praktischer Workflow: Ein Beispiel</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/work-paperlesse-with-obsidian-epub-and-ebookreader/#der-gottesdienst">Der Gottesdienst</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/work-paperlesse-with-obsidian-epub-and-ebookreader/#der-export">Der Export</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/posts/work-paperlesse-with-obsidian-epub-and-ebookreader/#hardware">Hardware</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/work-paperlesse-with-obsidian-epub-and-ebookreader/#fazit-die-digitale-transformation-pastoraler-arbeit">Fazit: Die digitale Transformation pastoraler Arbeit</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h1 id="die-genese-papierloses-arbeiten-in-der-pastoral"><a class="zola-anchor" href="#die-genese-papierloses-arbeiten-in-der-pastoral" aria-label="Anchor link for: die-genese-papierloses-arbeiten-in-der-pastoral">Die Genese: Papierloses Arbeiten in der Pastoral</a></h1>
+<p>Wenn es um Notiz-Tools geht, dann kann man da tief abtauchen und nach Jahren auftauchen und ist immer noch auf der Suche nach einer perfekten Lösung für den eigenen Workflow. Ich habe in den letzten Jahren viele Tools ausprobiert, um meine Notizen und Gedanken zu organisieren. Immer wieder kehre ich zu <a href="https://obsidian.md">Obsidian</a> zurück, da es mir die größte Freiheit bietet, meine Notizen zu organisieren und zu strukturieren, geschweige der Menge an Plugins, die es bietet. Ich habe Obsidian als mein Haupt-Notiz-Tool etabliert, um meine Gedanken und Ideen festzuhalten. Ich nutze es für alles, was ich so mache: von der Planung von Projekten über die Dokumentation von Ideen bis hin zur Erstellung von Gottesdiensten und Predigten. Eigentlich bin ich vollkommen glücklich mit dem Tool, aber irgendwie betrachte ich es seit Jahren als Übergangslösung und ich glaube da bin ich nicht alleine.</p>
+<h2 id="vorteile-der-nutzung-von-obsidian"><a class="zola-anchor" href="#vorteile-der-nutzung-von-obsidian" aria-label="Anchor link for: vorteile-der-nutzung-von-obsidian">Vorteile der Nutzung von Obsidian</a></h2>
+<p>Nicht destotrotz gibt es einige Vorteile, die ich an Obsidian schätze:</p>
+<ol>
+<li><strong>Einfacher Zugang</strong>: Durch die einfache Benutzeroberfläche kann ich schnell und einfach meine Notizen organisieren und verwalten.</li>
+<li><strong>Markdown</strong>: Ich kann meine Notizen in Markdown schreiben, was mir die Freiheit gibt, sie in verschiedenen Formaten zu exportieren.</li>
+<li><strong>Plugins</strong>: Ich kann viele Plugins verwenden, um meine Notizen zu verbessern und zu verwalten. Natürlich kann ich auch selbst Plugins dafür programmieren, was das Tool noch flexibler macht.</li>
+<li><strong>Offline-Zugriff</strong>: Ich synchronisiere meine Notizen zwar mit Nextcloud, aber ich kann sie auch offline nutzen, was mir die Freiheit gibt, überall zu arbeiten.</li>
+<li><strong>Wunderschön</strong>: Ich kann meine Notizen mit verschiedenen Themes und CSS anpassen, um sie schöner zu gestalten. Und ich liebe das flexoki Theme. Es sieht einfach fantastisch aus.</li>
+</ol>
+<h2 id="praktischer-workflow-ein-beispiel"><a class="zola-anchor" href="#praktischer-workflow-ein-beispiel" aria-label="Anchor link for: praktischer-workflow-ein-beispiel">Praktischer Workflow: Ein Beispiel</a></h2>
+<h3 id="der-gottesdienst"><a class="zola-anchor" href="#der-gottesdienst" aria-label="Anchor link for: der-gottesdienst">Der Gottesdienst</a></h3>
+<p>In meinem Fall ist es so, dass ich meine Gottesdienste und Predigten in Obsidian plane und schreibe. Ich habe dafür ein Template, das ich immer wieder verwende. Denn ein Gottesdienst besteht ja meistens aus den gleichen Elementen: Eröffnung, Kreuzzeichen, Begrüßung, Kyrie, Tagesgebet, Lesung, Evangelium, Predigt, Fürbitten, Vater unser, Schlussgebet und Segen. Ich habe mir ein Template erstellt, das ich immer wieder verwenden kann. Das Template sieht so aus:</p>
+<pre data-lang="markdown" style="background-color:#fafafa;color:#61676c;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span style="font-weight:bold;color:#fa6e32;"># </span><span style="font-weight:bold;color:#399ee6;">Wortgottesfeier am {{date:DD.MM.YYYY}}
+</span><span>
+</span><span>![[Stille.mp3]]
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Eröffnung
+</span><span>
+</span><span>![[{{location}}Musik.mp3]]
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Kreuzzeichen
+</span><span>
+</span><span>Im Namen des Vaters und des Sohnes und des Heiligen Geistes. Amen. +
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Begrüßung
+</span><span>
+</span><span>Liebe Schwestern und Brüder, ich begrüße Sie alle herzlich zu unserer heutigen Wortgottesfeier {{location}}.
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Hier individuelle Begrüßung und thematische Einführung einfügen --&gt;
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Kyrie
+</span><span>
+</span><span>Herr Jesus Christus, du bist gekommen, um uns den Weg zum Vater zu zeigen. Herr, erbarme dich unser. Du hast uns die frohe Botschaft verkündet und uns zum Reich Gottes eingeladen. Christus, erbarme dich unser. Du führst uns und begleitest uns in das ewige Leben. Herr, erbarme dich unser.
+</span><span>
+</span><span>![[Musik1.mp3]]
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Tagesgebet
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Tagesgebet entsprechend dem liturgischen Tag einfügen --&gt;
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Lesung
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Lesung entsprechend dem liturgischen Tag einfügen --&gt;
+</span><span>
+</span><span>![[Musik2.mp3]]
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Christus Sieger... / Halleluja...
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Je nach Jahreszeit --&gt;
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Evangelium
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Evangelium entsprechend dem liturgischen Tag einfügen --&gt;
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Predigt
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Predigt einfügen - Gliederung: --&gt; &lt;!-- - Bezug zum Evangelium --&gt; &lt;!-- - Hauptthema entfalten --&gt; &lt;!-- - Lebensbezug herstellen --&gt; &lt;!-- - Hoffnungsvollen Abschluss formulieren --&gt;
+</span><span>
+</span><span>![[Musik3.mp3]]
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Fürbitten
+</span><span>
+</span><span>Guter Gott, in Vertrauen auf deine Liebe bringen wir unsere Bitten vor dich:
+</span><span>
+</span><span style="color:#4cbf99;">1. </span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Fürbitte 1 --&gt; </span><span style="font-style:italic;color:#f07171;">_Wir bitten dich, erhöre uns._
+</span><span style="color:#4cbf99;">2. </span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Fürbitte 2 --&gt; </span><span style="font-style:italic;color:#f07171;">_Wir bitten dich, erhöre uns._
+</span><span style="color:#4cbf99;">3. </span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Fürbitte 3 --&gt; </span><span style="font-style:italic;color:#f07171;">_Wir bitten dich, erhöre uns._
+</span><span style="color:#4cbf99;">4. </span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Fürbitte 4 --&gt; </span><span style="font-style:italic;color:#f07171;">_Wir bitten dich, erhöre uns._
+</span><span style="color:#4cbf99;">5. </span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Fürbitte 5 --&gt; </span><span style="font-style:italic;color:#f07171;">_Wir bitten dich, erhöre uns._
+</span><span style="color:#4cbf99;">6. </span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Fürbitte 6 --&gt; </span><span style="font-style:italic;color:#f07171;">_Wir bitten dich, erhöre uns._
+</span><span>
+</span><span>Gott, unser Vater, du hörst unsere Bitten. Wir vertrauen darauf, dass du uns nahe bist und uns mit deiner Liebe begleitest. Darum bitten wir durch Christus, unseren Herrn. Amen.
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Vater unser
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Schlussgebet
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Passendes Schlussgebet einfügen --&gt;
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Segen
+</span><span>
+</span><span>Der Gott des Lichts und des Lebens segne euch mit dem Licht seiner Gegenwart, das die Nacht vertreibt und die Dunkelheit erhellt.
+</span><span>
+</span><span>Der Schöpfer aller Dinge erfülle euer Herz mit der Weite des Himmels und der Festigkeit des Bodens unter euren Füßen.
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;">&lt;!-- Dritten Segensteil entsprechend dem Thema anpassen --&gt;
+</span><span>
+</span><span>Und so segne euch der allmächtige Gott, der Vater, der Sohn und der Heilige Geist. Amen.
+</span><span>
+</span><span style="font-weight:bold;color:#fa6e32;">## </span><span style="font-weight:bold;color:#399ee6;">Schlusslied
+</span><span>
+</span><span>![[Schlusslied.mp3]]
+</span></code></pre>
+<p>Die wenigsten nutzen wahrscheinlich Obsidian zur Gottesdienstvorbereitung, aber ich finde tatsächlich, dass das ein sehr guter use-case für Obsidian ist.</p>
+<p>Wenn der Gottesdienst dann erstellt ist, dann würde man ihn normalerweise ausdrucken und mitnehmen. Aber ich habe mir gedacht, dass ich das auch anders machen kann. Ich habe mir einen Ebook-Reader gekauft, um meine Gottesdienste und Predigten papierlos zu halten. Ich wollte einfach mal ausprobieren, wie das so ist. Und ich muss sagen, es ist wirklich eine tolle Sache. Ich kann meine Gottesdienste und Predigten auf dem Ebook-Reader lesen und muss sie nicht mehr ausdrucken. Das spart Papier und ist viel praktischer. Und wenn du aufgepasst hast, findest du in dem Template auch schon die Links zu den Musikdateien, die ich in den Gottesdienst einfüge. Das ist wirklich praktisch, denn ich kann die Musik direkt auf dem Ebook-Reader abspielen und muss nicht mehr zwischen verschiedenen Geräten wechseln. Dank des .epub-Formats kann ich die Musikdateien direkt in den Ablauf einfügen. Ein weiterer Mehrwert ist natürlich auch die bessere Lesbarkeit auf dem Ebook-Reader. Ich kann die Schriftgröße, Kontrast und Helligkeit individuell anpassen. Selbst in kompletter Dunkelheit kann ich meine Texte lesen. Das ist wirklich großartig.</p>
+<h3 id="der-export"><a class="zola-anchor" href="#der-export" aria-label="Anchor link for: der-export">Der Export</a></h3>
+<p>Leider gab es dafür noch kein Plugin für Obsidian, deshalb habe ich vor 3 Jahren mein eigenes dafür geschrieben: <a href="https://github.com/SimeonLukas/obsidian-kindle-export">obsidian-kindle-export</a>. Damals besass ich noch einen Kindle, deshalb der Name. Das Plugin exportiert die Markdown-Dateien in ein .epub-Format, das dann per Mail an den Kindle geschickt wird. Das Plugin kann einfach in den Community-Plugins gesucht werden und installiert werden. Das Plugin ist sehr einfach zu bedienen und ich kann es jedem empfehlen, der seine Notizen auf seinem Ebook-Reader lesen möchte. In den Settings gibt man einfach die nötigen Daten an und das Plugin macht die Arbeit. Mit dem Befehl <code>Kindle: Export</code> kann man die Konvertierung starten. Ich habe den Befehl auf die Tasten <code>cmd+0</code> gelegt, damit er schnell und einfach ausgeführt werden kann.</p>
+<p><img src="https://simeon.staneks.de/posts/work-paperlesse-with-obsidian-epub-and-ebookreader/images/screenrecord.gif" alt="Screenshot" /></p>
+<p>Leider ist es nicht möglich aus Obsidian heraus eine Mail zu schicken, deshalb gibt es noch ein weiteres Programm, dass diese Funktion übernimmt. <a href="https://md2epub.staneks.de/">Md2epub</a> ist ein in PHP geschriebener Server, der die Dateien von Obsidian entgegenimmt und dann versendet.  Meine gehostete Version kann natürlich verwendet werden, aber ich empfehle das Programm selbst zu betreiben. Dafür gibt es einen Docker-Container, der hier <a href="https://hub.docker.com/r/simeonstanek/md2epub">hier</a> zu finden ist.</p>
+<p>Folgendes Bild zeigt übrigens ein Epub, das ich erstellt habe, Cover hat sich aber geändert.</p>
+<p><img src="https://simeon.staneks.de/posts/work-paperlesse-with-obsidian-epub-and-ebookreader/images/ebook.jpg" alt="Screenshot" /></p>
+<h3 id="hardware"><a class="zola-anchor" href="#hardware" aria-label="Anchor link for: hardware">Hardware</a></h3>
+<p>Seit zwei Jahren nutze ich jetzt das Pocketbook Era, das unterstützt das abspielen von Audiodateien innerhalb des .epub-Formats, außerdem kann ich jeden Bluetooth-Lautsprecher damit verbinden. In meinem Fall die Teufelbox Rockster Cross. Damit bin ich völlig zufrieden. Das Pocketbook ist ein sehr guter Ebook-Reader und ich kann ihn jedem empfehlen, der einen Ebook-Reader sucht. Er ist sicher langsamer als ein Kindle, aber der Mehrwert mit der Audiowiedergabe hat mich überzeugt.</p>
+<h2 id="fazit-die-digitale-transformation-pastoraler-arbeit"><a class="zola-anchor" href="#fazit-die-digitale-transformation-pastoraler-arbeit" aria-label="Anchor link for: fazit-die-digitale-transformation-pastoraler-arbeit">Fazit: Die digitale Transformation pastoraler Arbeit</a></h2>
+<p>Was als Suche nach dem optimalen Notiz-Tool begann, hat sich zu einem umfassenden digitalen Workflow für die pastorale Arbeit entwickelt. Obsidian hat sich dabei als ideale Plattform erwiesen, die durch ihre Flexibilität, Markdown-Unterstützung und Erweiterbarkeit überzeugt. Die Kombination mit einem E-Book-Reader wie dem Pocketbook Era schafft eine durchgängig digitale Lösung, die nicht nur papierlos ist, sondern auch neue Möglichkeiten eröffnet.
+Die Integration von Audiodateien direkt in den Gottesdienstablauf, die verbesserte Lesbarkeit durch individuell anpassbare Schrift und die Möglichkeit, in jeder Lichtsituation zu arbeiten, sind handfeste Vorteile gegenüber herkömmlichen Papier, auch wenn man die Haptik so mag (vorallem in der Kirche 😇). Durch selbst entwickelte Tools wie das obsidian-kindle-export Plugin wird diese Brücke zwischen Vorbereitung und Durchführung nahtlos geschlagen.
+Letztendlich geht es nicht nur um Digitalisierung um ihrer selbst willen. Es geht darum, pastorale Arbeit effizienter, flexibler und nachhaltiger zu gestalten. Die Zeit, die früher für Ausdrucken, Sortieren und Transportieren von Papier aufgewendet wurde, kann nun für die inhaltliche Arbeit genutzt werden. Und während manche vielleicht zögern, auf digitale Lösungen umzusteigen, zeigt dieser Workflow, dass Technologie und Spiritualität sich nicht ausschließen, sondern gewinnbringend ergänzen können.</p>
+<p>Amen😘</p>
+
+        </section>
+    </article>
+    <hr>
+    <br>
+    <div class="meta">
+        
+            <span class="date-label-posted">:: Posted on </span><time>2025-03-31</time>
+        
+
+        
+
+        
+
+        
+        
+                <span class="tags-label"> :: Tags:</span>
+                <span class="tags">
+                        <a href="https://simeon.staneks.de/tags/programmierung/" class="post-tag">programmierung</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/obsidian/" class="post-tag">obsidian</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/markdown/" class="post-tag">markdown</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/php/" class="post-tag">php</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/epub/" class="post-tag">epub</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/docker/" class="post-tag">docker</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/software/" class="post-tag">software</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/typescript/" class="post-tag">typescript</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/pocketbook/" class="post-tag">pocketbook</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/ebook-reader/" class="post-tag">ebook-reader</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/ebook/" class="post-tag">ebook</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/epub-creator/" class="post-tag">epub-creator</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/md2epub/" class="post-tag">md2epub</a>
+                    
+                </span>
+        
+
+        
+       
+                
+     
+
+            
+                
+                :: <a href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;Blog&#x2F;tree&#x2F;main&#x2F;content&#x2F;posts&#x2F;work-paperlesse-with-obsidian-epub-and-ebookreader&#x2F;index.md" target="_blank" rel="noopener noreferrer"> Source Code</a>
+            
+
+        
+
+    </div>
+
+    
+    
+        
+    
+
+    
+        
+        
+        
+        
+            
+        
+            
+        
+            
+                
+            
+        
+
+        
+        
+
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
+            
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;work-paperlesse-with-obsidian-epub-and-ebookreader&#x2F;video&#x2F;work-paperlesse-with-obsidian-epub-and-ebookreader-de.mp4" onerror="this.parentElement.parentElement.style.display='none';" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+        </div>
+    
+</main>
+
+
+
+        
+            
+        
+
+        
+        <br>
+        <hr>
+        <div class="giscus" >
+        <script src="https://giscus.app/client.js"
+        data-repo="SimeonLukas/Blog"
+        data-repo-id="R_kgDONSw5PA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONSw5PM4CkoL8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https:&#x2F;&#x2F;simeon.staneks.de/css/giscus.css"
+        data-lang="de"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+        
+
+    </div>
+</body>
+
+</html>

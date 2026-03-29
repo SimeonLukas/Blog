@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="de">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Backup: Affordable and Easy with Hetzner Storagebox and restic
+        
+    </title>
+
+    
+    
+    <meta name="description" content="When it comes to backups, you should never wait too long. This article briefly describes how one of my backup solutions works. I use a Hetzner Storagebox and..." />
+    
+    
+
+    
+    <meta property="og:image" content="https://simeon.staneks.de/en/posts/backup-cheap-and-easy//images/en/preview.jpg" />
+    <meta property="og:logo" content="https://simeon.staneks.de/en/posts/backup-cheap-and-easy//imagesen/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://simeon.staneks.de/en/posts/backup-cheap-and-easy/images/en/preview.jpg">
+    
+
+    
+    <meta property="og:title" content="Backup: Affordable and Easy with Hetzner Storagebox and restic" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="Backup: Affordable and Easy with Hetzner Storagebox and restic">
+    
+    
+
+    
+    
+    <meta property="og:description" content="When it comes to backups, you should never wait too long. This article briefly describes how one of my backup solutions works. I use a Hetzner Storagebox and..."/>
+    <!-- twitter description -->
+    <meta name="twitter:description" content="When it comes to backups, you should never wait too long. This article briefly describes how one of my backup solutions works. I use a Hetzner Storagebox and...">
+    
+    
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;simeon.staneks.de"/>
+    <meta property="og:type" content="article" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Blog by Simeon" />
+
+
+    
+    
+    <link rel="icon" type="image/png" href=https:&#x2F;&#x2F;simeon.staneks.de&#x2F;android-chrome-512x512.png />
+    
+
+    
+    
+    <link href=https://simeon.staneks.de/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/codeblock.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/toc.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/note.js></script>
+    
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Blog by Simeon" href="https://simeon.staneks.de/ atom.xml">
+
+
+    
+    
+    <link rel="stylesheet" type="text/css" href=https://simeon.staneks.de/theme/light.css />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://simeon.staneks.de/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://simeon.staneks.de/js/themetoggle.js></script>
+    
+    <script>setTheme(getSavedTheme());</script>
+    
+    <script src=https://simeon.staneks.de/js/index.js></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://simeon.staneks.de/main.css />
+
+    
+</head>
+
+<body onload="updatelanguage()">
+    <div class="content">
+        <header>
+    <div class="main">
+        <div> <a id="navigation_start" href=https:&#x2F;&#x2F;simeon.staneks.de>Blog by Simeon </a> 
+            <p style="font-size: xx-small;">It&#x27;s better to start imperfectly than wait perfectly</p> 
+        </div>
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl" class="social mastodon">
+                <img alt=mastodon src=https://simeon.staneks.de/social_icons/mastodon.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;" class="social instagram">
+                <img alt=instagram src=https://simeon.staneks.de/social_icons/instagram.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas" class="social github">
+                <img alt=github src=https://simeon.staneks.de/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;buymeacoffee.com&#x2F;simeonlukas" class="social buy me a coffee">
+                <img alt=buy me a coffee src=https://simeon.staneks.de/social_icons/bmc-logo.svg>
+            </a>
+            
+            <a rel="me" href="&#x2F;rss.xml" class="social rss">
+                <img alt=rss src=https://simeon.staneks.de/social_icons/rss.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a class="navigation_lang &#x2F;posts" href=&#x2F;posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a class="navigation_lang &#x2F;pages" href=&#x2F;pages style="margin-left: 0.5em">&#x2F;pages</a>
+        
+        <a class="navigation_lang &#x2F;about" href=&#x2F;pages&#x2F;about style="margin-left: 0.5em">&#x2F;about</a>
+        
+        <a class="navigation_lang &#x2F;tags" href=&#x2F;tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://simeon.staneks.de/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+        <a id="language-toggle" onclick="toggleLanguage(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/globe.svg alt="Change Language" /><span style="font-size: xx-small;" id="language-name">de</span>
+        </a>
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <h1 class="page-header">
+        Backup: Affordable and Easy with Hetzner Storagebox and restic<span class="primary-color" style="font-size: 1.6em">.</span>
+    </h1>
+
+        </div>
+        When it comes to backups, you should never wait too long. This article briefly describes how one of my backup solutions works. I use a Hetzner Storagebox and the tool restic to secure my data. The whole thing is simple, affordable, and works reliably.
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/backup-cheap-and-easy/#the-genesis-when-data-goes-missing">The Genesis: When Data Goes Missing</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/backup-cheap-and-easy/#the-concept-external-backup-at-hetzner-encrypted-with-restic">The Concept: External Backup at Hetzner, Encrypted with restic</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/backup-cheap-and-easy/#software-and-setup">Software and Setup</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/backup-cheap-and-easy/#backup">Backup</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/backup-cheap-and-easy/#automation">Automation</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/backup-cheap-and-easy/#conclusion">Conclusion</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h2 id="the-genesis-when-data-goes-missing"><a class="zola-anchor" href="#the-genesis-when-data-goes-missing" aria-label="Anchor link for: the-genesis-when-data-goes-missing">The Genesis: When Data Goes Missing</a></h2>
+<p>As a self-hoster and tech enthusiast, you often get yourself into self-made predicaments. Some time ago, I had bought an affordable mini PC that was supposed to serve as a server for my various projects. Maybe I'll create a list of my projects that I host in the near future. Anyway, Windows 11 was pre-installed and I thought I could work well with WSL2 and Docker. Since Backblaze offers a Windows client, I thought the backup problem was solved. But as it happens, things turned out differently. My data like videos and pictures, which were stored on an external hard drive, were gradually uploaded to Backblaze, but somehow and for no reason not completely. One day the hard drive died and I ordered a recovery drive from Backblaze. When the drive arrived, I was very disappointed that only a fraction of my data was recovered. I had a backup, but it was incomplete and I had no idea why.</p>
+<p>Long story short: I needed a new backup solution that is easy to use and works reliably. And that's how I came across Hetzner Storagebox and restic.</p>
+<h2 id="the-concept-external-backup-at-hetzner-encrypted-with-restic"><a class="zola-anchor" href="#the-concept-external-backup-at-hetzner-encrypted-with-restic" aria-label="Anchor link for: the-concept-external-backup-at-hetzner-encrypted-with-restic">The Concept: External Backup at Hetzner, Encrypted with restic</a></h2>
+<p>In case your own hardware breaks, the house burns down, or a ransomware attack encrypts your data, it's important to have an external backup. I chose a Hetzner Storagebox because it's affordable and easy to use. At a price of 12.97 euros per month for 5 TB of storage space, it's one of the most affordable solutions on the market and actually comes close to Backblaze's great offer.</p>
+<h3 id="software-and-setup"><a class="zola-anchor" href="#software-and-setup" aria-label="Anchor link for: software-and-setup">Software and Setup</a></h3>
+<p>First of all, you need a Hetzner account. If you don't have one yet, you can sign up <a href="https://hetzner.cloud/?ref=znuwnh4Uno3D">here</a> and get 20 euros credit as a gift. This is a personal referral link from me.</p>
+<p>With the storagebox, you can then decide how you want to access it. I access it via SFTP since I already have experience with it. Username, server address, and password are needed to connect to the Storagebox. I use the tool <a href="https://rclone.org/">rclone</a> for this, which offers a simple way to integrate an external host into your own system.</p>
+<p>With the command <code>rclone config</code> you set up the connection. Here, a new remote host is created that points to the Storagebox. The configuration is simple and self-explanatory, as rclone guides you through the process. You just need to enter the access data and select the type of connection (in this case SFTP).</p>
+<p>For the backup itself, I use the tool <a href="https://restic.net/">restic</a>, which encrypts your data and backs it up incrementally. It also compresses the data so you need less storage space. This way I compressed my data from 3.62 TB to 2.67 TB.</p>
+<p>You probably don't need a separate system for backups, but I created an extra Alpine LXC (Linux Container) that is only responsible for backups. This has the advantage that I can easily rebuild the system if something goes wrong and it runs independently of my other systems. I use Proxmox for this, but that's optional of course.</p>
+<p><code>rclone</code> and <code>restic</code> are available for almost all operating systems anyway and can be easily installed.</p>
+<p>You can find a more detailed guide for installing and configuring rclone and restic in the <a href="https://restic.readthedocs.io/en/stable/">restic documentation</a> and the <a href="https://rclone.org/docs/">rclone documentation</a>.</p>
+<h3 id="backup"><a class="zola-anchor" href="#backup" aria-label="Anchor link for: backup">Backup</a></h3>
+<p>Initially, I thought I could write a great script with Claude from Anthropic that would automate my backups. But I ended up doing it myself because the AI overcomplicated the process for me. The following Bash script backs up my data:</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#abb0b6;">#!/bin/bash
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Simeon&#39;s Backup Script for Hetzner
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># =============================================================================
+</span><span style="font-style:italic;color:#abb0b6;"># SETTINGS - Adjust here!
+</span><span style="font-style:italic;color:#abb0b6;"># =============================================================================
+</span><span>
+</span><span>SOURCE</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;/mnt/f&quot; </span><span style="font-style:italic;color:#abb0b6;"># Source directory to be backed up, so the entire 3.62 TB so far.
+</span><span>REMOTE</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;rclone:Hetzner:backup&quot; </span><span style="font-style:italic;color:#abb0b6;"># Remote host that points to the Hetzner Storagebox
+</span><span>PASSWORD_FILE</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;/etc/restic-password&quot; </span><span style="font-style:italic;color:#abb0b6;"># File with the password for restic
+</span><span>LOG_FILE</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;/var/log/backup_$</span><span>(</span><span style="color:#f29718;">date</span><span style="color:#86b300;"> +%</span><span>A)</span><span style="color:#86b300;">.log&quot; </span><span style="font-style:italic;color:#abb0b6;"># Log file for the backup
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># =============================================================================
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Check if restic is already running
+</span><span style="color:#fa6e32;">if </span><span style="color:#f29718;">pgrep</span><span style="color:#ff8f40;"> -x </span><span style="color:#86b300;">&quot;restic&quot; </span><span style="color:#ed9366;">&gt;</span><span> /dev/null</span><span style="color:#ed9366;">; </span><span style="color:#fa6e32;">then
+</span><span>    </span><span style="color:#f07171;">echo </span><span style="color:#86b300;">&quot;$</span><span>(</span><span style="color:#f29718;">date</span><span style="color:#86b300;"> +%</span><span>Y</span><span style="color:#86b300;">-%</span><span>m</span><span style="color:#86b300;">-%</span><span>d</span><span style="color:#4cbf99;">\ </span><span style="color:#86b300;">%</span><span>H</span><span style="color:#86b300;">:%</span><span>M</span><span style="color:#86b300;">:%</span><span>S)</span><span style="color:#86b300;"> - A backup is already running.&quot; </span><span style="color:#ed9366;">&gt;&gt; </span><span style="color:#86b300;">&quot;$</span><span>LOG_FILE</span><span style="color:#86b300;">&quot;
+</span><span>    </span><span style="color:#f07171;">echo </span><span style="color:#86b300;">&quot;A backup is already running.&quot;
+</span><span>    </span><span style="color:#f07171;">exit</span><span> 1
+</span><span style="color:#fa6e32;">fi
+</span><span>
+</span><span style="color:#f07171;">echo </span><span style="color:#86b300;">&quot;$</span><span>(</span><span style="color:#f29718;">date</span><span style="color:#86b300;"> +%</span><span>Y</span><span style="color:#86b300;">-%</span><span>m</span><span style="color:#86b300;">-%</span><span>d</span><span style="color:#4cbf99;">\ </span><span style="color:#86b300;">%</span><span>H</span><span style="color:#86b300;">:%</span><span>M</span><span style="color:#86b300;">:%</span><span>S)</span><span style="color:#86b300;"> - Backup starting...&quot; </span><span style="color:#ed9366;">&gt; </span><span style="color:#86b300;">&quot;$</span><span>LOG_FILE</span><span style="color:#86b300;">&quot;
+</span><span>START_TIME</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">$</span><span>(</span><span style="color:#f29718;">date</span><span style="color:#86b300;"> +%</span><span>s)
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Optimized restic parameters for maximum speed
+</span><span style="color:#f29718;">restic</span><span style="color:#ff8f40;"> -r </span><span style="color:#86b300;">&quot;$</span><span>REMOTE</span><span style="color:#86b300;">&quot;</span><span> backup </span><span style="color:#86b300;">&quot;$</span><span>SOURCE</span><span style="color:#86b300;">&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --password-file </span><span style="color:#86b300;">&quot;$</span><span>PASSWORD_FILE</span><span style="color:#86b300;">&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --tag </span><span style="color:#86b300;">&quot;backup-$</span><span>(</span><span style="color:#f29718;">date</span><span style="color:#86b300;"> +%</span><span>Y</span><span style="color:#86b300;">-%</span><span>m</span><span style="color:#86b300;">-%</span><span>d)</span><span style="color:#86b300;">&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --verbose --verbose </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --pack-size</span><span style="color:#ed9366;">=</span><span>64 </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --compression</span><span style="color:#ed9366;">=</span><span>max </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude-caches </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --one-file-system </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;node_modules&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;.git&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;.cache&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;tmp&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;logs&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;cache&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;platforms&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;vendor&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;.obsidian&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;.@__thumb&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;*.log&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;*.tmp&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;*~&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;.DS_Store&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;Thumbs.db&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;desktop.ini&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;thumbs&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    --exclude </span><span style="color:#86b300;">&quot;Proxmox&quot; </span><span style="color:#61676ccc;">\
+</span><span>    </span><span style="color:#ed9366;">&gt;&gt; </span><span style="color:#86b300;">&quot;$</span><span>LOG_FILE</span><span style="color:#86b300;">&quot; </span><span style="color:#ff8f40;">2</span><span style="color:#ed9366;">&gt;&amp;</span><span style="color:#ff8f40;">1
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Check if the backup was successful
+</span><span style="color:#fa6e32;">if </span><span style="color:#f07171;">[ </span><span>$</span><span style="font-style:italic;color:#55b4d4;">? </span><span style="color:#ff8f40;">-eq</span><span> 0 </span><span style="color:#f07171;">]</span><span style="color:#ed9366;">; </span><span style="color:#fa6e32;">then
+</span><span>    </span><span style="color:#f07171;">echo </span><span style="color:#86b300;">&quot;$</span><span>(</span><span style="color:#f29718;">date</span><span style="color:#86b300;"> +%</span><span>Y</span><span style="color:#86b300;">-%</span><span>m</span><span style="color:#86b300;">-%</span><span>d</span><span style="color:#4cbf99;">\ </span><span style="color:#86b300;">%</span><span>H</span><span style="color:#86b300;">:%</span><span>M</span><span style="color:#86b300;">:%</span><span>S)</span><span style="color:#86b300;"> - Backup successful!&quot; </span><span style="color:#ed9366;">&gt;&gt; </span><span style="color:#86b300;">&quot;$</span><span>LOG_FILE</span><span style="color:#86b300;">&quot;
+</span><span>    </span><span style="color:#f29718;">restic</span><span style="color:#ff8f40;"> -r </span><span style="color:#86b300;">&quot;$</span><span>REMOTE</span><span style="color:#86b300;">&quot;</span><span> unlock</span><span style="color:#ff8f40;"> --password-file </span><span style="color:#86b300;">&quot;$</span><span>PASSWORD_FILE</span><span style="color:#86b300;">&quot; </span><span style="color:#ed9366;">&gt;&gt; </span><span style="color:#86b300;">&quot;$</span><span>LOG_FILE</span><span style="color:#86b300;">&quot; </span><span style="color:#ff8f40;">2</span><span style="color:#ed9366;">&gt;&amp;</span><span style="color:#ff8f40;">1
+</span><span>    </span><span style="color:#f07171;">echo </span><span style="color:#86b300;">&quot;$</span><span>(</span><span style="color:#f29718;">date</span><span style="color:#86b300;"> +%</span><span>Y</span><span style="color:#86b300;">-%</span><span>m</span><span style="color:#86b300;">-%</span><span>d</span><span style="color:#4cbf99;">\ </span><span style="color:#86b300;">%</span><span>H</span><span style="color:#86b300;">:%</span><span>M</span><span style="color:#86b300;">:%</span><span>S)</span><span style="color:#86b300;"> - Old backups are being cleaned up...&quot; </span><span style="color:#ed9366;">&gt;&gt; </span><span style="color:#86b300;">&quot;$</span><span>LOG_FILE</span><span style="color:#86b300;">&quot;
+</span><span>    </span><span style="color:#f29718;">restic</span><span style="color:#ff8f40;"> -r </span><span style="color:#86b300;">&quot;$</span><span>REMOTE</span><span style="color:#86b300;">&quot;</span><span> forget</span><span style="color:#ff8f40;"> --keep-last</span><span> 10</span><span style="color:#ff8f40;"> --prune --password-file </span><span style="color:#86b300;">&quot;$</span><span>PASSWORD_FILE</span><span style="color:#86b300;">&quot; </span><span style="color:#ed9366;">&gt;&gt; </span><span style="color:#86b300;">&quot;$</span><span>LOG_FILE</span><span style="color:#86b300;">&quot; </span><span style="color:#ff8f40;">2</span><span style="color:#ed9366;">&gt;&amp;</span><span style="color:#ff8f40;">1
+</span><span>    END_TIME</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">$</span><span>(</span><span style="color:#f29718;">date</span><span style="color:#86b300;"> +%</span><span>s)
+</span><span>    DURATION</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">$</span><span>((</span><span style="color:#86b300;">END_TIME </span><span style="color:#ed9366;">-</span><span style="color:#86b300;"> START_TIME</span><span>))
+</span><span>    </span><span style="color:#f07171;">echo </span><span style="color:#86b300;">&quot;Backup completed in $</span><span>((</span><span style="color:#86b300;">DURATION </span><span style="color:#ed9366;">/ </span><span style="color:#ff8f40;">60</span><span>))</span><span style="color:#86b300;"> minutes and $</span><span>((</span><span style="color:#86b300;">DURATION </span><span style="color:#ed9366;">% </span><span style="color:#ff8f40;">60</span><span>))</span><span style="color:#86b300;"> seconds.&quot;
+</span><span>    </span><span style="color:#f07171;">echo </span><span style="color:#86b300;">&quot;$</span><span>(</span><span style="color:#f29718;">date</span><span style="color:#86b300;"> +%</span><span>Y</span><span style="color:#86b300;">-%</span><span>m</span><span style="color:#86b300;">-%</span><span>d</span><span style="color:#4cbf99;">\ </span><span style="color:#86b300;">%</span><span>H</span><span style="color:#86b300;">:%</span><span>M</span><span style="color:#86b300;">:%</span><span>S)</span><span style="color:#86b300;"> - Backup completed in $</span><span>((</span><span style="color:#86b300;">DURATION </span><span style="color:#ed9366;">/ </span><span style="color:#ff8f40;">60</span><span>))</span><span style="color:#86b300;"> minutes and $</span><span>((</span><span style="color:#86b300;">DURATION </span><span style="color:#ed9366;">% </span><span style="color:#ff8f40;">60</span><span>))</span><span style="color:#86b300;"> seconds.&quot; </span><span style="color:#ed9366;">&gt;&gt; </span><span style="color:#86b300;">&quot;$</span><span>LOG_FILE</span><span style="color:#86b300;">&quot;
+</span><span style="color:#fa6e32;">else
+</span><span>    </span><span style="color:#f07171;">echo </span><span style="color:#86b300;">&quot;$</span><span>(</span><span style="color:#f29718;">date</span><span style="color:#86b300;"> +%</span><span>Y</span><span style="color:#86b300;">-%</span><span>m</span><span style="color:#86b300;">-%</span><span>d</span><span style="color:#4cbf99;">\ </span><span style="color:#86b300;">%</span><span>H</span><span style="color:#86b300;">:%</span><span>M</span><span style="color:#86b300;">:%</span><span>S)</span><span style="color:#86b300;"> - Backup failed!&quot;
+</span><span>    </span><span style="color:#f07171;">exit</span><span> 1
+</span><span style="color:#fa6e32;">fi
+</span></code></pre>
+<p>Beforehand, a repository must be created on the Storagebox so that restic knows where to save the data. This is done simply with the command:</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f29718;">restic</span><span> init</span><span style="color:#ff8f40;"> -r </span><span style="color:#86b300;">&quot;$</span><span>REMOTE</span><span style="color:#86b300;">&quot;
+</span></code></pre>
+<p>Additionally, the password for restic must be stored in the file <code>/etc/restic-password</code>. This file should of course only be readable by the root user so that no one can access the password without authorization.</p>
+<h3 id="automation"><a class="zola-anchor" href="#automation" aria-label="Anchor link for: automation">Automation</a></h3>
+<p>To automate the backup regularly, I use n8n as I've described in other articles. Of course, this could also be done with cron, but I just like n8n and it gives me a better overview of all workflows. I created a workflow that executes the script once a day at 2 AM. This way I always have a current backup of my data without having to worry about it.</p>
+<p><img src="https://simeon.staneks.de/en/posts/backup-cheap-and-easy/images/n8n.png" alt="Backup Workflow" /></p>
+<p>The following command is totally useful and I can recommend it to anyone who wants to automate their backup regularly:</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f29718;">restic</span><span style="color:#ff8f40;"> -r </span><span style="color:#86b300;">&quot;$</span><span>REMOTE</span><span style="color:#86b300;">&quot;</span><span> forget</span><span style="color:#ff8f40;"> --keep-last</span><span> 10</span><span style="color:#ff8f40;"> --prune --password-file </span><span style="color:#86b300;">&quot;$</span><span>PASSWORD_FILE</span><span style="color:#86b300;">&quot;
+</span></code></pre>
+<p>This keeps the last 10 backups and deletes all older ones. This saves storage space and keeps the backup database organized. The 'prune' command checks the repository and removes data that is no longer referenced and therefore no longer needed. The whole process naturally takes a bit longer because of this, but on a normal day it's only about 5-10 minutes since I only need to back up the new data.</p>
+<p>For me, it's also very practical that everything is written to a log file that I can look at anytime. This way I can see if the backup was successful and how long it took. These files are named by day of the week, so I always have the logs from the last week. This is especially useful when I have a problem with the backup and want to check what went wrong.</p>
+<p>The nice thing about n8n is also that I get a notification via Telegram after the completed backup. This way I always know if the backup was successful or if there was a problem. This gives me a good feeling that my data is safe.</p>
+<p>The following diagram shows the backup process:</p>
+<style>
+.mermaid svg{
+max-height: 100% !important;
+}
+</style>
+<pre class="mermaid">
+flowchart TD
+    A[&quot;Data&lt;br&#x2F;&gt;3.62 TB&quot;] --&gt; B[&quot;Alpine LXC Container&quot;]
+    
+    B --&gt; C[&quot;rclone SFTP Connection&quot;]
+    C --&gt; D[&quot;restic Backup&quot;]
+    D --&gt; E[&quot;Encryption + Compression&quot;]
+    
+    E --&gt; F[&quot;Hetzner Storagebox&lt;br&#x2F;&gt;5TB &#x2F; 12.97€&quot;]
+    
+    F --&gt; G{Backup successful?}
+    G --&gt;|Yes| H[&quot;Delete old backups&lt;br&#x2F;&gt;keep-last 10&quot;]
+    G --&gt;|No| I[&quot;Error Log&quot;]
+    
+    H --&gt; J[&quot;Success Log&quot;]
+    J --&gt; L[&quot;Telegram: Backup successful&quot;]
+    I --&gt; M[&quot;Telegram: Backup failed&quot;]
+    
+    K[&quot;Daily 2:00 AM&quot;] --&gt; B
+    
+    style A fill:#e1f5fe
+    style F fill:#c8e6c9
+    style E fill:#fff3e0
+    style J fill:#e8f5e8
+    style I fill:#ffebee
+    style L fill:#f3e5f5
+    style M fill:#f3e5f5
+</pre><h2 id="conclusion"><a class="zola-anchor" href="#conclusion" aria-label="Anchor link for: conclusion">Conclusion</a></h2>
+<p>With this solution, I found a simple, affordable, and reliable backup solution that safely stores my data. I can recommend anyone who wants to back up their data to use a Hetzner Storagebox and restic. It's easy to set up, cost-effective, and offers high security through encryption. It's also easy to automate the backups and run them regularly. This way I always have a current backup of my data without having to worry about it. And the best part is that I no longer have to worry about my data being lost. I hope this article helps you find a similar solution for your backups.</p>
+
+        </section>
+    </article>
+    <hr>
+    <br>
+    <div class="meta">
+        
+            <span class="date-label-posted">:: Posted on </span><time>2025-07-28</time>
+        
+
+        
+
+        
+
+        
+        
+                <span class="tags-label"> :: Tags:</span>
+                <span class="tags">
+                        <a href="https://simeon.staneks.de/tags/programming/" class="post-tag">programming</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/hetzner/" class="post-tag">hetzner</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/bash/" class="post-tag">bash</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/backup/" class="post-tag">backup</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/tutorial/" class="post-tag">tutorial</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/restic/" class="post-tag">restic</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/rclone/" class="post-tag">rclone</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/n8n/" class="post-tag">n8n</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/sftp/" class="post-tag">sftp</a>
+                    
+                </span>
+        
+
+        
+       
+                
+     
+
+            
+                
+                :: <a href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;Blog&#x2F;tree&#x2F;main&#x2F;content&#x2F;posts&#x2F;backup-cheap-and-easy&#x2F;index.en.md" target="_blank" rel="noopener noreferrer"> Source Code</a>
+            
+
+        
+
+    </div>
+
+    
+    
+        
+    
+
+    
+        
+        
+        
+        
+            
+        
+            
+        
+            
+        
+            
+                
+            
+        
+
+        
+        
+
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
+            
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;backup-cheap-and-easy&#x2F;video&#x2F;backup-cheap-and-easy-en.mp4" onerror="this.parentElement.parentElement.style.display='none';" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+        </div>
+    
+</main>
+
+
+
+        
+            
+        
+
+        
+        <br>
+        <hr>
+        <div class="giscus" >
+        <script src="https://giscus.app/client.js"
+        data-repo="SimeonLukas/Blog"
+        data-repo-id="R_kgDONSw5PA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONSw5PM4CkoL8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https:&#x2F;&#x2F;simeon.staneks.de/css/giscus.css"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+        
+
+    </div>
+</body>
+
+</html>

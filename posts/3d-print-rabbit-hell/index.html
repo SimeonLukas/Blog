@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Die 3D-Druck Hölle - Ein weiteres Rabbit Hole
+        
+    </title>
+
+    
+    
+    <meta name="description" content="Meine ersten Erfahrungen mit meinem eigenen 3D-Drucker, den Herausforderungen und unnötigen Abenteuern in der Welt des 3D-Drucks, bis hin zu tatsächlich prak..." />
+    
+    
+
+    
+    <meta property="og:image" content="https://simeon.staneks.de/posts/3d-print-rabbit-hell//images/de/preview.jpg" />
+    <meta property="og:logo" content="https://simeon.staneks.de/posts/3d-print-rabbit-hell//imagesde/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://simeon.staneks.de/posts/3d-print-rabbit-hell/images/de/preview.jpg">
+    
+
+    
+    <meta property="og:title" content="Die 3D-Druck Hölle - Ein weiteres Rabbit Hole" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="Die 3D-Druck Hölle - Ein weiteres Rabbit Hole">
+    
+    
+
+    
+    
+    <meta property="og:description" content="Meine ersten Erfahrungen mit meinem eigenen 3D-Drucker, den Herausforderungen und unnötigen Abenteuern in der Welt des 3D-Drucks, bis hin zu tatsächlich prak..."/>
+    <!-- twitter description -->
+    <meta name="twitter:description" content="Meine ersten Erfahrungen mit meinem eigenen 3D-Drucker, den Herausforderungen und unnötigen Abenteuern in der Welt des 3D-Drucks, bis hin zu tatsächlich prak...">
+    
+    
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;simeon.staneks.de"/>
+    <meta property="og:type" content="article" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Simeon&#x27;s Blog" />
+
+
+    
+    
+    <link rel="icon" type="image/png" href=https:&#x2F;&#x2F;simeon.staneks.de&#x2F;android-chrome-512x512.png />
+    
+
+    
+    
+    <link href=https://simeon.staneks.de/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/codeblock.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/toc.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/note.js></script>
+    
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Simeon&#x27;s Blog" href="https://simeon.staneks.de/ atom.xml">
+
+
+    
+    
+    <link rel="stylesheet" type="text/css" href=https://simeon.staneks.de/theme/light.css />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://simeon.staneks.de/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://simeon.staneks.de/js/themetoggle.js></script>
+    
+    <script>setTheme(getSavedTheme());</script>
+    
+    <script src=https://simeon.staneks.de/js/index.js></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://simeon.staneks.de/main.css />
+
+    
+</head>
+
+<body onload="updatelanguage()">
+    <div class="content">
+        <header>
+    <div class="main">
+        <div> <a id="navigation_start" href=https:&#x2F;&#x2F;simeon.staneks.de>Simeon&#x27;s Blog </a> 
+            <p style="font-size: xx-small;">lieber unperfekt starten als perfekt warten</p> 
+        </div>
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl" class="social mastodon">
+                <img alt=mastodon src=https://simeon.staneks.de/social_icons/mastodon.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;" class="social instagram">
+                <img alt=instagram src=https://simeon.staneks.de/social_icons/instagram.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas" class="social github">
+                <img alt=github src=https://simeon.staneks.de/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;buymeacoffee.com&#x2F;simeonlukas" class="social buy me a coffee">
+                <img alt=buy me a coffee src=https://simeon.staneks.de/social_icons/bmc-logo.svg>
+            </a>
+            
+            <a rel="me" href="&#x2F;rss.xml" class="social rss">
+                <img alt=rss src=https://simeon.staneks.de/social_icons/rss.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a class="navigation_lang &#x2F;posts" href=&#x2F;posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a class="navigation_lang &#x2F;pages" href=&#x2F;pages style="margin-left: 0.5em">&#x2F;pages</a>
+        
+        <a class="navigation_lang &#x2F;about" href=&#x2F;pages&#x2F;about style="margin-left: 0.5em">&#x2F;about</a>
+        
+        <a class="navigation_lang &#x2F;tags" href=&#x2F;tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://simeon.staneks.de/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+        <a id="language-toggle" onclick="toggleLanguage(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/globe.svg alt="Change Language" /><span style="font-size: xx-small;" id="language-name">de</span>
+        </a>
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <h1 class="page-header">
+        Die 3D-Druck Hölle - Ein weiteres Rabbit Hole<span class="primary-color" style="font-size: 1.6em">.</span>
+    </h1>
+
+        </div>
+        Meine ersten Erfahrungen mit meinem eigenen 3D-Drucker, den Herausforderungen und unnötigen Abenteuern in der Welt des 3D-Drucks, bis hin zu tatsächlich praktischen Drucken.
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/3d-print-rabbit-hell/#die-genese-mein-einstieg-in-den-3d-druck">Die Genese: Mein Einstieg in den 3D-Druck</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/3d-print-rabbit-hell/#meine-bisherigen-erfahrungen">Meine bisherigen Erfahrungen</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/3d-print-rabbit-hell/#einfaches-drucken-von-symbolen-und-2d-logos">Einfaches Drucken von Symbolen und 2D-Logos</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/3d-print-rabbit-hell/#fazit">Fazit</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h2 id="die-genese-mein-einstieg-in-den-3d-druck"><a class="zola-anchor" href="#die-genese-mein-einstieg-in-den-3d-druck" aria-label="Anchor link for: die-genese-mein-einstieg-in-den-3d-druck">Die Genese: Mein Einstieg in den 3D-Druck</a></h2>
+<p>J. hatte gemeint, dass es ihn schon sehr wundert, dass ich noch keinen 3D-Drucker hätte, aber wahrscheinlch ist es auch besser so, weil ich mich sonst in endlosen Rabbit Holes verlieren würde. Tja, da hat er wohl recht gehabt, denn kaum hatte ich meinen Bambu Lab P1S Drucker aufgebaut, war ich auch schon mittendrin in der Welt des 3D-Drucks, die jetzt schon einige Wochen meines Lebens in Anspruch nimmt. Gefühlt läuft der Drucker mehr als dass ich schlafe und das ist wirklich kein Witz.</p>
+<h3 id="meine-bisherigen-erfahrungen"><a class="zola-anchor" href="#meine-bisherigen-erfahrungen" aria-label="Anchor link for: meine-bisherigen-erfahrungen">Meine bisherigen Erfahrungen</a></h3>
+<p>Von Anfang an war ich begeistert von den Möglichkeiten, die mir der 3D-Drucker bietet. Allerdings musste ich auch schnell feststellen, dass es nicht immer so einfach ist, wie es auf den ersten Blick scheint und dass ein 3D-Drucker auch nicht die Eierlegende Wollmilchsau ist. So der Alltasgretter ist er definitiv nicht, aber für spezielle Anwendungsfälle ist er wirklich genial und unterhaltsam. Ich zähle jetzt nicht auf, was ich bisher so gedruckt habe, aber das lustigste war mit Abstand eine Nasenflöte.</p>
+<h3 id="einfaches-drucken-von-symbolen-und-2d-logos"><a class="zola-anchor" href="#einfaches-drucken-von-symbolen-und-2d-logos" aria-label="Anchor link for: einfaches-drucken-von-symbolen-und-2d-logos">Einfaches Drucken von Symbolen und 2D-Logos</a></h3>
+<p>Genial finde ich es, dass ich jetzt ganz einfach Logos und Symbole in 3D drucken kann. Zum Beispiel habe ich das Logo meines Blogs als 3D-Modell erstellt. Hatte keinen Grund es zu drucken, aber es sah einfach cool aus. Solche kleinen Projekte machen einfach Spaß und sind eine tolle Möglichkeit, die Fähigkeiten des Druckers zu testen. Für die Arbeit habe ich aber das Logo unserer Sinnstifterorte in eine .svg Datei umgewandelt und dann in ein 3D-Modell konvertiert, um es als Pfandchip zu drucken. Sieht super aus und ist wirklich praktisch.</p>
+<p>Hier ein kurzer Ablauf meines Vorgehens:</p>
+<ol>
+<li>Logo in Vektorgrafik (SVG) umwandeln. In meinem Fall hatte ich nur ein einfaches jpg Bild, also habe ich es zu erst in Gimp in schwarz-weiß umgewandelt und dann in Inkscape als SVG exportiert.</li>
+</ol>
+<p><img src="https://simeon.staneks.de/posts/3d-print-rabbit-hell/images/logo.png" alt="Logo in Inkscape als SVG" /></p>
+<ol start="2">
+<li>Dann habe ich einfach das SVG in <a href="https://github.com/bambulab/BambuStudio">Bambu Studio</a> importiert und die Höhe des Logos auf 2,3mm gesetzt, damit es ein flaches Objekt wird und Breite und Länge auf 23,25mm skaliert, damit es die richtige Größe für einen Pfandchip hat.</li>
+</ol>
+<p><img src="https://simeon.staneks.de/posts/3d-print-rabbit-hell/images/logo1.png" alt="Logo in Bambu Studio importiert" /></p>
+<ol start="3">
+<li>Zum Schluss habe ich das Modell 108mal kopiert, auf der Druckplatte positioniert und den Druck gestartet. Nach ca. 3 Stunden waren die 108 Pfandchips fertig gedruckt und sehen super aus, zwar gab es auch fehlerhafte Drucke, aber die konnte ich einfach aussortieren. Da die Haftung von PLA auf der Druckplatte des Bambu Lab P1S sehr schlecht ist, habe ich PETG Filament verwendet, das haftet super und die Drucke sehen auch sehr gut aus.</li>
+</ol>
+<p><img src="https://simeon.staneks.de/posts/3d-print-rabbit-hell/images/logo2.png" alt="Logo in Bambu Studio skaliert" /></p>
+<p><img src="https://simeon.staneks.de/posts/3d-print-rabbit-hell/images/print.webp" alt="Gedruckte Pfandchips" /></p>
+<ol start="4">
+<li>Fertig sind die Pfandchips für unsere Sinnstifterorte! Nun bin ich gespannt, was mein Chef zu den selbst gedruckten Merchandisingartikeln sagt.</li>
+</ol>
+<h2 id="fazit"><a class="zola-anchor" href="#fazit" aria-label="Anchor link for: fazit">Fazit</a></h2>
+<p>Ob sich der 3D-Drucker für mich gelohnt hat?
+Das wird sich wahrscheinlich noch herausstellen, aber auch wenn nicht auf Anhieb alles klappt, macht es doch unglaublich viel Spaß, eigene Ideen in die Realität umzusetzen und die Möglichkeiten des 3D-Drucks zu entdecken. Ich bin gespannt, welche Projekte ich in Zukunft noch umsetzen werde und wie sich meine Fähigkeiten im 3D-Druck weiterentwickeln. Eines ist sicher: Es wird nie langweilig mit einem 3D-Drucker zu Hause, solange das Filament reicht!</p>
+
+        </section>
+    </article>
+    <hr>
+    <br>
+    <div class="meta">
+        
+            <span class="date-label-posted">:: Posted on </span><time>2026-01-31</time>
+        
+
+        
+
+        
+
+        
+        
+                <span class="tags-label"> :: Tags:</span>
+                <span class="tags">
+                        <a href="https://simeon.staneks.de/tags/diy/" class="post-tag">diy</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/3d-printing/" class="post-tag">3d-printing</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/bambu-lab/" class="post-tag">bambu-lab</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/hardware/" class="post-tag">hardware</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/projekt/" class="post-tag">projekt</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/printer/" class="post-tag">printer</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/rabbit-hole/" class="post-tag">rabbit-hole</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/endurance/" class="post-tag">endurance</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/p1s/" class="post-tag">P1S</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/filament/" class="post-tag">filament</a>
+                    
+                </span>
+        
+
+        
+       
+                
+     
+
+            
+                
+                :: <a href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;Blog&#x2F;tree&#x2F;main&#x2F;content&#x2F;posts&#x2F;3d-print-rabbit-hell&#x2F;index.md" target="_blank" rel="noopener noreferrer"> Source Code</a>
+            
+
+        
+
+    </div>
+
+    
+    
+        
+    
+
+    
+        
+        
+        
+        
+            
+        
+            
+        
+            
+                
+            
+        
+
+        
+        
+
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
+            
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;3d-print-rabbit-hell&#x2F;video&#x2F;3d-print-rabbit-hell-de.mp4" onerror="this.parentElement.parentElement.style.display='none';" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+        </div>
+    
+</main>
+
+
+
+        
+            
+        
+
+        
+        <br>
+        <hr>
+        <div class="giscus" >
+        <script src="https://giscus.app/client.js"
+        data-repo="SimeonLukas/Blog"
+        data-repo-id="R_kgDONSw5PA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONSw5PM4CkoL8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https:&#x2F;&#x2F;simeon.staneks.de/css/giscus.css"
+        data-lang="de"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+        
+
+    </div>
+</body>
+
+</html>

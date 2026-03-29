@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="de">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Ich spreche, Obsidian schreibt – Sprachmemos via Telegram, Whisper &amp; n8n
+        
+    </title>
+
+    
+    
+    <meta name="description" content="Wie ich mit einem Telegram-Bot, einem lokalen Whisper-Server, n8n und Nextcloud meine gesprochenen Gedanken automatisch als Markdown-Memos in meinen Obsidian..." />
+    
+    
+
+    
+    <meta property="og:image" content="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian//images/de/preview.jpg" />
+    <meta property="og:logo" content="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian//imagesde/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/images/de/preview.jpg">
+    
+
+    
+    <meta property="og:title" content="Ich spreche, Obsidian schreibt – Sprachmemos via Telegram, Whisper &amp; n8n" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="Ich spreche, Obsidian schreibt – Sprachmemos via Telegram, Whisper &amp; n8n">
+    
+    
+
+    
+    
+    <meta property="og:description" content="Wie ich mit einem Telegram-Bot, einem lokalen Whisper-Server, n8n und Nextcloud meine gesprochenen Gedanken automatisch als Markdown-Memos in meinen Obsidian..."/>
+    <!-- twitter description -->
+    <meta name="twitter:description" content="Wie ich mit einem Telegram-Bot, einem lokalen Whisper-Server, n8n und Nextcloud meine gesprochenen Gedanken automatisch als Markdown-Memos in meinen Obsidian...">
+    
+    
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;simeon.staneks.de"/>
+    <meta property="og:type" content="article" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Simeon&#x27;s Blog" />
+
+
+    
+    
+    <link rel="icon" type="image/png" href=https:&#x2F;&#x2F;simeon.staneks.de&#x2F;android-chrome-512x512.png />
+    
+
+    
+    
+    <link href=https://simeon.staneks.de/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/codeblock.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/toc.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/note.js></script>
+    
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Simeon&#x27;s Blog" href="https://simeon.staneks.de/ atom.xml">
+
+
+    
+    
+    <link rel="stylesheet" type="text/css" href=https://simeon.staneks.de/theme/light.css />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://simeon.staneks.de/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://simeon.staneks.de/js/themetoggle.js></script>
+    
+    <script>setTheme(getSavedTheme());</script>
+    
+    <script src=https://simeon.staneks.de/js/index.js></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://simeon.staneks.de/main.css />
+
+    
+</head>
+
+<body onload="updatelanguage()">
+    <div class="content">
+        <header>
+    <div class="main">
+        <div> <a id="navigation_start" href=https:&#x2F;&#x2F;simeon.staneks.de>Simeon&#x27;s Blog </a> 
+            <p style="font-size: xx-small;">lieber unperfekt starten als perfekt warten</p> 
+        </div>
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl" class="social mastodon">
+                <img alt=mastodon src=https://simeon.staneks.de/social_icons/mastodon.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;" class="social instagram">
+                <img alt=instagram src=https://simeon.staneks.de/social_icons/instagram.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas" class="social github">
+                <img alt=github src=https://simeon.staneks.de/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;buymeacoffee.com&#x2F;simeonlukas" class="social buy me a coffee">
+                <img alt=buy me a coffee src=https://simeon.staneks.de/social_icons/bmc-logo.svg>
+            </a>
+            
+            <a rel="me" href="&#x2F;rss.xml" class="social rss">
+                <img alt=rss src=https://simeon.staneks.de/social_icons/rss.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a class="navigation_lang &#x2F;posts" href=&#x2F;posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a class="navigation_lang &#x2F;pages" href=&#x2F;pages style="margin-left: 0.5em">&#x2F;pages</a>
+        
+        <a class="navigation_lang &#x2F;about" href=&#x2F;pages&#x2F;about style="margin-left: 0.5em">&#x2F;about</a>
+        
+        <a class="navigation_lang &#x2F;tags" href=&#x2F;tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://simeon.staneks.de/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+        <a id="language-toggle" onclick="toggleLanguage(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/globe.svg alt="Change Language" /><span style="font-size: xx-small;" id="language-name">de</span>
+        </a>
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <h1 class="page-header">
+        Ich spreche, Obsidian schreibt – Sprachmemos via Telegram, Whisper &amp; n8n<span class="primary-color" style="font-size: 1.6em">.</span>
+    </h1>
+
+        </div>
+        Wie ich mit einem Telegram-Bot, einem lokalen Whisper-Server, n8n und Nextcloud meine gesprochenen Gedanken automatisch als Markdown-Memos in meinen Obsidian Vault beame.
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/#das-problem-gedanken-verdampfen">Das Problem: Gedanken verdampfen</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/#die-zutaten">Die Zutaten</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/#schritt-1-whisper-lokal-betreiben">Schritt 1: Whisper lokal betreiben</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/#schritt-2-der-n8n-workflow">Schritt 2: Der n8n-Workflow</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/#node-1-telegram-trigger">Node 1: Telegram Trigger</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/#node-2-get-a-file">Node 2: Get a file</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/#node-3-http-request-whisper">Node 3: HTTP Request → Whisper</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/#node-4-code-in-javascript">Node 4: Code in JavaScript</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/#node-5-6-upload-zu-nextcloud">Node 5 &amp; 6: Upload zu Nextcloud</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/#node-7-bestatigung-zuruck-an-telegram">Node 7: Bestätigung zurück an Telegram</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/#schritt-3-nextcloud-obsidian">Schritt 3: Nextcloud ↔ Obsidian</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/#das-ergebnis">Das Ergebnis</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/#danke-j">Danke, J.!</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>Ich stehe auf dem Spielplatz. Zwei Kinder klettern auf dem Klettergerüst herum, eine Kindergartenmutter, ein Kindergartenvater und ich reden über Kings of Convenience. Über <em>The Weight of my Words</em>. Über das Album <em>Versus</em>. Über die Zeit, als Musik noch wehtat, weil man jung und etwas unfertig war.</p>
+<p>Und dann ist der Moment weg. Die Kinder rufen. Man geht nach Hause. Und diese kleine, kostbare Erinnerung bleibt irgendwo auf der Strecke zwischen Spielplatz und Kühlschrank.</p>
+<p>Nicht mehr. Weil ich jetzt einfach mein Handy raushole, Telegram öffne, auf Aufnahme drücke – und alles von alleine weiterläuft.</p>
+<h2 id="das-problem-gedanken-verdampfen"><a class="zola-anchor" href="#das-problem-gedanken-verdampfen" aria-label="Anchor link for: das-problem-gedanken-verdampfen">Das Problem: Gedanken verdampfen</a></h2>
+<p>Ich habe schon lange mit Obsidian als zweites Gehirn gearbeitet. Das Problem: Ein zweites Gehirn nützt nichts, wenn man zu faul ist, es zu füttern. Tippen am Spielplatz? Nein danke. Eine Notiz-App öffnen, eintippen, Markdown formatieren? Auch nein. Ich bin ein Mensch, der <em>spricht</em>. Also musste die Lösung auch mit Sprache funktionieren.</p>
+<p>Die Idee war simpel: Ich schicke eine Sprachnachricht an einen Telegram-Bot. Der Rest passiert automatisch. Das Ergebnis landet als fertige <code>.md</code>-Datei in meinem Obsidian Vault – dank Nextcloud-Sync. Magic.</p>
+<h2 id="die-zutaten"><a class="zola-anchor" href="#die-zutaten" aria-label="Anchor link for: die-zutaten">Die Zutaten</a></h2>
+<p>Bevor ich in die Details gehe, kurz der Überblick was ich hier eigentlich zusammengebaut habe:</p>
+<ul>
+<li><strong>Telegram Bot</strong> – mein mobiles Mikrofon</li>
+<li><strong>n8n</strong> – der Kleber, der alles zusammenhält (selbst gehostet, natürlich)</li>
+<li><strong>faster-whisper-server</strong> – ein lokaler KI-Transkriptions-Dienst, der Deutsch kann und keine Cloud braucht</li>
+<li><strong>Nextcloud</strong> – mein selbst gehosteter Cloudspeicher, der mit Obsidian synchronisiert</li>
+<li><strong>Obsidian</strong> – das Endlager für alle meine Gedanken</li>
+</ul>
+<p>Kein Abo. Keine Cloud. Keine Datenschutzbedenken. Alles läuft zuhause.</p>
+<h2 id="schritt-1-whisper-lokal-betreiben"><a class="zola-anchor" href="#schritt-1-whisper-lokal-betreiben" aria-label="Anchor link for: schritt-1-whisper-lokal-betreiben">Schritt 1: Whisper lokal betreiben</a></h2>
+<p>Der erste Baustein ist ein lokaler Whisper-Server. Ich nutze dafür das Docker-Image <code>fedirz/faster-whisper-server</code> – eine schnelle, OpenAI-API-kompatible Implementierung, die auf normaler CPU läuft.</p>
+<p>Mein <code>docker-compose.yml</code>:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>┌─────────────────────────────────────────────────────────────────┐
+</span><span>│                     docker-compose.yml                          │
+</span><span>├─────────────────────────────────────────────────────────────────┤
+</span><span>│  services:                                                      │
+</span><span>│    whisper-api:                                                 │
+</span><span>│      image: fedirz/faster-whisper-server:latest-cpu            │
+</span><span>│      container_name: whisper-api                               │
+</span><span>│      environment:                                               │
+</span><span>│        - WHISPER__MODEL=Systran/faster-whisper-small           │
+</span><span>│      volumes:                                                   │
+</span><span>│        - whisper_cache:/root/.cache/huggingface                │
+</span><span>│      ports:                                                     │
+</span><span>│        - &quot;5092:8000&quot;                                           │
+</span><span>│      networks:                                                  │
+</span><span>│        - home_default                                           │
+</span><span>│      restart: unless-stopped                                    │
+</span><span>│                                                                 │
+</span><span>│  volumes:                                                       │
+</span><span>│    whisper_cache:                                               │
+</span><span>│                                                                 │
+</span><span>│  networks:                                                      │
+</span><span>│    home_default:                                                │
+</span><span>│      external: true                                             │
+</span><span>└─────────────────────────────────────────────────────────────────┘
+</span></code></pre>
+<p>Das Model <code>faster-whisper-small</code> ist der Sweet Spot: klein genug für ältere Hardware, gut genug für Sprache auf Deutsch. Beim ersten Start lädt Docker das Hugging-Face-Modell herunter und cached es im Volume – danach ist alles offline.</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f29718;">$</span><span> docker compose up</span><span style="color:#ff8f40;"> -d
+</span><span style="color:#f29718;">[+]</span><span> Running 2/2
+</span><span> </span><span style="color:#f29718;">✔</span><span> Volume </span><span style="color:#86b300;">&quot;whisper_cache&quot;</span><span> created
+</span><span> </span><span style="color:#f29718;">✔</span><span> Container whisper-api started
+</span><span>
+</span><span style="color:#f29718;">$</span><span> curl http://localhost:5092/v1/models
+</span><span>{
+</span><span>  </span><span style="color:#86b300;">&quot;data&quot;</span><span style="color:#f29718;">:</span><span> [
+</span><span>    { </span><span style="color:#86b300;">&quot;id&quot;</span><span style="color:#f29718;">: </span><span style="color:#86b300;">&quot;Systran/faster-whisper-small&quot;</span><span>, </span><span style="color:#86b300;">&quot;object&quot;</span><span>: </span><span style="color:#86b300;">&quot;model&quot; </span><span>}
+</span><span>  </span><span style="color:#f29718;">]
+</span><span>}
+</span></code></pre>
+<p>Der Server ist jetzt erreichbar unter <code>http://192.168.178.118:5092</code> und versteht die OpenAI-kompatible API. Heißt: alles, was mit <code>whisper-1</code> umgehen kann, kann auch meinen lokalen Server ansprechen.</p>
+<h2 id="schritt-2-der-n8n-workflow"><a class="zola-anchor" href="#schritt-2-der-n8n-workflow" aria-label="Anchor link for: schritt-2-der-n8n-workflow">Schritt 2: Der n8n-Workflow</a></h2>
+<p>Jetzt kommt n8n ins Spiel – mein selbst gehostetes Automatisierungsgehirn. Der Workflow hat genau sechs Schritte, und sieht so aus:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>┌─────────────────────────────────────────────────────────────────────────────┐
+</span><span>│                         n8n Workflow: Telegram → Memo                       │
+</span><span>├──────────────────┐                                                          │
+</span><span>│  Telegram        │  Sprachnachricht kommt rein (voice message)             │
+</span><span>│  Trigger  ───────┼──────────────────────────────────────────────────────►  │
+</span><span>│  (Bot: Memo)     │                                                          │
+</span><span>└──────────────────┘                                                          │
+</span><span>         │                                                                    │
+</span><span>         ▼                                                                    │
+</span><span>┌──────────────────┐                                                          │
+</span><span>│  Get a file      │  Telegram-API: Audiodatei (.ogg) herunterladen          │
+</span><span>│  (Telegram)      │  → fileId aus message.voice.file_id                     │
+</span><span>└──────────────────┘                                                          │
+</span><span>         │                                                                    │
+</span><span>         ▼                                                                    │
+</span><span>┌──────────────────┐                                                          │
+</span><span>│  HTTP Request    │  POST → http://192.168.178.118:5092/v1/audio/           │
+</span><span>│  (Whisper API)   │         transcriptions                                  │
+</span><span>│                  │  Body: multipart/form-data                              │
+</span><span>│                  │    model=whisper-1                                       │
+</span><span>│                  │    file=&lt;audio binary&gt;                                   │
+</span><span>└──────────────────┘                                                          │
+</span><span>         │                                                                    │
+</span><span>         ▼                                                                    │
+</span><span>┌──────────────────┐                                                          │
+</span><span>│  Code in JS      │  Hashtags aus dem transkribierten Text entfernen        │
+</span><span>│                  │  text.replaceAll(&quot;Hashtag &quot;, &quot;#&quot;)                         │
+</span><span>└──────────────────┘                                                          │
+</span><span>         │                                                                    │
+</span><span>         ▼                                                                    │
+</span><span>┌──────────────────┐  ┌──────────────────────────────────────────────────┐  │
+</span><span>│  Upload .md      │  │  Upload .ogg                                      │  │
+</span><span>│  (Nextcloud)     │  │  (Nextcloud)                                      │  │
+</span><span>│  Notizen/Memos/  │  │  Notizen/Memos/                                   │  │
+</span><span>│  YYYY-MM-DD      │  │  YYYY-MM-DD_&lt;updateId&gt;.ogg                        │  │
+</span><span>│  HH-mm-ss.md     │  └──────────────────────────────────────────────────┘  │
+</span><span>└──────────────────┘                                                          │
+</span><span>         │                                                                    │
+</span><span>         ▼                                                                    │
+</span><span>┌──────────────────┐                                                          │
+</span><span>│  Send a text     │  Transkription zurück an Telegram senden                │
+</span><span>│  message         │  → Bestätigung, dass alles geklappt hat                │
+</span><span>└──────────────────┘                                                          │
+</span><span>└─────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre>
+<p><img src="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/images/Bildschirmfoto%202026-03-29%20um%2012.45.04.png" alt="Screenshot von n8n" /></p>
+<h3 id="node-1-telegram-trigger"><a class="zola-anchor" href="#node-1-telegram-trigger" aria-label="Anchor link for: node-1-telegram-trigger">Node 1: Telegram Trigger</a></h3>
+<p>Ein einfacher Webhook-Trigger, der auf eingehende Nachrichten des Bots „Memo" wartet. Sobald eine Sprachnachricht ankommt, feuert der Workflow.</p>
+<h3 id="node-2-get-a-file"><a class="zola-anchor" href="#node-2-get-a-file" aria-label="Anchor link for: node-2-get-a-file">Node 2: Get a file</a></h3>
+<p>Telegram gibt uns nur die <code>file_id</code> der Sprachdatei. Mit diesem Node holen wir uns die eigentliche <code>.ogg</code>-Datei via Telegram-API herunter. Der Ausdruck <code>$json.message.voice.file_id</code> liefert den richtigen Wert.</p>
+<h3 id="node-3-http-request-whisper"><a class="zola-anchor" href="#node-3-http-request-whisper" aria-label="Anchor link for: node-3-http-request-whisper">Node 3: HTTP Request → Whisper</a></h3>
+<p>Das ist das Herzstück. Wir schicken einen <code>POST</code>-Request an unseren lokalen Whisper-Server:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>POST http://192.168.178.118:5092/v1/audio/transcriptions
+</span><span>Content-Type: multipart/form-data
+</span><span>
+</span><span>model=whisper-1
+</span><span>file=&lt;binary audio data&gt;
+</span></code></pre>
+<p>Zurück kommt JSON mit dem transkribierten Text. Auf Deutsch, offline, auf meinem eigenen Server.</p>
+<h3 id="node-4-code-in-javascript"><a class="zola-anchor" href="#node-4-code-in-javascript" aria-label="Anchor link for: node-4-code-in-javascript">Node 4: Code in JavaScript</a></h3>
+<p>Whisper transkribiert manchmal das Wort „Hashtag" wörtlich, wenn ich aufzähle. Ein schneller Einzeiler bereinigt das:</p>
+<pre data-lang="javascript" style="background-color:#fafafa;color:#61676c;" class="language-javascript "><code class="language-javascript" data-lang="javascript"><span style="color:#fa6e32;">for </span><span>(</span><span style="color:#fa6e32;">const </span><span>item </span><span style="color:#ed9366;">of </span><span>$input</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">all</span><span>()) {
+</span><span>  </span><span style="color:#fa6e32;">let </span><span>text </span><span style="color:#ed9366;">= </span><span>item</span><span style="color:#ed9366;">.</span><span>json</span><span style="color:#ed9366;">.</span><span>text</span><span style="color:#61676ccc;">;
+</span><span>  text </span><span style="color:#ed9366;">= </span><span>text</span><span style="color:#ed9366;">.</span><span style="color:#f29718;">replaceAll</span><span>(</span><span style="color:#86b300;">&quot;Hashtag &quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;#&quot;</span><span>)</span><span style="color:#61676ccc;">;
+</span><span>  item</span><span style="color:#ed9366;">.</span><span>json</span><span style="color:#ed9366;">.</span><span>text </span><span style="color:#ed9366;">= </span><span>text</span><span style="color:#61676ccc;">;
+</span><span>}
+</span><span style="color:#fa6e32;">return </span><span>$input</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">all</span><span>()</span><span style="color:#61676ccc;">;
+</span></code></pre>
+<p>Super gut, weil ich dann auch nach den inline Tags in Obsidian suchen kann, ohne manuell nachzubessern.</p>
+<h3 id="node-5-6-upload-zu-nextcloud"><a class="zola-anchor" href="#node-5-6-upload-zu-nextcloud" aria-label="Anchor link for: node-5-6-upload-zu-nextcloud">Node 5 &amp; 6: Upload zu Nextcloud</a></h3>
+<p>Zwei parallele Uploads gehen raus:</p>
+<ol>
+<li>Die <strong>Markdown-Datei</strong> – Pfad: <code>Notizen/Memos/YYYY-MM-DD HH-mm-ss.md</code></li>
+<li>Die <strong>Originalaudio-Datei</strong> – Pfad: <code>Notizen/Memos/YYYY-MM-DD_&lt;updateId&gt;.ogg</code></li>
+</ol>
+<p>Der Dateiinhalt der <code>.md</code>-Datei sieht so aus:</p>
+<pre data-lang="markdown" style="background-color:#fafafa;color:#61676c;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span>Memo vom 29.03.2026
+</span><span>
+</span><span>Letztens habe ich mich auf dem Spielplatz mit einer Kindergartenmutter
+</span><span>und einem Kindergartenvater unterhalten. Da ging es um unsere alte Musik,
+</span><span>die Musik, die wir früher gehört haben...
+</span><span>
+</span><span style="background-color:#61676c10;font-weight:bold;color:#abb0b6;">---
+</span><span>![[2026-03-29 617268880.ogg]]
+</span></code></pre>
+<p><img src="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/images/Bildschirmfoto%202026-03-29%20um%2012.41.11.png" alt="Screenshot von Obsidian" /></p>
+<p>Der Timestamp kommt aus <code>now.toUTC().format('dd.MM.yyyy')</code> direkt in n8n – kein manuelles Datum mehr.</p>
+<h3 id="node-7-bestatigung-zuruck-an-telegram"><a class="zola-anchor" href="#node-7-bestatigung-zuruck-an-telegram" aria-label="Anchor link for: node-7-bestatigung-zuruck-an-telegram">Node 7: Bestätigung zurück an Telegram</a></h3>
+<p>Als letzten Schritt schickt der Workflow den transkribierten Text zurück an meinen Telegram-Chat. So sehe ich sofort: Hat Whisper mich richtig verstanden? Oder hat es aus „Kings of Convenience" irgendwas wie „Königs von Konvenienz" gemacht? (Hat es nicht. Ich bin beeindruckt.)</p>
+<h2 id="schritt-3-nextcloud-obsidian"><a class="zola-anchor" href="#schritt-3-nextcloud-obsidian" aria-label="Anchor link for: schritt-3-nextcloud-obsidian">Schritt 3: Nextcloud ↔ Obsidian</a></h2>
+<p>Das Schöne an diesem Setup: Nextcloud und Obsidian kennen sich schon. Ich habe den Ordner <code>Notizen/Memos/</code> in meinem Nextcloud als synchronisierten Pfad eingerichtet. Sobald n8n die <code>.md</code>-Datei hochlädt, landet sie binnen Sekunden in meinem Obsidian Vault – auf Desktop und Handy.</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>Nextcloud (Server)
+</span><span>└── Notizen/
+</span><span>    └── Memos/
+</span><span>        ├── 2026-03-29 12-27-03.md   ← Transkript als Markdown
+</span><span>        └── 2026-03-29 617268880.ogg ← Originalaudio zum Nachhören
+</span></code></pre>
+<p>In Obsidian sieht das dann fertig aus – mit Datum im Titel, dem vollen Text und einem Link zur Audiodatei darunter. Ich muss nichts anfassen. Nichts formatieren. Nichts umbenennen.</p>
+<h2 id="das-ergebnis"><a class="zola-anchor" href="#das-ergebnis" aria-label="Anchor link for: das-ergebnis">Das Ergebnis</a></h2>
+<p>Ich stehe wieder auf dem Spielplatz. Das Gespräch endet. Ich halte kurz mein Handy hoch, drücke auf Aufnahme im Telegram-Bot, spreche 30 Sekunden – und gehe dann einfach nach Hause.</p>
+<p>Irgendwo in meinem Heimnetzwerk passiert gerade Folgendes:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>[Telegram]  → Sprachnachricht empfangen (617268880)
+</span><span>[n8n]       → .ogg heruntergeladen (128 KB)
+</span><span>[Whisper]   → Transkription gestartet...
+</span><span>[Whisper]   → Fertig in 2.3s: &quot;Letztens habe ich mich auf dem Spielplatz...&quot;
+</span><span>[Nextcloud] → 2026-03-29 12-27-03.md hochgeladen ✓
+</span><span>[Nextcloud] → 2026-03-29 617268880.ogg hochgeladen ✓
+</span><span>[Telegram]  → Bestätigung gesendet ✓
+</span></code></pre>
+<p>Und das alles ohne einen einzigen Cloud-Dienst von Drittanbietern. Kein OpenAI-API-Key. Keine Abo-Kosten. Kein „Ihre Sprachdaten helfen uns, unsere Dienste zu verbessern."</p>
+<p>Kings of Convenience – <em>The Weight of my Words</em>. Jetzt hat auch das Gewicht meiner Worte endlich einen Platz gefunden.</p>
+<h2 id="danke-j"><a class="zola-anchor" href="#danke-j" aria-label="Anchor link for: danke-j"><a href="https://enthusiastic.dev/">Danke, J.!</a></a></h2>
+<p>Wer meinen Blog schon länger liest, kennt J. – meinen Freund, der mich in epische Rabbit Holes schubst und dann unschuldig guckt. Diesmal hat er mir Parakeet von NVIDIA vorgeschlagen, ein sehr schnelles Speech-to-Text-Modell, das ich mir auch ernsthaft angeschaut habe.</p>
+<p>Das Problem: Telegram schickt Sprachnachrichten im Ogg-Vorbis-Format (.ogg) – und Parakeet mag kein Vorbis. Man könnte das Audio vorher konvertieren, aber ehrlich gesagt wollte ich keinen weiteren Umwandlungsschritt in den Workflow bauen. Whisper hingegen schluckt Ogg klaglos, ohne mit der Wimper zu zucken.</p>
+<p>Also: J., danke für den Tipp. Du hattest wieder eine gute Idee. Ich habe sie nur ein kleines bisschen verbogen – wie immer.</p>
+
+        </section>
+    </article>
+    <hr>
+    <br>
+    <div class="meta">
+        
+            <span class="date-label-posted">:: Posted on </span><time>2026-03-29</time>
+        
+
+        
+
+        
+
+        
+        
+                <span class="tags-label"> :: Tags:</span>
+                <span class="tags">
+                        <a href="https://simeon.staneks.de/tags/n8n/" class="post-tag">n8n</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/whisper/" class="post-tag">whisper</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/telegram/" class="post-tag">telegram</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/obsidian/" class="post-tag">obsidian</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/nextcloud/" class="post-tag">nextcloud</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/docker/" class="post-tag">docker</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/automation/" class="post-tag">automation</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/self-hosted/" class="post-tag">self-hosted</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/voice/" class="post-tag">voice</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/productivity/" class="post-tag">productivity</a>
+                    
+                </span>
+        
+
+        
+       
+                
+     
+
+            
+                
+                :: <a href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;Blog&#x2F;tree&#x2F;main&#x2F;content&#x2F;posts&#x2F;stt-telegram-n8n-nextcloud-obsidian&#x2F;index.md" target="_blank" rel="noopener noreferrer"> Source Code</a>
+            
+
+        
+
+    </div>
+
+    
+    
+        
+    
+
+    
+        
+        
+        
+        
+            
+        
+            
+        
+            
+                
+            
+        
+
+        
+        
+
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
+            
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;stt-telegram-n8n-nextcloud-obsidian&#x2F;video&#x2F;stt-telegram-n8n-nextcloud-obsidian-de.mp4" onerror="this.parentElement.parentElement.style.display='none';" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+        </div>
+    
+</main>
+
+
+
+        
+            
+        
+
+        
+        <br>
+        <hr>
+        <div class="giscus" >
+        <script src="https://giscus.app/client.js"
+        data-repo="SimeonLukas/Blog"
+        data-repo-id="R_kgDONSw5PA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONSw5PM4CkoL8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https:&#x2F;&#x2F;simeon.staneks.de/css/giscus.css"
+        data-lang="de"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+        
+
+    </div>
+</body>
+
+</html>
