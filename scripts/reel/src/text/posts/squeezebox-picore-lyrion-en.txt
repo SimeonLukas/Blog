@@ -1,0 +1,1 @@
+ How to build a first-class multiroom audio system on a budget using second-hand Squeezeboxes, a Raspberry Pi, and a self-hosted Lyrion Music Server on Proxmox – and why a Raspberry Pi inside a porcelain bowl is sometimes the best solution. 
