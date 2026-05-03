@@ -1,0 +1,11 @@
+ Es gibt Geräte, die sind einfach zu gut, um sie sterben zu lassen. Ich rede von der Squeezebox-Welt. Ich habe mir ein System aufgebaut, das komplett unabhängig von der Cloud funktioniert und trotzdem perfekt im ganzen Haus läuft.
+
+Das Herzstück ist der Lyrion Music Server, den ich auf meinem Proxmox-Server laufen lasse. Das Schöne ist, dass ich hier nicht auf teure neue Hardware angewiesen bin. Ich nutze eine Mischung aus alten Squeezebox-Radios und Raspberry Pis.
+
+Die Installation ist eigentlich simpel. Auf den Raspberry Pis läuft das schlanke piCorePlayer-OS, das die Geräte quasi in Squeezebox-Player verwandelt. In meinem Fall habe ich sie in verschiedenen Räumen verteilt. Die Konfiguration im Music Server dauert nur ein paar Minuten, und schon kann ich Musik von meinen lokalen Festplatten oder verschiedenen Streaming-Diensten an alle Geräte gleichzeitig senden.
+
+Ein wichtiger Punkt bei diesem Setup ist die Stabilität. Da alles lokal im Netzwerk läuft, gibt es keine Ausfälle, wenn das Internet mal hakt. Ich steuere das Ganze entweder über die originale Weboberfläche oder über verschiedene Apps wie Materialize auf dem Handy.
+
+Besonders cool finde ich die Flexibilität beim Sound. Ich kann die Raspberries an alte Verstärker hängen oder hochwertige DACs nutzen, um den Klang zu optimieren. Da der Server alle Insample-Funktionen übernimmt, bleibt die Hardware an den Endpunkten simpel und effizient.
+
+Am Ende ist es ein Projekt, das zeigt, dass man mit ein bisschen Open Source und alter Hardware ein System bauen kann, das in Sachen Kontrolle und Privatsphäre jedem kommerziellen Multiroom-System überlegen ist. Keine Accounts, kein Tracking, nur Musik.
