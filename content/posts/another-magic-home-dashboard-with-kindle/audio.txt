@@ -1,0 +1,17 @@
+ Ich zeig euch heute mal, wie ein Kindle aus dem Jahr zweitausendundelf zu meinem ganz persönlichen Pip-Boy für zu Hause wurde. Im Grunde geht es darum, wie ich mit HTML, PHP, CSS und JavaScript ein Smart Home Dashboard auf einem alten, jailbroken Kindle vier Touch realisiert habe. Ich nehm euch jetzt mal mit vom Jailbreak bis zum fertigen Dashboard.
+
+Das Ganze ist eigentlich ein Projekt für meinen Kumpel J. und alle, die noch so ein altes Gerät rumliegen haben. Mein Schwager hat mir den Kindle im Jahr zweitausendzwanzig geschenkt. Erst wollte ich damit lesen, aber nach ein paar Wochen hab ich gemerkt, dass ich das kaum mache. Also hab ich mir was anderes überlegt.
+
+Die Idee war, dass das Teil wie ein Pip-Boy funktioniert, zumindest ein bisschen. Ich wollte damit mein Smart Home und die Squeezeboxen steuern, ohne jedes Mal zum Handy oder PC zu greifen. Der Kindle ist robust, braucht kaum Strom und das E-Ink-Display ist super, weil man es auch in der Sonne perfekt lesen kann. Außerdem zeig ich mir darauf Bilder passend zum Wetter und die Termine für die Müllabfuhr. Also fast wie ein Pip-Boy, nur eben ohne die Waffen.
+
+Technisch sieht das so aus: Für die Struktur nutze ich HTML, das Design mache ich mit CSS, die Interaktion läuft über JavaScript und die Logik auf dem Server erledigt PHP. An Hardware brauche ich nur den jailbroken Kindle vier Touch, ein Micro-USB-Kabel für den Strom und einen Bilderrahmen als Gehäuse.
+
+Jetzt zum Jailbreak. Da die alten Zertifikate abgelaufen sind, funktionieren Sachen wie der KUAL Launcher oft nicht mehr. Aber es gibt eine Lösung von NiLuJe. Zuerst verbindet man den Kindle mit dem Computer und sichert die Daten. Dann wird die Firmware auf die Version fünf punkt drei punkt sieben punkt drei aktualisiert, indem man die entsprechende Datei ins Wurzelverzeichnis kopiert und über die Einstellungen installiert. Danach kommen die Jailbreak-Dateien und die neuen Zertifikate dran. Man ersetzt die alte Datei für den Schlüssel im Wurzelverzeichnis und aktiviert den Jailbreak dann wieder über das Menü. Wenn im Bild unten Jailbreak steht, hat es geklappt.
+
+Wer schon einen Jailbreak hat, muss nur die passende Datei für den Schlüssel installieren. Danach installiert man KUAL, indem man die entsprechende Datei in den Documents-Ordner schiebt. Für den Web-Zugriff kommt dann WebLaunch in den Extensions-Ordner. In der Konfigurationsdatei legt man dann fest, welche Web-Adresse das Dashboard hat, wie es heißt und ob zum Beispiel die Statusleiste versteckt werden soll.
+
+Wenn das steht, kann man sein eigenes Dashboard bauen. Ich hab da ein kleines Beispiel vorbereitet. Das ist eine einfache HTML-Seite mit einer Überschrift und einem Knopf zum Lichtschalten. Im Hintergrund wird ein Befehl an die Shelly-Schnittstelle gesendet. Wichtig ist hier, dass man ein älteres Verfahren für die Netzwerkanfragen nutzt, weil modernes JavaScript auf dem Kindle noch nicht funktioniert.
+
+Am Ende ist aus einem verstaubten E-Reader von zweitausendundelf ein echtes Terminal geworden. Es läuft seit Monaten zuverlässig. Alte Hardware muss nicht im Schrank verstauben, sie braucht oft nur eine neue Aufgabe. Und falls die Apokalypse kommt, bin ich zumindest bereit.
+
+Das war's für heute, probiert es doch selbst mal aus.
