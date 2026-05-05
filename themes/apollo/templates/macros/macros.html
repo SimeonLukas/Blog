@@ -217,7 +217,6 @@
 
         {% set video_file = article_slug ~ "-" ~ video_lang ~ ".mp4" %}
         {% set video_path = page.permalink ~ "video/" ~ video_file %}
-
         <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
             {% if video_lang == "de" %}
                 <video style="width: auto; max-width: 320px;" controls>
@@ -232,6 +231,17 @@
             {% endif %}
         </div>
     {% endif %}
+
+ {%- set audio_path = page.path ~ "audio.mp3" %}
+        {%- if page.assets is containing(audio_path) %}
+        <h3>Mein Shortcast zu diesem Artikel</h3>
+        <audio src="{{ get_url(path=audio_path) | escape_xml | safe }}" type="audio/mpeg" controls style="margin-top: 2em; width: 100%; margin: 0 auto; max-width: 600px; display: block;">
+            Your browser does not support the audio element.
+        </audio>
+        {%- endif %}
+
+
+
 </main>
 {% endmacro content %}
 
