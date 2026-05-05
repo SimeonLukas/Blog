@@ -1,0 +1,21 @@
+Also, mein Kollege F. und ich haben uns da was echt Besonderes für die Dekanatszusammenlegung der Dekanate Werdenfels und Rottenbuch überlegt. Uns war einfach wichtig, dass das Projekt einen richtig starken Eindruck hinterlässt. Und so kam ich auf die Idee mit einem digitalen Glücksrad, oder man könnte es auch ein Schicksalsrad nennen. Die Idee war, dass man das Ganze mit einem Fußtaster steuern kann. Je nachdem, welche Nummer man erwischt, bekommen die Teilnehmer dann eine von zehn Postkarten, die F. ganz persönlich gestaltet hat. Und als echtes Highlight wird bei einigen ausgewählten Nummern direkt ein Foto gemacht. Also eine Fotobox und ein Glücksrad in einem, das konnte doch im Grunde nicht so schwer sein.
+
+Was die Software angeht, dachte ich mir, dass es doch eigentlich ganz einfach sein müsste, so ein Glücksrad mit Standard Webtechnologien zu bauen. Und tatsächlich, gesagt ist gesagt, innerhalb einer Stunde stand das Prinzip und das Rad hat sich gedreht, sobald man die Taste eins auf der Tastatur gedrückt hat. Am Anfang war das Design eher so provisorisch, aber dann kam F. ins Spiel. Er ist ja ein leidenschaftlicher Layouter, Grafiker und Designer und hat direkt einen passenden Rahmen für das Glücksrad und die Anzeige der Nummer gezeichnet.
+
+Ein Probelauf ist übrigens auf einer Webseite unter tourismuspastoral punkt de slash your turn möglich. Da passt der Rahmen je nach Bildschirmauflösung zwar nicht immer perfekt, aber aus Zeit- und Einfachheitsgründen ist die Web-App nur für Bildschirme mit siebenhundertzwanzigp optimiert, was aber völlig ausreicht.
+
+Wenn man nun die Nummern eins oder fünfundzwanzig trifft, öffnet sich automatisch die Kamera und macht nach fünf Sekunden ein Foto. Diese Funktion kann man übrigens auch manuell auslösen, wenn man die Taste zwei drückt. Da wir den Leuten das Foto natürlich zur Verfügung stellen wollten, wird das Bild an meinen Server gesendet und es wird ein QR-Code generiert, mit dem man sich das Foto dann einfach abholen kann.
+
+Natürlich brauchte es im Backend ein wenig Mühe, damit das alles reibungslos funktioniert. Über einen sogenannten n8n-Webhook wird das Foto empfangen und dann an zwei verschiedenen Stellen auf meinem Server gespeichert. Sobald dieser Vorgang abgeschlossen ist, wird eine Rückmeldung gesendet und der passende QR-Code angezeigt. Zusätzlich gibt es da noch einen zweiten Webhook.
+
+Der QR-Code führt nämlich zu einem PHP-Skript, das es ermöglicht, das Foto wieder zu löschen. Das Bild wird dann, falls das gewünscht ist, über diesen zweiten Webhook von beiden Speicherorten entfernt.
+
+Beim Hardware-Aufbau würde theoretisch ein einfacher Laptop genügen, aber wir wollten das Ganze groß aufziehen. Deshalb waren ein fünfzig Zoll Bildschirm, ein Fußtaster, eine Webcam und ein Laptop im Einsatz. Die Teilnehmenden hatten sichtlich Spaß an der Sache.
+
+Später kam es dann zur Weiterentwicklung. Unser Chef war von der Aktion so begeistert, dass er das Glücksrad jetzt auf der Freizeitmesse in München aufstellen möchte. Er wünscht sich dafür einen Handtaster, und in diesem Zuge haben wir uns auch einen Raspberry Pi fünf angeschafft, damit niemand seinen eigenen Laptop eine ganze Woche lang auf der Messe stehen lassen muss.
+
+Den Taster habe ich mir bei AliExpress gekauft, zusammen mit einem Atmega-zweiunddreißig-u-vier Chip. Dieser Chip kann nämlich so agieren wie eine Tastatur und sendet bei einem Tastendruck einfach die Zahl eins an die Web-App. Man kann ihn sehr einfach mit der Arduino-IDE programmieren und dann direkt per USB an den Raspberry anschließen.
+
+Ich hab da ein kleines Beispiel vorbereitet, wie der Code aussieht, der per Arduino-IDE auf den Chip geladen wurde. Im Grunde wird dort die Keyboard-Bibliothek eingebunden und die Pins für den Button und eine LED definiert. In der Programmschleife wird dann ständig der Status des Buttons abgefragt. Wenn der Knopf gedrückt wird, sendet der Chip das Zeichen eins an den Computer. Und damit man sieht, dass es funktioniert, gibt es eine kleine Funktion, bei der die LED ein paar Mal schnell hintereinander blinkt. Danach wird der Status des Buttons wieder gespeichert und der Vorgang beginnt von vorn.
+
+Wie das Endergebnis dann schlussendlich genau aussehen wird, zeigt sich in den nächsten Wochen. Ich bin schon sehr gespannt darauf.
