@@ -40,6 +40,9 @@ Die eigentliche Orchestrierung läuft über **n8n**. Der Workflow holt sich auto
 Der Workflow ist so aufgebaut, dass er möglichst wenig manuelle Eingriffe braucht. Zuerst wird der RSS-Feed abgefragt, dann die einzelnen Artikel-Links extrahiert und in Batches verarbeitet. Wenn weder `audio.txt` noch `audio.mp3` vorhanden sind, wird der Beitrag weiterverarbeitet; andernfalls wird er übersprungen. Das spart Zeit und verhindert, dass dieselben Artikel unnötig noch einmal gerendert werden.
 Anschließend wird aus dem Artikeltext ein Podcast-Skript generiert und in GitHub gespeichert. Danach startet der TTS-Teil: Der Text wird in sprechbare Einheiten aufgeteilt, die Audioausgabe pro Chunk erzeugt und anschließend mit `ffmpeg` wieder zusammengesetzt. Genau diese Chunking-Stufe ist wichtig, weil sehr lange Eingabetexte bei qwen3-TTS sonst schnell unsaubere Ausgaben verursachen können.
 
+![Screenshot](images/sc.png)
+
+
 ```
 ┌─────────────────────── n8n Workflow: Blog → Podcast ───────────────────────┐
 │                                                                              │

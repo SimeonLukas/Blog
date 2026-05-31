@@ -40,6 +40,8 @@ The actual orchestration runs through **n8n**. The workflow automatically pulls 
 The workflow is designed to require as little manual intervention as possible. First, it fetches the RSS feed, then extracts the individual article links and processes them in batches. If neither `audio.txt` nor `audio.mp3` exists, the post is processed; otherwise it is skipped. That saves time and prevents the same article from being rendered unnecessarily more than once.  
 Next, a podcast script is generated from the article text and saved to GitHub. Then the TTS part starts: the text is split into speakable units, audio is generated for each chunk, and the pieces are stitched back together with `ffmpeg`. That chunking step is crucial, because very long input texts can otherwise cause qwen3-TTS to produce rough or messy output.
 
+![Screenshot](images/sc.png)
+
 ```text
 ┌─────────────────────── n8n Workflow: Blog → Podcast ───────────────────────┐
 │                                                                              │
