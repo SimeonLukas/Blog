@@ -1,0 +1,1 @@
+ It’s absurd what’s possible locally with AI. In this article, I share my experience creating an AI-generated podcast that runs completely locally on my computer, without requiring an internet connection. I use Alibaba’s qwen3-TTS model and Google’s gemma4 to turn my blog posts into audio, and the results are surprisingly good. 
