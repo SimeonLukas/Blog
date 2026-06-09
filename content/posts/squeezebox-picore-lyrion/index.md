@@ -158,6 +158,17 @@ Falls das Gerät sich gar nicht erst verbindet: kurz per **Ethernet-Kabel** dire
 
 Hier gibt es weitere Infos falls das WLAN regelmäßig ausfällt: [Der Trick hat bei mir geholfen, die Stabilität deutlich zu verbessern](https://telebear.de/appTippsTricks/appSqueezebox/appSbRadioWlan/index.html)
 
+Mein Onliner-Beispiel:
+```bash
+ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 \
+    -oHostKeyAlgorithms=+ssh-rsa \
+    -oCiphers=+aes128-cbc \
+    root@192.168.178.125 \
+    "sed -i '/wmiconfig.*maxperf/s/^/#/' /etc/init.d/wlan && reboot"
+```
+Passwort: `1234`
+
+
 ## Schritt 3: Raspberry Pi mit piCorePlayer
 
 Für Wohnzimmer und Küche läuft auf jedem Pi **piCorePlayer** – ein winziges, auf Squeezelite spezialisiertes Linux, das von der SD-Karte bootet und im RAM läuft. Kein Verschleiß, kein Overhead, kein Schnickschnack.

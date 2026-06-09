@@ -194,6 +194,16 @@ If the device doesn't connect at all: briefly connect it via **Ethernet cable** 
 
 More information if Wi-Fi drops out regularly: [This trick helped me significantly improve stability](https://telebear.de/appTippsTricks/appSqueezebox/appSbRadioWlan/index.html)
 
+My one-liner:
+```bash
+ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 \
+    -oHostKeyAlgorithms=+ssh-rsa \
+    -oCiphers=+aes128-cbc \
+    root@192.168.178.125 \
+    "sed -i '/wmiconfig.*maxperf/s/^/#/' /etc/init.d/wlan && reboot"
+```
+Password: `1234`
+
 
 ## Step 3: Raspberry Pi with piCorePlayer
 
