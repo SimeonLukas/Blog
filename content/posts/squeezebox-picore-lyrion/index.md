@@ -158,7 +158,7 @@ Falls das Gerät sich gar nicht erst verbindet: kurz per **Ethernet-Kabel** dire
 
 Hier gibt es weitere Infos falls das WLAN regelmäßig ausfällt: [Der Trick hat bei mir geholfen, die Stabilität deutlich zu verbessern](https://telebear.de/appTippsTricks/appSqueezebox/appSbRadioWlan/index.html)
 
-Mein Onliner-Beispiel:
+Mein Oneliner-Beispiel:
 ```bash
 ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 \
     -oHostKeyAlgorithms=+ssh-rsa \
