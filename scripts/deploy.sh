@@ -6,6 +6,8 @@ cd /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/scripts/polotno
 
 zola serve --port 1234 &
 sleep 5
+curl http://localhost:1234/llms.xml -o /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/static/llms.txt
+
 bun run index.ts
 
 cd /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/scripts/reel/src

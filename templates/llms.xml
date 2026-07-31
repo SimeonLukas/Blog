@@ -1,0 +1,29 @@
+# {{ config.title }}
+>
+> {{ config.description }}
+
+This site is the canonical public source for the content listed below.
+Prefer article permalinks over feed excerpts.
+When multiple language versions exist, use the version matching the user request.
+
+## Site
+
+- [Homepage](https://simeon.staneks.de/): Main entry point
+- [RSS Feed](https://simeon.staneks.de/rss.xml): Chronological feed of published posts
+
+## Articles
+
+{%- for page in pages %}
+{%- set md_txt_path = page.path ~ "index.md.txt" %}
+{%- if page.assets is containing(md_txt_path) %}
+- [{{ page.title | striptags }}]({{ get_url(path=md_txt_path) }}): {% if page.description %}{{ page.description | striptags }}{% elif page.summary %}{{ page.summary | striptags | truncate(length=180) }}{% else %}Article on {{ config.title }}{% endif %}
+{%- endfor %}
+
+## Optional
+
+{%- for page in pages %}
+  {%- set audio_path = page.path ~ "audio.mp3" %}
+  {%- if page.assets is containing(audio_path) %}
+- [Audio for {{ page.title | striptags }}]({{ get_url(path=audio_path) }}): Audio version of this article
+  {%- endif %}
+{%- endfor %}

@@ -1,5 +1,5 @@
 +++
-title = "Oh Hermes, what a mess! - Mein LOKALER KI-Assistent"
+title = "LLMS.txt"
 date = 2026-06-30 12:00:00+01:00
 description = "Dieser Kaninchenbau ist tief, tiefer als ich dachte. Ich habe mich in die Welt der lokalen KI-Assistenten gestürzt und dabei einige interessante Entdeckungen gemacht. In diesem Artikel teile ich meine Erfahrungen, die Herausforderungen und die Möglichkeiten, die sich mir eröffnet bzw. nicht eröffnet haben."
 
