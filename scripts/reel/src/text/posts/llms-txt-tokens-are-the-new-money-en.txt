@@ -1,1 +1,1 @@
- This rabbit hole runs deep, deeper than I thought. I dove into the world of local AI assistants and made some interesting discoveries along the way. In this article I share my experiences, the challenges, and the possibilities that did - and didn't - open up for me. 
+ How I built a dynamic llms.txt for my Zola blog via an RSS/XML workaround — including Markdown links, Bash post-processing, and a bit of token frugality. 

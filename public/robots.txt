@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://simeon.staneks.de/sitemap.xml
+RSS: https://simeon.staneks.de/rss.xml
+RSS: https://simeon.staneks.de/en/rss.xml
+LLMS: https://simeon.staneks.de/llms.txt

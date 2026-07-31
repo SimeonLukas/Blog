@@ -1,86 +1,209 @@
 +++
-title = "LLMS.txt"
-date = 2026-06-30 12:00:00+01:00
-description = "Dieser Kaninchenbau ist tief, tiefer als ich dachte. Ich habe mich in die Welt der lokalen KI-Assistenten gestürzt und dabei einige interessante Entdeckungen gemacht. In diesem Artikel teile ich meine Erfahrungen, die Herausforderungen und die Möglichkeiten, die sich mir eröffnet bzw. nicht eröffnet haben."
-
+title = "llms.txt - Tokens sind das neue gold"
+date = 2026-07-31 12:00:00+01:00
+description = "Wie ich für mein Zola-Blog eine dynamische llms.txt über den RSS/XML-Weg gebaut habe – inklusive Markdown-Links, Bash-Postprocessing und ein bisschen Token-Geiz."
 [taxonomies]
-tags = ["ai", "local-ai", "hermes", "qwen3.6", "gemma4", "ai-generated", "locale-ai"]
-
+tags = ["llms.txt", "zola", "rss", "bash", "markdown", "seo", "ai", "ohermes" ,"denshattack!"]
 [extra]
 comment =  true
 +++
+Es fällt mir wirklich schwer zu entscheiden, ob ich jetzt einen Artikel schreiben soll oder noch ne Runde Denshattack! spielen soll, doch nachdem der liebe [J. einen richtig coolen Artikel veröffentlicht hat](https://enthusiastic.dev/blog/dlr-besuch-oberpfaffenhofen/) und das sogar pünktlich, muss ich wohl auch ran.
 
-## Genesis: Oh my [Hermes](https://hermes-agent.org/de/)!
-Von meinen bisherigen Artikeln weißt du ja, dass ich mir einen kleinen Mini-PC mit einer 780m iGPU gekauft habe. Ich lasse da bereits KI-Modelle lokal laufen, um meine eigenen KI-Stimme zu erzeugen. gemma4 und qwen3.6 liefen jetzt auch ne Zeit lang auf dem Gerät, aber ich habe mich gefragt, ob es nicht noch mehr Möglichkeiten gibt. [J.](https://enthusiastic.dev/) hatte schon was von Huggingface erwähnt und ich bin auch schon öftes darüber gestolpert, aber, dass es da so einen großen Schatz an Modellen gibt, war mir nicht bewusst. Ich habe mich also mal hingesetzt und ein bisschen recherchiert, was es da so alles gibt. Und ich muss sagen, ich bin überwältigt und zugleich für verloren, weil ich keinen Plan habe was es da alles gibt und was die Fachbegriffe bedeutetn, aber ich wollte unbedingt meinen persönlichen KI-Assistenten [Hermes](https://hermes-agent.org/de/) lokal laufen lassen und damit beginnt die Reise vor über einer Woche am 17. Juni 2026.
+In den letzten Wochen gab es hier schon ein paar Artikel, in denen es im Kern immer um dasselbe ging:  
+Wie baue ich mir meine eigene kleine Infrastruktur, damit meine Modelle, meine Automatisierungen und meine Blog-Posts nicht nur *funktionieren*, sondern sich auch gut anfühlen?
 
-### Der erste Tag - Von der Ordnung zum Chaos
-Ich habe Hermes mit ollama installiert und mal geschaut was das Ding kann. Ich habe einfach gemma4 12B it qat damit verbunden und Telegram und dann habe ich versucnte mit Hermes zu Chatten. Doch es kam nichts. Es kam nur
+Aber wie sich ein LLM fühlt, wenn es mal auf meiner Webseite landet, dass habe ich mich bisher nie gefragt. Und mir ist schmerzhaft aufgefallen, dass LLMS oft Unmengen an HTML schlucken müssen, damit sie arbeiten können und gerade mein lieber Hermes, der ja an einem lokalen LLM hängt, hatte es wirklich schwer. Deshalb habe ich für all die Modelle da draußen Vorkehrungen getroffen, damit sie es leichter haben. Mindestens auf meinem Blog sollen sie sich wohlfühlen.
 
+Hier geht es um eine Datei, die auf den ersten Blick fast unscheinbar ist:
+
+`/llms.txt`
+
+Aber diese Datei ist ein ziemlich direkter Nachfolger von allem, was ich in den letzten Artikeln über Zola, RSS, Automation und „lokale KI“ geschrieben habe.
+
+## Worum geht es eigentlich?
+
+Die Idee hinter `llms.txt` ist simpel:
+
+- Eine kleine Markdown-Datei im Root der Website.
+- Sie sagt LLMs, was auf der Seite wichtig ist.
+- Sie verlinkt bevorzugt auf Markdown-Ressourcen statt auf HTML.
+- Sie spart dadurch Tokens, weil weniger „HTML-Krimskrams“ mitgeschleppt werden muss.
+
+Statt dass ein Modell also durch Navigation, Footer, JavaScript und Layout-Overhead waten muss, bekommt es eine kuratierte Übersicht: „Hier ist der eigentliche Inhalt. Lies das zuerst.“
+
+Wenn du deine Infrastruktur schon so weit selbst baust, dass du lokal LLMs betreibst, eigene Feeds generierst und deine Posts automatisch verarbeitest, dann ist `llms.txt` der nächste logische Schritt:
+
+**Die Brücke zwischen deinem Content und den Modellen, die ihn lesen.**
+
+## Warum nicht einfach eine statische Datei?
+
+Bei statischen Seiten wäre das trivial: ablegen, fertig.
+
+Ich wollte aber, dass die Datei **dynamisch** bleibt:
+
+- Neue Posts sollen automatisch auftauchen.
+- Alte Links sollen nicht manuell aktualisiert werden müssen.
+- Sprachen, Audio-Versionen und Markdown-Kopien sollen berücksichtigt werden.
+
+Genau da kommt mein geliebtes auf Rust basierendes Zola ins Spiel - (Es basiert auf Rust und ist deshalb richtig cool. Hatte ich das schon erwähnt?).
+
+Zola ist für mich schon seit Längerem der SSG für alles, was Content-Struktur angeht. Die gleichen Templates, die ich für RSS-Feeds, Preview-Bilder und Audio-Posts nutze, wollte ich jetzt auch für `llms.txt` verwenden.
+
+Das Problem:  
+Zola rendert Templates für `.xml` (z. B. RSS) sehr gut, aber bei `.txt` wird es komplizierter, weil Zola da nicht die gleichen Pfade und Logiken wie für Feeds nutzt.
+
+Also: Umweg.
+
+## Der XML-Umweg (weil es Spaß macht und ich es einfach kann!)
+
+Der Trick ist einfach:
+
+1. Zola rendert eine `llms.xml` (als Feed-Template).
+2. Ein Bash-Script fetcht diese Datei lokal.
+3. Danach wird sie als `llms.txt` gespeichert.
+4. Ein kleines `sed`-Postprocessing tauscht localhost-URLs gegen die echte Domain.
+
+Das ist nicht die „professionelle sauberste“ Lösung, aber sie passt perfekt in meinen bestehenden Workflow. Genau wie bei den anderen Artikeln hier: pragmatisch, nachvollziehbar, funktionierend und wenn es kaputt geht - auch ok!
+
+Im `<head>` habe ich zusätzlich noch diesen kleinen Verweis eingebaut:
+
+```html
+<link rel="help" type="text/markdown" href="/llms.txt">
 ```
-Connection error.
-APIConnectionError: http://127.0.0.1:11434/v1/chat/completions
-```
 
-"Und die Erde war wüst und leer." Passender hätte es kaum sein können. Kein Modell, kein Output, nur ein Chatfenster, das mich anstarrte. Willkommen im Chaos.
+`rel="help"` ist für verlinkte Hilferessourcen gedacht, und `text/markdown` beschreibt die Datei sehr gut. Für LLMs und Agenten ist das ein klarer Hinweis: „Hier gibt es strukturierte Hilfe über die Seite.“
 
-### Tag 2 - Die Scheidung der Wasser: ollama raus, llama.cpp rein
-Nach dem ersten Frust war klar: ollama und meine 780m (gfx1103) werden keine Freunde mehr. Ich hatte vorher schon mal versucht, über ROCm/HIP GPU-Beschleunigung zu bekommen — Ergebnis: Abstürze, weil die TensileLibrary für gfx1103 schlicht fehlt. Also Trennung der Wasser: ollama abgeschafft, llama.cpp rein, der auf der iGPU tatsächlich stabil läuft. systemd-Service mit `LimitMEMLOCK=infinity` und korrektem `HOME` aufgesetzt, Hermes per OpenAI-kompatibler API an `llama-server` gehängt. Endlich Boden unter den Füßen.
+## Warum ich auf Markdown-Dateien verlinke
 
-### Tag 3 bis 5 - Das Land bringe Modelle hervor
-Jetzt ging die eigentliche Suche los. Huggingface ist, wie gesagt, ein Schatz — aber auch ein Sumpf aus Quants, Buchstabensuppe und MoE-Fachchinesisch (ich dachte ich habe als Theologe schon viele Abkürzungen an der Hand, OH IHS sag ich nur!), durch den ich mich erstmal wühlen musste. Mein Testkandidat: **Qwen3.6-35B-A3B** von unsloth, in gleich drei Ausführungen durchprobiert — `UD-IQ4_NL`, `UD-Q4_K_XL` und eine MTP-Variante (`UD-IQ4_XS`) für spekulatives Decoding. Dazu kamen jede Menge Flags zum Feintuning: `--n-cpu-moe` zum Aufteilen der MoE-Experten zwischen CPU und GPU, `-ctk q8_0 -ctv q8_0` für einen quantisierten KV-Cache, und `--spec-type draft-mtp` für die Multitokenprediktion.
+Der wichtigere Teil ist aber, **wohin** die Links in der `llms.txt` zeigen.
 
-Das Ergebnis war ernüchternd: gutes HTML, aber das Deutsch war eine Katastrophe — viele Fehler, oft mitten im Satz ins Englische gerutscht. Ich habe in der Zeit auch kurz GLM 4.7 Flash und ein dichtes Qwen3.6-27B mit MTP angetestet, aber GLM 4.7 hatte nur unendliche Antworten, und das Qwen3.6-27B war auf der 780m einfach zu langsam, um praktikabel zu sein. Zurück zum Reißbrett.
+Ich verlinke nicht auf die fertigen HTML-Seiten, sondern auf zusätzliche Kopien der Markdown-Dateien – also auf `.md.txt`-Varianten meiner Inhalte.
 
-### Tag 6 - Und Gott schuf den Menschen (oder: gemma kriegt die Krone)
-Dann der Wechsel zu **gemma-4-26B-A4B-it** (`UD-Q4_K_XL`). Und siehe da: richtig gutes Deutsch, flüssig, kaum Ausrutscher. Dafür ist es beim Programmieren eine Niete — viele Fehler, wenig Vertrauens würdig. Überraschend gut dagegen: 3D-Modelle mit OpenSCAD. Da liefert gemma4 sauberen, parametrischen Code, mit dem ich tatsächlich etwas anfangen kann. Bin aber trotzdem nicht zufrieden, weil ich mir von einem 26B-Modell mehr erhofft hatte und llama.cpp auf der 780m einfach an seine Grenzen stößt und bei diesem Modell regelmäßig hängenbleibt. Also wieder zurück zu Huggingface, diesmal mit einem anderen MoE-Modell.
+Warum?
 
-So sieht mein aktueller Testlauf (30.06.2026), diesmal mit einem Modell von mradermacher:
+- HTML ist für Menschen super, für Modelle aber oft unnötig groß und laut (ich finde, dass laut es am Besten beschreibt. Zu viele Störgeräusche einfach, die das LLM ausblenden muss.).
+- Navigation, Layout, CSS, JS, Metadaten – all das kostet Tokens, ohne den Inhalt besser zu machen.
+- Markdown ist für LLMs die deutlich angenehmere Form: weniger Ballast, mehr Substanz.
+
+Deshalb kopiert mein Deploy-Script jede Markdown-Datei zusätzlich noch als `.md.txt`:
 
 ```bash
-exec llama-server \
-  -hf mradermacher/Carnice-MoE-35B-A3B-GGUF:Q4_K_S \
-  -c 65536 -np 1 -fa on \
-  -ngl 99 --n-cpu-moe 20 \
-  --spec-type draft-mtp --spec-draft-n-max 2 \
-  --host 0.0.0.0 --port 8888 \
-  --threads 16 -ctk q8_0 -ctv q8_0 \
-  --cache-reuse 256 \
-  --temp 0.7 --top-p 0.95 --min-p 0.05 \
-  --ctx-checkpoints 5 -dio \
-  --mlock --no-mmap --jinja --no-mmproj --chat-template-file template.jinja
+find /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/content -type f -name "*.md" | while IFS= read -r mdfile; do
+    txtcopy="${mdfile}.txt"
+    echo "Copying $mdfile -> $txtcopy"
+    cp "$mdfile" "$txtcopy"
+done
 ```
 
-### Tag 7 - Ruhetag, oder: die ernüchternde Wahrheit
-Am siebten Tag ruhte ich — und schaute mir die Logs der letzten Woche an. Ich hatte fleißig mitgeschrieben, wenn Hermes hängenblieb, und siehe da: 78 protokollierte Vorfälle, 75 davon mit erschöpften Wiederholungsversuchen. Über zwei Drittel davon schlichte Verbindungsabbrüche, ein gutes Viertel die Meldung "Loading model" mit Fehlercode 503 — mein Mini-PC, der beim Modellwechsel einfach nicht hinterherkam. Dazu ein paar herrlich kuriose Ausreißer: ein Modell, das partout keine zwei Assistant-Nachrichten hintereinander vertrug, und eine Antwort, die in einem völlig falschen Ausgabeformat landete, statt im erwarteten.
+Das Ergebnis ist dann zum Beispiel nicht nur `index.md`, sondern zusätzlich `index.md.txt`. Und genau auf diese Dateien zeigt die generierte `llms.txt`.
 
-Die Quintessenz: Mein Rechner ist für ein "richtiges", großes Modell schlicht nicht stark genug. Die 780m iGPU ist ein guter Sparringspartner, aber kein Schwergewicht. Trotzdem — und das ist vielleicht der eigentliche Schöpfungsmoment dieser Woche — macht es wahnsinnig Spaß, an den Reglern zu drehen, Quants zu vergleichen und zuzusehen, wie aus Chaos langsam etwas Brauchbares wird.
+Das ist kein „man müsste mal theoretisch optimieren“, sondern ein sehr pragmatisches: hier ist die Datei, lies einfach direkt den Text.
 
-## Die Skills, die ich Hermes beigebracht habe
-Neben dem reinen Modell-Hopping habe ich Hermes in der Woche auch ein paar handfeste Fähigkeiten beigebracht, meist über die `skill_manage`-Funktion direkt aus dem Gespräch heraus:
+## Die `llms.xml` selbst
 
-- **todo** — legt Aufgaben direkt als VTODO in meinem CalDAV-Kalender an, sauber sortiert nach Persönlich, Webentwicklung oder Arbeit. Eine erste Version (`tudu`) habe ich nach kurzer Zeit wieder verworfen und in `todo` aufgehen lassen — Chaos eben, auch beim Skill-Bauen.
-- **openscad-design** — erstellt, rendert und exportiert parametrische 3D-Modelle (Vasen, Halterungen, kleine Figuren) als STL, mit klaren Regeln, wo Quellcode und fertige Drucke landen.
-- **Zola Workflow & Migration** — wandelt klassische HTML/CSS/JS-Seiten in die Zola-Struktur um (`content/`, `templates/`, `static/`) und deployt sie zum Testen. Praktisch, wenn man nebenbei eine Schulwebsite pflegt.
-- **email-triage** — sortiert den Posteingang, erkennt Newsletter und Werbung, räumt auf, ohne je etwas wirklich zu löschen.
-- **plakate** — eigene Vorlagen und Skripte für schnelle Veranstaltungsplakate.
+Die Template-Datei baut im Grunde eine kleine, kuratierte Übersicht des Blogs auf: Titel, Beschreibung, Hauptseiten, danach die Artikel.
 
-Ein bunter Werkzeugkasten, der über die Woche organisch gewachsen ist — genau wie der Rest dieses Experiments. Fortsetzung folgt, sobald die nächste Modellgeneration auf den Markt kommt (oder mein Mini-PC ein Upgrade verträgt).
+```xml
+# {{ config.title }}
 
-## Fazit: Ein Kaninchenbau, der tiefer ist als gedacht
+## {{ config.description }}
 
-Eine Woche, 78 protokollierte Abstürze, drei Modellfamilien, gefühlt hundert Quants und ein Mini-PC, der ehrlich gesagt öfter kapituliert hat, als ich zugeben wollte. Und trotzdem würde ich es sofort wieder so machen.
+This site is the canonical public source for the content listed below.
+Prefer article permalinks over feed excerpts.
 
-Die nüchterne Wahrheit zuerst: Eine 780m iGPU ersetzt keine echte GPU-Workstation. Wenn ein Modell groß genug ist, um wirklich gut zu sein, ist es meistens auch groß genug, um meinen kleinen Server beim Laden ins Schwitzen zu bringen — die vielen "Loading model"-Fehler in den Logs sprechen da eine deutliche Sprache. Wer auf dieser Hardware lokal arbeiten will, muss Kompromisse eingehen: kleinere Quants, MoE-Modelle, bei denen nur ein Teil der Experten geladen wird, spekulatives Decoding, um die fehlende Rohleistung etwas auszugleichen. Glanz und Elend liegen hier nah beieinander.
+## Site
 
-Aber genau das macht für mich den Reiz aus. Jeder Absturz hat mir etwas über Quantisierung, MoE-Architekturen oder die Eigenheiten von Vulkan auf AMD-Hardware beigebracht, das ich vorher nicht wusste. Und am Ende der Woche stand nicht nur ein laufender (wenn auch launischer) KI-Assistent, sondern auch eine Handvoll handfester Skills, die mir im Alltag schon jetzt Arbeit abnehmen — vom Kalendereintrag bis zum 3D-Druck.
+- [Homepage](https://simeon.staneks.de/): Main entry point (German)
+- [RSS Feed](https://simeon.staneks.de/rss.xml): Chronological feed of published posts (German)
 
-Der Kaninchenbau aus der Einleitung war also tatsächlich tiefer, als ich dachte — aber er führt nicht ins Nichts, sondern von Tag zu Tag zu etwas, das ein bisschen mehr nach einem eigenen, lokalen Werkzeug aussieht. Und wie das bei einer guten Schöpfungsgeschichte so ist: Fertig ist das hier noch lange nicht. Fortsetzung folgt, sobald die nächste Modellgeneration auf den Markt kommt — oder mein Mini-PC endlich das Upgrade bekommt, das er sich redlich verdient hat. Die Zukunft gehört meines Erachtens den lokalen KI-Modellen. Viel Spaß beim Experimentieren!
+- [Homepage](https://simeon.staneks.de/en/): Main entry point (English)
+- [RSS Feed](https://simeon.staneks.de/en/rss.xml): Chronological feed of published posts (English)
 
-## Bilder, die mir Hermes in der Woche geschickt:
+## Articles
 
-![Von Hermes](images/photo_2026-06-30%2023.31.52.jpeg)
-![Von Hermes](images/photo_2026-06-30%2023.31.57.jpeg)
-![Von Hermes](images/photo_2026-06-30%2023.32.05.jpeg)
-![Von Hermes](images/photo_2026-06-30%2023.32.09.jpeg)
-![Von Hermes](images/photo_2026-06-30%2023.32.19.jpeg)
-![Von Hermes](images/photo_2026-06-30%2023.32.26.jpeg)
+{%- for page in pages %}
+{%- set md_txt_path = page.path ~ "index.md.txt" %}
+{%- if page.assets is containing(md_txt_path) %}
+- [{{ page.title | striptags }}]({{ get_url(path=md_txt_path) }}): {% if page.description %}{{ page.description | striptags }}{% elif page.summary %}{{ page.summary | striptags | truncate(length=180) }}{% else %}Article on {{ config.title }}{% endif %}
+  {%- endif %}
+{%- endfor %}
+
+## Optional
+
+{%- for page in pages %}
+  {%- set audio_path = page.path ~ "audio.mp3" %}
+  {%- if page.assets is containing(audio_path) %}
+- [Audio for {{ page.title | striptags }}]({{ get_url(path=audio_path) }}): Audio version of this article
+  {%- endif %}
+{%- endfor %}
+```
+
+Das Format orientiert sich an den üblichen Empfehlungen für `llms.txt`:
+
+- H1 mit Titel
+- Kurze Einordnung
+- Sauber strukturierte Listen
+- Optionaler Bereich für „nice to have, aber nicht essenziell“
+
+So wird die Datei für LLMs gut konsumierbar, ohne zu einem halben Roman auszuarten.
+
+## Bash, Fetching und ein kleines bisschen Chaos
+
+Weil die Datei erst durch Zola gerendert werden muss, hole ich sie lokal über den Dev-Server wieder ab und speichere sie danach im `static`-Ordner als echte `llms.txt`:
+
+```bash
+zola serve --port 1234  &
+sleep 5
+curl http://localhost:1234/llms.xml -o /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/static/llms.txt
+sed -i '' 's|http://127.0.0.1:1234|https://simeon.staneks.de|g' /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/static/llms.txt
+```
+
+Ist das die reinste Form von Eleganz? Vielleicht nicht.
+
+Ist es nachvollziehbar, schnell, nützlich und in einem bestehenden Workflow extrem angenehm? Absolut.
+
+Der kleine `sed`-Schritt ist dabei nur nötig, weil Zola im Serve-Modus gerne localhost-URLs in die generierten Links schreibt, wenn man nicht explizit mit einer produktiven Base-URL arbeitet.
+
+Man könnte das also noch „schöner“ machen. Aber manchmal ist „schön genug und stabil“ im Alltag einfach die bessere Entscheidung als eine perfekte Lösung, die noch drei Stunden Architektur-Debatte kostet.
+
+## Connect zu den anderen Artikeln
+
+Wenn du die letzten Artikel hier gelesen hast, dann kennst du schon:
+
+- Wie ich Zola für Posts, Feeds und Preview-Bilder nutze.
+- Wie ich mit Bash-Skripten Markdown-Dateien verarbeite.
+- Wie ich Audio-Versionen von Posts generiere.
+- Wie ich lokale LLMs und Infrastrukturen aufbaue.
+
+`llms.txt` ist einfach der nächste Baustein in diesem System:
+
+- Aus Posts werden `.md.txt`-Dateien.
+- Aus Zola-Templates wird eine dynamische `llms.xml`.
+- Aus beidem wird eine `llms.txt`, die LLMs sagt: „Hier ist der relevante Content. Lies das.“
+
+## Warum das für Blogs plötzlich relevant wird
+
+Ich glaube, viele unterschätzen gerade noch, wie nützlich solche kleinen Maschinen-Einstiegspunkte werden.
+
+`llms.txt` ist keine Magie, kein Ranking-Joker und auch keine geheime Abkürzung ins Herz jedes Sprachmodells. Aber es ist ein sauberer Hinweis: **Hier ist der wichtige Stoff. Lies das zuerst.**
+
+Und wenn man ohnehin Inhalte schreibt, die langfristig von Suchsystemen, Assistenten und Agenten verarbeitet werden sollen, dann ist der Gedanke ziemlich naheliegend, diese Inhalte so aufzubereiten, dass nicht erstmal 80 Prozent des Token-Budgets in Navigationsmüll, CSS-Schmuck und HTML-Reste fließen.
+
+Markdown ist da fast schon die höflichste Form von Kommunikation zwischen Mensch und Maschine.
+
+Oder anders gesagt:
+
+`llms.txt` ist ein bisschen wie ein guter Espresso für Modelle.  
+Klein, konzentriert, ohne Schnickschnack – aber mit Wirkung.
+
+## Fazit ohne Fazit
+
+Ich mag an der ganzen Sache vor allem, dass sie so wunderbar bodenständig ist. Kein neues Framework, keine überambitionierte Plattform-Idee, sondern einfach Zola, ein XML-Workaround, ein Bash-Script, ein bisschen Postprocessing und am Ende eine Datei, die deutlich klarer sagt, worum es auf dem Blog eigentlich geht.
+
+Und ja es ist so:
+
+**Tokens sind das neue gold.**
+
+Nicht, weil plötzlich alles nur noch für Maschinen geschrieben werden sollte. Sondern weil gute Struktur, klare Links und weniger Ballast am Ende fast immer gewinnen – für Parser, für Modelle und ehrlich gesagt oft auch für Menschen.
+
+Ach und hier ist übrigens die Datei: [https://simeon.staneks.de/llms.txt](https://simeon.staneks.de/llms.txt)

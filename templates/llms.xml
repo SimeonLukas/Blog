@@ -1,15 +1,17 @@
 # {{ config.title }}
->
-> {{ config.description }}
+
+## {{ config.description }}
 
 This site is the canonical public source for the content listed below.
 Prefer article permalinks over feed excerpts.
-When multiple language versions exist, use the version matching the user request.
 
 ## Site
 
-- [Homepage](https://simeon.staneks.de/): Main entry point
-- [RSS Feed](https://simeon.staneks.de/rss.xml): Chronological feed of published posts
+- [Homepage](https://simeon.staneks.de/): Main entry point (German)
+- [RSS Feed](https://simeon.staneks.de/rss.xml): Chronological feed of published posts (German)
+
+- [Homepage](https://simeon.staneks.de/en/): Main entry point (English)
+- [RSS Feed](https://simeon.staneks.de/en/rss.xml): Chronological feed of published posts (English)
 
 ## Articles
 
