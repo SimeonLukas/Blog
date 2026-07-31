@@ -55,7 +55,7 @@ title = "Blog by Simeon"
 description = "It's better to start imperfectly than wait perfectly"
 taxonomies = [{ name = "tags" }]
 generate_feeds = true
-feed_filenames = ["rss.xml", "llms.xml"]
+feed_filenames = ["rss.xml"]
 [languages.en.translations]
 404 = "There's nothing here :("
 

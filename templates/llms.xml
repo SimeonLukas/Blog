@@ -17,6 +17,7 @@ When multiple language versions exist, use the version matching the user request
 {%- set md_txt_path = page.path ~ "index.md.txt" %}
 {%- if page.assets is containing(md_txt_path) %}
 - [{{ page.title | striptags }}]({{ get_url(path=md_txt_path) }}): {% if page.description %}{{ page.description | striptags }}{% elif page.summary %}{{ page.summary | striptags | truncate(length=180) }}{% else %}Article on {{ config.title }}{% endif %}
+  {%- endif %}
 {%- endfor %}
 
 ## Optional
