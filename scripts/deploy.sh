@@ -1,5 +1,13 @@
 #!/bin/bash
 
+
+# copy every markdown file and save an additional .md.txt version
+find /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/content -type f -name "*.md" | while IFS= read -r mdfile; do
+    txtcopy="${mdfile}.txt"
+    echo "Copying $mdfile -> $txtcopy"
+    cp "$mdfile" "$txtcopy"
+done
+
 # Deploy script for Simeon's Blog and Preview Image Generator
 
 cd /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/scripts/polotno
@@ -14,13 +22,6 @@ cd /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/scripts/reel/src
 
 # stop the server
 kill "$(lsof -t -i:1234)"
-
-# copy every markdown file and save an additional .md.txt version
-find /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/content -type f -name "*.md" | while IFS= read -r mdfile; do
-    txtcopy="${mdfile}.txt"
-    echo "Copying $mdfile -> $txtcopy"
-    cp "$mdfile" "$txtcopy"
-done
 
 # read files in directory text and make for each .txt file a .json file in the metadata directory
 for file in text/posts/*.txt; do

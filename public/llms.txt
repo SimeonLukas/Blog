@@ -41,6 +41,7 @@ Prefer article permalinks over feed excerpts.
 - [Digitales Glücksrad: Lustiger Firlefanz für die Tourismuspastoral](https://simeon.staneks.de/posts/20241120/index.md.txt): Ich stelle dir in diesem Artikel ein digitales Glücksrad vor, das ich für die Veranstaltungen der Tourismuspastoral im Werdenfelser Land und die Tourismuspastoral der Erzdiözese München und Freising entwickelt habe. Wir werden die Idee, die technische Umsetzung und die Nutzung des Glücksrads Schritt für Schritt durchgehen und zeigen, wie es bei verschiedenen Veranstaltungen eingesetzt werden kann. Dieser Leitfaden richtet sich an alle, die nach kreativen und interaktiven Lösungen für ihre Events suchen.
 
 ## Optional
+- [Audio for llms.txt - Tokens sind das neue Gold](https://simeon.staneks.de/posts/llms-txt-tokens-are-the-new-money/audio.mp3): Audio version of this article
 - [Audio for Oh Hermes, what a mess! - Mein LOKALER KI-Assistent](https://simeon.staneks.de/posts/oh-hermes-what-a-mess/audio.mp3): Audio version of this article
 - [Audio for Mein persönlicher KI-generierter Podcast - Lokale KI-Modelle und qwen3-TTS](https://simeon.staneks.de/posts/ai-and-local-generated-podcast-of-my-blog/audio.mp3): Audio version of this article
 - [Audio for 20 Euro Multiroom – Squeezebox, Raspberry Pi und ein Server, den Logitech längst aufgegeben hat](https://simeon.staneks.de/posts/squeezebox-picore-lyrion/audio.mp3): Audio version of this article

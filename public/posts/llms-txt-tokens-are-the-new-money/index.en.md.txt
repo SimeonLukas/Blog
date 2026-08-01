@@ -1,5 +1,5 @@
 +++
-title = "llms.txt - Tokens are the new gold"
+title = "llms.txt - Tokens are the new Gold"
 date = 2026-07-31 12:00:00+01:00
 description = "How I built a dynamic llms.txt for my Zola blog via an RSS/XML workaround — including Markdown links, Bash post-processing, and a bit of token frugality."
 [taxonomies]
