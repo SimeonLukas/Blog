@@ -1,0 +1,1 @@
+ Wie ich durch meine saisonale Intressensverschiebung keine Lust auf ein KI Thema habe und deshalb völlig ohne KI meiner neuen Leidenschaft fröhne - Kalorienzählen. Ein kleiner Einblick in Tauri und die Crossplatform Programmierung von einer Kalorientracker App. 

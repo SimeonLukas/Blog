@@ -12,7 +12,7 @@ Es fällt mir wirklich schwer zu entscheiden, ob ich jetzt einen Artikel schreib
 In den letzten Wochen gab es hier schon ein paar Artikel, in denen es im Kern immer um dasselbe ging:  
 Wie baue ich mir meine eigene kleine Infrastruktur, damit meine Modelle, meine Automatisierungen und meine Blog-Posts nicht nur *funktionieren*, sondern sich auch gut anfühlen?
 
-Aber wie sich ein LLM fühlt, wenn es mal auf meiner Webseite landet, dass habe ich mich bisher nie gefragt. Und mir ist schmerzhaft aufgefallen, dass LLMS oft Unmengen an HTML schlucken müssen, damit sie arbeiten können und gerade mein lieber Hermes, der ja an einem lokalen LLM hängt, hatte es wirklich schwer. Deshalb habe ich für all die Modelle da draußen Vorkehrungen getroffen, damit sie es leichter haben. Mindestens auf meinem Blog sollen sie sich wohlfühlen.
+Aber wie sich ein LLM fühlt, wenn es mal auf meiner Webseite landet, dass habe ich mich bisher nie gefragt. Und mir ist schmerzhaft aufgefallen, dass LLMs oft Unmengen an HTML schlucken müssen, damit sie arbeiten können und gerade mein lieber Hermes, der ja an einem lokalen LLM hängt, hatte es wirklich schwer. Deshalb habe ich für all die Modelle da draußen Vorkehrungen getroffen, damit sie es leichter haben. Mindestens auf meinem Blog sollen sie sich wohlfühlen.
 
 Hier geht es um eine Datei, die auf den ersten Blick fast unscheinbar ist:
 
