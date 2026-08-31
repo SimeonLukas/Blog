@@ -1,0 +1,1 @@
+ How my seasonal shift in interests left me with no appetite for an AI topic, so I'm indulging my new passion completely without AI - counting calories. A little glimpse into Tauri and cross-platform programming through a calorie tracker app. 
