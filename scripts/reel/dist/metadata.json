@@ -1,6 +1,6 @@
 {
     "audioUrl": [
-        "src/music/music00008.mp3"
+        "src/music/music00009.mp3"
     ],
     "images": [
         "src/images/reel.jpg"
@@ -10,343 +10,343 @@
             "word": "Wie",
             "start": 0,
             "end": 0.44,
-            "confidence": "0.9365375",
+            "confidence": "0.9675108",
             "punctuated_word": "Wie"
         },
         {
             "word": "ich",
             "start": 0.46,
             "end": 0.9,
-            "confidence": "0.9380914",
+            "confidence": "0.9277099",
             "punctuated_word": "ich"
         },
         {
             "word": "durch",
             "start": 0.92,
             "end": 1.52,
-            "confidence": "0.9745645",
+            "confidence": "0.9374264",
             "punctuated_word": "durch"
         },
         {
             "word": "meine",
             "start": 1.54,
             "end": 2.14,
-            "confidence": "0.9402636",
+            "confidence": "0.9271039",
             "punctuated_word": "meine"
         },
         {
             "word": "saisonale",
             "start": 2.16,
             "end": 3.08,
-            "confidence": "0.9807827",
+            "confidence": "0.9848980",
             "punctuated_word": "saisonale"
         },
         {
             "word": "Intressensverschiebung",
             "start": 3.1,
             "end": 5.06,
-            "confidence": "0.9119075",
+            "confidence": "0.9986163",
             "punctuated_word": "Intressensverschiebung"
         },
         {
             "word": "keine",
             "start": 5.08,
             "end": 5.68,
-            "confidence": "0.9081675",
+            "confidence": "0.9882696",
             "punctuated_word": "keine"
         },
         {
             "word": "Lust",
             "start": 5.7,
             "end": 6.22,
-            "confidence": "0.9832358",
+            "confidence": "0.9449456",
             "punctuated_word": "Lust"
         },
         {
             "word": "auf",
             "start": 6.24,
             "end": 6.68,
-            "confidence": "0.9194015",
+            "confidence": "0.9621204",
             "punctuated_word": "auf"
         },
         {
             "word": "ein",
             "start": 6.7,
             "end": 7.14,
-            "confidence": "0.9552495",
+            "confidence": "0.9599527",
             "punctuated_word": "ein"
         },
         {
             "word": "KI",
             "start": 7.16,
             "end": 7.52,
-            "confidence": "0.9959752",
+            "confidence": "0.9022270",
             "punctuated_word": "KI"
         },
         {
             "word": "Thema",
             "start": 7.54,
             "end": 8.14,
-            "confidence": "0.9112952",
+            "confidence": "0.9115779",
             "punctuated_word": "Thema"
         },
         {
             "word": "habe",
             "start": 8.16,
             "end": 8.68,
-            "confidence": "0.9412377",
+            "confidence": "0.9917436",
             "punctuated_word": "habe"
         },
         {
             "word": "und",
             "start": 8.7,
             "end": 9.14,
-            "confidence": "0.9550888",
+            "confidence": "0.9840573",
             "punctuated_word": "und"
         },
         {
             "word": "deshalb",
             "start": 9.16,
             "end": 9.92,
-            "confidence": "0.9595845",
+            "confidence": "0.9118310",
             "punctuated_word": "deshalb"
         },
         {
             "word": "völlig",
             "start": 9.94,
             "end": 10.62,
-            "confidence": "0.9889680",
+            "confidence": "0.9340821",
             "punctuated_word": "völlig"
         },
         {
             "word": "ohne",
             "start": 10.64,
             "end": 11.16,
-            "confidence": "0.9712355",
+            "confidence": "0.9210618",
             "punctuated_word": "ohne"
         },
         {
             "word": "KI",
             "start": 11.18,
             "end": 11.54,
-            "confidence": "0.9485394",
+            "confidence": "0.9529690",
             "punctuated_word": "KI"
         },
         {
             "word": "meiner",
             "start": 11.56,
             "end": 12.24,
-            "confidence": "0.9556460",
+            "confidence": "0.9203892",
             "punctuated_word": "meiner"
         },
         {
             "word": "neuen",
             "start": 12.26,
             "end": 12.86,
-            "confidence": "0.9255626",
+            "confidence": "0.9028403",
             "punctuated_word": "neuen"
         },
         {
             "word": "Leidenschaft",
             "start": 12.88,
             "end": 14.04,
-            "confidence": "0.9534624",
+            "confidence": "0.9983039",
             "punctuated_word": "Leidenschaft"
         },
         {
             "word": "fröhne",
             "start": 14.06,
             "end": 14.74,
-            "confidence": "0.9198662",
+            "confidence": "0.9328120",
             "punctuated_word": "fröhne"
         },
         {
             "word": "-",
             "start": 14.76,
             "end": 15.04,
-            "confidence": "0.9392347",
+            "confidence": "0.9181420",
             "punctuated_word": "-"
         },
         {
             "word": "Kalorienzählen.",
             "start": 15.06,
             "end": 16.46,
-            "confidence": "0.9107828",
+            "confidence": "0.9264713",
             "punctuated_word": "Kalorienzählen."
         },
         {
             "word": "Ein",
             "start": 16.78,
             "end": 17.22,
-            "confidence": "0.9081501",
+            "confidence": "0.9850590",
             "punctuated_word": "Ein"
         },
         {
             "word": "kleiner",
             "start": 17.24,
             "end": 18,
-            "confidence": "0.9172132",
+            "confidence": "0.9917498",
             "punctuated_word": "kleiner"
         },
         {
             "word": "Einblick",
             "start": 18.02,
             "end": 18.86,
-            "confidence": "0.9505356",
+            "confidence": "0.9942414",
             "punctuated_word": "Einblick"
         },
         {
             "word": "in",
             "start": 18.88,
             "end": 19.24,
-            "confidence": "0.9349852",
+            "confidence": "0.9258428",
             "punctuated_word": "in"
         },
         {
             "word": "Tauri",
             "start": 19.26,
             "end": 19.86,
-            "confidence": "0.9538347",
+            "confidence": "0.9615566",
             "punctuated_word": "Tauri"
         },
         {
             "word": "und",
             "start": 19.88,
             "end": 20.32,
-            "confidence": "0.9814719",
+            "confidence": "0.9275089",
             "punctuated_word": "und"
         },
         {
             "word": "die",
             "start": 20.34,
             "end": 20.78,
-            "confidence": "0.9060711",
+            "confidence": "0.9560679",
             "punctuated_word": "die"
         },
         {
             "word": "Crossplatform",
             "start": 20.8,
             "end": 22.04,
-            "confidence": "0.9897260",
+            "confidence": "0.9454519",
             "punctuated_word": "Crossplatform"
         },
         {
             "word": "Programmierung",
             "start": 22.06,
             "end": 23.38,
-            "confidence": "0.9367962",
+            "confidence": "0.9825405",
             "punctuated_word": "Programmierung"
         },
         {
             "word": "von",
             "start": 23.4,
             "end": 23.84,
-            "confidence": "0.9547438",
+            "confidence": "0.9875827",
             "punctuated_word": "von"
         },
         {
             "word": "einer",
             "start": 23.86,
             "end": 24.46,
-            "confidence": "0.9227986",
+            "confidence": "0.9402633",
             "punctuated_word": "einer"
         },
         {
             "word": "Kalorientracker",
             "start": 24.48,
             "end": 25.88,
-            "confidence": "0.9569639",
+            "confidence": "0.9904758",
             "punctuated_word": "Kalorientracker"
         },
         {
             "word": "App.",
             "start": 25.9,
             "end": 26.42,
-            "confidence": "0.9183699",
+            "confidence": "0.9493746",
             "punctuated_word": "App."
         },
         {
             "word": "Schau",
             "start": 26.74,
             "end": 27.34,
-            "confidence": "0.9960460",
+            "confidence": "0.9672161",
             "punctuated_word": "Schau"
         },
         {
             "word": "auf",
             "start": 27.36,
             "end": 27.8,
-            "confidence": "0.9618958",
+            "confidence": "0.9020965",
             "punctuated_word": "auf"
         },
         {
             "word": "meinen",
             "start": 27.82,
             "end": 28.5,
-            "confidence": "0.9983365",
+            "confidence": "0.9001690",
             "punctuated_word": "meinen"
         },
         {
             "word": "Blog,",
             "start": 28.52,
             "end": 29.12,
-            "confidence": "0.9360682",
+            "confidence": "0.9680002",
             "punctuated_word": "Blog,"
         },
         {
             "word": "um",
             "start": 29.14,
             "end": 29.5,
-            "confidence": "0.9497036",
+            "confidence": "0.9173930",
             "punctuated_word": "um"
         },
         {
             "word": "mehr",
             "start": 29.52,
             "end": 30.04,
-            "confidence": "0.9479734",
+            "confidence": "0.9514696",
             "punctuated_word": "mehr"
         },
         {
             "word": "zu",
             "start": 30.06,
             "end": 30.42,
-            "confidence": "0.9735629",
+            "confidence": "0.9675982",
             "punctuated_word": "zu"
         },
         {
             "word": "erfahren.",
             "start": 30.44,
             "end": 31.36,
-            "confidence": "0.9699076",
+            "confidence": "0.9255808",
             "punctuated_word": "erfahren."
         },
         {
             "word": "Link",
             "start": 31.68,
             "end": 32.2,
-            "confidence": "0.9808434",
+            "confidence": "0.9752914",
             "punctuated_word": "Link"
         },
         {
             "word": "in",
             "start": 32.22,
             "end": 32.58,
-            "confidence": "0.9954540",
+            "confidence": "0.9407342",
             "punctuated_word": "in"
         },
         {
             "word": "der",
             "start": 32.6,
             "end": 33.04,
-            "confidence": "0.9507011",
+            "confidence": "0.9741109",
             "punctuated_word": "der"
         },
         {
             "word": "Bio.",
             "start": 33.06,
             "end": 33.58,
-            "confidence": "0.9357395",
+            "confidence": "0.9956766",
             "punctuated_word": "Bio."
         }
     ]
