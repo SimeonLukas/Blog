@@ -1,5 +1,5 @@
 +++
-title = " bun run tauri dev - No AI Challange"
+title = " bun run tauri dev - No AI Challenge"
 date = 2026-08-31 12:00:00+01:00
 description = "Wie ich durch meine saisonale Intressensverschiebung keine Lust auf ein KI Thema habe und deshalb völlig ohne KI meiner neuen Leidenschaft fröhne - Kalorienzählen. Ein kleiner Einblick in Tauri und die Crossplatform Programmierung von einer Kalorientracker App."
 [taxonomies]
