@@ -1,0 +1,15 @@
+ Ich zeig euch heute mal, wie ich papierlos mit Obsidian, E-Pubs und E-Book-Readern arbeite. Ich habe über die Jahre viele Tools ausprobiert, um meine Gedanken zu organisieren, aber ich kehre immer wieder zu Obsidian zurück. Es ist im Grunde mein Haupt-Werkzeug für alles, von der Projektplanung bis hin zur Vorbereitung meiner Gottesdienste.
+
+An Obsidian schätze ich vor allem die einfache Bedienung und dass ich in Markdown schreibe, was den Export in andere Formate extrem erleichtert. Außerdem gibt es eine riesige Menge an Plugins, von denen ich mir einige sogar selbst programmiere. Dass ich meine Notizen über Nextcloud synchronisiere, aber trotzdem offline darauf zugreifen kann, gibt mir eine große Freiheit. Und optisch ist es mit Themes wie Flexoki einfach wunderschön.
+
+Ich nehm euch mal an einem Beispiel mit: der Vorbereitung eines Gottesdienstes. Ich nutze dafür ein festes Template, weil ein Gottesdienst ja meistens den gleichen Ablauf hat. Das beginnt bei der Eröffnung und dem Kreuzzeichen, geht über die Begrüßung, das Kyrie und das Tagesgebet bis hin zur Lesung, dem Evangelium und der Predigt. Am Ende folgen dann die Fürbitten, das Vater unser, das Schlussgebet und der Segen.
+
+Das Besondere ist, dass ich direkt in dieses Template Verknüpfungen zu meinen Musik-Dateien einbaue. Früher hätte ich das alles ausgedruckt, aber heute nutze ich einen E-Book-Reader. Das ist einfach viel praktischer, spart Papier und ich kann die Schriftgröße oder Helligkeit genau anpassen, was mir sogar in kompletter Dunkelheit hilft.
+
+Damit die Texte auf den Reader kommen, habe ich mir vor drei Jahren ein eigenes Plugin geschrieben, den sogenannten Obsidian Kindle Export. Das Tool wandelt meine Notizen in das E-Pub-Format um. Ich habe den Befehl dafür auf die Tasten Befehlstaste plus Null gelegt, damit es schnell geht. Da Obsidian selbst keine E-Mails verschicken kann, nutze ich einen kleinen Server namens Md-zu-Epub, den ich in einem Docker-Container selbst betreibe. Dieser nimmt die Datei entgegen und verschickt sie an meinen Reader.
+
+Hardwaremäßig setze ich auf das Pocketbook Era. Das Gerät ist zwar etwas langsamer als ein Kindle, aber es kann Audio-Dateien innerhalb von E-Pubs abspielen. Die Musik sende ich dann per Bluetooth an meine Teufelbox Rockster Cross.
+
+Was als Suche nach einem Notiz-Tool begann, ist für mich zu einem kompletten digitalen Workflow geworden. Es geht mir nicht um die Digitalisierung an sich, sondern darum, meine Arbeit effizienter und nachhaltiger zu gestalten. Es zeigt mir, dass Technik und Spiritualität sich wunderbar ergänzen können. 
+
+Amen.

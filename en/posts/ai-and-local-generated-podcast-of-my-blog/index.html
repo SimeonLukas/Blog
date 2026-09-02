@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="de">
+<html class="dark light">
+
+<head>
+    <link rel="help" type="text/markdown" href="/llms.txt">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         My Personal AI-Generated Podcast - Local AI Models and qwen3-TTS
+        
+    </title>
+
+    
+    
+    <meta name="description" content="It’s absurd what’s possible locally with AI. In this article, I share my experience creating an AI-generated podcast that runs completely locally on my compu..." />
+    
+    
+
+    
+    <meta property="og:image" content="https://simeon.staneks.de/en/posts/ai-and-local-generated-podcast-of-my-blog//images/en/preview.jpg" />
+    <meta property="og:logo" content="https://simeon.staneks.de/en/posts/ai-and-local-generated-podcast-of-my-blog//imagesen/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://simeon.staneks.de/en/posts/ai-and-local-generated-podcast-of-my-blog/images/en/preview.jpg">
+    
+
+    
+    <meta property="og:title" content="My Personal AI-Generated Podcast - Local AI Models and qwen3-TTS" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="My Personal AI-Generated Podcast - Local AI Models and qwen3-TTS">
+    
+    
+
+    
+    
+    <meta property="og:description" content="It’s absurd what’s possible locally with AI. In this article, I share my experience creating an AI-generated podcast that runs completely locally on my compu..."/>
+    <!-- twitter description -->
+    <meta name="twitter:description" content="It’s absurd what’s possible locally with AI. In this article, I share my experience creating an AI-generated podcast that runs completely locally on my compu...">
+    
+    
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;simeon.staneks.de"/>
+    <meta property="og:type" content="article" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Blog by Simeon" />
+
+
+    
+    
+    <link rel="icon" type="image/png" href=https:&#x2F;&#x2F;simeon.staneks.de&#x2F;android-chrome-512x512.png />
+    
+
+    
+    
+    <link href=https://simeon.staneks.de/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/codeblock.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/toc.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/note.js></script>
+    
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Blog by Simeon" href="https://simeon.staneks.de/ atom.xml">
+
+
+    
+    
+    <link rel="stylesheet" type="text/css" href=https://simeon.staneks.de/theme/light.css />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://simeon.staneks.de/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://simeon.staneks.de/js/themetoggle.js></script>
+    
+    <script>setTheme(getSavedTheme());</script>
+    
+    <script src=https://simeon.staneks.de/js/index.js></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://simeon.staneks.de/main.css />
+
+    
+</head>
+
+<body onload="updatelanguage()">
+    <div class="content">
+        <header>
+    <div class="main">
+        <div> <a id="navigation_start" href=https:&#x2F;&#x2F;simeon.staneks.de>Blog by Simeon </a> 
+            <p style="font-size: xx-small;">It&#x27;s better to start imperfectly than wait perfectly</p> 
+        </div>
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl" class="social mastodon">
+                <img alt=mastodon src=https://simeon.staneks.de/social_icons/mastodon.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;" class="social instagram">
+                <img alt=instagram src=https://simeon.staneks.de/social_icons/instagram.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas" class="social github">
+                <img alt=github src=https://simeon.staneks.de/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;buymeacoffee.com&#x2F;simeonlukas" class="social buy me a coffee">
+                <img alt=buy me a coffee src=https://simeon.staneks.de/social_icons/bmc-logo.svg>
+            </a>
+            
+            <a rel="me" href="&#x2F;rss.xml" class="social rss">
+                <img alt=rss src=https://simeon.staneks.de/social_icons/rss.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a class="navigation_lang &#x2F;posts" href=&#x2F;posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a class="navigation_lang &#x2F;pages" href=&#x2F;pages style="margin-left: 0.5em">&#x2F;pages</a>
+        
+        <a class="navigation_lang &#x2F;about" href=&#x2F;pages&#x2F;about style="margin-left: 0.5em">&#x2F;about</a>
+        
+        <a class="navigation_lang &#x2F;tags" href=&#x2F;tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://simeon.staneks.de/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+        <a id="language-toggle" onclick="toggleLanguage(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/globe.svg alt="Change Language" /><span style="font-size: xx-small;" id="language-name">de</span>
+        </a>
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <h1 class="page-header">
+        My Personal AI-Generated Podcast - Local AI Models and qwen3-TTS<span class="primary-color" style="font-size: 1.6em">.</span>
+    </h1>
+
+        </div>
+        It’s absurd what’s possible locally with AI. In this article, I share my experience creating an AI-generated podcast that runs completely locally on my computer, without requiring an internet connection. I use Alibaba’s qwen3-TTS model and Google’s gemma4 to turn my blog posts into audio, and the results are surprisingly good.
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/ai-and-local-generated-podcast-of-my-blog/#genesis-creatio-ex-nihilo-my-local-ai-generated-podcast">Genesis: creatio ex nihilo? - My LOCAL AI-generated Podcast</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/ai-and-local-generated-podcast-of-my-blog/#the-setup">The setup</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/ai-and-local-generated-podcast-of-my-blog/#the-hardware">The hardware</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/ai-and-local-generated-podcast-of-my-blog/#the-software">The software</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/ai-and-local-generated-podcast-of-my-blog/#the-workflow">The workflow</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/ai-and-local-generated-podcast-of-my-blog/#the-problem-with-long-texts">The problem with long texts</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/ai-and-local-generated-podcast-of-my-blog/#the-results">The results</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/ai-and-local-generated-podcast-of-my-blog/#why-local">Why local?</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/ai-and-local-generated-podcast-of-my-blog/#conclusion">Conclusion</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h2 id="genesis-creatio-ex-nihilo-my-local-ai-generated-podcast"><a class="zola-anchor" href="#genesis-creatio-ex-nihilo-my-local-ai-generated-podcast" aria-label="Anchor link for: genesis-creatio-ex-nihilo-my-local-ai-generated-podcast">Genesis: creatio ex nihilo? - My LOCAL AI-generated Podcast</a></h2>
+<p>Okay, fine. It’s not really a proper podcast. It’s a monologue generated by an AI, based on the text of my blog. A real podcast would of course be much cooler, but J. and I will have to get our act together for that. Until then, every post on my blog is also available as audio — I call it a shortcast, which is obviously brilliant — and it can be accessed via the RSS feed. The whole thing is generated completely locally on my computer/server, without requiring an internet connection!</p>
+<p>Whenever I tell people that everything runs locally, I get the impression that they think that means the same thing as using cloud services. Then I get replies like: “Yeah, but I can do that with NotebookLM” or “ElevenLabs can do that too, right?”</p>
+<p>I really feel that the value of <em>local computing</em> is massively underestimated in public discourse. It’s not just a matter of privacy, but also about control over your own data and independence from external services. That’s why I want to go into a bit of technical detail here, so that maybe one or two people will understand why local AI is so cool and what it can already do today.</p>
+<h2 id="the-setup"><a class="zola-anchor" href="#the-setup" aria-label="Anchor link for: the-setup">The setup</a></h2>
+<h3 id="the-hardware"><a class="zola-anchor" href="#the-hardware" aria-label="Anchor link for: the-hardware">The hardware</a></h3>
+<p>You may already know my mini PC running Bazzite. <a href="https://simeon.staneks.de/posts/bazzite-steam-machine-lite/">Here’s the article about it.</a> It’s now running CachyOS.<br />
+That’s all I have, and it’s all I need to create my AI-generated podcasts. It’s amazing how capable this hardware is if you’re willing to give it time.</p>
+<p>The important thing here is not raw peak performance, but that the entire pipeline runs stably and reproducibly. That’s exactly what makes local AI so appealing to me: I can run the same chain again and again, tweak it, and improve it without relying on any external provider.</p>
+<h3 id="the-software"><a class="zola-anchor" href="#the-software" aria-label="Anchor link for: the-software">The software</a></h3>
+<p>For text generation, I use <strong>Ollama</strong> on my server with <strong>Open WebUI</strong> as the API. There I first generate a podcast script from my blog posts, optimized in tone and length for sensible audio output. Depending on the task, I use <strong>gemma4</strong> or the model I trained or adapted myself for script generation. Everything runs locally on my network and remains fully under my control.</p>
+<p>For speech synthesis, I use <strong>qwen3-TTS</strong> on the mini PC. What makes this especially cool is that I use my own cloned voice for the podcast. That makes the output much more personal and much closer to what I would consider fitting. It’s a pretty strange feeling hearing your own texts spoken in your own voice, but that’s exactly what makes the effect so strong.</p>
+<p>The actual orchestration runs through <strong>n8n</strong>. The workflow automatically pulls the RSS feeds of my blog posts, checks whether a text or audio file already exists for a given post, creates the script if needed, generates the audio output from it, and stores the result back in my GitHub repository. The finished MP3 is then fed back into the feed and optionally sent via Telegram.</p>
+<h3 id="the-workflow"><a class="zola-anchor" href="#the-workflow" aria-label="Anchor link for: the-workflow">The workflow</a></h3>
+<p>The workflow is designed to require as little manual intervention as possible. First, it fetches the RSS feed, then extracts the individual article links and processes them in batches. If neither <code>audio.txt</code> nor <code>audio.mp3</code> exists, the post is processed; otherwise it is skipped. That saves time and prevents the same article from being rendered unnecessarily more than once.<br />
+Next, a podcast script is generated from the article text and saved to GitHub. Then the TTS part starts: the text is split into speakable units, audio is generated for each chunk, and the pieces are stitched back together with <code>ffmpeg</code>. That chunking step is crucial, because very long input texts can otherwise cause qwen3-TTS to produce rough or messy output.</p>
+<p><img src="https://simeon.staneks.de/en/posts/ai-and-local-generated-podcast-of-my-blog/images/sc.png" alt="Screenshot" /></p>
+<pre data-lang="text" style="background-color:#fafafa;color:#61676c;" class="language-text "><code class="language-text" data-lang="text"><span>┌─────────────────────── n8n Workflow: Blog → Podcast ───────────────────────┐
+</span><span>│                                                                              │
+</span><span>│  [Schedule]                                                                  │
+</span><span>│      │                                                                       │
+</span><span>│      ▼                                                                       │
+</span><span>│  [Fetch RSS Feed]                                                            │
+</span><span>│      │                                                                       │
+</span><span>│      ▼                                                                       │
+</span><span>│  [Parse RSS Items]                                                           │
+</span><span>│      │                                                                       │
+</span><span>│      ▼                                                                       │
+</span><span>│  [Split In Batches #1]                                                       │
+</span><span>│      │                                                                       │
+</span><span>│      ├──────────────► [Check TXT exists?] ── yes ──► [Next Article]          │
+</span><span>│      │                         │                                               │
+</span><span>│      │                         no                                              │
+</span><span>│      │                         ▼                                               │
+</span><span>│      │                 [Clean Description]                                     │
+</span><span>│      │                         │                                               │
+</span><span>│      │                         ▼                                               │
+</span><span>│      │              [Generate Podcast Script]                                  │
+</span><span>│      │                         │                                               │
+</span><span>│      │                         ▼                                               │
+</span><span>│      │                [Save Script to GitHub]                                 │
+</span><span>│      │                                                                       │
+</span><span>│      ▼                                                                       │
+</span><span>│  [Split In Batches #2]                                                       │
+</span><span>│      │                                                                       │
+</span><span>│      ├──────────────► [Check MP3 exists?] ── yes ──► [Next Article]          │
+</span><span>│      │                         │                                               │
+</span><span>│      │                         no                                              │
+</span><span>│      │                         ▼                                               │
+</span><span>│      │                    [Start TTS Docker]                                   │
+</span><span>│      │                         │                                               │
+</span><span>│      │                         ▼                                               │
+</span><span>│      │                        [Wait]                                           │
+</span><span>│      │                         │                                               │
+</span><span>│      │                         ▼                                               │
+</span><span>│      │                [Prepare Chunk Folder]                                   │
+</span><span>│      │                         │                                               │
+</span><span>│      │                         ▼                                               │
+</span><span>│      │                 [Split Into Sentences]                                  │
+</span><span>│      │                         │                                               │
+</span><span>│      │                         ▼                                               │
+</span><span>│      │                 [TTS Generate Chunk]                                    │
+</span><span>│      │                         │                                               │
+</span><span>│      │                         ▼                                               │
+</span><span>│      │                  [Upload Chunk via SSH]                                 │
+</span><span>│      │                         │                                               │
+</span><span>│      │                         ▼                                               │
+</span><span>│      │                   [FFmpeg Merge MP3]                                    │
+</span><span>│      │                         │                                               │
+</span><span>│      │                         ├──────────► [Send via Telegram]               │
+</span><span>│      │                         │                                               │
+</span><span>│      │                         └──────────► [Upload MP3 to GitHub]            │
+</span><span>│      │                                                                         │
+</span><span>│      └──────────────────────────────────────────────► [Stop TTS Docker]       │
+</span><span>│                                                                              │
+</span><span>└──────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre>
+<h3 id="the-problem-with-long-texts"><a class="zola-anchor" href="#the-problem-with-long-texts" aria-label="Anchor link for: the-problem-with-long-texts">The problem with long texts</a></h3>
+<p>With longer texts, I noticed that qwen3-TTS would eventually produce strange, almost body-horror-like sounds — more gurgling than clean speech. The model apparently handles overly long passages less well when everything is fed into it in one go. That’s why I deliberately split the text into smaller pieces and generated the segments separately.</p>
+<p>That ended up being the decisive improvement. Instead of synthesizing one large block, I split the text into natural speech segments, following sentence boundaries and small chunks. The result sounds much more stable, more natural, and above all more understandable. It also makes it much easier to control where pauses, pacing, or emphasis should shift.</p>
+<h3 id="the-results"><a class="zola-anchor" href="#the-results" aria-label="Anchor link for: the-results">The results</a></h3>
+<p>Here is a gemma4-generated script for one of my blog posts, which serves as the basis for the TTS output:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>Ich zeig euch heute mal, wie man Gameboy-Spiele für die Bildungs- und Pastoralarbeit einsetzen kann, um die Motivation beim Lernen so richtig zu steigern. Ich bin ja ein großer Fan von Retrospielen, und vor drei Jahren kam mir die Idee, das Ganze mal mit Gamification in meiner App für die Firmvorbereitung, der feiafanga App, zu kombinieren. Dabei bin ich auf GB Studio gestoßen. Das ist ein tolles, kostenloses Tool, mit dem man ohne Programmierkenntnisse echte Gameboy-Spiele erstellen kann, die sogar auf originaler Hardware laufen. Man kann sie aber auch als HTML fünf exportieren, sodass sie direkt im Browser funktionieren.
+</span><span>
+</span><span>Wenn ihr selbst so ein Spiel bauen wollt, braucht ihr im Grunde ein paar Dinge. Erstens das GB Studio und zweitens Grafiken, also Assets, die man selbst zeichnet oder kostenlos im Netz findet. Dann braucht ihr Musik und einen Emulator, um das Ganze zu testen. Ganz wichtig ist natürlich die Story, die im Bildungskontext einen klaren Bezug zum Thema haben muss. Für die Level-Erstellung empfehle ich euch LDtk, das ist ebenfalls kostenlos und sehr einfach zu bedienen.
+</span><span>
+</span><span>Ich hab das Ganze mal an einem Beispiel umgesetzt. In meinen Spielen geht es um die sieben Gaben des Heiligen Geistes. Die Hauptfigur Eli ist auf dem Weg zur ersten Firmstunde und muss dabei verschiedene Aufgaben lösen. In einer Szene geht es zum Beispiel um die Gabe der Erkenntnis. Eli ist in einer Bibliothek und hilft der Bibliothekarin, die über die Frage nach einem glücklichen Leben nachgrübelt. Am Ende erfährt sie, dass sie auf ihr Herz hören muss. Damit wird deutlich, dass Erkenntnis eben nicht nur Intellekt ist, sondern auch eine spirituelle Dimension hat.
+</span><span>
+</span><span>Zum technischen Ablauf: Ich erstelle die Grafiken, nutze oft Vorlagen von itch.io und passe sie mit Gimp oder Polotno Studio an. In GB Studio baue ich dann die Level und die Logik, was durch Tutorials echt schnell geht. Am Ende exportiere ich das Spiel als Rom-Datei. Damit die Jugendlichen in der App ein Abzeichen bekommen, habe ich ein kleines JavaScript geschrieben. Das Programm beobachtet im Grunde den Videobuffer des Emulators und erkennt an bestimmten Farbcodes, ob das Spiel beendet wurde, um dann das Abzeichen freizuschalten.
+</span><span>
+</span><span>Der große Vorteil bei Gameboy-Spielen ist, dass die einfache Grafik nicht vom Inhalt ablenkt und sie auf fast jedem Gerät laufen. Die Lernenden sind viel aktiver dabei und bauen eine emotionale Bindung zur Geschichte auf. Natürlich war es eine Herausforderung, die Balance zwischen Spielspaß und theologischen Inhalten zu finden, aber es lohnt sich total. Man könnte das Konzept ja auch super auf Bibelgeschichten oder Ethik übertragen. Im Grunde ist diese Mischung aus Nostalgie und moderner Pädagogik ein echt spannender Weg, um Jugendliche heute zu erreichen. Ich hoffe, das gibt euch ein paar gute Impulse für eure eigene Arbeit.
+</span></code></pre>
+<p>Here is an example of the audio output I was able to generate with this setup:</p>
+<p><audio style="width: 100%;" controls><source src="https://simeon.staneks.de/posts/gameboy-games-for-education-and-pastoral-work/audio.mp3" type="audio/mpeg"></audio></p>
+<h3 id="why-local"><a class="zola-anchor" href="#why-local" aria-label="Anchor link for: why-local">Why local?</a></h3>
+<p>For me, this is more than just a technical experiment. Local means no dependency on API limits, no ongoing per-minute costs, no data sent to third-party services, and no surprises when a provider suddenly changes something. For a personal project like a blog podcast, that’s worth a lot.</p>
+<p>And of course, there’s the fun factor. It’s just great when you realize that, with relatively modest hardware, you can build a complete media workflow that absolutely holds its own. A few years ago, this would probably have sounded like science fiction.</p>
+<h2 id="conclusion"><a class="zola-anchor" href="#conclusion" aria-label="Anchor link for: conclusion">Conclusion</a></h2>
+<p>The AI-generated podcast is a great example of how far local AI has come. With Ollama, Open WebUI, qwen3-TTS, a cloned voice, and an n8n workflow, it’s possible to build a complete audio pipeline that works surprisingly well. And even though this is technically more of a “shortcast” than a classic podcast, it does exactly what it is supposed to do: it makes my blog audible. (It’s great that Zola can also embed audio files directly in the RSS feed!)</p>
+<p>What stays with me most of all is this: local AI is not just a toy, it’s a real tool. And if you use it well, it can become something practical, personal, and genuinely entertaining.</p>
+
+        </section>
+    </article>
+    <hr>
+    <br>
+    <div class="meta">
+        
+            <span class="date-label-posted">:: Posted on </span><time>2026-05-31</time>
+        
+
+        
+
+        
+
+        
+        
+                <span class="tags-label"> :: Tags:</span>
+                <span class="tags">
+                        <a href="https://simeon.staneks.de/tags/ai/" class="post-tag">ai</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/local-ai/" class="post-tag">local-ai</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/podcast/" class="post-tag">podcast</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/qwen3/" class="post-tag">qwen3</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/gemma4/" class="post-tag">gemma4</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/text-to-speech/" class="post-tag">text-to-speech</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/tts/" class="post-tag">TTS</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/ai-generated/" class="post-tag">ai-generated</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/local-ai/" class="post-tag">local-ai</a>
+                    
+                </span>
+        
+
+        
+       
+                
+     
+
+            
+                
+                :: <a href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;Blog&#x2F;tree&#x2F;main&#x2F;content&#x2F;posts&#x2F;ai-and-local-generated-podcast-of-my-blog&#x2F;index.en.md" target="_blank" rel="noopener noreferrer"> Source Code</a>
+            
+
+        
+
+    </div>
+
+    
+    
+        
+    
+
+    
+        
+        
+        
+        
+            
+        
+            
+        
+            
+        
+            
+                
+            
+        
+
+        
+        
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
+            
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;ai-and-local-generated-podcast-of-my-blog&#x2F;video&#x2F;ai-and-local-generated-podcast-of-my-blog-en.mp4" onerror="this.parentElement.parentElement.style.display='none';" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+        </div>
+    
+
+
+
+</main>
+
+
+
+        
+            
+        
+
+        
+        <br>
+        <hr>
+        <div class="giscus" >
+        <script src="https://giscus.app/client.js"
+        data-repo="SimeonLukas/Blog"
+        data-repo-id="R_kgDONSw5PA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONSw5PM4CkoL8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https:&#x2F;&#x2F;simeon.staneks.de/css/giscus.css"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+        
+
+    </div>
+</body>
+
+</html>

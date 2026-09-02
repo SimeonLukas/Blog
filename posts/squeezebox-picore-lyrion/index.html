@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="de">
+<html class="dark light">
+
+<head>
+    <link rel="help" type="text/markdown" href="/llms.txt">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         20 Euro Multiroom – Squeezebox, Raspberry Pi und ein Server, den Logitech längst aufgegeben hat
+        
+    </title>
+
+    
+    
+    <meta name="description" content="Wie man sich mit gebrauchten Squeezeboxen, einem Raspberry Pi und dem selbst gehosteten Lyrion Music Server auf Proxmox eine erstklassige Multiroom-Anlage fü..." />
+    
+    
+
+    
+    <meta property="og:image" content="https://simeon.staneks.de/posts/squeezebox-picore-lyrion//images/de/preview.jpg" />
+    <meta property="og:logo" content="https://simeon.staneks.de/posts/squeezebox-picore-lyrion//imagesde/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/images/de/preview.jpg">
+    
+
+    
+    <meta property="og:title" content="20 Euro Multiroom – Squeezebox, Raspberry Pi und ein Server, den Logitech längst aufgegeben hat" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="20 Euro Multiroom – Squeezebox, Raspberry Pi und ein Server, den Logitech längst aufgegeben hat">
+    
+    
+
+    
+    
+    <meta property="og:description" content="Wie man sich mit gebrauchten Squeezeboxen, einem Raspberry Pi und dem selbst gehosteten Lyrion Music Server auf Proxmox eine erstklassige Multiroom-Anlage fü..."/>
+    <!-- twitter description -->
+    <meta name="twitter:description" content="Wie man sich mit gebrauchten Squeezeboxen, einem Raspberry Pi und dem selbst gehosteten Lyrion Music Server auf Proxmox eine erstklassige Multiroom-Anlage fü...">
+    
+    
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;simeon.staneks.de"/>
+    <meta property="og:type" content="article" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Simeon&#x27;s Blog" />
+
+
+    
+    
+    <link rel="icon" type="image/png" href=https:&#x2F;&#x2F;simeon.staneks.de&#x2F;android-chrome-512x512.png />
+    
+
+    
+    
+    <link href=https://simeon.staneks.de/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/codeblock.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/toc.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/note.js></script>
+    
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Simeon&#x27;s Blog" href="https://simeon.staneks.de/ atom.xml">
+
+
+    
+    
+    <link rel="stylesheet" type="text/css" href=https://simeon.staneks.de/theme/light.css />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://simeon.staneks.de/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://simeon.staneks.de/js/themetoggle.js></script>
+    
+    <script>setTheme(getSavedTheme());</script>
+    
+    <script src=https://simeon.staneks.de/js/index.js></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://simeon.staneks.de/main.css />
+
+    
+</head>
+
+<body onload="updatelanguage()">
+    <div class="content">
+        <header>
+    <div class="main">
+        <div> <a id="navigation_start" href=https:&#x2F;&#x2F;simeon.staneks.de>Simeon&#x27;s Blog </a> 
+            <p style="font-size: xx-small;">lieber unperfekt starten als perfekt warten</p> 
+        </div>
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl" class="social mastodon">
+                <img alt=mastodon src=https://simeon.staneks.de/social_icons/mastodon.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;" class="social instagram">
+                <img alt=instagram src=https://simeon.staneks.de/social_icons/instagram.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas" class="social github">
+                <img alt=github src=https://simeon.staneks.de/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;buymeacoffee.com&#x2F;simeonlukas" class="social buy me a coffee">
+                <img alt=buy me a coffee src=https://simeon.staneks.de/social_icons/bmc-logo.svg>
+            </a>
+            
+            <a rel="me" href="&#x2F;rss.xml" class="social rss">
+                <img alt=rss src=https://simeon.staneks.de/social_icons/rss.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a class="navigation_lang &#x2F;posts" href=&#x2F;posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a class="navigation_lang &#x2F;pages" href=&#x2F;pages style="margin-left: 0.5em">&#x2F;pages</a>
+        
+        <a class="navigation_lang &#x2F;about" href=&#x2F;pages&#x2F;about style="margin-left: 0.5em">&#x2F;about</a>
+        
+        <a class="navigation_lang &#x2F;tags" href=&#x2F;tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://simeon.staneks.de/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+        <a id="language-toggle" onclick="toggleLanguage(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/globe.svg alt="Change Language" /><span style="font-size: xx-small;" id="language-name">de</span>
+        </a>
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <h1 class="page-header">
+        20 Euro Multiroom – Squeezebox, Raspberry Pi und ein Server, den Logitech längst aufgegeben hat<span class="primary-color" style="font-size: 1.6em">.</span>
+    </h1>
+
+        </div>
+        Wie man sich mit gebrauchten Squeezeboxen, einem Raspberry Pi und dem selbst gehosteten Lyrion Music Server auf Proxmox eine erstklassige Multiroom-Anlage für kleines Geld baut – und warum ein Raspberry Pi in einer Porzellanschüssel manchmal die beste Lösung ist.
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#logitech-hat-aufgehort-die-boxen-nicht">Logitech hat aufgehört. Die Boxen nicht.</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#warum-das-gerade-jetzt-interessant-ist">Warum das gerade jetzt interessant ist</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#mein-setup-oder-wie-man-lautsprecher-unsichtbar-macht">Mein Setup – oder: Wie man Lautsprecher unsichtbar macht</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#wohnzimmer-raspberry-pi-in-einer-porzellanschussel">Wohnzimmer: Raspberry Pi in einer Porzellanschüssel</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#kuche-raspberry-pi-in-einer-truhe">Küche: Raspberry Pi in einer Truhe</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#kinderzimmer-schlafzimmer-squeezebox-radio">Kinderzimmer &amp; Schlafzimmer: Squeezebox Radio</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#die-zutaten-fur-das-setup">Die Zutaten für das Setup</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#schritt-1-lyrion-music-server-auf-proxmox">Schritt 1: Lyrion Music Server auf Proxmox</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#option-a-proxmox-helper-script-empfohlen">Option A: Proxmox Helper Script (empfohlen)</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#option-b-docker-compose-im-lxc">Option B: Docker Compose im LXC</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#schritt-2-squeezebox-anschliessen-und-firmware-updaten">Schritt 2: Squeezebox anschließen und Firmware updaten</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#community-firmware-einspielen-dringend-empfohlen">Community Firmware einspielen (dringend empfohlen)</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#schritt-3-raspberry-pi-mit-picoreplayer">Schritt 3: Raspberry Pi mit piCorePlayer</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#picoreplayer-installieren">piCorePlayer installieren</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#schritt-4-fernsteuerung-drei-wege">Schritt 4: Fernsteuerung – drei Wege</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#squeeze-ctrl-am-handy">Squeeze Ctrl am Handy</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#http-requests-fur-automatisierungen">HTTP-Requests für Automatisierungen</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#mystrom-buttons-physische-steuerung">MyStrom Buttons – physische Steuerung</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#multiroom-synchronisation">Multiroom-Synchronisation</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#was-das-ganze-kostet">Was das Ganze kostet</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/#das-ergebnis">Das Ergebnis</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>Es gibt Geräte, die einfach nicht sterben wollen. Nicht weil jemand sie am Leben hält – sondern weil sie so gut waren, dass eine ganze Community beschlossen hat: Nein. Das lassen wir nicht sterben.</p>
+<p>Die Rede ist von der <strong>Logitech Squeezebox</strong>. Und die Geschichte dahinter ist fast schon rührend.</p>
+<h2 id="logitech-hat-aufgehort-die-boxen-nicht"><a class="zola-anchor" href="#logitech-hat-aufgehort-die-boxen-nicht" aria-label="Anchor link for: logitech-hat-aufgehort-die-boxen-nicht">Logitech hat aufgehört. Die Boxen nicht.</a></h2>
+<p>Logitech hatte die Squeezebox-Linie ursprünglich von der Firma <strong>Slim Devices</strong> übernommen – einem kleinen, feinen Audiohardware-Hersteller, der schon früh verstanden hatte, was Netzwerkmusik bedeutet. Die Geräte waren ihrer Zeit weit voraus: WLAN-Lautsprecher mit eigenem Display, Fernbedienung, Multiroom-Synchronisation auf die Millisekunde genau.</p>
+<p>Logitech stellte die Hardwareproduktion 2012 ein. Den Server – <code>mysqueezebox.com</code> – betrieb man noch weiter, bis man ihn im <strong>März 2024 endgültig abschaltete</strong>. Die offizielle Begründung: Wartungsaufwand. Die inoffizielle: Logitech verdient sein Geld mit Mäusen und Tastaturen, nicht mit Audioenthusiasten.</p>
+<p>Was danach passierte, war schön. Die Community übernahm den kompletten Open-Source-Code des Servers, pflegte ihn weiter, benannte ihn um – und heute läuft alles unter dem Namen <strong>Lyrion Music Server (LMS)</strong>. Gleiche Software, kein Logitech mehr, dafür mit echter Liebe zum Detail.</p>
+<h2 id="warum-das-gerade-jetzt-interessant-ist"><a class="zola-anchor" href="#warum-das-gerade-jetzt-interessant-ist" aria-label="Anchor link for: warum-das-gerade-jetzt-interessant-ist">Warum das gerade jetzt interessant ist</a></h2>
+<p>Weil die Abschaltung des offiziellen Servers bedeutet: Wer nicht weiß, was er tut, stellt seine Squeezebox in den Keller. Und das wiederum bedeutet: Kleinanzeigen ist gerade voll davon.</p>
+<p>Eine <strong>Squeezebox Radio</strong> bekommt man dort für 20–35 Euro. Eine <strong>Squeezebox Boom</strong> – Stereolautsprecher, satter Klang – für 30–75 Euro. Geräte, die neu mal 179 bzw. 289 Euro gekostet haben. Für jemanden, der weiß, wie man einen eigenen Server aufsetzt, ist das ein Geschenk. Ich habe meine beiden Squeezebox Radios für jeweils <strong>25 Euro</strong> gekauft. Keine Verhandlung nötig – die Verkäufer waren einfach froh, dass jemand das Ding überhaupt noch will.</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>┌──────────────────────────────────────────────────────────────┐
+</span><span>│        Squeezebox Gebrauchtmarkt – Stand April 2026          │
+</span><span>├─────────────────────────┬────────────────────────────────────┤
+</span><span>│  Gerät                  │  Kleinanzeigen-Preis (ca.)         │
+</span><span>├─────────────────────────┼────────────────────────────────────┤
+</span><span>│  Squeezebox Radio       │  20 – 35 €                         │
+</span><span>│  Squeezebox Boom        │  30 – 75 €                         │
+</span><span>│  Squeezebox Touch       │  40 – 80 €                         │
+</span><span>│  Squeezebox Classic     │  30 – 60 €                         │
+</span><span>└─────────────────────────┴────────────────────────────────────┘
+</span></code></pre>
+<h2 id="mein-setup-oder-wie-man-lautsprecher-unsichtbar-macht"><a class="zola-anchor" href="#mein-setup-oder-wie-man-lautsprecher-unsichtbar-macht" aria-label="Anchor link for: mein-setup-oder-wie-man-lautsprecher-unsichtbar-macht">Mein Setup – oder: Wie man Lautsprecher unsichtbar macht</a></h2>
+<p>Bevor ich in die technische Umsetzung gehe, kurz ein ehrliches Geständnis: Meine Frau mag keine sichtbaren Lautsprecher. Kein „das sieht technisch aus", kein „warum stehen da Kabel raus", kein gar nichts. Was in meinen Augen ein eleganter Mini-PC ist, ist in ihren Augen ein Fremdkörper im Wohnraum. Ich kenne das. Ich akzeptiere das. Und ich habe Lösungen gefunden.</p>
+<h3 id="wohnzimmer-raspberry-pi-in-einer-porzellanschussel"><a class="zola-anchor" href="#wohnzimmer-raspberry-pi-in-einer-porzellanschussel" aria-label="Anchor link for: wohnzimmer-raspberry-pi-in-einer-porzellanschussel">Wohnzimmer: Raspberry Pi in einer Porzellanschüssel</a></h3>
+<p>Das Wohnzimmer ist mein Lieblingsstück. Ein Raspberry Pi, passende Lautsprecher – und das ganze sitzt in einer <strong>Porzellanschüssel</strong>. Kein Plastikgehäuse, kein technischer Look, sondern etwas, das aussieht wie ein Dekorationsobjekt. Die Schüssel steht auf dem Fernsehschrank, niemand fragt, was das ist. Der Klang kommt einfach aus dem Zimmer. Meine Frau ist zufrieden. Ich bin zufrieden. Der Raspberry Pi hat wahrscheinlich auch nichts dagegen.</p>
+<h3 id="kuche-raspberry-pi-in-einer-truhe"><a class="zola-anchor" href="#kuche-raspberry-pi-in-einer-truhe" aria-label="Anchor link for: kuche-raspberry-pi-in-einer-truhe">Küche: Raspberry Pi in einer Truhe</a></h3>
+<p>In der Küche war die Herausforderung größer. Dort laufen <strong>Raumklangerzeuger</strong> – coole Teile, die Schall über Oberflächen abstrahlen, statt über klassische Membranen. Der Raspberry Pi dazu sitzt in der <strong>Holztruhe</strong> festgeschraubt an einer Seitenwand. Die Truhe steht in der Ecke und ist einfach eine Sitzgelegenhgeit. Fällt nicht auf und man kocht einfach gerne mit Musik in der Küche. Und wer gerne kocht, kocht besser. Das ist meine offizielle Begründung.</p>
+<h3 id="kinderzimmer-schlafzimmer-squeezebox-radio"><a class="zola-anchor" href="#kinderzimmer-schlafzimmer-squeezebox-radio" aria-label="Anchor link for: kinderzimmer-schlafzimmer-squeezebox-radio">Kinderzimmer &amp; Schlafzimmer: Squeezebox Radio</a></h3>
+<p>Für Kinderzimmer und Schlafzimmer war mir der Aufwand mit dem Pi zu groß – hier wollte ich etwas, das einfach funktioniert, ein Display hat und man auch mal manuell bedienen kann. Die Lösung: <strong>Squeezebox Radio</strong>, je 25 Euro auf Kleinanzeigen. Die Geräte sehen gut aus, haben eine ordentliche Klangregelung eingebaut und sind – sobald man einen eigenen LMS betreibt – vollständig unabhängig von Logitech.</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>┌──────────────────────────────────────────────────────────────┐
+</span><span>│  Meine Multiroom-Anlage – Raumübersicht                      │
+</span><span>├──────────────────┬───────────────────────────────────────────┤
+</span><span>│  Raum            │  Gerät                                    │
+</span><span>├──────────────────┼───────────────────────────────────────────┤
+</span><span>│  Wohnzimmer      │  Raspberry Pi in Porzellanschüssel        │
+</span><span>│  Küche           │  Raspberry Pi + Raumklangerzeuger, Truhe  │
+</span><span>│  Kinderzimmer    │  Squeezebox Radio (25 €, Kleinanzeigen)   │
+</span><span>│  Schlafzimmer    │  Squeezebox Radio (25 €, Kleinanzeigen)   │
+</span><span>└──────────────────┴───────────────────────────────────────────┘
+</span></code></pre>
+<h2 id="die-zutaten-fur-das-setup"><a class="zola-anchor" href="#die-zutaten-fur-das-setup" aria-label="Anchor link for: die-zutaten-fur-das-setup">Die Zutaten für das Setup</a></h2>
+<ul>
+<li><strong>Squeezebox Radio / Boom</strong> – gebraucht von Kleinanzeigen</li>
+<li><strong>Raspberry Pi (3B oder 4)</strong> – mit piCorePlayer als Software</li>
+<li><strong>Lyrion Music Server (LMS)</strong> – der Open-Source-Nachfolger des Logitech Servers</li>
+<li><strong>Proxmox</strong> – als Backend (LXC-Container oder Docker)</li>
+<li><strong>Squeeze Ctrl</strong> – App für die Fernsteuerung am Handy</li>
+<li><strong>MyStrom Buttons</strong> – für die physische Steuerung per HTTP-Request</li>
+</ul>
+<p>Kein Abo. Keine Cloud. Keine Datenschutzbedenken. Alles läuft zuhause. (Aber Spotify, Tidal und Co. funktionieren natürlich trotzdem – LMS unterstützt alle gängigen Streaming-Dienste als Quellen.)</p>
+<h2 id="schritt-1-lyrion-music-server-auf-proxmox"><a class="zola-anchor" href="#schritt-1-lyrion-music-server-auf-proxmox" aria-label="Anchor link for: schritt-1-lyrion-music-server-auf-proxmox">Schritt 1: Lyrion Music Server auf Proxmox</a></h2>
+<p>Der einfachste Weg ist ein <strong>LXC-Container</strong> auf Proxmox. Die Community stellt ein fertiges Helper-Script bereit, das den Container in wenigen Minuten aufbaut.</p>
+<h3 id="option-a-proxmox-helper-script-empfohlen"><a class="zola-anchor" href="#option-a-proxmox-helper-script-empfohlen" aria-label="Anchor link for: option-a-proxmox-helper-script-empfohlen">Option A: Proxmox Helper Script (empfohlen)</a></h3>
+<p>Im Proxmox-Terminal (auf dem Host, nicht im Container):</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f29718;">bash</span><span style="color:#ff8f40;"> -c </span><span style="color:#86b300;">&quot;$</span><span>(</span><span style="color:#f29718;">wget</span><span style="color:#ff8f40;"> -qLO</span><span style="color:#86b300;"> - https://github.com/community-scripts/ProxmoxVE/raw/main/ct/lyrionmusicserver.sh</span><span>)</span><span style="color:#86b300;">&quot;
+</span></code></pre>
+<p>Das Script erstellt automatisch einen LXC-Container, installiert LMS und richtet alles ein. Danach ist der Server erreichbar unter:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>http://&lt;proxmox-ip&gt;:9000
+</span></code></pre>
+<h3 id="option-b-docker-compose-im-lxc"><a class="zola-anchor" href="#option-b-docker-compose-im-lxc" aria-label="Anchor link for: option-b-docker-compose-im-lxc">Option B: Docker Compose im LXC</a></h3>
+<p>Wer lieber selbst Hand anlegt, kann einen Debian-LXC-Container auf Proxmox erstellen und LMS per Docker Compose betreiben:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>┌─────────────────────────────────────────────────────────────────┐
+</span><span>│                     docker-compose.yml                          │
+</span><span>├─────────────────────────────────────────────────────────────────┤
+</span><span>│  services:                                                      │
+</span><span>│    lms:                                                         │
+</span><span>│      container_name: lms                                        │
+</span><span>│      image: lmscommunity/lyrionmusicserver                      │
+</span><span>│      volumes:                                                   │
+</span><span>│        - /opt/lms/config:/config:rw                             │
+</span><span>│        - /mnt/musik:/music:ro                                   │
+</span><span>│        - /opt/lms/playlists:/playlist:rw                        │
+</span><span>│        - /etc/localtime:/etc/localtime:ro                       │
+</span><span>│        - /etc/timezone:/etc/timezone:ro                         │
+</span><span>│      ports:                                                     │
+</span><span>│        - &quot;9000:9000/tcp&quot;                                        │
+</span><span>│        - &quot;9090:9090/tcp&quot;                                        │
+</span><span>│        - &quot;3483:3483/tcp&quot;                                        │
+</span><span>│        - &quot;3483:3483/udp&quot;                                        │
+</span><span>│      environment:                                               │
+</span><span>│        - HTTP_PORT=9000                                         │
+</span><span>│        - EXTRA_ARGS=--advertiseaddr=192.168.178.50              │
+</span><span>│      restart: always                                            │
+</span><span>└─────────────────────────────────────────────────────────────────┘
+</span></code></pre>
+<p><strong>Wichtig:</strong> Die <code>--advertiseaddr</code> muss die tatsächliche IP des Proxmox-Hosts sein – nicht <code>127.0.0.1</code>. Sonst finden die Squeezebox-Geräte den Server nicht. Das ist das Gotcha, das einen beim ersten Mal garantiert erwischt.</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f29718;">$</span><span> docker compose up</span><span style="color:#ff8f40;"> -d
+</span><span style="color:#f29718;">[+]</span><span> Running 1/1
+</span><span> </span><span style="color:#f29718;">✔</span><span> Container lms  Started
+</span><span>
+</span><span style="color:#f29718;">$</span><span> curl http://localhost:9000/status.html
+</span><span style="font-style:italic;color:#abb0b6;"># → LMS Webinterface erreichbar ✓
+</span></code></pre>
+<p>Port <strong>3483</strong> (TCP + UDP) ist der Squeezebox-Protokoll-Port – der muss zwingend durchgereicht werden, sonst ist der Server für die Hardware unsichtbar.</p>
+<h2 id="schritt-2-squeezebox-anschliessen-und-firmware-updaten"><a class="zola-anchor" href="#schritt-2-squeezebox-anschliessen-und-firmware-updaten" aria-label="Anchor link for: schritt-2-squeezebox-anschliessen-und-firmware-updaten">Schritt 2: Squeezebox anschließen und Firmware updaten</a></h2>
+<p>Squeezebox Radio oder Boom einfach ins WLAN einbuchen und einschalten. Wenn LMS im selben Netzwerk läuft, findet das Gerät den Server automatisch per Bonjour/mDNS.</p>
+<h3 id="community-firmware-einspielen-dringend-empfohlen"><a class="zola-anchor" href="#community-firmware-einspielen-dringend-empfohlen" aria-label="Anchor link for: community-firmware-einspielen-dringend-empfohlen">Community Firmware einspielen (dringend empfohlen)</a></h3>
+<p>Die Original-Firmware der Squeezebox Radio hat bekannte WLAN-Probleme, die sich seit der mysqueezebox.com-Abschaltung verschlimmert haben. Die Community hat das gefixt – und LMS bietet das Update direkt an:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>Auf der Squeezebox Radio:
+</span><span>Home → Einstellungen → Erweitert → Software-Update
+</span><span>→ Update auf Community Firmware durchführen
+</span></code></pre>
+<p>Falls das Gerät sich gar nicht erst verbindet: kurz per <strong>Ethernet-Kabel</strong> direkt an den Router anschließen, Update einspielen, danach funktioniert WLAN deutlich stabiler.</p>
+<p>Hier gibt es weitere Infos falls das WLAN regelmäßig ausfällt: <a href="https://telebear.de/appTippsTricks/appSqueezebox/appSbRadioWlan/index.html">Der Trick hat bei mir geholfen, die Stabilität deutlich zu verbessern</a></p>
+<p>Mein Oneliner-Beispiel:</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f29718;">ssh</span><span style="color:#ff8f40;"> -oKexAlgorithms</span><span style="color:#ed9366;">=</span><span>+diffie-hellman-group1-sha1 </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    -oHostKeyAlgorithms</span><span style="color:#ed9366;">=</span><span>+ssh-rsa </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">    -oCiphers</span><span style="color:#ed9366;">=</span><span>+aes128-cbc </span><span style="color:#61676ccc;">\
+</span><span>    root@192.168.178.125 </span><span style="color:#61676ccc;">\
+</span><span>    </span><span style="color:#86b300;">&quot;sed -i &#39;/wmiconfig.*maxperf/s/^/#/&#39; /etc/init.d/wlan &amp;&amp; reboot&quot;
+</span></code></pre>
+<p>Passwort: <code>1234</code></p>
+<h2 id="schritt-3-raspberry-pi-mit-picoreplayer"><a class="zola-anchor" href="#schritt-3-raspberry-pi-mit-picoreplayer" aria-label="Anchor link for: schritt-3-raspberry-pi-mit-picoreplayer">Schritt 3: Raspberry Pi mit piCorePlayer</a></h2>
+<p>Für Wohnzimmer und Küche läuft auf jedem Pi <strong>piCorePlayer</strong> – ein winziges, auf Squeezelite spezialisiertes Linux, das von der SD-Karte bootet und im RAM läuft. Kein Verschleiß, kein Overhead, kein Schnickschnack.</p>
+<h3 id="picoreplayer-installieren"><a class="zola-anchor" href="#picoreplayer-installieren" aria-label="Anchor link for: picoreplayer-installieren">piCorePlayer installieren</a></h3>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#abb0b6;"># 1. piCorePlayer-Image herunterladen
+</span><span style="font-style:italic;color:#abb0b6;">#    → https://docs.picoreplayer.org/getting-started/
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># 2. Image auf SD-Karte flashen (Raspberry Pi Imager)
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># 3. Pi starten, Webinterface aufrufen:
+</span><span style="font-style:italic;color:#abb0b6;">#    http://&lt;raspberry-pi-ip&gt;:80
+</span></code></pre>
+<p>Im Webinterface dann:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>┌──────────────────────────────────────────────────────────────┐
+</span><span>│                  piCorePlayer Konfiguration                  │
+</span><span>├──────────────────────────────────────────────────────────────┤
+</span><span>│  Tab: Squeezelite Settings                                   │
+</span><span>│  → Audio Output: Analog / USB DAC                           │
+</span><span>│  → Player Name: &quot;Wohnzimmer&quot; / &quot;Küche&quot;                      │
+</span><span>│  → Submit → Restart Squeezelite                              │
+</span><span>│                                                              │
+</span><span>│  Tab: LMS                                                    │
+</span><span>│  → Server IP: 192.168.178.50 (Proxmox-Host)                  │
+</span><span>│  → Submit                                                    │
+</span><span>└──────────────────────────────────────────────────────────────┘
+</span></code></pre>
+<p>Nach dem Neustart erscheinen beide Pis als vollwertige Player im LMS – gleichberechtigt neben den Squeezeboxen im Kinder- und Schlafzimmer.</p>
+<h2 id="schritt-4-fernsteuerung-drei-wege"><a class="zola-anchor" href="#schritt-4-fernsteuerung-drei-wege" aria-label="Anchor link for: schritt-4-fernsteuerung-drei-wege">Schritt 4: Fernsteuerung – drei Wege</a></h2>
+<p>Das ist der Teil, der den Unterschied macht zwischen „funktioniert irgendwie" und „will ich jeden Tag nutzen". Ich nutze drei verschiedene Wege, je nach Situation.</p>
+<h3 id="squeeze-ctrl-am-handy"><a class="zola-anchor" href="#squeeze-ctrl-am-handy" aria-label="Anchor link for: squeeze-ctrl-am-handy">Squeeze Ctrl am Handy</a></h3>
+<p>Meine erste Wahl unterwegs und auf dem Sofa ist <strong>Squeeze Ctrl</strong> – eine schlanke App, die direkt mit LMS spricht. Player auswählen, Musik starten, Lautstärke regeln, Sync-Gruppen bilden. Kein Umweg über eine Cloud, keine Latenz, keine nervigen Verbindungsabbrüche. Einfach schnell.</p>
+<h3 id="http-requests-fur-automatisierungen"><a class="zola-anchor" href="#http-requests-fur-automatisierungen" aria-label="Anchor link for: http-requests-fur-automatisierungen">HTTP-Requests für Automatisierungen</a></h3>
+<p>LMS hat eine vollständige HTTP-API. Das bedeutet: Jede Aktion, die man im Interface machen kann, kann man auch als einfachen HTTP-Request abfeuern. Das nutze ich intensiv – für Automationen in n8n, für Shortcuts auf dem Handy und vor allem für die MyStrom Buttons.</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#abb0b6;"># Beispiel: Wohnzimmer-Player play/pause toggeln
+</span><span style="color:#f29718;">curl </span><span style="color:#86b300;">&quot;http://192.168.178.50:9000/jsonrpc.js&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">  -d </span><span style="color:#86b300;">&#39;{&quot;id&quot;:1,&quot;method&quot;:&quot;slim.request&quot;,&quot;params&quot;:
+</span><span style="color:#86b300;">       [&quot;&lt;player-mac&gt;&quot;,[&quot;pause&quot;]]}&#39;
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Lautstärke auf 40 setzen
+</span><span style="color:#f29718;">curl </span><span style="color:#86b300;">&quot;http://192.168.178.50:9000/jsonrpc.js&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">  -d </span><span style="color:#86b300;">&#39;{&quot;id&quot;:1,&quot;method&quot;:&quot;slim.request&quot;,&quot;params&quot;:
+</span><span style="color:#86b300;">       [&quot;&lt;player-mac&gt;&quot;,[&quot;mixer&quot;,&quot;volume&quot;,&quot;40&quot;]]}&#39;
+</span><span>
+</span><span style="font-style:italic;color:#abb0b6;"># Alle Player synchronisieren
+</span><span style="color:#f29718;">curl </span><span style="color:#86b300;">&quot;http://192.168.178.50:9000/jsonrpc.js&quot; </span><span style="color:#61676ccc;">\
+</span><span style="color:#ff8f40;">  -d </span><span style="color:#86b300;">&#39;{&quot;id&quot;:1,&quot;method&quot;:&quot;slim.request&quot;,&quot;params&quot;:
+</span><span style="color:#86b300;">       [&quot;&lt;player-mac&gt;&quot;,[&quot;sync&quot;,&quot;&lt;player-mac-2&gt;&quot;]]}&#39;
+</span></code></pre>
+<p>Die Player-MAC-Adresse bekommt man direkt aus dem LMS-Webinterface unter <em>Einstellungen → Player</em>.</p>
+<h3 id="mystrom-buttons-physische-steuerung"><a class="zola-anchor" href="#mystrom-buttons-physische-steuerung" aria-label="Anchor link for: mystrom-buttons-physische-steuerung">MyStrom Buttons – physische Steuerung</a></h3>
+<p>Das ist mein persönliches Highlight. <strong>MyStrom Buttons</strong> sind kleine WLAN-Taster, die bei Druck einen konfigurierbaren HTTP-Request abfeuern. Kein App öffnen, kein Handy suchen – einfach drücken.</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>┌──────────────────────────────────────────────────────────────┐
+</span><span>│  MyStrom Button Konfiguration (Beispiel: Küche)              │
+</span><span>├──────────────────────────────────────────────────────────────┤
+</span><span>│  Single Press  → Musik play/pause                           │
+</span><span>│  Double Press  → Nächster Titel                             │
+</span><span>│  Long Press    → Alle Räume synchronisieren                 │
+</span><span>└──────────────────────────────────────────────────────────────┘
+</span></code></pre>
+<p>Der Button liegt einfach auf der Anrichte neben der Holztruhe. Meine Frau drückt drauf, ohne zu wissen, was dahinter steckt. Und das ist genau richtig so.</p>
+<h3 id="multiroom-synchronisation"><a class="zola-anchor" href="#multiroom-synchronisation" aria-label="Anchor link for: multiroom-synchronisation">Multiroom-Synchronisation</a></h3>
+<p>Das ist der Moment, für den man das alles macht:</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>┌──────────────────────────────────────────────────────────────┐
+</span><span>│  LMS Sync-Gruppe                                             │
+</span><span>│                                                              │
+</span><span>│  [Wohnzimmer  - Raspberry Pi (Schüssel)  ] ●──┐             │
+</span><span>│  [Küche       - Raspberry Pi (Truhe)     ] ●──┤── Sync       │
+</span><span>│  [Kinderzimmer - Squeezebox Radio        ] ●──┤             │
+</span><span>│  [Schlafzimmer - Squeezebox Radio        ] ●──┘             │
+</span><span>│                                                              │
+</span><span>│  → Alle spielen bit-synchron. Kein Echo. Kein Versatz.      │
+</span><span>└──────────────────────────────────────────────────────────────┘
+</span></code></pre>
+<p>LMS synchronisiert nicht einfach „ungefähr gleichzeitig" – das System arbeitet auf Millisekunden genau. Man kann durch das ganze Haus laufen und überall dieselbe Musik hören, ohne einen einzigen Rhythmus-Versatz zu bemerken. Das ist das, wofür Sonos Unsummen verlangt.</p>
+<h2 id="was-das-ganze-kostet"><a class="zola-anchor" href="#was-das-ganze-kostet" aria-label="Anchor link for: was-das-ganze-kostet">Was das Ganze kostet</a></h2>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>┌──────────────────────────────────────────────────────────────┐
+</span><span>│  Mein Setup – Gesamtkosten                                   │
+</span><span>├────────────────────────────────┬─────────────────────────────┤
+</span><span>│  Squeezebox Radio × 2          │  ~50 €  (Kleinanzeigen)    │
+</span><span>│  Raspberry Pi 3B × 2           │  ~30 €  (gebraucht)        │
+</span><span>│  USB-DAC / Lautsprecher        │  ~30 €                     │
+</span><span>│  MyStrom Buttons               │  ~20 €  (pro Stück)        │
+</span><span>│  Porzellanschüssel + Truhe     │  schon da / Flohmarkt      │
+</span><span>│  Lyrion Music Server           │   0 €  (Open Source)       │
+</span><span>│  Proxmox                       │   0 €  (läuft sowieso)     │
+</span><span>├────────────────────────────────┼─────────────────────────────┤
+</span><span>│  Gesamt                        │  ~130 €                     │
+</span><span>└──────────────────────────────────────────────────────────────┘
+</span></code></pre>
+<p>Zum Vergleich: Ein einzelner Sonos-Lautsprecher der Einstiegsklasse kostet heute mehr als das gesamte Setup oben.</p>
+<h2 id="das-ergebnis"><a class="zola-anchor" href="#das-ergebnis" aria-label="Anchor link for: das-ergebnis">Das Ergebnis</a></h2>
+<p>Irgendwo in meinem Heimnetzwerk läuft gerade ein LXC-Container auf Proxmox, der Musik in vier Zimmer streamt. Die Porzellanschüssel im Wohnzimmer spielt dasselbe wie die Holztruhe in der Küche – auf die Millisekunde synchron. In den Kinderzimmern und im Schlafzimmer leuchten die Displays der Squeezeboxen. Auf der Anrichte liegt ein kleiner weißer Knopf, den man einfach drücken kann.</p>
+<pre style="background-color:#fafafa;color:#61676c;"><code><span>[LMS / Proxmox]     → Stream bereit
+</span><span>[Wohnzimmer]        → Pi in Porzellanschüssel  ♪ Kings of Convenience
+</span><span>[Küche]             → Pi in der Truhe          ♪ Kings of Convenience
+</span><span>[Kinderzimmer]      → Squeezebox Radio 1       ♪ Kings of Convenience
+</span><span>[Schlafzimmer]      → Squeezebox Radio 2       ♪ Kings of Convenience
+</span><span>[MyStrom Button]    → gedrückt ✓
+</span></code></pre>
+<p>Und das alles ohne einen einzigen Cloud-Dienst von Drittanbietern. Kein Abo. Kein Datenschutzproblem. Keine sichtbaren Lautsprecher.</p>
+<p>Logitech hat aufgehört. Die Community hat weitergemacht. Und irgendwo steht eine Porzellanschüssel, aus der Kings of Convenience klingt – und niemand fragt, warum.</p>
+
+        </section>
+    </article>
+    <hr>
+    <br>
+    <div class="meta">
+        
+            <span class="date-label-posted">:: Posted on </span><time>2026-04-30</time>
+        
+
+        
+
+        
+
+        
+        
+                <span class="tags-label"> :: Tags:</span>
+                <span class="tags">
+                        <a href="https://simeon.staneks.de/tags/squeezebox/" class="post-tag">squeezebox</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/multiroom/" class="post-tag">multiroom</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/lyrion/" class="post-tag">lyrion</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/logitech/" class="post-tag">logitech</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/raspberry-pi/" class="post-tag">raspberry-pi</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/proxmox/" class="post-tag">proxmox</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/docker/" class="post-tag">docker</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/self-hosted/" class="post-tag">self-hosted</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/music/" class="post-tag">music</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/home-network/" class="post-tag">home-network</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/picoreplayer/" class="post-tag">picoreplayer</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/mystrom/" class="post-tag">mystrom</a>
+                    
+                </span>
+        
+
+        
+       
+                
+     
+
+            
+                
+                :: <a href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;Blog&#x2F;tree&#x2F;main&#x2F;content&#x2F;posts&#x2F;squeezebox-picore-lyrion&#x2F;index.md" target="_blank" rel="noopener noreferrer"> Source Code</a>
+            
+
+        
+
+    </div>
+
+    
+    
+        
+    
+
+    
+        
+        
+        
+        
+            
+        
+            
+        
+            
+                
+            
+        
+
+        
+        
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
+            
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="https:&#x2F;&#x2F;simeon.staneks.de&#x2F;posts&#x2F;squeezebox-picore-lyrion&#x2F;video&#x2F;squeezebox-picore-lyrion-de.mp4" onerror="this.parentElement.parentElement.style.display='none';" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+        </div>
+    
+        <h3>Mein Shortcast zu diesem Artikel</h3>
+        <audio src="https://simeon.staneks.de/posts/squeezebox-picore-lyrion/audio.mp3" type="audio/mpeg" controls style="margin-top: 2em; width: 100%; margin: 0 auto; max-width: 600px; display: block;">
+            Your browser does not support the audio element.
+        </audio>
+
+
+
+</main>
+
+
+
+        
+            
+        
+
+        
+        <br>
+        <hr>
+        <div class="giscus" >
+        <script src="https://giscus.app/client.js"
+        data-repo="SimeonLukas/Blog"
+        data-repo-id="R_kgDONSw5PA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONSw5PM4CkoL8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https:&#x2F;&#x2F;simeon.staneks.de/css/giscus.css"
+        data-lang="de"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+        
+
+    </div>
+</body>
+
+</html>

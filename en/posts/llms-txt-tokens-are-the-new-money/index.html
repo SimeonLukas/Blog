@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="de">
+<html class="dark light">
+
+<head>
+    <link rel="help" type="text/markdown" href="/llms.txt">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         llms.txt - Tokens are the new Gold
+        
+    </title>
+
+    
+    
+    <meta name="description" content="How I built a dynamic llms.txt for my Zola blog via an RSS&#x2F;XML workaround — including Markdown links, Bash post-processing, and a bit of token frugality." />
+    
+    
+
+    
+    <meta property="og:image" content="https://simeon.staneks.de/en/posts/llms-txt-tokens-are-the-new-money//images/en/preview.jpg" />
+    <meta property="og:logo" content="https://simeon.staneks.de/en/posts/llms-txt-tokens-are-the-new-money//imagesen/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://simeon.staneks.de/en/posts/llms-txt-tokens-are-the-new-money/images/en/preview.jpg">
+    
+
+    
+    <meta property="og:title" content="llms.txt - Tokens are the new Gold" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="llms.txt - Tokens are the new Gold">
+    
+    
+
+    
+    
+    <meta property="og:description" content="How I built a dynamic llms.txt for my Zola blog via an RSS&#x2F;XML workaround — including Markdown links, Bash post-processing, and a bit of token frugality."/>
+    <!-- twitter description -->
+    <meta name="twitter:description" content="How I built a dynamic llms.txt for my Zola blog via an RSS&#x2F;XML workaround — including Markdown links, Bash post-processing, and a bit of token frugality.">
+    
+    
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;simeon.staneks.de"/>
+    <meta property="og:type" content="article" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Blog by Simeon" />
+
+
+    
+    
+    <link rel="icon" type="image/png" href=https:&#x2F;&#x2F;simeon.staneks.de&#x2F;android-chrome-512x512.png />
+    
+
+    
+    
+    <link href=https://simeon.staneks.de/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/codeblock.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/toc.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/note.js></script>
+    
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Blog by Simeon" href="https://simeon.staneks.de/ atom.xml">
+
+
+    
+    
+    <link rel="stylesheet" type="text/css" href=https://simeon.staneks.de/theme/light.css />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://simeon.staneks.de/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://simeon.staneks.de/js/themetoggle.js></script>
+    
+    <script>setTheme(getSavedTheme());</script>
+    
+    <script src=https://simeon.staneks.de/js/index.js></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://simeon.staneks.de/main.css />
+
+    
+</head>
+
+<body onload="updatelanguage()">
+    <div class="content">
+        <header>
+    <div class="main">
+        <div> <a id="navigation_start" href=https:&#x2F;&#x2F;simeon.staneks.de>Blog by Simeon </a> 
+            <p style="font-size: xx-small;">It&#x27;s better to start imperfectly than wait perfectly</p> 
+        </div>
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl" class="social mastodon">
+                <img alt=mastodon src=https://simeon.staneks.de/social_icons/mastodon.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;" class="social instagram">
+                <img alt=instagram src=https://simeon.staneks.de/social_icons/instagram.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas" class="social github">
+                <img alt=github src=https://simeon.staneks.de/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;buymeacoffee.com&#x2F;simeonlukas" class="social buy me a coffee">
+                <img alt=buy me a coffee src=https://simeon.staneks.de/social_icons/bmc-logo.svg>
+            </a>
+            
+            <a rel="me" href="&#x2F;rss.xml" class="social rss">
+                <img alt=rss src=https://simeon.staneks.de/social_icons/rss.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a class="navigation_lang &#x2F;posts" href=&#x2F;posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a class="navigation_lang &#x2F;pages" href=&#x2F;pages style="margin-left: 0.5em">&#x2F;pages</a>
+        
+        <a class="navigation_lang &#x2F;about" href=&#x2F;pages&#x2F;about style="margin-left: 0.5em">&#x2F;about</a>
+        
+        <a class="navigation_lang &#x2F;tags" href=&#x2F;tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://simeon.staneks.de/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+        <a id="language-toggle" onclick="toggleLanguage(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/globe.svg alt="Change Language" /><span style="font-size: xx-small;" id="language-name">de</span>
+        </a>
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <h1 class="page-header">
+        llms.txt - Tokens are the new Gold<span class="primary-color" style="font-size: 1.6em">.</span>
+    </h1>
+
+        </div>
+        How I built a dynamic llms.txt for my Zola blog via an RSS/XML workaround — including Markdown links, Bash post-processing, and a bit of token frugality.
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/llms-txt-tokens-are-the-new-money/#what-is-this-about">What is this about?</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/llms-txt-tokens-are-the-new-money/#why-not-just-use-a-static-file">Why not just use a static file?</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/llms-txt-tokens-are-the-new-money/#the-xml-detour-because-it-s-fun-and-i-can">The XML detour (because it&#x27;s fun and I can)</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/llms-txt-tokens-are-the-new-money/#why-i-link-to-markdown-files">Why I link to Markdown files</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/llms-txt-tokens-are-the-new-money/#the-llms-xml-itself">The llms.xml itself</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/llms-txt-tokens-are-the-new-money/#bash-fetching-and-a-bit-of-chaos">Bash, fetching, and a bit of chaos</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/llms-txt-tokens-are-the-new-money/#connecting-the-dots">Connecting the dots</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/llms-txt-tokens-are-the-new-money/#why-this-suddenly-matters-for-blogs">Why this suddenly matters for blogs</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/llms-txt-tokens-are-the-new-money/#a-conclusion-without-a-conclusion">A conclusion without a conclusion</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>It's honestly hard to decide whether I should write an article right now or play another round of Denshattack!, but after <a href="https://enthusiastic.dev/blog/dlr-besuch-oberpfaffenhofen/">J. published a really great post</a> (and actually on time), I guess I have to step up too.</p>
+<p>Over the past few weeks, I've written a couple of articles that all revolve around the same core idea:
+How do I build my own small infrastructure so that my models, my automations, and my blog posts don't just work—but actually feel good?</p>
+<p>But I never really stopped to think about how an LLM feels when it lands on my website. And it hit me—LLMs often have to chew through massive amounts of HTML just to get to the actual content. My dear Hermes, running locally, really struggled with that.</p>
+<p>So I decided to make things easier for them. At least on my blog, they should feel welcome.</p>
+<p>This is about a file that looks almost insignificant at first glance:</p>
+<p><code>/llms.txt</code></p>
+<p>But this file is a pretty direct continuation of everything I've written recently about Zola, RSS, automation, and "local AI."</p>
+<h2 id="what-is-this-about"><a class="zola-anchor" href="#what-is-this-about" aria-label="Anchor link for: what-is-this-about">What is this about?</a></h2>
+<p>The idea behind <code>llms.txt</code> is simple:</p>
+<ul>
+<li>A small Markdown file in the root of your website.</li>
+<li>It tells LLMs what actually matters on your site.</li>
+<li>It links to Markdown resources instead of HTML whenever possible.</li>
+<li>It saves tokens by avoiding unnecessary overhead.</li>
+</ul>
+<p>Instead of forcing a model to wade through navigation, footers, JavaScript, and layout noise, you give it a curated overview:
+"Here's the real content. Start here."</p>
+<p>If you're already building your own infrastructure—running local LLMs, generating feeds, processing posts automatically—then <code>llms.txt</code> is the next logical step:</p>
+<p>The bridge between your content and the models that consume it.</p>
+<h2 id="why-not-just-use-a-static-file"><a class="zola-anchor" href="#why-not-just-use-a-static-file" aria-label="Anchor link for: why-not-just-use-a-static-file">Why not just use a static file?</a></h2>
+<p>For static sites, this would be trivial: drop it in and you're done.</p>
+<p>But I wanted the file to stay dynamic:</p>
+<ul>
+<li>New posts should appear automatically.</li>
+<li>Old links shouldn't require manual updates.</li>
+<li>Multiple languages, audio versions, and Markdown copies should be included.</li>
+</ul>
+<p>That's where my beloved Rust-based Zola comes in (yes, it's written in Rust, which automatically makes it cool).</p>
+<p>I've been using Zola for a while now for everything related to content structure. The same templates I use for RSS feeds, preview images, and audio posts—I wanted to reuse them for <code>llms.txt</code>.</p>
+<p>The problem:
+Zola handles <code>.xml</code> templates (like RSS) very well, but <code>.txt</code> is a bit awkward because it doesn't follow the same rendering paths and logic.</p>
+<p>So… workaround time.</p>
+<h2 id="the-xml-detour-because-it-s-fun-and-i-can"><a class="zola-anchor" href="#the-xml-detour-because-it-s-fun-and-i-can" aria-label="Anchor link for: the-xml-detour-because-it-s-fun-and-i-can">The XML detour (because it's fun and I can)</a></h2>
+<p>The trick is simple:</p>
+<ol>
+<li>Zola renders an <code>llms.xml</code> using a feed template.</li>
+<li>A Bash script fetches that file locally.</li>
+<li>It then saves it as <code>llms.txt</code>.</li>
+<li>A small <code>sed</code> step replaces localhost URLs with the real domain.</li>
+</ol>
+<p>Is this the cleanest, most "professional" solution? Probably not.</p>
+<p>But it fits perfectly into my existing workflow. Just like everything else here: pragmatic, understandable, functional—and if it breaks, that's okay too.</p>
+<p>In the <code>&lt;head&gt;</code> section, I also added this:</p>
+<pre data-lang="html" style="background-color:#fafafa;color:#61676c;" class="language-html "><code class="language-html" data-lang="html"><span style="color:#55b4d490;">&lt;</span><span style="color:#399ee6;">link </span><span style="color:#f29718;">rel</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;help&quot; </span><span style="color:#f29718;">type</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;text/markdown&quot; </span><span style="color:#f29718;">href</span><span style="color:#61676ccc;">=</span><span style="color:#86b300;">&quot;/llms.txt&quot;</span><span style="color:#55b4d490;">&gt;
+</span></code></pre>
+<p><code>rel="help"</code> is meant for linked help resources, and <code>text/markdown</code> describes the file quite well. For LLMs and agents, it's a clear signal:
+"There's structured guidance about this site here."</p>
+<h2 id="why-i-link-to-markdown-files"><a class="zola-anchor" href="#why-i-link-to-markdown-files" aria-label="Anchor link for: why-i-link-to-markdown-files">Why I link to Markdown files</a></h2>
+<p>The more important part is where the links in <code>llms.txt</code> actually point.</p>
+<p>I don't link to the final HTML pages, but to additional copies of the Markdown files—<code>.md.txt</code> versions of my content.</p>
+<p>Why?</p>
+<ul>
+<li>HTML is great for humans, but unnecessarily large and noisy for models.</li>
+<li>Navigation, layout, CSS, JS, metadata—all of that costs tokens without improving the content.</li>
+<li>Markdown is much cleaner and easier for LLMs to process.</li>
+</ul>
+<p>So my deploy script copies every Markdown file as a <code>.md.txt</code>:</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f29718;">find</span><span> /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/content</span><span style="color:#ff8f40;"> -type</span><span> f</span><span style="color:#ff8f40;"> -name </span><span style="color:#86b300;">&quot;*.md&quot; </span><span style="color:#ed9366;">| </span><span style="color:#fa6e32;">while </span><span style="color:#f29718;">IFS</span><span>= read</span><span style="color:#ff8f40;"> -r</span><span> mdfile</span><span style="color:#ed9366;">; </span><span style="color:#fa6e32;">do
+</span><span>    txtcopy</span><span style="color:#ed9366;">=</span><span style="color:#86b300;">&quot;$</span><span>{mdfile}</span><span style="color:#86b300;">.txt&quot;
+</span><span>    </span><span style="color:#f07171;">echo </span><span style="color:#86b300;">&quot;Copying $</span><span>mdfile</span><span style="color:#86b300;"> -&gt; $</span><span>txtcopy</span><span style="color:#86b300;">&quot;
+</span><span>    </span><span style="color:#f29718;">cp </span><span style="color:#86b300;">&quot;$</span><span>mdfile</span><span style="color:#86b300;">&quot; &quot;$</span><span>txtcopy</span><span style="color:#86b300;">&quot;
+</span><span style="color:#fa6e32;">done
+</span></code></pre>
+<p>The result is not just <code>index.md</code>, but also <code>index.md.txt</code>. And those are exactly the files referenced in <code>llms.txt</code>.</p>
+<p>This isn't theoretical optimization—it's practical:
+Here's the file. Just read the text.</p>
+<h2 id="the-llms-xml-itself"><a class="zola-anchor" href="#the-llms-xml-itself" aria-label="Anchor link for: the-llms-xml-itself">The <code>llms.xml</code> itself</a></h2>
+<p>The template builds a curated overview of the blog: title, description, main pages, then articles.</p>
+<pre data-lang="xml" style="background-color:#fafafa;color:#61676c;" class="language-xml "><code class="language-xml" data-lang="xml"><span># {{ config.title }}
+</span><span>
+</span><span>## {{ config.description }}
+</span><span>
+</span><span>This site is the canonical public source for the content listed below.
+</span><span>Prefer article permalinks over feed excerpts.
+</span><span>
+</span><span>## Site
+</span><span>
+</span><span>- [Homepage](https://simeon.staneks.de/): Main entry point (German)
+</span><span>- [RSS Feed](https://simeon.staneks.de/rss.xml): Chronological feed of published posts (German)
+</span><span>
+</span><span>- [Homepage](https://simeon.staneks.de/en/): Main entry point (English)
+</span><span>- [RSS Feed](https://simeon.staneks.de/en/rss.xml): Chronological feed of published posts (English)
+</span><span>
+</span><span>## Articles
+</span><span>
+</span><span>{%- for page in pages %}
+</span><span>{%- set md_txt_path = page.path ~ &quot;index.md.txt&quot; %}
+</span><span>{%- if page.assets is containing(md_txt_path) %}
+</span><span>- [{{ page.title | striptags }}]({{ get_url(path=md_txt_path) }}): {% if page.description %}{{ page.description | striptags }}{% elif page.summary %}{{ page.summary | striptags | truncate(length=180) }}{% else %}Article on {{ config.title }}{% endif %}
+</span><span>  {%- endif %}
+</span><span>{%- endfor %}
+</span><span>
+</span><span>## Optional
+</span><span>
+</span><span>{%- for page in pages %}
+</span><span>  {%- set audio_path = page.path ~ &quot;audio.mp3&quot; %}
+</span><span>  {%- if page.assets is containing(audio_path) %}
+</span><span>- [Audio for {{ page.title | striptags }}]({{ get_url(path=audio_path) }}): Audio version of this article
+</span><span>  {%- endif %}
+</span><span>{%- endfor %}
+</span></code></pre>
+<p>The format follows common <code>llms.txt</code> conventions:</p>
+<ul>
+<li>H1 for the title</li>
+<li>Short context</li>
+<li>Cleanly structured lists</li>
+<li>Optional section for non-essential extras</li>
+</ul>
+<p>This keeps it readable for LLMs without turning it into a novel.</p>
+<h2 id="bash-fetching-and-a-bit-of-chaos"><a class="zola-anchor" href="#bash-fetching-and-a-bit-of-chaos" aria-label="Anchor link for: bash-fetching-and-a-bit-of-chaos">Bash, fetching, and a bit of chaos</a></h2>
+<p>Since the file must first be rendered by Zola, I fetch it via the local dev server and store it as a real <code>llms.txt</code> in the <code>static</code> directory:</p>
+<pre data-lang="bash" style="background-color:#fafafa;color:#61676c;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#f29718;">zola</span><span> serve</span><span style="color:#ff8f40;"> --port</span><span> 1234 </span><span style="color:#ed9366;">&amp;
+</span><span style="color:#f29718;">sleep</span><span> 5
+</span><span style="color:#f29718;">curl</span><span> http://localhost:1234/llms.xml</span><span style="color:#ff8f40;"> -o</span><span> /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/static/llms.txt
+</span><span style="color:#f29718;">sed</span><span style="color:#ff8f40;"> -i </span><span style="color:#86b300;">&#39;&#39; &#39;s|http://127.0.0.1:1234|https://simeon.staneks.de|g&#39;</span><span> /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog/static/llms.txt
+</span></code></pre>
+<p>Is it elegant? Not really.</p>
+<p>Is it fast, understandable, useful, and perfectly integrated into my workflow? Absolutely.</p>
+<p>The <code>sed</code> step is only needed because Zola uses localhost URLs in serve mode unless you explicitly configure a production base URL.</p>
+<p>Sure, this could be cleaner. But in practice, "good enough and stable" often beats a perfect solution that costs three more hours of architectural debate.</p>
+<h2 id="connecting-the-dots"><a class="zola-anchor" href="#connecting-the-dots" aria-label="Anchor link for: connecting-the-dots">Connecting the dots</a></h2>
+<p>If you've read my previous articles, you'll recognize the pattern:</p>
+<ul>
+<li>Zola handles posts, feeds, and preview images.</li>
+<li>Bash scripts process Markdown files.</li>
+<li>Audio versions are generated automatically.</li>
+<li>Local LLM infrastructure ties it all together.</li>
+</ul>
+<p><code>llms.txt</code> is just the next piece in that system:</p>
+<ul>
+<li>Posts become <code>.md.txt</code> files.</li>
+<li>Zola templates generate <code>llms.xml</code>.</li>
+<li>Both combine into a <code>llms.txt</code> that tells LLMs: "This is the content. Read it."</li>
+</ul>
+<h2 id="why-this-suddenly-matters-for-blogs"><a class="zola-anchor" href="#why-this-suddenly-matters-for-blogs" aria-label="Anchor link for: why-this-suddenly-matters-for-blogs">Why this suddenly matters for blogs</a></h2>
+<p>I think many people still underestimate how useful these small machine entry points will become.</p>
+<p><code>llms.txt</code> isn't magic, not a ranking hack, and not a shortcut into every model's "good side." But it is a clear signal:
+Here's the important stuff. Start here.</p>
+<p>And if you're already writing content meant to be processed by search systems, assistants, and agents, then it's only logical to structure it in a way that doesn't waste 80% of the token budget on navigation clutter, CSS decoration, and HTML leftovers.</p>
+<p>Markdown is almost the most polite way to communicate between humans and machines.</p>
+<p>Or put differently:</p>
+<p><code>llms.txt</code> is like a good espresso for models.
+Small, concentrated, no fluff—but effective.</p>
+<h2 id="a-conclusion-without-a-conclusion"><a class="zola-anchor" href="#a-conclusion-without-a-conclusion" aria-label="Anchor link for: a-conclusion-without-a-conclusion">A conclusion without a conclusion</a></h2>
+<p>What I like most about this approach is how grounded it is. No new framework, no overengineered platform idea—just Zola, an XML workaround, a Bash script, some post-processing, and in the end, a file that clearly communicates what the blog is actually about.</p>
+<p>And yeah, it really is like this:</p>
+<p>Tokens are the new gold.</p>
+<p>Not because everything should suddenly be written for machines—but because clean structure, clear links, and less noise almost always win. For parsers, for models, and honestly, often for humans too.</p>
+<p>Oh and actually here is the file: <a href="https://simeon.staneks.de/llms.txt">https://simeon.staneks.de/llms.txt</a></p>
+
+        </section>
+    </article>
+    <hr>
+    <br>
+    <div class="meta">
+        
+            <span class="date-label-posted">:: Posted on </span><time>2026-07-31</time>
+        
+
+        
+
+        
+
+        
+        
+                <span class="tags-label"> :: Tags:</span>
+                <span class="tags">
+                        <a href="https://simeon.staneks.de/tags/llms-txt/" class="post-tag">llms.txt</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/zola/" class="post-tag">zola</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/rss/" class="post-tag">rss</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/bash/" class="post-tag">bash</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/markdown/" class="post-tag">markdown</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/seo/" class="post-tag">seo</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/ai/" class="post-tag">ai</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/ohermes/" class="post-tag">ohermes</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/denshattack/" class="post-tag">denshattack!</a>
+                    
+                </span>
+        
+
+        
+       
+                
+     
+
+            
+                
+                :: <a href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;Blog&#x2F;tree&#x2F;main&#x2F;content&#x2F;posts&#x2F;llms-txt-tokens-are-the-new-money&#x2F;index.en.md" target="_blank" rel="noopener noreferrer"> Source Code</a>
+            
+
+        
+
+    </div>
+
+    
+    
+        
+    
+
+    
+        
+        
+        
+        
+            
+        
+            
+        
+            
+        
+            
+                
+            
+        
+
+        
+        
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
+            
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;llms-txt-tokens-are-the-new-money&#x2F;video&#x2F;llms-txt-tokens-are-the-new-money-en.mp4" onerror="this.parentElement.parentElement.style.display='none';" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+        </div>
+    
+
+
+
+</main>
+
+
+
+        
+            
+        
+
+        
+        <br>
+        <hr>
+        <div class="giscus" >
+        <script src="https://giscus.app/client.js"
+        data-repo="SimeonLukas/Blog"
+        data-repo-id="R_kgDONSw5PA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONSw5PM4CkoL8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https:&#x2F;&#x2F;simeon.staneks.de/css/giscus.css"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+        
+
+    </div>
+</body>
+
+</html>
