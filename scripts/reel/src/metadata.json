@@ -1,506 +1,429 @@
 {
   "audioUrl": [
-    "src/music/music00008.mp3"
+    "src/music/music00006.mp3"
   ],
   "images": [
     "src/images/reel.jpg"
   ],
   "words": [
     {
-      "word": "Ok",
+      "word": "I've",
       "start": 0,
-      "end": 0.36,
-      "confidence": "0.9196292",
-      "punctuated_word": "Ok"
+      "end": 0.52,
+      "confidence": "0.9975837",
+      "punctuated_word": "I've"
     },
     {
-      "word": "ich",
-      "start": 0.38,
-      "end": 0.82,
-      "confidence": "0.9693869",
-      "punctuated_word": "ich"
+      "word": "had",
+      "start": 0.54,
+      "end": 0.98,
+      "confidence": "0.9241186",
+      "punctuated_word": "had"
     },
     {
-      "word": "hatte",
-      "start": 0.84,
-      "end": 1.44,
-      "confidence": "0.9705148",
-      "punctuated_word": "hatte"
+      "word": "some",
+      "start": 1,
+      "end": 1.52,
+      "confidence": "0.9388075",
+      "punctuated_word": "some"
     },
     {
-      "word": "schon",
-      "start": 1.46,
-      "end": 2.06,
-      "confidence": "0.9353708",
-      "punctuated_word": "schon"
+      "word": "really",
+      "start": 1.54,
+      "end": 2.22,
+      "confidence": "0.9704452",
+      "punctuated_word": "really"
     },
     {
-      "word": "richtig",
-      "start": 2.08,
-      "end": 2.84,
-      "confidence": "0.9095106",
-      "punctuated_word": "richtig"
+      "word": "bad",
+      "start": 2.24,
+      "end": 2.68,
+      "confidence": "0.9110542",
+      "punctuated_word": "bad"
     },
     {
-      "word": "blöde",
-      "start": 2.86,
-      "end": 3.46,
-      "confidence": "0.9546375",
-      "punctuated_word": "blöde"
+      "word": "experiences",
+      "start": 2.7,
+      "end": 3.78,
+      "confidence": "0.9002910",
+      "punctuated_word": "experiences"
     },
     {
-      "word": "Erfahrungen",
-      "start": 3.48,
-      "end": 4.56,
-      "confidence": "0.9191557",
-      "punctuated_word": "Erfahrungen"
+      "word": "with",
+      "start": 3.8,
+      "end": 4.32,
+      "confidence": "0.9033826",
+      "punctuated_word": "with"
     },
     {
-      "word": "mit",
-      "start": 4.58,
-      "end": 5.02,
-      "confidence": "0.9079704",
-      "punctuated_word": "mit"
+      "word": "my",
+      "start": 4.34,
+      "end": 4.7,
+      "confidence": "0.9393069",
+      "punctuated_word": "my"
     },
     {
-      "word": "meinem",
-      "start": 5.04,
-      "end": 5.72,
-      "confidence": "0.9618440",
-      "punctuated_word": "meinem"
+      "word": "server",
+      "start": 4.72,
+      "end": 5.4,
+      "confidence": "0.9930194",
+      "punctuated_word": "server"
     },
     {
-      "word": "Server.",
-      "start": 5.74,
-      "end": 6.5,
-      "confidence": "0.9328824",
-      "punctuated_word": "Server."
+      "word": "in",
+      "start": 5.42,
+      "end": 5.78,
+      "confidence": "0.9195163",
+      "punctuated_word": "in"
     },
     {
-      "word": ".",
-      "start": 6.82,
-      "end": 7.1,
-      "confidence": "0.9978261",
-      "punctuated_word": "."
-    },
-    {
-      "word": ".",
-      "start": 7.42,
-      "end": 7.7,
-      "confidence": "0.9664737",
-      "punctuated_word": "."
+      "word": "general,",
+      "start": 5.8,
+      "end": 6.64,
+      "confidence": "0.9664399",
+      "punctuated_word": "general,"
     },
     {
       "word": "so",
-      "start": 8.02,
-      "end": 8.38,
-      "confidence": "0.9191355",
+      "start": 6.66,
+      "end": 7.02,
+      "confidence": "0.9863819",
       "punctuated_word": "so"
     },
     {
-      "word": "allgemein,",
-      "start": 8.4,
-      "end": 9.4,
-      "confidence": "0.9448259",
-      "punctuated_word": "allgemein,"
+      "word": "it's",
+      "start": 7.04,
+      "end": 7.56,
+      "confidence": "0.9154425",
+      "punctuated_word": "it's"
     },
     {
-      "word": "da",
-      "start": 9.42,
-      "end": 9.78,
-      "confidence": "0.9491453",
-      "punctuated_word": "da"
+      "word": "maybe",
+      "start": 7.58,
+      "end": 8.18,
+      "confidence": "0.9788057",
+      "punctuated_word": "maybe"
     },
     {
-      "word": "ist",
-      "start": 9.8,
-      "end": 10.24,
-      "confidence": "0.9239898",
-      "punctuated_word": "ist"
+      "word": "not",
+      "start": 8.2,
+      "end": 8.64,
+      "confidence": "0.9909725",
+      "punctuated_word": "not"
     },
     {
-      "word": "es",
-      "start": 10.26,
-      "end": 10.62,
-      "confidence": "0.9845766",
-      "punctuated_word": "es"
+      "word": "surprising",
+      "start": 8.66,
+      "end": 9.66,
+      "confidence": "0.9846010",
+      "punctuated_word": "surprising"
     },
     {
-      "word": "vielleicht",
-      "start": 10.64,
-      "end": 11.64,
-      "confidence": "0.9023817",
-      "punctuated_word": "vielleicht"
+      "word": "that",
+      "start": 9.68,
+      "end": 10.2,
+      "confidence": "0.9312060",
+      "punctuated_word": "that"
     },
     {
-      "word": "auch",
-      "start": 11.66,
-      "end": 12.18,
-      "confidence": "0.9338511",
-      "punctuated_word": "auch"
+      "word": "I",
+      "start": 10.22,
+      "end": 10.5,
+      "confidence": "0.9019518",
+      "punctuated_word": "I"
     },
     {
-      "word": "nicht",
-      "start": 12.2,
-      "end": 12.8,
-      "confidence": "0.9946800",
-      "punctuated_word": "nicht"
+      "word": "put",
+      "start": 10.52,
+      "end": 10.96,
+      "confidence": "0.9430956",
+      "punctuated_word": "put"
     },
     {
-      "word": "verwunderlich,",
-      "start": 12.82,
-      "end": 14.14,
-      "confidence": "0.9534618",
-      "punctuated_word": "verwunderlich,"
+      "word": "off",
+      "start": 10.98,
+      "end": 11.42,
+      "confidence": "0.9421999",
+      "punctuated_word": "off"
     },
     {
-      "word": "dass",
-      "start": 14.16,
-      "end": 14.68,
-      "confidence": "0.9971146",
-      "punctuated_word": "dass"
+      "word": "the",
+      "start": 11.44,
+      "end": 11.88,
+      "confidence": "0.9703116",
+      "punctuated_word": "the"
     },
     {
-      "word": "ich",
-      "start": 14.7,
-      "end": 15.14,
-      "confidence": "0.9316120",
-      "punctuated_word": "ich"
+      "word": "upgrade",
+      "start": 11.9,
+      "end": 12.66,
+      "confidence": "0.9928402",
+      "punctuated_word": "upgrade"
     },
     {
-      "word": "das",
-      "start": 15.16,
-      "end": 15.6,
-      "confidence": "0.9865325",
-      "punctuated_word": "das"
-    },
-    {
-      "word": "Upgrade",
-      "start": 15.62,
-      "end": 16.38,
-      "confidence": "0.9057463",
-      "punctuated_word": "Upgrade"
-    },
-    {
-      "word": "zu",
-      "start": 16.4,
-      "end": 16.76,
-      "confidence": "0.9883465",
-      "punctuated_word": "zu"
+      "word": "to",
+      "start": 12.68,
+      "end": 13.04,
+      "confidence": "0.9087202",
+      "punctuated_word": "to"
     },
     {
       "word": "PVE",
-      "start": 16.78,
-      "end": 17.22,
-      "confidence": "0.9489099",
+      "start": 13.06,
+      "end": 13.5,
+      "confidence": "0.9724189",
       "punctuated_word": "PVE"
     },
     {
       "word": "9.",
-      "start": 17.24,
-      "end": 17.6,
-      "confidence": "0.9605827",
+      "start": 13.52,
+      "end": 13.88,
+      "confidence": "0.9432295",
       "punctuated_word": "9."
     },
     {
-      "word": "0",
-      "start": 17.92,
-      "end": 18.2,
-      "confidence": "0.9254215",
-      "punctuated_word": "0"
+      "word": "0.",
+      "start": 14.2,
+      "end": 14.56,
+      "confidence": "0.9696220",
+      "punctuated_word": "0."
     },
     {
-      "word": "nicht",
-      "start": 18.22,
-      "end": 18.82,
-      "confidence": "0.9369815",
-      "punctuated_word": "nicht"
+      "word": "But",
+      "start": 14.88,
+      "end": 15.32,
+      "confidence": "0.9610130",
+      "punctuated_word": "But"
     },
     {
-      "word": "gemacht",
-      "start": 18.84,
-      "end": 19.6,
-      "confidence": "0.9654429",
-      "punctuated_word": "gemacht"
+      "word": "now",
+      "start": 15.34,
+      "end": 15.78,
+      "confidence": "0.9524654",
+      "punctuated_word": "now"
     },
     {
-      "word": "habe.",
-      "start": 19.62,
-      "end": 20.22,
-      "confidence": "0.9014469",
-      "punctuated_word": "habe."
+      "word": "the",
+      "start": 15.8,
+      "end": 16.24,
+      "confidence": "0.9880712",
+      "punctuated_word": "the"
     },
     {
-      "word": "Aber",
-      "start": 20.54,
-      "end": 21.06,
-      "confidence": "0.9926381",
-      "punctuated_word": "Aber"
+      "word": "time",
+      "start": 16.26,
+      "end": 16.78,
+      "confidence": "0.9751990",
+      "punctuated_word": "time"
     },
     {
-      "word": "jetzt",
-      "start": 21.08,
-      "end": 21.68,
-      "confidence": "0.9562195",
-      "punctuated_word": "jetzt"
+      "word": "has",
+      "start": 16.8,
+      "end": 17.24,
+      "confidence": "0.9883026",
+      "punctuated_word": "has"
     },
     {
-      "word": "ist",
-      "start": 21.7,
-      "end": 22.14,
-      "confidence": "0.9416515",
-      "punctuated_word": "ist"
+      "word": "come,",
+      "start": 17.26,
+      "end": 17.86,
+      "confidence": "0.9480332",
+      "punctuated_word": "come,"
     },
     {
-      "word": "es",
-      "start": 22.16,
-      "end": 22.52,
-      "confidence": "0.9753543",
-      "punctuated_word": "es"
+      "word": "and",
+      "start": 17.88,
+      "end": 18.32,
+      "confidence": "0.9073506",
+      "punctuated_word": "and"
     },
     {
-      "word": "soweit",
-      "start": 22.54,
-      "end": 23.22,
-      "confidence": "0.9754959",
-      "punctuated_word": "soweit"
+      "word": "I've",
+      "start": 18.34,
+      "end": 18.86,
+      "confidence": "0.9237796",
+      "punctuated_word": "I've"
     },
     {
-      "word": "und",
-      "start": 23.24,
-      "end": 23.68,
-      "confidence": "0.9865279",
-      "punctuated_word": "und"
+      "word": "taken",
+      "start": 18.88,
+      "end": 19.48,
+      "confidence": "0.9232599",
+      "punctuated_word": "taken"
     },
     {
-      "word": "ich",
-      "start": 23.7,
-      "end": 24.14,
-      "confidence": "0.9155081",
-      "punctuated_word": "ich"
+      "word": "the",
+      "start": 19.5,
+      "end": 19.94,
+      "confidence": "0.9038682",
+      "punctuated_word": "the"
     },
     {
-      "word": "habe",
-      "start": 24.16,
-      "end": 24.68,
-      "confidence": "0.9546263",
-      "punctuated_word": "habe"
+      "word": "time",
+      "start": 19.96,
+      "end": 20.48,
+      "confidence": "0.9793310",
+      "punctuated_word": "time"
     },
     {
-      "word": "mir",
-      "start": 24.7,
-      "end": 25.14,
-      "confidence": "0.9854842",
-      "punctuated_word": "mir"
+      "word": "to",
+      "start": 20.5,
+      "end": 20.86,
+      "confidence": "0.9502416",
+      "punctuated_word": "to"
     },
     {
-      "word": "mal",
-      "start": 25.16,
-      "end": 25.6,
-      "confidence": "0.9353032",
-      "punctuated_word": "mal"
+      "word": "document",
+      "start": 20.88,
+      "end": 21.72,
+      "confidence": "0.9763444",
+      "punctuated_word": "document"
     },
     {
-      "word": "die",
-      "start": 25.62,
-      "end": 26.06,
-      "confidence": "0.9377158",
-      "punctuated_word": "die"
+      "word": "my",
+      "start": 21.74,
+      "end": 22.1,
+      "confidence": "0.9595014",
+      "punctuated_word": "my"
     },
     {
-      "word": "Zeit",
-      "start": 26.08,
-      "end": 26.6,
-      "confidence": "0.9330450",
-      "punctuated_word": "Zeit"
+      "word": "setup",
+      "start": 22.12,
+      "end": 22.72,
+      "confidence": "0.9802847",
+      "punctuated_word": "setup"
     },
     {
-      "word": "genommen,",
-      "start": 26.62,
-      "end": 27.54,
-      "confidence": "0.9821813",
-      "punctuated_word": "genommen,"
+      "word": "and",
+      "start": 22.74,
+      "end": 23.18,
+      "confidence": "0.9758978",
+      "punctuated_word": "and"
     },
     {
-      "word": "um",
-      "start": 27.56,
-      "end": 27.92,
-      "confidence": "0.9287174",
-      "punctuated_word": "um"
+      "word": "show",
+      "start": 23.2,
+      "end": 23.72,
+      "confidence": "0.9995191",
+      "punctuated_word": "show"
     },
     {
-      "word": "mein",
-      "start": 27.94,
-      "end": 28.46,
-      "confidence": "0.9407353",
-      "punctuated_word": "mein"
+      "word": "how",
+      "start": 23.74,
+      "end": 24.18,
+      "confidence": "0.9759597",
+      "punctuated_word": "how"
     },
     {
-      "word": "Setup",
-      "start": 28.48,
-      "end": 29.08,
-      "confidence": "0.9843562",
-      "punctuated_word": "Setup"
+      "word": "I've",
+      "start": 24.2,
+      "end": 24.72,
+      "confidence": "0.9565176",
+      "punctuated_word": "I've"
     },
     {
-      "word": "zu",
-      "start": 29.1,
-      "end": 29.46,
-      "confidence": "0.9323205",
-      "punctuated_word": "zu"
+      "word": "built",
+      "start": 24.74,
+      "end": 25.34,
+      "confidence": "0.9475311",
+      "punctuated_word": "built"
     },
     {
-      "word": "dokumentieren",
-      "start": 29.48,
-      "end": 30.72,
-      "confidence": "0.9077302",
-      "punctuated_word": "dokumentieren"
+      "word": "my",
+      "start": 25.36,
+      "end": 25.72,
+      "confidence": "0.9141309",
+      "punctuated_word": "my"
     },
     {
-      "word": "und",
-      "start": 30.74,
-      "end": 31.18,
-      "confidence": "0.9165399",
-      "punctuated_word": "und"
-    },
-    {
-      "word": "zu",
-      "start": 31.2,
-      "end": 31.56,
-      "confidence": "0.9502414",
-      "punctuated_word": "zu"
-    },
-    {
-      "word": "zeigen,",
-      "start": 31.58,
-      "end": 32.34,
-      "confidence": "0.9084582",
-      "punctuated_word": "zeigen,"
-    },
-    {
-      "word": "wie",
-      "start": 32.36,
-      "end": 32.8,
-      "confidence": "0.9367013",
-      "punctuated_word": "wie"
-    },
-    {
-      "word": "ich",
-      "start": 32.82,
-      "end": 33.26,
-      "confidence": "0.9060818",
-      "punctuated_word": "ich"
-    },
-    {
-      "word": "meinen",
-      "start": 33.28,
-      "end": 33.96,
-      "confidence": "0.9149363",
-      "punctuated_word": "meinen"
-    },
-    {
-      "word": "Server",
-      "start": 33.98,
-      "end": 34.66,
-      "confidence": "0.9727822",
-      "punctuated_word": "Server"
-    },
-    {
-      "word": "aufgestellt",
-      "start": 34.68,
-      "end": 35.76,
-      "confidence": "0.9062715",
-      "punctuated_word": "aufgestellt"
-    },
-    {
-      "word": "habe.",
-      "start": 35.78,
-      "end": 36.38,
-      "confidence": "0.9376695",
-      "punctuated_word": "habe."
+      "word": "server.",
+      "start": 25.74,
+      "end": 26.5,
+      "confidence": "0.9795605",
+      "punctuated_word": "server."
     },
     {
       "word": "Schau",
-      "start": 36.7,
-      "end": 37.3,
-      "confidence": "0.9327469",
+      "start": 26.82,
+      "end": 27.42,
+      "confidence": "0.9403107",
       "punctuated_word": "Schau"
     },
     {
       "word": "auf",
-      "start": 37.32,
-      "end": 37.76,
-      "confidence": "0.9109010",
+      "start": 27.44,
+      "end": 27.88,
+      "confidence": "0.9796668",
       "punctuated_word": "auf"
     },
     {
       "word": "meinen",
-      "start": 37.78,
-      "end": 38.46,
-      "confidence": "0.9332543",
+      "start": 27.9,
+      "end": 28.58,
+      "confidence": "0.9257258",
       "punctuated_word": "meinen"
     },
     {
       "word": "Blog,",
-      "start": 38.48,
-      "end": 39.08,
-      "confidence": "0.9034868",
+      "start": 28.6,
+      "end": 29.2,
+      "confidence": "0.9596011",
       "punctuated_word": "Blog,"
     },
     {
       "word": "um",
-      "start": 39.1,
-      "end": 39.46,
-      "confidence": "0.9600994",
+      "start": 29.22,
+      "end": 29.58,
+      "confidence": "0.9401166",
       "punctuated_word": "um"
     },
     {
       "word": "mehr",
-      "start": 39.48,
-      "end": 40,
-      "confidence": "0.9391060",
+      "start": 29.6,
+      "end": 30.12,
+      "confidence": "0.9226768",
       "punctuated_word": "mehr"
     },
     {
       "word": "zu",
-      "start": 40.02,
-      "end": 40.38,
-      "confidence": "0.9904553",
+      "start": 30.14,
+      "end": 30.5,
+      "confidence": "0.9837531",
       "punctuated_word": "zu"
     },
     {
       "word": "erfahren.",
-      "start": 40.4,
-      "end": 41.32,
-      "confidence": "0.9615284",
+      "start": 30.52,
+      "end": 31.44,
+      "confidence": "0.9026165",
       "punctuated_word": "erfahren."
     },
     {
       "word": "Link",
-      "start": 41.64,
-      "end": 42.16,
-      "confidence": "0.9650360",
+      "start": 31.76,
+      "end": 32.28,
+      "confidence": "0.9412220",
       "punctuated_word": "Link"
     },
     {
       "word": "in",
-      "start": 42.18,
-      "end": 42.54,
-      "confidence": "0.9808275",
+      "start": 32.3,
+      "end": 32.66,
+      "confidence": "0.9889580",
       "punctuated_word": "in"
     },
     {
       "word": "der",
-      "start": 42.56,
-      "end": 43,
-      "confidence": "0.9973154",
+      "start": 32.68,
+      "end": 33.12,
+      "confidence": "0.9847083",
       "punctuated_word": "der"
     },
     {
       "word": "Bio.",
-      "start": 43.02,
-      "end": 43.54,
-      "confidence": "0.9325804",
+      "start": 33.14,
+      "end": 33.66,
+      "confidence": "0.9887437",
       "punctuated_word": "Bio."
     }
   ]
