@@ -3,7 +3,7 @@ title = "My €420 Steam Machine Lite: AWOW Mini-PC, Bazzite, EmuDeck, Heroic an
 date = 2026-02-28
 description = "How I built a Steam Machine Lite from an AWOW Mini Gaming PC with Ryzen 7 7840HS, 32 GB RAM and 1 TB SSD – using Bazzite, EmuDeck, Heroic, Citron and running Hogwarts Legacy in Full HD with Raytracing."
 [taxonomies]
-tags = ["gaming", "linux", "bazzite", "mini-pc", "awow", "ryzen-7-7840hs", "steam-machine", "emudeck", "heroic-games-launcher", "citron", "switch-emulation", "hogwarts-legacy", "zelda", "decky-loader", "budget-build", "steam"]
+tags = ["gaming", "awow", "bazzite", "budget-build", "citron", "decky-loader", "emudeck", "heroic-games-launcher", "hogwarts-legacy", "linux", "mini-pc", "ryzen-7-7840hs", "steam", "steam-machine", "switch-emulation", "zelda"]
 +++
 
 ## From eBay to the Final Boss: The AWOW Cube

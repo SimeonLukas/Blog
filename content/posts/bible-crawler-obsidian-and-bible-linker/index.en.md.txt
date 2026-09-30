@@ -3,7 +3,7 @@ title = "Bible Studies with Bible Crawler, Obsidian and Bible Linker"
 date = 2025-01-29
 description = "A program I wrote that downloads different Bible versions which can then be used in Obsidian. You can also use and work with the Bible versions as markdown files and convert them to other documents."
 [taxonomies]
-tags = ["software", "rust", "bible", "obsidian", "tutorial", "bible-linker", "markdown"]
+tags = ["tutorial", "software", "bibel-studien", "bible", "bible-linker", "markdown", "obsidian", "rust"]
 [extra]
 comment = true
 +++

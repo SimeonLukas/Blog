@@ -3,7 +3,7 @@ title = "bun run tauri dev - No AI Challenge"
 date = 2026-08-31 12:00:00+01:00
 description = "How my seasonal shift in interests left me with no appetite for an AI topic, so I'm indulging my new passion completely without AI - counting calories. A little glimpse into Tauri and cross-platform programming through a calorie tracker app."
 [taxonomies]
-tags = ["noai", "bun", "tauri", "javascript", "html", "css", "fitness", "kcal!" ,"selfmade"]
+tags = ["bun", "css", "html", "javascript", "noai", "selfmade", "tauri"]
 [extra]
 comment =  true
 +++

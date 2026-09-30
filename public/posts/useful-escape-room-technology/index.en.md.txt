@@ -3,7 +3,7 @@ title = "Useful Escape Room Technology: Rotary Phone as Input Device"
 date = 2025-05-28 22:59:00+01:00
 description = "In this article I describe how to use an old rotary phone as an input device for escape rooms. I explain the technical implementation, programming, and integration into an escape room concept. The article is aimed at technology enthusiasts and escape room aficionados."
 [taxonomies]
-tags = ["programmierung", "hardware", "arduino", "escape-room", "tutorial", "retro", "diy", "n8n", "esp8266"] 
+tags = ["tutorial", "hardware", "programmierung", "arduino", "diy", "escape-room", "esp8266", "n8n", "retro"]
 [extra]
 comment = true
 +++

@@ -3,7 +3,7 @@ title = "llms.txt - Tokens sind das neue Gold"
 date = 2026-07-31 12:00:00+01:00
 description = "Wie ich für mein Zola-Blog eine dynamische llms.txt über den RSS/XML-Weg gebaut habe – inklusive Markdown-Links, Bash-Postprocessing und ein bisschen Token-Geiz."
 [taxonomies]
-tags = ["llms.txt", "zola", "rss", "bash", "markdown", "seo", "ai", "ohermes" ,"denshattack!"]
+tags = ["ai", "bash", "llms.txt", "markdown", "ohermes", "rss", "seo", "zola"]
 [extra]
 comment =  true
 +++

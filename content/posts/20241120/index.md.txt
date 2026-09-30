@@ -5,8 +5,7 @@ date = "2024-11-20"
 template = "page.html"
 
 [taxonomies]
-tags = ["software", "hardware", "work", "html", "css", "javascript", "arduino", "raspberry-pi", "atmega32u4", "n8n", "php"]
-
+tags = ["hardware", "software", "arduino", "atmega32u4", "css", "html", "javascript", "n8n", "php", "raspberry-pi", "work"]
 [extra]
 image = "http://simeon.staneks.de/posts/20241120/images/screenshot.jpeg"
 comment = true

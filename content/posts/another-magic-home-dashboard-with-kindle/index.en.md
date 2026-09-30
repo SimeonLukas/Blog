@@ -3,7 +3,7 @@ title = "How a 2011 Kindle Became My Home's Pip-Boy"
 date = 2025-09-01 12:00:00+01:00
 description = "Technology... technology never changes! - or does it? How I created a smart home dashboard on an old jailbroken Kindle 4 Touch using HTML, PHP, CSS, and JavaScript. A simple tutorial from jailbreaking to the finished dashboard."
 [taxonomies]
-tags = ["programming", "javascript", "php", "html", "css", "smarthome", "dashboard", "tutorial", "kindle", "software", "jailbreak"]
+tags = ["tutorial", "smart-home", "software", "programmierung", "css", "dashboard", "html", "jailbreak", "javascript", "kindle", "php"]
 [extra]
 comment = true
 +++

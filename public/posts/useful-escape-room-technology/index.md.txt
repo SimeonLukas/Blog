@@ -3,7 +3,7 @@ title = "Nützliche Escape Room Technik: Drehscheibentelefon als Eingabegerät"
 date = 2025-05-28 22:59:00+01:00
 description = "In diesem Artikel beschreibe ich wie man ein altes Drehscheibentelefon als Eingabegerät für Escape Rooms nutzen kann. Ich erkläre die technische Umsetzung, die Programmierung und die Integration in ein Escape Room Konzept. Der Artikel richtet sich an Technikbegeisterte und Escape Room Enthusiasten."
 [taxonomies]
-tags = ["programmierung", "hardware", "arduino", "escape-room", "tutorial", "retro", "diy", "n8n", "esp8266"] 
+tags = ["tutorial", "hardware", "programmierung", "arduino", "diy", "escape-room", "esp8266", "n8n", "retro"]
 [extra]
 comment =  true
 +++

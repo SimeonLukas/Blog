@@ -3,7 +3,7 @@ title = "20 Euro Multiroom – Squeezebox, Raspberry Pi und ein Server, den Logi
 date = 2026-04-30T12:00:00+01:00
 description = "Wie man sich mit gebrauchten Squeezeboxen, einem Raspberry Pi und dem selbst gehosteten Lyrion Music Server auf Proxmox eine erstklassige Multiroom-Anlage für kleines Geld baut – und warum ein Raspberry Pi in einer Porzellanschüssel manchmal die beste Lösung ist."
 [taxonomies]
-tags = ["squeezebox", "multiroom", "lyrion", "logitech", "raspberry-pi", "proxmox", "docker", "self-hosted", "music", "home-network", "picoreplayer", "mystrom"]
+tags = ["docker", "home-network", "logitech", "lyrion", "multiroom", "music", "mystrom", "picoreplayer", "proxmox", "raspberry-pi", "self-hosted", "squeezebox"]
 [extra]
 comment = true
 +++

@@ -3,7 +3,7 @@ title = "Der ATmega32u4 und die Arduino IDE: Eine Offenbarung mit ein bisschen F
 date = 2024-11-24
 description = "Ich erkläre dir in diesem Artikel, wie du den ATmega32u4-Mikrocontroller mit der Arduino IDE programmierst. Wir gehen Schritt für Schritt durch die Installation, Konfiguration und den Einsatz des ATmega32u4 und zeigen, wie du ihn für deine Projekte nutzen kannst. Dieser Leitfaden richtet sich an Anfänger und Fortgeschrittene, die eine effiziente und flexible Lösung für ihre Mikrocontroller-Projekte suchen."
 [taxonomies]
-tags = ["software", "hardware", "arduino", "atmega32u4" ,"tutorial"]
+tags = ["tutorial", "hardware", "software", "arduino", "atmega32u4"]
 [extra]
 image = "https://simeon.staneks.de/posts/20241124/images/foto00001.jpeg"
 comment =  true

@@ -3,7 +3,7 @@ title = "Paperless Work with Obsidian, EPUBs and E-Book Readers"
 date = 2025-03-31 22:59:00+01:00
 description = "Insights into my paperless workflow with Obsidian, EPUBs and e-book readers. Tips on using Obsidian for notes and creating EPUBs from Markdown files. Introduction to my use of EPUBs and e-book readers for paperless work."
 [taxonomies]
-tags = ["programmierung", "obsidian", "markdown", "php", "epub", "docker", "software", "typescript", "pocketbook", "ebook-reader", "ebook", "epub-creator", "md2epub"] 
+tags = ["software", "programmierung", "docker", "ebook", "ebook-reader", "epub", "epub-creator", "markdown", "md2epub", "obsidian", "php", "pocketbook", "typescript"]
 [extra]
 comment =  true
 +++

@@ -4,8 +4,7 @@ date = 2026-06-30 12:00:00+01:00
 description = "This rabbit hole runs deep, deeper than I thought. I dove into the world of local AI assistants and made some interesting discoveries along the way. In this article I share my experiences, the challenges, and the possibilities that did - and didn't - open up for me."
 
 [taxonomies]
-tags = ["ai", "local-ai", "hermes", "qwen3.6", "gemma4", "ai-generated", "locale-ai"]
-
+tags = ["ai", "ai-generated", "gemma4", "hermes", "local-ai", "qwen3.6"]
 [extra]
 comment =  true
 +++

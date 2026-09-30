@@ -3,7 +3,7 @@ title = "Und schon wieder ein Dashboard: Ipad Air Gen1 - Cheap and Funny"
 date = 2025-10-30 12:00:00+01:00
 description = "Ja ich weiß, schon wieder ein Dashboard. Aber dieses Mal mit einem iPad Air der ersten Generation. Warum? Weil es günstig ist, Spaß macht und perfekt für mein Smart Home Setup geeignet ist. Im Grunde ist es das Display für mein Dashboard im vorherigen Artikel"
 [taxonomies]
-tags = ["programming", "javascript", "cordova", "html", "css", "smarthome", "dashboard", "tutorial", "kindle", "software", "ipad"] 
+tags = ["tutorial", "smart-home", "software", "programmierung", "cordova", "css", "dashboard", "html", "ipad", "javascript", "kindle"]
 [extra]
 comment =  true
 +++

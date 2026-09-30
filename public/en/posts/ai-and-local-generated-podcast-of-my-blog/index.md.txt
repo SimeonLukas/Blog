@@ -4,8 +4,7 @@ date = 2026-05-31 12:00:00+01:00
 description = "Absurd, was alles lokal mit KI möglich ist. In diesem Beitrag teile ich meine Erfahrungen mit der Erstellung eines KI-generierten Podcasts, der komplett lokal auf meinem Computer läuft, ohne dass eine Internetverbindung erforderlich ist. Ich verwende das qwen3-TTS-Modell von Alibaba und gemma4 von Google, um meine Blogbeiträge in Audio umzuwandeln, und es ist erstaunlich, wie gut die Ergebnisse sind."
 
 [taxonomies]
-tags = ["ai", "local-ai", "podcast", "qwen3", "gemma4", "text-to-speech", "TTS", "ai-generated", "locale-ai"]
-
+tags = ["ai", "ai-generated", "gemma4", "local-ai", "podcast", "qwen3", "text-to-speech"]
 [extra]
 comment =  true
 +++

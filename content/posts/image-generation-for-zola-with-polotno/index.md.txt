@@ -3,7 +3,7 @@ title = "Automatische Cover-Bildgenerierung für Zola-Blogs mit Bun, TypeScript 
 date = 2025-02-27
 description = "Ein Script, das aus den Metadaten von Blogbeiträgen automatisch verschiedene Bilder für verschiedene Plattformen generiert - mit einheitlichem Design, aber individuellen Elementen basierend auf dem Inhalt des jeweiligen Artikels."
 [taxonomies]
-tags = ["programmierung", "zola", "typescript", "polotno", "bun", "automatisierung", "bloggen", "rss", "bildgenerierung"] 
+tags = ["automatisierung", "bloggen", "programmierung", "bildgenerierung", "bun", "polotno", "rss", "typescript", "zola"]
 [extra]
 comment =  true
 +++

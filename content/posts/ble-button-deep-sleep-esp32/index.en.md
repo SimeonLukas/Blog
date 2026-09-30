@@ -4,8 +4,7 @@ date = 2025-11-19 12:00:00+01:00
 description = "A power-efficient Bluetooth button for the tourism wheel of fortune - with Deep Sleep, Bonding, and months of battery life. From failures, debugging sessions, and the final breakthrough."
 
 [taxonomies]
-tags = ["ESP32S3", "BLE", "Deep Sleep", "Hardware", "IoT", "Tourismuspastoral","ESP32C3"]
-
+tags = ["hardware", "ble", "deep-sleep", "esp32c3", "esp32s3", "iot", "tourismuspastoral"]
 [extra]
 comment = true
 +++

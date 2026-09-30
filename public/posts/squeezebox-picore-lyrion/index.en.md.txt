@@ -3,7 +3,7 @@ title = "€20 Multiroom – Squeezebox, Raspberry Pi, and a Server Logitech Aba
 date = 2026-04-30T12:00:00+01:00
 description = "How to build a first-class multiroom audio system on a budget using second-hand Squeezeboxes, a Raspberry Pi, and a self-hosted Lyrion Music Server on Proxmox – and why a Raspberry Pi inside a porcelain bowl is sometimes the best solution."
 [taxonomies]
-tags = ["squeezebox", "multiroom", "lyrion", "logitech", "raspberry-pi", "proxmox", "docker", "self-hosted", "music", "home-network", "picoreplayer", "mystrom"]
+tags = ["docker", "home-network", "logitech", "lyrion", "multiroom", "music", "mystrom", "picoreplayer", "proxmox", "raspberry-pi", "self-hosted", "squeezebox"]
 [extra]
 comment = true
 +++

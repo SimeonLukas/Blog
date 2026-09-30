@@ -4,7 +4,7 @@ date = 2024-11-24
 description = "In this article, I will provide you with a detailed introduction to the ATmega32u4 microcontroller and its programming with the Arduino IDE. We will go through the installation, configuration, and usage of the ATmega32u4 step by step and show you how to use this microcontroller for various projects. This guide is aimed at beginners and advanced users looking for an efficient and flexible solution for their microcontroller projects."
 
 [taxonomies]
-tags = ["software", "hardware", "arduino", "atmega32u4", "tutorial"]
+tags = ["tutorial", "hardware", "software", "arduino", "atmega32u4"]
 [extra]
 image = "https://simeon.staneks.de/posts/20241124/images/foto00001.jpeg"
 comment =  true

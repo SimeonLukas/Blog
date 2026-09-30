@@ -3,7 +3,7 @@ title = "Zola: The Holy Grail of Static Site Generators"
 date = 2024-12-16
 description = "In this article, I will provide you with a detailed introduction to the Static-Site-Generator (SSG) Zola and the use of Github Pages. We will go through the installation, configuration, and usage of Zola step by step and show you how you can easily host your created pages on Github Pages."
 [taxonomies]
-tags = ["software", "html", "css", "javascript", "zola", "github-pages", "tutorial"]
+tags = ["tutorial", "software", "css", "github-pages", "html", "javascript", "rust", "zola"]
 [extra]
 image = "https://simeon.staneks.de/posts/zola-the-holy-grail-of-ssg/images/zola00001.jpg"
 comment =  true

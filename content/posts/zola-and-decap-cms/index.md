@@ -4,7 +4,7 @@ date = 2025-01-01
 description = "Decap CMS ist ein einfaches Contentmanagment System, das Content in einem Git-Repository verwalten kann. In diesem Artikel möchte ich zeigen, dass sich dieses System einfach mit Zola kombinieren lässt"
 draft = true
 [taxonomies]
-tags = ["software", "git", "yml", "javascript", "zola" ,"tutorial","hosting", "cms"]
+tags = ["tutorial", "software", "cms", "git", "hosting", "javascript", "yml", "zola"]
 [extra]
 image = "https://simeon.staneks.de/posts/20241125/images/zola00001.png"
 comment =  true

@@ -3,7 +3,7 @@ title = "Rate my Setup - Proxmox"
 date = 2026-09-30 12:00:00+01:00
 description = "Ok ich hatte schon richtig blöde Erfahrungen mit meinem Server...so allgemein, da ist es vielleicht auch nicht verwunderlich, dass ich das Upgrade zu PVE 9.0 nicht gemacht habe. Aber jetzt ist es soweit und ich habe mir mal die Zeit genommen, um mein Setup zu dokumentieren und zu zeigen, wie ich meinen Server aufgestellt habe."
 [taxonomies]
-tags = ["vm", "shell", "homelab", "lxc", "pve" ,"selfmade"]
+tags = ["homelab", "lxc", "pve", "selfmade", "shell", "vm"]
 [extra]
 comment =  true
 +++

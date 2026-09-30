@@ -3,7 +3,7 @@ title = "Gameboy Games for Educational and Pastoral Work"
 date = 2025-04-30 22:59:00+01:00
 description = "Gamification in education and pastoral work: How using Gameboy games in education and pastoral work can increase intrinsic motivation. Insights into the use of Gameboy games in education and pastoral work. With tutorial for creating Gameboy games using GB Studio."
 [taxonomies]
-tags = ["programmierung", "gb-studio", "javascript", "nintendo", "gameboy", "rom", "software", "games", "levels", "sprites", "story", "emulator", "pastoral", "bildung", "gamefication", "education"] 
+tags = ["software", "programmierung", "bildung", "education", "emulator", "gameboy", "gamefication", "games", "gb-studio", "javascript", "levels", "nintendo", "pastoral", "rom", "sprites", "story"]
 [extra]
 comment =  true
 +++

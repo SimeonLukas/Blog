@@ -3,7 +3,7 @@ title = "Wie ein Kindle aus dem Jahr 2011 mein Pip-Boy fürs Home wurde"
 date = 2025-09-01 12:00:00+01:00
 description = "Technik... Technik bleibt immer gliech - oder? Wie ich mit HTML, PHP, CSS und JavaScript ein Smart Home Dashboard auf einem alten jailbroken Kindle 4 Touch realisierte. Ein leichtes Tutorial vom Jailbreaken bis zum fertigen Dashboard."
 [taxonomies]
-tags = ["programming", "javascript", "php", "html", "css", "smarthome", "dashboard", "tutorial", "kindle", "software", "jailbreak"] 
+tags = ["tutorial", "smart-home", "software", "programmierung", "css", "dashboard", "html", "jailbreak", "javascript", "kindle", "php"]
 [extra]
 comment =  true
 +++

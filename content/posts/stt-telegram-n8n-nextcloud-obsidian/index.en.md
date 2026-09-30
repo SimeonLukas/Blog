@@ -3,7 +3,7 @@ title = "I Speak, Obsidian Writes – Voice Memos via Telegram, Whisper & n8n"
 date = 2026-03-29T12:00:00+01:00
 description = "How I use a Telegram bot, a local Whisper server, n8n and Nextcloud to automatically beam my spoken thoughts into my Obsidian vault as Markdown memos."
 [taxonomies]
-tags = ["n8n", "whisper", "telegram", "obsidian", "nextcloud", "docker", "automation", "self-hosted", "voice", "productivity"]
+tags = ["produktivitaet", "automatisierung", "docker", "n8n", "nextcloud", "obsidian", "self-hosted", "telegram", "whisper"]
 [extra]
 comment = true
 +++

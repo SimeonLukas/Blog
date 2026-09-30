@@ -3,7 +3,7 @@ title = "Backup: Günstig und einfach mit Hetzner-Storagebox und restic"
 date = 2025-07-28 22:59:00+01:00
 description = "Wenn es um Backups geht, sollte man nie zu lang warten. Dieser Artikel beschreibt kurz, wie eine meiner Backuplösungen aussieht. Ich nutze eine Hetzner-Storagebox und das Tool restic, um meine Daten zu sichern. Das Ganze ist einfach, günstig und funktioniert zuverlässig."
 [taxonomies]
-tags = ["programming", "hetzner", "bash", "backup", "tutorial", "restic", "rclone", "n8n", "sftp"] 
+tags = ["tutorial", "programmierung", "backup", "bash", "hetzner", "n8n", "rclone", "restic", "sftp"]
 [extra]
 comment =  true
 +++

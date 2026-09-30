@@ -4,8 +4,7 @@ date = 2026-01-31 12:00:00+01:00
 description = "Meine ersten Erfahrungen mit meinem eigenen 3D-Drucker, den Herausforderungen und unnötigen Abenteuern in der Welt des 3D-Drucks, bis hin zu tatsächlich praktischen Drucken."
 
 [taxonomies]
-tags = ["diy", "3d-printing", "bambu-lab", "hardware", "projekt", "printer", "rabbit-hole", "endurance", "P1S", "filament"]
-
+tags = ["hardware", "3d-printing", "bambu-lab", "diy", "filament", "p1s", "printer", "projekt"]
 [extra]
 comment =  true
 

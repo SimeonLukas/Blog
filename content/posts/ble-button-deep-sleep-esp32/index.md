@@ -4,8 +4,7 @@ date = 2025-11-19 12:00:00+01:00
 description = "Ein stromsparender Bluetooth-Button für das Tourismus-Glücksrad - mit Deep Sleep, Bonding und monatelanger Batterielebensdauer. Von Fehlschlägen, Debugging-Sessions und dem finalen Durchbruch."
 
 [taxonomies]
-tags = ["ESP32S3", "BLE", "Deep Sleep", "Hardware", "IoT", "Tourismuspastoral","ESP32C3"]
-
+tags = ["hardware", "ble", "deep-sleep", "esp32c3", "esp32s3", "iot", "tourismuspastoral"]
 [extra]
 comment = true
 +++
