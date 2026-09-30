@@ -14,6 +14,7 @@ Prefer article permalinks over feed excerpts.
 - [RSS Feed](https://simeon.staneks.de/en/rss.xml): Chronological feed of published posts (English)
 
 ## Articles
+- [Rate my Setup - Proxmox](https://simeon.staneks.de/posts/rate-my-setup/index.md.txt): Ok ich hatte schon richtig blöde Erfahrungen mit meinem Server...so allgemein, da ist es vielleicht auch nicht verwunderlich, dass ich das Upgrade zu PVE 9.0 nicht gemacht habe. Aber jetzt ist es soweit und ich habe mir mal die Zeit genommen, um mein Setup zu dokumentieren und zu zeigen, wie ich meinen Server aufgestellt habe.
 - [ bun run tauri dev - No AI Challenge](https://simeon.staneks.de/posts/bun-run-tauri-dev/index.md.txt): Wie ich durch meine saisonale Intressensverschiebung keine Lust auf ein KI Thema habe und deshalb völlig ohne KI meiner neuen Leidenschaft fröhne - Kalorienzählen. Ein kleiner Einblick in Tauri und die Crossplatform Programmierung von einer Kalorientracker App.
 - [llms.txt - Tokens sind das neue Gold](https://simeon.staneks.de/posts/llms-txt-tokens-are-the-new-money/index.md.txt): Wie ich für mein Zola-Blog eine dynamische llms.txt über den RSS&#x2F;XML-Weg gebaut habe – inklusive Markdown-Links, Bash-Postprocessing und ein bisschen Token-Geiz.
 - [Oh Hermes, what a mess! - Mein LOKALER KI-Assistent](https://simeon.staneks.de/posts/oh-hermes-what-a-mess/index.md.txt): Dieser Kaninchenbau ist tief, tiefer als ich dachte. Ich habe mich in die Welt der lokalen KI-Assistenten gestürzt und dabei einige interessante Entdeckungen gemacht. In diesem Artikel teile ich meine Erfahrungen, die Herausforderungen und die Möglichkeiten, die sich mir eröffnet bzw. nicht eröffnet haben.
@@ -42,6 +43,7 @@ Prefer article permalinks over feed excerpts.
 - [Digitales Glücksrad: Lustiger Firlefanz für die Tourismuspastoral](https://simeon.staneks.de/posts/20241120/index.md.txt): Ich stelle dir in diesem Artikel ein digitales Glücksrad vor, das ich für die Veranstaltungen der Tourismuspastoral im Werdenfelser Land und die Tourismuspastoral der Erzdiözese München und Freising entwickelt habe. Wir werden die Idee, die technische Umsetzung und die Nutzung des Glücksrads Schritt für Schritt durchgehen und zeigen, wie es bei verschiedenen Veranstaltungen eingesetzt werden kann. Dieser Leitfaden richtet sich an alle, die nach kreativen und interaktiven Lösungen für ihre Events suchen.
 
 ## Optional
+- [Audio for  bun run tauri dev - No AI Challenge](https://simeon.staneks.de/posts/bun-run-tauri-dev/audio.mp3): Audio version of this article
 - [Audio for llms.txt - Tokens sind das neue Gold](https://simeon.staneks.de/posts/llms-txt-tokens-are-the-new-money/audio.mp3): Audio version of this article
 - [Audio for Oh Hermes, what a mess! - Mein LOKALER KI-Assistent](https://simeon.staneks.de/posts/oh-hermes-what-a-mess/audio.mp3): Audio version of this article
 - [Audio for Mein persönlicher KI-generierter Podcast - Lokale KI-Modelle und qwen3-TTS](https://simeon.staneks.de/posts/ai-and-local-generated-podcast-of-my-blog/audio.mp3): Audio version of this article

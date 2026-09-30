@@ -1,0 +1,1 @@
+ Ok ich hatte schon richtig blöde Erfahrungen mit meinem Server...so allgemein, da ist es vielleicht auch nicht verwunderlich, dass ich das Upgrade zu PVE 9.0 nicht gemacht habe. Aber jetzt ist es soweit und ich habe mir mal die Zeit genommen, um mein Setup zu dokumentieren und zu zeigen, wie ich meinen Server aufgestellt habe. 
