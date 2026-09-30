@@ -1,0 +1,19 @@
+ Stell dir vor, ich stehe auf dem Spielplatz. Wir unterhalten uns über die Musik von Kings of Convenience, über das Album Versus und über dieses Gefühl, wenn Musik wehtut, weil man jung und noch etwas unfertig ist. Und dann ist der Moment plötzlich weg. Die Kinder rufen, man geht nach Hause und diese kostbare Erinnerung bleibt einfach auf der Strecke.
+
+Nicht mehr, denn ich hab mir da was gebaut. Ich hol einfach mein Handy raus, öffne Telegram, drücke auf Aufnahme und der Rest läuft von alleine. Ich nutze Obsidian als mein zweites Gehirn, aber im Grunde nützt das ja nichts, wenn man zu faul ist, es zu füttern. Am Spielplatz zu tippen oder eine App zu öffnen und Markdown zu formatieren, war mir einfach zu mühsam. Ich bin jemand, der spricht, also musste die Lösung auch mit Sprache funktionieren.
+
+Die Idee ist simpel: Ich schicke eine Sprachnachricht an einen Telegram Bot und das Ergebnis landet automatisch als Datei in meinem Obsidian Vault, dank Nextcloud Synchronisation. Ich zeig dir heute mal, wie das genau funktioniert.
+
+Die Zutaten sind ein Telegram Bot als Mikrofon, n8n als der Kleber, der alles zusammenhält, ein lokaler Whisper Server für die Transkription, Nextcloud als Speicher und natürlich Obsidian als Endlager. Das Beste ist, dass alles zu Hause läuft, also kein Abo und keine Datenschutzbedenken.
+
+Zuerst habe ich Whisper lokal aufgesetzt. Ich nutze dafür ein Docker Image, das auf normaler Hardware läuft. Ich hab da ein kleines Beispiel vorbereitet, wie die Konfiguration aussieht. Im Grunde wird ein Container gestartet, der das Modell faster whisper small nutzt. Das ist der ideale Mittelweg, weil es klein genug für ältere Hardware ist, aber Deutsch trotzdem super versteht. Alles läuft offline über eine Schnittstelle, die mit der OpenAI API kompatibel ist.
+
+Dann kommt der n8n Workflow ins Spiel. Der hat genau sechs Schritte. Zuerst wartet ein Trigger auf eine Sprachnachricht vom Bot. Dann wird die eigentliche Audio Datei über die Telegram API heruntergeladen. Im nächsten Schritt geht ein Request an meinen lokalen Whisper Server, der mir den transkribierten Text als Antwort schickt. 
+
+Weil Whisper das Wort Hashtag manchmal wörtlich ausschreibt, habe ich ein kleines JavaScript eingebaut, das diese Wörter automatisch in echte Rauten Zeichen umwandelt. So kann ich in Obsidian später direkt über die Tags suchen. Danach werden zwei Dinge parallel zu Nextcloud hochgeladen: eine Markdown Datei mit dem Text und dem aktuellen Datum sowie die Original Audio Datei zum Nachhören. Zum Schluss schickt mir der Workflow den Text zurück an Telegram, damit ich prüfen kann, ob alles richtig verstanden wurde.
+
+Das Ganze funktioniert reibungslos, weil Nextcloud den Ordner direkt mit Obsidian synchronisiert. Ich muss also nichts mehr händisch formatieren.
+
+Ein Freund von mir, J., hatte mir zwar ein noch schnelleres Modell von NVIDIA vorgeschlagen, aber das Problem war das Dateiformat von Telegram. Whisper hingegen schluckt die Audio Dateien ohne Probleme.
+
+So kann ich jetzt einfach sprechen und meine Gedanken sicher verwahren, ohne dass ein einziger Drittanbieter mitliest. Das war es erst mal mit meinem Setup, ich hoffe es inspiriert euch.

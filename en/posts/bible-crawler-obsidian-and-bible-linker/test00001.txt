@@ -1,0 +1,15 @@
+ Also, ich muss euch mal was erzählen. Vor einiger Zeit hatte ich das Problem, dass ich meine Bibelstudien digitaler und effizienter gestalten wollte. Und genau da setzt mein Projekt an.
+
+Ich habe ein Tool entwickelt, das im Grunde die Lücke schließt, wenn man Bibeltexte in einem Programm wie Obsidian nutzen möchte. In Deutschland ist es ja oft schwierig, an strukturierte Daten zu kommen, deshalb habe ich mich entschieden, ein eigenes Programm zu schreiben, das die Texte von Webseiten abruft.
+
+Das Ganze funktioniert so, dass das Programm die Texte von verschiedenen Quellen herunterlädt und sie dann in einer Struktur speichert, die man direkt in Obsidian importieren kann. Aber jetzt kommt der wichtige Teil: Ich habe das Tool so gebaut, dass es nicht nur einfach Texte kopiert, sondern sie in Form von Markdown-Dateien organisiert. Das bedeutet, jeder Vers bekommt seinen eigenen Platz, und man kann sie wunderbar mit anderen Notizen verknüpfen.
+
+Wenn man das Programm startet, kann man auswählen, welche Übersetzung man eigentlich herunterladen möchte. Ich habe mich auf Versionen konzentriert, die gut verfügbar sind, und das Tool kümmert sich dann im Hintergrund darum, die Seiten systematisch abzuarbeiten.
+
+Ein richtig cooler Aspekt ist die Integration in Obsidian. Da ich die Daten als einzelne Markdown-Dateien speichere, kann ich in meinen Notizen ganz einfach auf bestimmte Verse verlinken. Ich muss also nicht mehr mühsam suchen, sondern schreibe einfach den Verweis, und zack – ich bin direkt beim Text. Das macht das Studium der Bibel so viel dynamischer, weil man so ein echtes Wissensnetz aufbauen kann.
+
+Für alle, die das selbst ausprobieren wollen, habe ich den Code auf GitHub bereitgestellt. Dort findet ihr auch eine Anleitung, wie ihr die Abhängigkeiten installiert und das Skript startet. Im Grunde braucht ihr nur Python, und dann könnt ihr die gewünschten Texte in euer Obsidian-Vault laden.
+
+Zusammenfassend lässt sich sagen, dass dieses Tool meine Arbeitsweise komplett verändert hat. Es ist ein riesiger Zeitgewinn und macht das digitale Arbeiten mit biblischen Texten erst so richtig möglich. Schaut euch das Projekt gerne mal an, wenn ihr auch ein Fan von Obsidian seid und eure theologischen Notizen auf das nächste Level heben wollt.
+
+Das war's erst mal von mir zu diesem Thema, ich hoffe, es hilft euch bei euren eigenen Projekten weiter.

@@ -1,0 +1,65 @@
+Hey, willkommen zurück zu meinem Podcast. Schön, dass du wieder eingeschaltet hast.
+
+Heute wird's anders. Denn normalerweise geht's hier ja ziemlich oft um KI. Um Sprachmodelle, um lokale LLMs, um irgendwelche Automatisierungen, die ich mir mit n8n zusammengebaut habe. Aber heute rede ich über ein Projekt, das komplett ohne KI entstanden ist. Kein Copilot, kein Claude, kein ChatGPT. Nur ich, mein Editor, und ganz viel Kaffee.
+
+Der Titel der Episode: bun run tauri dev, No AI Challenge. Und ja, das ist auch gleichzeitig ein Befehl, den ich in den letzten Wochen ziemlich oft in mein Terminal getippt habe.
+
+Also, wie kam's überhaupt dazu? Mein Freund M. hat mir vor ein paar Tagen einen Artikel geschickt. Es ging um das Time Magazine, die haben nämlich angefangen, gezielt Werbung für KI-Crawler zu schalten. Also, sie bauen separate Markdown-Seiten, die speziell für Sprachmodelle gedacht sind. Ziemlich kurios, aber auch ziemlich bezeichnend für die Zeit, in der wir gerade leben.
+
+Und M., der kennt mich ja. Der wusste genau, was er tut, als er mir den Artikel geschickt hat, mit dem Kommentar: Und du bist immer noch so ein Fan von KI?
+
+Tja. Touché.
+
+Und genau in dem Moment hab ich gedacht: Weißt du was? Heute nicht. Heute schreibe ich mal nicht über KI, sondern über gute, altmodische Programmierung. Die Art von Programmieren, bei der man sich selbst durchbeißt, Probleme von Hand löst, und einfach mal, wie früher, Google bemüht. Oder, ehrlich gesagt, eher DuckDuckGo. Aber ihr wisst, was ich meine.
+
+Und wer meinen Blog schon länger verfolgt, der weiß: Ich hab eine große Leidenschaft. HTML, CSS, JavaScript. Und wenn man das Ganze noch mit Rust kombinieren kann, dann bin ich wirklich, wirklich glücklich.
+
+Kommen wir zur eigentlichen Idee. Vor ein paar Monaten hat mir Claude, also die KI, nicht mein Freund M., einen Kalorien-Bot für Telegram gebaut. Läuft über n8n. Und das Ding benutze ich jetzt tatsächlich schon seit dem zweiten Juni. Und, ganz ehrlich, es funktioniert. Ich hab seitdem fünf Kilo verloren.
+
+Das Prinzip ist super simpel: Ich schreibe dem Bot, was ich gegessen habe, und er sagt mir, wie viele Kalorien ich für den restlichen Tag noch übrig habe. Mein Ziel: unter dreitausend Kilokalorien am Tag bleiben. Und dazu mache ich seit ungefähr fünf Monaten Intervallfasten, meine erste Mahlzeit ist um zehn Uhr, und um achtzehn Uhr ist die Essensphase vorbei.
+
+Das Ergebnis: Ich fühle mich einfach besser in meinem Körper, und man sieht's auch.
+
+Und als jetzt also mein Kumpel M. mit seinem KI-Kommentar ankam, hat er mich, sagen wir mal, an einem sehr passenden Punkt erwischt. Denn mir kam die Idee: Ich brauche eine eigene App. Client-seitig, offline-fähig, komplett selbstgebaut. Nicht, weil es sowas nicht schon gibt, glaub mir, es gibt tausend Kalorien-Apps da draußen. Sondern weil ich einfach wieder ein Projekt haben wollte, das nur mir gehört. Erstellt mit meiner eigenen, persönlichen Intelligenz. Auch wenn das Ergebnis vielleicht nicht ganz so poliert wird wie irgendwas, das eine KI in dreißig Sekunden hingezaubert hätte.
+
+Also, welches Werkzeug hab ich mir dafür ausgesucht? Tauri.
+
+Für alle, die Tauri nicht kennen: Das ist ein Framework, mit dem man quasi native Apps bauen kann, indem man das Webview des Betriebssystems nutzt. Also, man schreibt seine App mit ganz normalen Webtechnologien, HTML, CSS, JavaScript, aber statt einen kompletten Browser mitzuliefern wie bei Electron, greift man einfach auf das System-Webview zu. Das Ergebnis: viel kleinere, schlankere Apps.
+
+Ich liebe ja eigentlich Cordova. Aber ich wollte schon seit dem allerersten Major-Release von Tauri unbedingt mal reinschauen. Das Problem war nur: Mobile Plattformen wurden erst seit Version zwei offiziell unterstützt. Und jetzt, mit Version zwei, war endlich der richtige Zeitpunkt.
+
+Der Rest vom Stack ist bewusst simpel gehalten: HTML, das kenn ich ja eh schon in- und auswendig. CSS, und zwar ganz ohne Tailwind, einfach die pure Freude am handgeschriebenen Stylesheet. Und JavaScript, und zwar Vanilla. Also ohne TypeScript. Ja, ich weiß, darüber kann man streiten. Aber man kann auch ohne Typannotationen sauber und typsicher denken. Und dafür binde ich dann auch praktisch keine fremden Bibliotheken ein, höchstens für Icons vielleicht.
+
+Und so sitze ich jetzt seit zwei Wochen fast jeden Abend eine halbe Stunde da, meistens, wenn im Haus schon alle schlafen, und kämpfe mich durch Event Listener, Query Selector, und, mein Gott, new Date. Ich hatte total vergessen, wie verwirrend Datums- und Zeitangaben in Vanilla JavaScript sein können. Aber genau das macht's ja auch spannend.
+
+Wenn ich mal keine Lust auf CSS habe, kümmere ich mich eben um das DOM. Und wenn ich keine Lust auf HTML habe, dann schreibe ich JavaScript. Und dann gibt's ja noch das App-Icon, das Logo, und die ganze Tauri-Konfiguration drumherum.
+
+Übrigens, das Logo hab ich auch komplett selbst gestaltet. Die App heißt kcal, mit Ausrufezeichen, und ich hab dafür die Schriftart Righteous für die Überschriften gewählt, plus zwei knallige Hauptfarben: ein Gelb, Hex-Code eff drei dee bee zwei eins, und ein Pink, Hex-Code eff zwei zwei zwei acht dee fünf.
+
+Vom Layout her hab ich mich für eine ganz simple Single-Page-Application mit Flexbox entschieden. Noch Work in Progress, aber es nimmt schon Form an. Kleines Detail, das mir gefällt: In HTML fünf beginnt die Woche standardmäßig am Sonntag. Fand ich beim Bauen der Wochentagsanzeige ganz witzig.
+
+Was kann die App denn jetzt schon? Also, dank frei zugänglicher Daten von der Seite Kalorientabelle hab ich schon über zweitausend deutsche Lebensmittel lokal in der App, mit Kilokalorien pro hundert Gramm und der üblichen Portionsgröße. Zum Beispiel Hanuta von Ferrero: fünfhundertzweiundvierzig Kilokalorien, Kategorie Süßigkeiten, Standardportion zweiundzwanzig Gramm.
+
+Man kann natürlich auch eigene Produkte anlegen und bestehende anpassen. Es gibt eine kleine Statistik mit Durchschnittswert und übrigen Kalorien für den Tag, und einen Überblick über die letzten fünf Tage.
+
+Und das Beste: Alles läuft komplett offline. Keine KI-Anbindung. Kein Tracking. Keine Werbung. Und vor allem, keine bevormundenden Ernährungstipps, die mir irgendein Algorithmus aufdrängen will. Einfach nur: kcal!
+
+Jetzt aber mal ehrlich zu den Erfahrungen mit Tauri, Freud und Leid.
+
+Freud zuerst: Tauri ist wirklich, wirklich cool. Mit Hot Reload sehe ich jede Codeänderung praktisch sofort, der Befehl bun run tauri dev hält quasi permanent ein Fenster offen, in dem die App live läuft. Das macht das Entwickeln unglaublich viel schneller, als ich es von Cordova gewohnt bin, wo sowas nur mit riesigem Aufwand möglich ist.
+
+Der Build für Mac und für Android hat außerdem sofort funktioniert, ganz ohne Nacharbeit. Und Tauri bringt schon eine ganze Reihe nützlicher Plugins mit, die direkt auf native Betriebssystemfunktionen zugreifen. Ich nutze zum Beispiel die Storage-API von Tauri, eingebunden über window Punkt underscore underscore TAURI underscore underscore Punkt store. Sprich: Tschüss localStorage, hallo echter, persistenter Key-Value-Store.
+
+Und ehrlich, nach ungefähr vier Stunden hatte ich schon eine funktionierende erste Version. Für so eine frühe Alphaversion nutze ich die App aber tatsächlich schon selbst.
+
+Jetzt aber zum Leid: Tauri hat noch keine offizielle Möglichkeit, den Zurück-Button unter Android zu überschreiben. Klar, ich könnte da selbst im Kotlin-Code ran, aber ein Feature wie das sollte eigentlich schon eingebaut sein. Und dann gibt's noch ein Rendering-Problem: Das Android-Webview unter Tauri stellt manche HTML-Elemente einfach nicht richtig dar. Das progress-Element zum Beispiel wird komplett falsch angezeigt. Deshalb bin ich am Ende auf eine simple Lösung mit zwei verschachtelten div-Elementen umgestiegen. Schade, aber lösbar.
+
+Insgesamt merkt man aber: Bei Tauri tut sich gerade richtig viel. Ich bin echt gespannt, wie sich das Framework weiterentwickelt. Und sobald ich Zeit hab, will ich mich auch nochmal intensiver mit der Rust-Seite von Tauri beschäftigen, aber das kommt erst nach meinem nächsten kleinen Projekt.
+
+Mein Fazit: Es macht einfach unglaublich viel Spaß. Mehr muss ich dazu eigentlich gar nicht sagen.
+
+Klar, so eine App ist jetzt nicht die Erfindung des Jahrhunderts, von Kalorienzählern gibt's ja wirklich mehr als genug. Aber die Selbstwirksamkeit, das Gefühl, etwas komplett selbst gebaut zu haben, das ist für mich einfach jede Stunde wert. Und es zeigt mir auch persönlich: Man braucht nicht überall Sprachmodelle. Ich bin nicht zu hundert Prozent von KI abhängig, auch wenn's manchmal so wirken mag.
+
+Den GitHub-Link zum Projekt kcal gibt's dann in einer der nächsten Episoden beziehungsweise im nächsten Blogartikel.
+
+In diesem Sinne: viel Spaß beim Kalorienzählen. Und bis zum nächsten Mal.

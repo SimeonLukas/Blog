@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="de">
+<html class="dark light">
+
+<head>
+    <link rel="help" type="text/markdown" href="/llms.txt">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Rate my Setup - Proxmox
+        
+    </title>
+
+    
+    
+    <meta name="description" content="I&#x27;ve had some really bad experiences with my server in general, so it&#x27;s maybe not surprising that I put off the upgrade to PVE 9.0. But now the time has come..." />
+    
+    
+
+    
+    <meta property="og:image" content="https://simeon.staneks.de/en/posts/rate-my-setup//images/en/preview.jpg" />
+    <meta property="og:logo" content="https://simeon.staneks.de/en/posts/rate-my-setup//imagesen/preview.jpg" />
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://simeon.staneks.de/en/posts/rate-my-setup/images/en/preview.jpg">
+    
+
+    
+    <meta property="og:title" content="Rate my Setup - Proxmox" />
+    <!-- twitter title -->
+    <meta name="twitter:title" content="Rate my Setup - Proxmox">
+    
+    
+
+    
+    
+    <meta property="og:description" content="I&#x27;ve had some really bad experiences with my server in general, so it&#x27;s maybe not surprising that I put off the upgrade to PVE 9.0. But now the time has come..."/>
+    <!-- twitter description -->
+    <meta name="twitter:description" content="I&#x27;ve had some really bad experiences with my server in general, so it&#x27;s maybe not surprising that I put off the upgrade to PVE 9.0. But now the time has come...">
+    
+    
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;simeon.staneks.de"/>
+    <meta property="og:type" content="article" />
+
+    <meta name="keywords"
+    content="Webdesign, Website, Benutzerfreundlichkeit, Responsive Design, Oberammergau, HTML, CSS, UX, UI, Grafikdesign, Typografie, Farbschema, Barrierefreiheit, SEO, Suchmaschinenoptimierung, Content-Strategie, Interaktionsdesign, Wireframes, Prototyping, Navigation, Mobile First, Usability-Tests, SSG, Garmisch-Partenkirchen, App">
+    <meta name="author" content="Simeon Stanek" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:site_name" content="Blog by Simeon" />
+
+
+    
+    
+    <link rel="icon" type="image/png" href=https:&#x2F;&#x2F;simeon.staneks.de&#x2F;android-chrome-512x512.png />
+    
+
+    
+    
+    <link href=https://simeon.staneks.de/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/codeblock.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/toc.js></script>
+    
+
+    
+    
+    <script src=https://simeon.staneks.de/js/note.js></script>
+    
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Blog by Simeon" href="https://simeon.staneks.de/ atom.xml">
+
+
+    
+    
+    <link rel="stylesheet" type="text/css" href=https://simeon.staneks.de/theme/light.css />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://simeon.staneks.de/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://simeon.staneks.de/js/themetoggle.js></script>
+    
+    <script>setTheme(getSavedTheme());</script>
+    
+    <script src=https://simeon.staneks.de/js/index.js></script>
+    <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://simeon.staneks.de/main.css />
+
+    
+</head>
+
+<body onload="updatelanguage()">
+    <div class="content">
+        <header>
+    <div class="main">
+        <div> <a id="navigation_start" href=https:&#x2F;&#x2F;simeon.staneks.de>Blog by Simeon </a> 
+            <p style="font-size: xx-small;">It&#x27;s better to start imperfectly than wait perfectly</p> 
+        </div>
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;indieweb.social&#x2F;@simerl" class="social mastodon">
+                <img alt=mastodon src=https://simeon.staneks.de/social_icons/mastodon.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;www.instagram.com&#x2F;simeonstanek&#x2F;" class="social instagram">
+                <img alt=instagram src=https://simeon.staneks.de/social_icons/instagram.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas" class="social github">
+                <img alt=github src=https://simeon.staneks.de/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;buymeacoffee.com&#x2F;simeonlukas" class="social buy me a coffee">
+                <img alt=buy me a coffee src=https://simeon.staneks.de/social_icons/bmc-logo.svg>
+            </a>
+            
+            <a rel="me" href="&#x2F;rss.xml" class="social rss">
+                <img alt=rss src=https://simeon.staneks.de/social_icons/rss.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a class="navigation_lang &#x2F;posts" href=&#x2F;posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a class="navigation_lang &#x2F;pages" href=&#x2F;pages style="margin-left: 0.5em">&#x2F;pages</a>
+        
+        <a class="navigation_lang &#x2F;about" href=&#x2F;pages&#x2F;about style="margin-left: 0.5em">&#x2F;about</a>
+        
+        <a class="navigation_lang &#x2F;tags" href=&#x2F;tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://simeon.staneks.de/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+        <a id="language-toggle" onclick="toggleLanguage(); event.preventDefault();" href="#">
+            <img src=https://simeon.staneks.de/feather/globe.svg alt="Change Language" /><span style="font-size: xx-small;" id="language-name">de</span>
+        </a>
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <h1 class="page-header">
+        Rate my Setup - Proxmox<span class="primary-color" style="font-size: 1.6em">.</span>
+    </h1>
+
+        </div>
+        I've had some really bad experiences with my server in general, so it's maybe not surprising that I put off the upgrade to PVE 9.0. But now the time has come, and I've taken the time to document my setup and show how I've built my server.
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#in-the-beginning-was-the-bit">In the Beginning Was the Bit</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#hardware-the-foundation-of-my-proxmox-homelab">Hardware: The Foundation of My Proxmox Homelab</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#system-overview">System Overview</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#cpu-ryzen-7-7735hs">CPU: Ryzen 7 7735HS</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#storage-overview">Storage Overview</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#2x-512-gb-ssd-system-and-containers">2x 512 GB SSD: System and Containers</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#3x-4-tb-hdd-zfs-raidz1-for-data">3x 4 TB HDD: ZFS RAIDZ1 for Data</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#1x-256-gb-sata-ssd-backups">1x 256 GB SATA SSD: Backups</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#this-might-also-be-interesting">This Might Also Be Interesting</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#the-software">The Software</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#100-nextcloud-my-own-cloud-instead-of-dropbox-and-google-drive">100 – Nextcloud: My Own Cloud Instead of Dropbox and Google Drive</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#101-adguard-home-blocking-ads-and-trackers-across-the-whole-network">101 – AdGuard Home: Blocking Ads and Trackers Across the Whole Network</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#102-fleet-device-management-in-the-homelab-currently-stopped">102 – Fleet: Device Management in the Homelab (currently stopped)</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#103-webserver-my-central-host-for-websites-and-projects">103 – Webserver: My Central Host for Websites and Projects</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#104-workplace-the-development-environment-in-a-container">104 – Workplace: The Development Environment in a Container</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#105-plex-my-own-streaming-service-for-movies-and-series">105 – Plex: My Own Streaming Service for Movies and Series</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#106-bookstack-documentation-and-wiki-that-actually-gets-used">106 – BookStack: Documentation and Wiki That Actually Gets Used</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#107-homebox-inventory-management-for-household-and-tech-stopped">107 – Homebox: Inventory Management for Household and Tech (stopped)</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#108-ubuntu-the-all-purpose-container-for-experiments">108 – Ubuntu: The All-Purpose Container for Experiments</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#109-pocketbase-a-backend-in-a-single-file">109 – PocketBase: A Backend in a Single File</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#110-vaultwarden-self-hosting-passwords-securely">110 – Vaultwarden: Self-Hosting Passwords, Securely</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#111-immich-replacing-google-photos-with-my-own-photo-cloud">111 – Immich: Replacing Google Photos with My Own Photo Cloud</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#112-reitti-analyzing-location-history-privately-stopped">112 – Reitti: Analyzing Location History Privately (stopped)</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#113-open-webui-the-interface-for-my-local-ai-models">113 – Open WebUI: The Interface for My Local AI Models</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#114-searxng-my-private-metasearch-engine-stopped">114 – SearXNG: My Private Metasearch Engine (stopped)</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#115-alpine-docker-a-minimal-docker-host-in-an-lxc">115 – Alpine Docker: A Minimal Docker Host in an LXC</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#116-layers-my-own-design-editor-in-the-browser">116 – Layers: My Own Design Editor in the Browser</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#117-pocketbase-second-instance-keeping-projects-cleanly-separated">117 – PocketBase (Second Instance): Keeping Projects Cleanly Separated</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#118-syncthing-syncing-files-between-devices-without-the-cloud">118 – Syncthing: Syncing Files Between Devices Without the Cloud</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#119-ignis-what-s-behind-this-container-stopped">119 – Ignis: What&#x27;s Behind This Container? (stopped)</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#120-linkwarden-collecting-bookmarks-and-archiving-them-permanently">120 – Linkwarden: Collecting Bookmarks and Archiving Them Permanently</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#121-romm-the-retro-game-library-in-the-browser">121 – RomM: The Retro Game Library in the Browser</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#122-languagetool-spell-checking-locally-without-the-cloud">122 – LanguageTool: Spell Checking Locally, Without the Cloud</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#123-lyrion-music-server-multi-room-audio-on-the-home-network">123 – Lyrion Music Server: Multi-Room Audio on the Home Network</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#124-alpine-the-smallest-container-in-the-homelab">124 – Alpine: The Smallest Container in the Homelab</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://simeon.staneks.de/en/posts/rate-my-setup/#ranking-the-most-valuable-containers">Ranking: The Most Valuable Containers</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h2 id="in-the-beginning-was-the-bit"><a class="zola-anchor" href="#in-the-beginning-was-the-bit" aria-label="Anchor link for: in-the-beginning-was-the-bit">In the Beginning Was the Bit</a></h2>
+<p>I constantly write about the things I do on my computer, my server and my consoles, but I never actually documented how I set up my server. From the hardware all the way down to the individual LXCs and Docker containers. I've now taken the time to document all of it and show how my server is built, including a ranking of the most valuable containers I have running. <a href="https://enthusiastic.dev/">J.</a> and I started talking about programming and PCs quite early on. Back before 2010, when we were about 13–14 years old, I was always impressed by his skills. He had already written his own website in PHP. Amazing! I still remember him recommending the hosting service <a href="https://www.bplaced.net/">bplaced</a> (or was it Bluehost?), and that's how it started: trying things out, programming, publishing.</p>
+<h3 id="hardware-the-foundation-of-my-proxmox-homelab"><a class="zola-anchor" href="#hardware-the-foundation-of-my-proxmox-homelab" aria-label="Anchor link for: hardware-the-foundation-of-my-proxmox-homelab">Hardware: The Foundation of My Proxmox Homelab</a></h3>
+<p>All 25 LXC containers run on a compact Proxmox host with an AMD Ryzen 7 7735HS, around 32 GiB of RAM and three separate storage tiers: SSDs for the system and containers, HDDs for data, and a dedicated SSD for backups.</p>
+<h4 id="system-overview"><a class="zola-anchor" href="#system-overview" aria-label="Anchor link for: system-overview">System Overview</a></h4>
+<table><thead><tr><th>Component</th><th>Details</th></tr></thead><tbody>
+<tr><td>CPU</td><td>AMD Ryzen 7 7735HS with Radeon Graphics, 16 threads (8 cores), 1 socket</td></tr>
+<tr><td>RAM</td><td>29.12 GiB</td></tr>
+<tr><td>Swap</td><td>Not active</td></tr>
+<tr><td>Boot mode</td><td>EFI</td></tr>
+<tr><td>Proxmox VE</td><td>pve-manager 9.2.21</td></tr>
+<tr><td>Kernel</td><td>Linux 7.0.14-19-pve</td></tr>
+</tbody></table>
+<h4 id="cpu-ryzen-7-7735hs"><a class="zola-anchor" href="#cpu-ryzen-7-7735hs" aria-label="Anchor link for: cpu-ryzen-7-7735hs">CPU: Ryzen 7 7735HS</a></h4>
+<p>This mobile processor offers plenty of performance at low power consumption, which makes it a good fit for a 24/7 homelab. The integrated Radeon graphics can be used for hardware transcoding (e.g. for Plex or Immich).</p>
+<h4 id="storage-overview"><a class="zola-anchor" href="#storage-overview" aria-label="Anchor link for: storage-overview">Storage Overview</a></h4>
+<table><thead><tr><th>Drives</th><th>Purpose</th><th>Configuration</th><th>Usable</th></tr></thead><tbody>
+<tr><td>2x 512 GB SSD</td><td>Proxmox OS and LXCs</td><td>Previously a ZFS mirror, now I need the space</td><td>approx. 1 TB</td></tr>
+<tr><td>3x 4 TB HDD</td><td>Data (photos, movies, games, documents) and also LXC backups</td><td>ZFS RAIDZ1 (1 parity disk)</td><td>approx. 8 TB</td></tr>
+<tr><td>1x 256 GB SATA SSD</td><td>Backups of the most important LXCs</td><td>Single disk</td><td>approx. 256 GB</td></tr>
+</tbody></table>
+<h4 id="2x-512-gb-ssd-system-and-containers"><a class="zola-anchor" href="#2x-512-gb-ssd-system-and-containers" aria-label="Anchor link for: 2x-512-gb-ssd-system-and-containers">2x 512 GB SSD: System and Containers</a></h4>
+<p>The two SSDs hold the Proxmox operating system and all containers. The fast drives provide short boot times and snappy databases (Nextcloud, Immich, PocketBase).</p>
+<h4 id="3x-4-tb-hdd-zfs-raidz1-for-data"><a class="zola-anchor" href="#3x-4-tb-hdd-zfs-raidz1-for-data" aria-label="Anchor link for: 3x-4-tb-hdd-zfs-raidz1-for-data">3x 4 TB HDD: ZFS RAIDZ1 for Data</a></h4>
+<p>Three disks form a RAIDZ1 pool with one parity disk. Of 12 TB raw capacity, around 8 TB remain usable, and one disk is allowed to fail. This is where large amounts of data live, such as the Plex library, Immich photos, ROMs for RomM and Nextcloud files.</p>
+<h4 id="1x-256-gb-sata-ssd-backups"><a class="zola-anchor" href="#1x-256-gb-sata-ssd-backups" aria-label="Anchor link for: 1x-256-gb-sata-ssd-backups">1x 256 GB SATA SSD: Backups</a></h4>
+<p>A dedicated SSD stores the Proxmox backups (vzdump). It is physically separate from the container SSDs, so a failure of the main system doesn't take the backups down with it.</p>
+<h4 id="this-might-also-be-interesting"><a class="zola-anchor" href="#this-might-also-be-interesting" aria-label="Anchor link for: this-might-also-be-interesting">This Might Also Be Interesting</a></h4>
+<ul>
+<li>RAIDZ1 is not a backup. Important data should also be backed up externally. <a href="https://simeon.staneks.de/posts/backup-cheap-and-easy/">Here's an example from me.</a></li>
+<li>256 GB is only enough for the container backups. The 8 TB of data won't fit there, which is why there is an external backup (see above).</li>
+</ul>
+<h3 id="the-software"><a class="zola-anchor" href="#the-software" aria-label="Anchor link for: the-software">The Software</a></h3>
+<h4 id="100-nextcloud-my-own-cloud-instead-of-dropbox-and-google-drive"><a class="zola-anchor" href="#100-nextcloud-my-own-cloud-instead-of-dropbox-and-google-drive" aria-label="Anchor link for: 100-nextcloud-my-own-cloud-instead-of-dropbox-and-google-drive">100 – Nextcloud: My Own Cloud Instead of Dropbox and Google Drive</a></h4>
+<p>Files, calendars and contacts are stored at my home. The article shows how I run Nextcloud in an LXC.</p>
+<h4 id="101-adguard-home-blocking-ads-and-trackers-across-the-whole-network"><a class="zola-anchor" href="#101-adguard-home-blocking-ads-and-trackers-across-the-whole-network" aria-label="Anchor link for: 101-adguard-home-blocking-ads-and-trackers-across-the-whole-network">101 – AdGuard Home: Blocking Ads and Trackers Across the Whole Network</a></h4>
+<p>AdGuard filters DNS requests for all devices on the home network. This saves bandwidth and protects privacy.</p>
+<h4 id="102-fleet-device-management-in-the-homelab-currently-stopped"><a class="zola-anchor" href="#102-fleet-device-management-in-the-homelab-currently-stopped" aria-label="Anchor link for: 102-fleet-device-management-in-the-homelab-currently-stopped">102 – Fleet: Device Management in the Homelab (currently stopped)</a></h4>
+<p>Fleet manages and monitors endpoint devices. It was only ever a test installation that I didn't pursue further.</p>
+<h4 id="103-webserver-my-central-host-for-websites-and-projects"><a class="zola-anchor" href="#103-webserver-my-central-host-for-websites-and-projects" aria-label="Anchor link for: 103-webserver-my-central-host-for-websites-and-projects">103 – Webserver: My Central Host for Websites and Projects</a></h4>
+<p>LXC 103 runs 23 Docker containers. They cover automation, document management, forms, messaging and several of my own websites. Caddy also runs "natively" here and acts as the reverse proxy for all services.</p>
+<h5 id="automation-and-communication"><a class="zola-anchor" href="#automation-and-communication" aria-label="Anchor link for: automation-and-communication">Automation and Communication</a></h5>
+<ul>
+<li><strong>n8n</strong>: Workflow automation for media, AI and services.</li>
+<li><strong>Listmonk</strong>: Newsletter delivery, with its own PostgreSQL 13 database (port 9499).</li>
+<li><strong>wwebjs-api</strong>: WhatsApp Web API for sending and receiving messages via script.</li>
+<li><strong>Signal CLI REST API</strong>: Signal messages via a REST interface.</li>
+</ul>
+<h5 id="documents-and-data"><a class="zola-anchor" href="#documents-and-data" aria-label="Anchor link for: documents-and-data">Documents and Data</a></h5>
+<ul>
+<li><strong>Paperless-ngx</strong>: Digital document archive with OCR and tags.</li>
+<li><strong>Tika</strong>: Text extraction for Paperless, reachable internally only.</li>
+<li><strong>Gotenberg</strong>: Converts office documents and emails to PDF, internal only.</li>
+<li><strong>Redis 7</strong>: Broker for Paperless, internal only.</li>
+<li><strong>NocoDB</strong>: Airtable alternative based on a PostgreSQL 15 database.</li>
+<li><strong>HeyForm</strong>: Form builder.</li>
+</ul>
+<h5 id="productivity-and-administration"><a class="zola-anchor" href="#productivity-and-administration" aria-label="Anchor link for: productivity-and-administration">Productivity and Administration</a></h5>
+<ul>
+<li><strong>Kimai</strong>: Time tracking, with MySQL 8.3 as the database (internal).</li>
+<li><strong>Homepage</strong>: Dashboard with links to all services.</li>
+<li><strong>FTP server</strong>: File transfer via FTP.</li>
+</ul>
+<h5 id="my-own-websites-and-tools"><a class="zola-anchor" href="#my-own-websites-and-tools" aria-label="Anchor link for: my-own-websites-and-tools">My Own Websites and Tools</a></h5>
+<ul>
+<li><strong>page-private</strong>: Private website on Apache/PHP. (Local website for local devices)</li>
+<li><strong>page-mt183</strong>: <a href="https://mt183.de/">Website mt183.de.</a></li>
+<li><strong>page-veit</strong>: <a href="https://www.veit.app/">Veit project page.</a></li>
+<li><strong>page-feiafanga</strong>: <a href="https://feiafanga.de/">Feiafanga website.</a></li>
+<li><strong>md2epub</strong>: <a href="https://github.com/SimeonLukas/Obsidian2Kindle">My own tool that converts Markdown to EPUB.</a></li>
+</ul>
+<h4 id="104-workplace-the-development-environment-in-a-container"><a class="zola-anchor" href="#104-workplace-the-development-environment-in-a-container" aria-label="Anchor link for: 104-workplace-the-development-environment-in-a-container">104 – Workplace: The Development Environment in a Container</a></h4>
+<p>A dedicated container as a workspace with tools, terminal and projects. It can be backed up and cloned at any time, and it handles the backups to Hetzner.</p>
+<h4 id="105-plex-my-own-streaming-service-for-movies-and-series"><a class="zola-anchor" href="#105-plex-my-own-streaming-service-for-movies-and-series" aria-label="Anchor link for: 105-plex-my-own-streaming-service-for-movies-and-series">105 – Plex: My Own Streaming Service for Movies and Series</a></h4>
+<p>Plex manages the media library and streams it to all devices.</p>
+<h4 id="106-bookstack-documentation-and-wiki-that-actually-gets-used"><a class="zola-anchor" href="#106-bookstack-documentation-and-wiki-that-actually-gets-used" aria-label="Anchor link for: 106-bookstack-documentation-and-wiki-that-actually-gets-used">106 – BookStack: Documentation and Wiki That Actually Gets Used</a></h4>
+<p>BookStack organizes notes and guides into books and chapters. I use it for my work colleagues.</p>
+<h4 id="107-homebox-inventory-management-for-household-and-tech-stopped"><a class="zola-anchor" href="#107-homebox-inventory-management-for-household-and-tech-stopped" aria-label="Anchor link for: 107-homebox-inventory-management-for-household-and-tech-stopped">107 – Homebox: Inventory Management for Household and Tech (stopped)</a></h4>
+<p>Homebox tracks devices, warranties and receipts. I use it too rarely.</p>
+<h4 id="108-ubuntu-the-all-purpose-container-for-experiments"><a class="zola-anchor" href="#108-ubuntu-the-all-purpose-container-for-experiments" aria-label="Anchor link for: 108-ubuntu-the-all-purpose-container-for-experiments">108 – Ubuntu: The All-Purpose Container for Experiments</a></h4>
+<p>A clean Ubuntu for testing new software, used for automated video creation. An article might follow.</p>
+<h4 id="109-pocketbase-a-backend-in-a-single-file"><a class="zola-anchor" href="#109-pocketbase-a-backend-in-a-single-file" aria-label="Anchor link for: 109-pocketbase-a-backend-in-a-single-file">109 – PocketBase: A Backend in a Single File</a></h4>
+<p>PocketBase provides a database, auth and API in a single binary. <a href="https://001.feiafanga.de/">The backend for feiafanga.</a></p>
+<h4 id="110-vaultwarden-self-hosting-passwords-securely"><a class="zola-anchor" href="#110-vaultwarden-self-hosting-passwords-securely" aria-label="Anchor link for: 110-vaultwarden-self-hosting-passwords-securely">110 – Vaultwarden: Self-Hosting Passwords, Securely</a></h4>
+<p>The lightweight Bitwarden alternative for all my credentials.</p>
+<h4 id="111-immich-replacing-google-photos-with-my-own-photo-cloud"><a class="zola-anchor" href="#111-immich-replacing-google-photos-with-my-own-photo-cloud" aria-label="Anchor link for: 111-immich-replacing-google-photos-with-my-own-photo-cloud">111 – Immich: Replacing Google Photos with My Own Photo Cloud</a></h4>
+<p>Immich automatically backs up phone photos and offers face recognition and search. Everything stays on my server.</p>
+<h4 id="112-reitti-analyzing-location-history-privately-stopped"><a class="zola-anchor" href="#112-reitti-analyzing-location-history-privately-stopped" aria-label="Anchor link for: 112-reitti-analyzing-location-history-privately-stopped">112 – Reitti: Analyzing Location History Privately (stopped)</a></h4>
+<p>Reitti visualizes movement data without sharing it with third parties. I currently use it too rarely.</p>
+<h4 id="113-open-webui-the-interface-for-my-local-ai-models"><a class="zola-anchor" href="#113-open-webui-the-interface-for-my-local-ai-models" aria-label="Anchor link for: 113-open-webui-the-interface-for-my-local-ai-models">113 – Open WebUI: The Interface for My Local AI Models</a></h4>
+<p>Open WebUI connects to local LLMs and offers a ChatGPT-like experience.</p>
+<h4 id="114-searxng-my-private-metasearch-engine-stopped"><a class="zola-anchor" href="#114-searxng-my-private-metasearch-engine-stopped" aria-label="Anchor link for: 114-searxng-my-private-metasearch-engine-stopped">114 – SearXNG: My Private Metasearch Engine (stopped)</a></h4>
+<p>SearXNG aggregates many search engines without tracking. I don't need it at the moment.</p>
+<h4 id="115-alpine-docker-a-minimal-docker-host-in-an-lxc"><a class="zola-anchor" href="#115-alpine-docker-a-minimal-docker-host-in-an-lxc" aria-label="Anchor link for: 115-alpine-docker-a-minimal-docker-host-in-an-lxc">115 – Alpine Docker: A Minimal Docker Host in an LXC</a></h4>
+<p>Alpine needs hardly any resources and is well suited for Docker stacks. I set this container up specifically for Whisper. <a href="https://simeon.staneks.de/posts/stt-telegram-n8n-nextcloud-obsidian/">More on that here.</a></p>
+<h4 id="116-layers-my-own-design-editor-in-the-browser"><a class="zola-anchor" href="#116-layers-my-own-design-editor-in-the-browser" aria-label="Anchor link for: 116-layers-my-own-design-editor-in-the-browser">116 – Layers: My Own Design Editor in the Browser</a></h4>
+<p>I create templates, posters and graphics with a Canva alternative in the browser. It isn't public, but it's my private alternative to Canva. I may write an article about it.</p>
+<h4 id="117-pocketbase-second-instance-keeping-projects-cleanly-separated"><a class="zola-anchor" href="#117-pocketbase-second-instance-keeping-projects-cleanly-separated" aria-label="Anchor link for: 117-pocketbase-second-instance-keeping-projects-cleanly-separated">117 – PocketBase (Second Instance): Keeping Projects Cleanly Separated</a></h4>
+<p>A second PocketBase instance keeps projects separate from each other. This makes updates and backups easier. <a href="https://002.feiafanga.de/">The backend for feiafanga.</a></p>
+<h4 id="118-syncthing-syncing-files-between-devices-without-the-cloud"><a class="zola-anchor" href="#118-syncthing-syncing-files-between-devices-without-the-cloud" aria-label="Anchor link for: 118-syncthing-syncing-files-between-devices-without-the-cloud">118 – Syncthing: Syncing Files Between Devices Without the Cloud</a></h4>
+<p>Syncthing syncs folders directly between my devices. It needs no third-party provider.</p>
+<h4 id="119-ignis-what-s-behind-this-container-stopped"><a class="zola-anchor" href="#119-ignis-what-s-behind-this-container-stopped" aria-label="Anchor link for: 119-ignis-what-s-behind-this-container-stopped">119 – Ignis: What's Behind This Container? (stopped)</a></h4>
+<p>A project that is currently dormant: Obsidian in the browser. I thought I needed it... well.</p>
+<h4 id="120-linkwarden-collecting-bookmarks-and-archiving-them-permanently"><a class="zola-anchor" href="#120-linkwarden-collecting-bookmarks-and-archiving-them-permanently" aria-label="Anchor link for: 120-linkwarden-collecting-bookmarks-and-archiving-them-permanently">120 – Linkwarden: Collecting Bookmarks and Archiving Them Permanently</a></h4>
+<p>Linkwarden saves links along with an archived copy and tags, so sources no longer disappear. Very useful!</p>
+<h4 id="121-romm-the-retro-game-library-in-the-browser"><a class="zola-anchor" href="#121-romm-the-retro-game-library-in-the-browser" aria-label="Anchor link for: 121-romm-the-retro-game-library-in-the-browser">121 – RomM: The Retro Game Library in the Browser</a></h4>
+<p>RomM manages ROMs with covers and metadata. Perfect for emulation on handhelds.</p>
+<h4 id="122-languagetool-spell-checking-locally-without-the-cloud"><a class="zola-anchor" href="#122-languagetool-spell-checking-locally-without-the-cloud" aria-label="Anchor link for: 122-languagetool-spell-checking-locally-without-the-cloud">122 – LanguageTool: Spell Checking Locally, Without the Cloud</a></h4>
+<p>My own LanguageTool server checks grammar and style without my texts ever leaving the house.</p>
+<h4 id="123-lyrion-music-server-multi-room-audio-on-the-home-network"><a class="zola-anchor" href="#123-lyrion-music-server-multi-room-audio-on-the-home-network" aria-label="Anchor link for: 123-lyrion-music-server-multi-room-audio-on-the-home-network">123 – Lyrion Music Server: Multi-Room Audio on the Home Network</a></h4>
+<p>Lyrion (formerly Logitech Media Server) supplies players throughout the house with music. <a href="https://simeon.staneks.de/en/posts/squeezebox-picore-lyrion/">The article shows the setup.</a></p>
+<h4 id="124-alpine-the-smallest-container-in-the-homelab"><a class="zola-anchor" href="#124-alpine-the-smallest-container-in-the-homelab" aria-label="Anchor link for: 124-alpine-the-smallest-container-in-the-homelab">124 – Alpine: The Smallest Container in the Homelab</a></h4>
+<p>A minimal Alpine LXC for small services and tests. It starts in seconds and needs hardly any RAM. Used for the following project: <a href="https://service.tourismuspastoral.de/">International service on the Zugspitze</a></p>
+<h3 id="ranking-the-most-valuable-containers"><a class="zola-anchor" href="#ranking-the-most-valuable-containers" aria-label="Anchor link for: ranking-the-most-valuable-containers">Ranking: The Most Valuable Containers</a></h3>
+<ol>
+<li><strong>Nextcloud</strong>: Without Nextcloud, my homelab would just be a server. Calendar, to-dos and more, all in one place for my wife and me.</li>
+<li><strong>Plex</strong>: Important so the kids can watch without ads.</li>
+<li><strong>Immich</strong>: Runs all the time, because all photos from the smartphone app land there directly.</li>
+<li><strong>AdGuard Home</strong>: Saves data and blocks ads.</li>
+<li><strong>Webserver</strong>: Without the web server, I couldn't host my own websites and projects.</li>
+<li><strong>Paperless</strong>: I'd be lost without Paperless.</li>
+<li><strong>n8n</strong>: Without n8n, I'd have to do many things manually that now run automatically.</li>
+<li><strong>Lyrion Music Server</strong>: Without the music server, the white noise for the sleeping babies wouldn't be available everywhere.</li>
+</ol>
+<p>All containers are worth the same. But without these 8, I personally would simply be lost.</p>
+<p>This Website is really great in Connection with your own Proxmox Homelab: <a href="https://community-scripts.org/">https://community-scripts.org/</a></p>
+
+        </section>
+    </article>
+    <hr>
+    <br>
+    <div class="meta">
+        
+            <span class="date-label-posted">:: Posted on </span><time>2026-09-30</time>
+        
+
+        
+
+        
+
+        
+        
+                <span class="tags-label"> :: Tags:</span>
+                <span class="tags">
+                        <a href="https://simeon.staneks.de/tags/homelab/" class="post-tag">homelab</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/lxc/" class="post-tag">lxc</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/pve/" class="post-tag">pve</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/selfmade/" class="post-tag">selfmade</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/shell/" class="post-tag">shell</a>, 
+                    
+                        <a href="https://simeon.staneks.de/tags/vm/" class="post-tag">vm</a>
+                    
+                </span>
+        
+
+        
+       
+                
+     
+
+            
+                
+                :: <a href="https:&#x2F;&#x2F;github.com&#x2F;SimeonLukas&#x2F;Blog&#x2F;tree&#x2F;main&#x2F;content&#x2F;posts&#x2F;rate-my-setup&#x2F;index.en.md" target="_blank" rel="noopener noreferrer"> Source Code</a>
+            
+
+        
+
+    </div>
+
+    
+    
+        
+    
+
+    
+        
+        
+        
+        
+            
+        
+            
+        
+            
+        
+            
+                
+            
+        
+
+        
+        
+        <div class="video-link" style="margin-top: 2em; padding: 1em; border-top: 1px solid #ccc;display: flex; flex-direction: column; align-items: center;">
+            
+                <video style="width: auto; max-width: 320px;" controls>
+                    <source src="https:&#x2F;&#x2F;simeon.staneks.de&#x2F;en&#x2F;posts&#x2F;rate-my-setup&#x2F;video&#x2F;rate-my-setup-en.mp4" onerror="this.parentElement.parentElement.style.display='none';" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            
+        </div>
+    
+
+
+
+</main>
+
+
+
+        
+            
+        
+
+        
+        <br>
+        <hr>
+        <div class="giscus" >
+        <script src="https://giscus.app/client.js"
+        data-repo="SimeonLukas/Blog"
+        data-repo-id="R_kgDONSw5PA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONSw5PM4CkoL8"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https:&#x2F;&#x2F;simeon.staneks.de/css/giscus.css"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+        
+
+    </div>
+</body>
+
+</html>

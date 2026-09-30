@@ -1,0 +1,19 @@
+Kennst du das? Du hast einen Server zu Hause, und irgendwann fragst du dich: Was läuft da eigentlich alles drauf? Genau das habe ich jetzt mal aufgeschrieben. Heute nehme ich dich mit in mein Homelab.
+
+Alles läuft auf einem kleinen Proxmox-Server. Darin steckt ein AMD Ryzen sieben siebentausendsiebenunddreißig H S, dazu etwa zweiunddreißig Gigabyte Arbeitsspeicher. Der Prozessor ist sparsam und trotzdem stark genug für den Dauerbetrieb.
+
+Beim Speicher habe ich drei Ebenen. Auf zwei schnellen SSDs liegen das System und alle Container. Drei große Festplatten mit je vier Terabyte speichern meine Daten, also Fotos, Filme, Spiele und Dokumente. Sie arbeiten zusammen als RAID Z eins, sodass eine Platte ausfallen darf. Und eine eigene kleine SSD nimmt die Backups auf, getrennt vom Rest. Wichtig ist aber: Ein RAID ist kein Backup. Deshalb sichere ich die wichtigen Daten zusätzlich extern.
+
+Auf dem Server laufen fünfundzwanzig Container. Einige davon sind gerade gestoppt, zum Beispiel Fleet, Homebox oder Searx N G. Die brauche ich im Moment einfach nicht. Der größte Container ist mein Webserver. Dort laufen dreiundzwanzig Docker-Container, unter anderem n acht n für Automatisierung, Paperless für meine Dokumente und mehrere eigene Webseiten. Caddy sorgt dafür, dass alles sauber erreichbar ist.
+
+Dazu kommen viele weitere Dienste. Vaultwarden verwaltet meine Passwörter. Open WebUI ist die Oberfläche für meine lokalen KI-Modelle. Mit Linkwarden archiviere ich Lesezeichen, und Rom M verwaltet meine Retro-Spiele. Außerdem habe ich einen eigenen Design-Editor im Browser, als private Alternative zu Canva.
+
+Jetzt zu meinem Ranking. Platz acht geht an den Lyrion Music Server. Ohne ihn gäbe es nicht überall im Haus das weiße Rauschen für die schlafenden Babys. Platz sieben: n acht n. Ohne die Automatisierung müsste ich vieles von Hand erledigen. Platz sechs: Paperless. Ohne Paperless wäre ich aufgeschmissen. Platz fünf: der Webserver, denn sonst gäbe es keine eigenen Webseiten und Projekte.
+
+Platz vier ist AdGuard Home. Es blockiert Werbung und Tracker im ganzen Netzwerk und spart Daten. Platz drei: Immich. Alle Fotos vom Smartphone landen automatisch dort. Platz zwei: Plex. So können die Kinder Filme und Serien ohne Werbung schauen.
+
+Und auf Platz eins steht Nextcloud. Ohne Nextcloud wäre mein Homelab nur ein Server. Kalender, Aufgaben und Dateien, alles an einem Ort, für meine Frau und mich.
+
+Natürlich sind eigentlich alle Container gleich viel wert. Aber ohne diese acht wäre ich persönlich einfach aufgeschmissen.
+
+Das war mein Homelab. Alles läuft lokal, ohne Cloud-Zwang und ohne Tracking. Wenn du mehr Details möchtest, findest du den kompletten Artikel auf meinem Blog. Bis zum nächsten Mal!
