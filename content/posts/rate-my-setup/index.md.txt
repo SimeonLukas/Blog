@@ -146,7 +146,7 @@ RomM verwaltet ROMs mit Covern und Metadaten. Passend für Emulation auf Handhel
 Der eigene LanguageTool-Server prüft Grammatik und Stil, ohne dass Texte das Haus verlassen.
 
 #### 123 – Lyrion Music Server: Multiroom-Audio im Heimnetz
-Lyrion (früher Logitech Media Server) versorgt Player im ganzen Haus mit Musik. Der Artikel zeigt die Einrichtung.
+Lyrion (früher Logitech Media Server) versorgt Player im ganzen Haus mit Musik. [Der Artikel zeigt die Einrichtung.](https://simeon.staneks.de/posts/squeezebox-picore-lyrion/)
 
 #### 124 – Alpine: Der kleinste Container im Homelab
 Ein minimaler Alpine-LXC für Mini-Dienste und Tests. Er startet in Sekunden und braucht kaum RAM. Für folgendes Projekt: [Internationaler Service auf der Zugspitze](https://service.tourismuspastoral.de/)

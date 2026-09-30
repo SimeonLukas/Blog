@@ -185,7 +185,7 @@ My own LanguageTool server checks grammar and style without my texts ever leavin
 
 
 #### 123 – Lyrion Music Server: Multi-Room Audio on the Home Network
-Lyrion (formerly Logitech Media Server) supplies players throughout the house with music. The article shows the setup.
+Lyrion (formerly Logitech Media Server) supplies players throughout the house with music. [The article shows the setup.](https://simeon.staneks.de/en/posts/squeezebox-picore-lyrion/)
 
 
 #### 124 – Alpine: The Smallest Container in the Homelab
