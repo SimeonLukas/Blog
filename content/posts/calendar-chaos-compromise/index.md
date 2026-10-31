@@ -1,6 +1,6 @@
 +++
 title = "Calendar - Chaos - Compromise"
-date = 2026-09-30 12:00:00+01:00
+date = 2026-10-31 12:00:00+01:00
 description = "Familie, Arbeit und Homelab unter einen Hut bringen, dafür braucht man ein gutes Zeitmanagement. Zuverlässig geführte Kalender sind das A und O, damit man nur an der eigenen Unzulänglichkeit scheitert. Zwei kleine Tools, die ich heute habe bauen lassen, damit ich meine Termine und Aufgaben im Griff habe."
 [taxonomies]
 tags = ["calendar", "chaos", "compromise", "homelab", "nextcloud", "office365", "microsoft", "citrix"]
