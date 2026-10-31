@@ -1,0 +1,9 @@
+ Also, der ATmega32U4 ist echt ein klasse Mikrocontroller. Damit das Ganze läuft, braucht man die Arduino IDE und die Board-Definitionen von SparkFun. Das geht eigentlich ganz einfach: In den Einstellungen der IDE gibt es ein Feld für „Zusätzliche Boardmanager-URLs“. Da kopiert man einfach den Link von SparkFun rein, geht dann in den Boardmanager, sucht nach „SparkFun“ und installiert das Paket.
+
+Aber jetzt kommt ein wichtiger Punkt, bei dem man echt aufpassen muss: Die Auswahl des Prozessors. Je nachdem, welches Board man vor sich hat, gibt es verschiedene Versionen – zum Beispiel mit einem internen 16-MHz-Oszillator oder einem externen. Wenn man da den falschen auswählt, kann es passieren, dass der Upload nicht funktioniert oder der Chip gar nicht erst reagiert.
+
+Falls man sich tatsächlich verhauen hat, gibt es zum Glück einen Weg zurück. Man muss den Chip quasi manuell in den Bootloader-Modus zwingen. Das macht man, indem man die Reset-Pins kurzschließt, genau in dem Moment, in dem man den Upload startet. Sobald die IDE meldet, dass der Upload läuft, muss man die Verbindung kurz trennen.
+
+Wenn das erledigt ist, ist der Rest eigentlich simpel: Man verbindet das Ganze per USB, achtet darauf, dass der richtige Port in der Software ausgewählt ist, und kann loslegen.
+
+Und dann kommt der Moment der Wahrheit: Der erste Test. Ich habe das mit dem klassischen „Blink“-Beispiel gemacht. Wenn die kleine LED auf dem Board im richtigen Rhythmus blinkt, weiß man, dass alles perfekt konfiguriert ist und die Hardware bereit für die eigentlichen Projekte ist.
