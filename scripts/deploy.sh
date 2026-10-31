@@ -51,8 +51,14 @@ for file in text/posts/*.txt; do
     sleep 1
 done
 
+
+# delete public folder in root of the blog, so that zola can create a new one with the new content
+   
+
+
 # commit all changes
 cd /Users/simeonstanek/Apps/BLOG-Homepage/simeonsblog
+ rm -rf public
 
 git pull
 git add *
