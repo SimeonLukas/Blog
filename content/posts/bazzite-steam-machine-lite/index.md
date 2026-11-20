@@ -4,6 +4,8 @@ date = 2026-02-28
 description = "Wie ich aus einem AWOW Mini Gaming PC mit Ryzen 7 7840HS, 32 GB RAM und 1 TB SSD eine Steam Machine Lite gebaut habe – mit Bazzite, EmuDeck, Heroic, Citron und Hogwarts in Full HD mit Raytracing."
 [taxonomies]
 tags = ["gaming", "awow", "bazzite", "budget-build", "citron", "decky-loader", "emudeck", "heroic-games-launcher", "hogwarts-legacy", "linux", "mini-pc", "ryzen-7-7840hs", "steam", "steam-machine", "switch-emulation", "zelda"]
+[extra]
+vgwort = "https://vg04.met.vgwort.de/na/78983fa763954024a198f338a59af47f"
 +++
 
 ## Von eBay zum Endgegner: Der AWOW-Würfel

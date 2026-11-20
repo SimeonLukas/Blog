@@ -5,6 +5,7 @@ description = "Einblicke in meinen papierlosen Workflow mit Obsidian, Epubs und 
 [taxonomies]
 tags = ["software", "programmierung", "docker", "ebook", "ebook-reader", "epub", "epub-creator", "markdown", "md2epub", "obsidian", "php", "pocketbook", "typescript"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/cc160f85047e49fea17cf2b6aa6f7368"
 comment =  true
 +++
 # Die Genese: Papierloses Arbeiten in der Pastoral

@@ -5,6 +5,7 @@ description = "Ok ich hatte schon richtig blöde Erfahrungen mit meinem Server..
 [taxonomies]
 tags = ["homelab", "lxc", "pve", "selfmade", "shell", "vm"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/c73f431feca94f0e8dd63567c3c2fc1b"
 comment =  true
 +++
 

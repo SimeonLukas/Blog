@@ -44,6 +44,7 @@ Prefer article permalinks over feed excerpts.
 - [Digitales Glücksrad: Lustiger Firlefanz für die Tourismuspastoral](https://simeon.staneks.de/posts/20241120/index.md.txt): Ich stelle dir in diesem Artikel ein digitales Glücksrad vor, das ich für die Veranstaltungen der Tourismuspastoral im Werdenfelser Land und die Tourismuspastoral der Erzdiözese München und Freising entwickelt habe. Wir werden die Idee, die technische Umsetzung und die Nutzung des Glücksrads Schritt für Schritt durchgehen und zeigen, wie es bei verschiedenen Veranstaltungen eingesetzt werden kann. Dieser Leitfaden richtet sich an alle, die nach kreativen und interaktiven Lösungen für ihre Events suchen.
 
 ## Optional
+- [Audio for Calendar - Chaos - Compromise](https://simeon.staneks.de/posts/calendar-chaos-compromise/audio.mp3): Audio version of this article
 - [Audio for Rate my Setup - Proxmox](https://simeon.staneks.de/posts/rate-my-setup/audio.mp3): Audio version of this article
 - [Audio for  bun run tauri dev - No AI Challenge](https://simeon.staneks.de/posts/bun-run-tauri-dev/audio.mp3): Audio version of this article
 - [Audio for llms.txt - Tokens sind das neue Gold](https://simeon.staneks.de/posts/llms-txt-tokens-are-the-new-money/audio.mp3): Audio version of this article

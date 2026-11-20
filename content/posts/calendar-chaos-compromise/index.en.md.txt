@@ -5,6 +5,7 @@ description = "Juggling family, work, and a homelab takes good time management. 
 [taxonomies]
 tags = ["calendar", "chaos", "compromise", "homelab", "nextcloud", "office365", "microsoft", "citrix"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/2f7d469331344c2ba787ff2dba0f4fac"
 comment = true
 +++
 

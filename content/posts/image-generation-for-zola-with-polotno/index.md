@@ -5,6 +5,7 @@ description = "Ein Script, das aus den Metadaten von Blogbeiträgen automatisch 
 [taxonomies]
 tags = ["automatisierung", "bloggen", "programmierung", "bildgenerierung", "bun", "polotno", "rss", "typescript", "zola"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/ed9bd9c865b34bd293f8a274c59502c0"
 comment =  true
 +++
 # Die Genese: Warum automatisch Bilder generieren?

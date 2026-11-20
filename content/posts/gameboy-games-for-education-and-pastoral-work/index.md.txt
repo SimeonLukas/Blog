@@ -5,6 +5,7 @@ description = "Gamefication in der Bildung und Pastoralarbeit: Wie das Einsetzen
 [taxonomies]
 tags = ["software", "programmierung", "bildung", "education", "emulator", "gameboy", "gamefication", "games", "gb-studio", "javascript", "levels", "nintendo", "pastoral", "rom", "sprites", "story"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/68351a37bcc441a2bb1a831098adbbc6"
 comment =  true
 +++
 # Die Genese: Gameboy Spiele für Bildungs- und Pastoralarbeit

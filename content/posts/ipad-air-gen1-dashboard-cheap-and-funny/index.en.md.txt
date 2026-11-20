@@ -5,6 +5,7 @@ description = "Yes, I know, another dashboard. But this time with a first-genera
 [taxonomies]
 tags = ["tutorial", "smart-home", "software", "programmierung", "cordova", "css", "dashboard", "html", "ipad", "javascript", "kindle"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/f66540d782e54584b9b4eb2147d27131"
 comment = true
 +++
 

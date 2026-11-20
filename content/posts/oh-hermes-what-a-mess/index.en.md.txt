@@ -6,6 +6,7 @@ description = "This rabbit hole runs deep, deeper than I thought. I dove into th
 [taxonomies]
 tags = ["ai", "ai-generated", "gemma4", "hermes", "local-ai", "qwen3.6"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/198fe90f38e34170a7235f0bb4cfaff2"
 comment =  true
 +++
 

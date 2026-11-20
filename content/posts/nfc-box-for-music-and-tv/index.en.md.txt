@@ -6,6 +6,7 @@ description = "How I built a smart music box with an ESP32, NFC tags, and n8n th
 [taxonomies]
 tags = ["smart-home", "hardware", "diy", "esp32", "iot", "kids", "n8n", "nfc", "projekt", "spotify", "toniebox"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/a799d96d2ab64e339e1351f3e8b18722"
 comment =  true
 
 +++

@@ -5,6 +5,7 @@ description = "In this article I describe how to use an old rotary phone as an i
 [taxonomies]
 tags = ["tutorial", "hardware", "programmierung", "arduino", "diy", "escape-room", "esp8266", "n8n", "retro"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/dc510ca145034a078bd0b8592eb59976"
 comment = true
 +++
 # The Genesis: When Nostalgia Meets Technology

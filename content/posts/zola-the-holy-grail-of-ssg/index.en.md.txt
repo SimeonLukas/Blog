@@ -5,6 +5,7 @@ description = "In this article, I will provide you with a detailed introduction 
 [taxonomies]
 tags = ["tutorial", "software", "css", "github-pages", "html", "javascript", "rust", "zola"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/8999db35eda3442fa948bf64c2a1ffc4"
 image = "https://simeon.staneks.de/posts/zola-the-holy-grail-of-ssg/images/zola00001.jpg"
 comment =  true
 +++

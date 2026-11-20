@@ -6,6 +6,7 @@ description = "Ein stromsparender Bluetooth-Button für das Tourismus-Glücksrad
 [taxonomies]
 tags = ["hardware", "ble", "deep-sleep", "esp32c3", "esp32s3", "iot", "tourismuspastoral"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/0b55af113f3a4f018dafb6da90212807"
 comment = true
 +++
 

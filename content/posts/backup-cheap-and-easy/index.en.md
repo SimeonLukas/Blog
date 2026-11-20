@@ -5,6 +5,7 @@ description = "When it comes to backups, you should never wait too long. This ar
 [taxonomies]
 tags = ["tutorial", "programmierung", "backup", "bash", "hetzner", "n8n", "rclone", "restic", "sftp"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/f80e45aabc51472881d4544ada051dc9"
 comment = true
 +++
 

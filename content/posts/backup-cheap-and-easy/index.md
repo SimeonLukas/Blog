@@ -5,6 +5,7 @@ description = "Wenn es um Backups geht, sollte man nie zu lang warten. Dieser Ar
 [taxonomies]
 tags = ["tutorial", "programmierung", "backup", "bash", "hetzner", "n8n", "rclone", "restic", "sftp"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/f80e45aabc51472881d4544ada051dc9"
 comment =  true
 +++
 # Die Genese: Wenn Daten flöten gehen

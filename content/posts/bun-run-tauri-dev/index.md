@@ -5,6 +5,7 @@ description = "Wie ich durch meine saisonale Intressensverschiebung keine Lust a
 [taxonomies]
 tags = ["bun", "css", "html", "javascript", "noai", "selfmade", "tauri"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/184400c4f11f4c36a764c4d8e752a487"
 comment =  true
 +++
 ## Die Genese: Ich habe Lust!

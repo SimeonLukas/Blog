@@ -5,6 +5,7 @@ description = "Insights into my paperless workflow with Obsidian, EPUBs and e-bo
 [taxonomies]
 tags = ["software", "programmierung", "docker", "ebook", "ebook-reader", "epub", "epub-creator", "markdown", "md2epub", "obsidian", "php", "pocketbook", "typescript"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/cc160f85047e49fea17cf2b6aa6f7368"
 comment =  true
 +++
 # The Genesis: Paperless Work in Pastoral Care

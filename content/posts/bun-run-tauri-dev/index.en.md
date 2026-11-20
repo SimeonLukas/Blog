@@ -5,6 +5,7 @@ description = "How my seasonal shift in interests left me with no appetite for a
 [taxonomies]
 tags = ["bun", "css", "html", "javascript", "noai", "selfmade", "tauri"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/184400c4f11f4c36a764c4d8e752a487"
 comment =  true
 +++
 ## The Genesis: I'm in the Mood!

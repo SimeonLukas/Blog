@@ -5,6 +5,7 @@ description = "Wie ich für mein Zola-Blog eine dynamische llms.txt über den RS
 [taxonomies]
 tags = ["ai", "bash", "llms.txt", "markdown", "ohermes", "rss", "seo", "zola"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/24ec158b154b4b04876714f050269659"
 comment =  true
 +++
 Es fällt mir wirklich schwer zu entscheiden, ob ich jetzt einen Artikel schreiben soll oder noch ne Runde Denshattack! spielen soll, doch nachdem der liebe [J. einen richtig coolen Artikel veröffentlicht hat](https://enthusiastic.dev/blog/dlr-besuch-oberpfaffenhofen/) und das sogar pünktlich, muss ich wohl auch ran.

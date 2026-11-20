@@ -5,6 +5,7 @@ description = "In this article, I will provide you with a comprehensive guide an
 [taxonomies]
 tags = ["tutorial", "gaming", "hardware", "software", "n64", "retrogaming"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/aade57f4d51a400bb2bf1a1af6ae68c3"
 image = "https://simeon.staneks.de/posts/20241122/images/n6400001.jpeg"
 comment =  true
 +++

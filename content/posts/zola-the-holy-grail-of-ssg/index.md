@@ -5,6 +5,7 @@ description = "In diesem Artikel gebe ich dir eine detaillierte Einführung in d
 [taxonomies]
 tags = ["tutorial", "software", "css", "github-pages", "html", "javascript", "rust", "zola"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/8999db35eda3442fa948bf64c2a1ffc4"
 comment =  true
 +++
 

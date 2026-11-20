@@ -5,6 +5,7 @@ description = "Yarr! In this article, I show how I created an interactive Smart 
 [taxonomies]
 tags = ["tutorial", "smart-home", "programmierung", "css", "dashboard", "html", "javascript", "point-and-click"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/99fc253bc4c34f32bc8fdf3d7b432071"
 comment = true
 +++
 

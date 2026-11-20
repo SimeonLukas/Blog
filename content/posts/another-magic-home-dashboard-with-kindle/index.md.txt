@@ -5,6 +5,7 @@ description = "Technik... Technik bleibt immer gliech - oder? Wie ich mit HTML, 
 [taxonomies]
 tags = ["tutorial", "smart-home", "software", "programmierung", "css", "dashboard", "html", "jailbreak", "javascript", "kindle", "php"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/3ec1551eb73647098677192a487af6e5"
 comment =  true
 +++
 

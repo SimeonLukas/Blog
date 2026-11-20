@@ -7,6 +7,7 @@ template = "page.html"
 [taxonomies]
 tags = ["hardware", "software", "arduino", "atmega32u4", "css", "html", "javascript", "n8n", "php", "raspberry-pi", "work"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/ba578ea0a2fa49d8a39b66455ab31329"
 image = "https://simeon.staneks.de/posts/20241120/images/screenshot.jpeg"
 comment =  true
 +++

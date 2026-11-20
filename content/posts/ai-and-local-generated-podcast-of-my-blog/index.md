@@ -6,6 +6,7 @@ description = "Absurd, was alles lokal mit KI möglich ist. In diesem Beitrag te
 [taxonomies]
 tags = ["ai", "ai-generated", "gemma4", "local-ai", "podcast", "qwen3", "text-to-speech"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/da8dbd31213a4ad48c11c5229dbe3e1e"
 comment =  true
 +++
 

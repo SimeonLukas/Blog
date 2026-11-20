@@ -5,6 +5,7 @@ description = "A script that automatically generates various images for differen
 [taxonomies]
 tags = ["automatisierung", "bloggen", "programmierung", "bildgenerierung", "bun", "polotno", "rss", "typescript", "zola"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/ed9bd9c865b34bd293f8a274c59502c0"
 comment = true
 +++
 

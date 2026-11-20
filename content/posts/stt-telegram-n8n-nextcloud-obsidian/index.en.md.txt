@@ -5,6 +5,7 @@ description = "How I use a Telegram bot, a local Whisper server, n8n and Nextclo
 [taxonomies]
 tags = ["produktivitaet", "automatisierung", "docker", "n8n", "nextcloud", "obsidian", "self-hosted", "telegram", "whisper"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/f06a197c8c5249839fc6739e97e4ffb1"
 comment = true
 +++
 

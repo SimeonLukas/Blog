@@ -5,6 +5,7 @@ description = "Wie man sich mit gebrauchten Squeezeboxen, einem Raspberry Pi und
 [taxonomies]
 tags = ["docker", "home-network", "logitech", "lyrion", "multiroom", "music", "mystrom", "picoreplayer", "proxmox", "raspberry-pi", "self-hosted", "squeezebox"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/285f848d4a5a48e081cbf52de3cb185e"
 comment = true
 +++
 

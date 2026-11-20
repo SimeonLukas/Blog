@@ -5,6 +5,7 @@ description = "A program I wrote that downloads different Bible versions which c
 [taxonomies]
 tags = ["tutorial", "software", "bibel-studien", "bible", "bible-linker", "markdown", "obsidian", "rust"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/5c32ade9db0143ba8b1a096000e13c5c"
 comment = true
 +++
 

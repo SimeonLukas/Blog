@@ -6,6 +6,7 @@ description = "My first experiences with my own 3D printer, the challenges and u
 [taxonomies]
 tags = ["hardware", "3d-printing", "bambu-lab", "diy", "filament", "p1s", "printer", "projekt"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/1423740d38054ffbafb449496e1035d8"
 comment =  true
 
 +++

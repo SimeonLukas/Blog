@@ -156,6 +156,9 @@
         <section class="body">
             {{  page.content | safe }}
         </section>
+        {% if page.extra.vgwort %}
+            <img src="{{ page.extra.vgwort | escape_xml }}" width="1" height="1" alt="">
+        {% endif %}
     </article>
     <hr>
     <br>

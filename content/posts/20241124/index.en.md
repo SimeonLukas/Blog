@@ -6,6 +6,7 @@ description = "In this article, I will provide you with a detailed introduction 
 [taxonomies]
 tags = ["tutorial", "hardware", "software", "arduino", "atmega32u4"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/a0391f8ed90f4815916c18e64af5a706"
 image = "https://simeon.staneks.de/posts/20241124/images/foto00001.jpeg"
 comment =  true
 +++

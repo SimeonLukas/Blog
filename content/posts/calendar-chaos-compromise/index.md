@@ -5,6 +5,7 @@ description = "Familie, Arbeit und Homelab unter einen Hut bringen, dafür brauc
 [taxonomies]
 tags = ["calendar", "chaos", "compromise", "homelab", "nextcloud", "office365", "microsoft", "citrix"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/2f7d469331344c2ba787ff2dba0f4fac"
 comment = true
 +++
 

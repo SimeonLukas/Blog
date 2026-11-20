@@ -5,6 +5,7 @@ description = "Ein von mir geschriebenes Programm, das unterschiedliche Bibelver
 [taxonomies]
 tags = ["tutorial", "software", "bibel-studien", "bible", "bible-linker", "markdown", "obsidian", "rust"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/5c32ade9db0143ba8b1a096000e13c5c"
 comment =  true
 +++
 

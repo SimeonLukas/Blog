@@ -6,6 +6,7 @@ draft = true
 [taxonomies]
 tags = ["tutorial", "software", "cms", "git", "hosting", "javascript", "yml", "zola"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/a56d68946be042e1a882c46d58fa6630"
 image = "https://simeon.staneks.de/posts/20241125/images/zola00001.png"
 comment =  true
 +++

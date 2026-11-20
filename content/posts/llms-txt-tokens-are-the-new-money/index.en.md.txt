@@ -5,6 +5,7 @@ description = "How I built a dynamic llms.txt for my Zola blog via an RSS/XML wo
 [taxonomies]
 tags = ["ai", "bash", "llms.txt", "markdown", "ohermes", "rss", "seo", "zola"]
 [extra]
+vgwort = "https://vg04.met.vgwort.de/na/24ec158b154b4b04876714f050269659"
 comment = true
 +++
 
