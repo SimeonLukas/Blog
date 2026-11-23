@@ -1,0 +1,153 @@
+Familie, Arbeit und Homelab unter einen Hut bringen. Dafür braucht man gutes Zeitmanagement. Oder wenigstens einen Kalender, in dem steht, warum man gerade keine Zeit hat.
+
+Bei mir gibt es dabei allerdings ein kleines Problem. Meine Kalender leben in zwei getrennten Welten.
+
+Auf der einen Seite ist mein Arbeitsrechner. Komplett verriegelt. Ich kann keine Software installieren und auch keine externen Kalender im Arbeitskalender abonnieren.
+
+Auf der anderen Seite ist Nextcloud. Dort pflegen meine Frau und ich unsere Termine.
+
+Der private Termin steht also in Nextcloud. Die Besprechung steht im Arbeitskalender. Und ich stehe dazwischen und hoffe, dass ich an alles gedacht habe.
+
+Vielleicht kennt ihr das.
+
+Man organisiert sich eigentlich, um weniger Arbeit zu haben. Und plötzlich muss man erst einmal die eigene Organisation organisieren.
+
+Mein aktueller Kompromiss sieht so aus: Ich exportiere regelmäßig meine Nextcloud-Kalender als Kalenderdateien und importiere sie anschließend in meinen Arbeitskalender.
+
+Nicht besonders elegant. Aber es funktioniert.
+
+Zumindest dann, wenn ich es auch mache.
+
+Denn das größte Problem in diesem Ablauf bin natürlich ich selbst. Ich denke nicht regelmäßig daran. Und dann fehlen wieder Termine.
+
+Deshalb habe ich mir inzwischen eine wiederkehrende Aufgabe in meiner To-do-Liste eingerichtet.
+
+Eine Aufgabe, die mich daran erinnert, meine andere Organisationshilfe zu pflegen.
+
+Na ja.
+
+Damit wenigstens das Zusammenführen und Vergleichen weniger Arbeit macht, habe ich mir zwei kleine Werkzeuge von einer KI bauen lassen.
+
+Das erste heißt Terminmerger.
+
+In Nextcloud habe ich insgesamt fünf Kalender. Meinen privaten Kalender, meinen Arbeitskalender, unseren Familienkalender, den privaten Kalender meiner Frau und ihren Arbeitskalender.
+
+Beim Export bekomme ich diese Kalender einzeln. Für den Import hätte ich aber gerne eine einzige Datei.
+
+Genau das erledigt der Terminmerger.
+
+Ich wähle die exportierten Kalenderdateien aus, lege einen Zeitraum fest und lasse sie zusammenführen. Anschließend lade ich das Ergebnis als gemeinsame Kalenderdatei herunter.
+
+Besonders praktisch ist dabei der Datumsfilter.
+
+Ich brauche schließlich nicht die letzten Jahre unserer Familienorganisation im Arbeitskalender. Ich möchte vor allem wissen, was demnächst ansteht.
+
+Der erste Versuch hat gut funktioniert. Ich konnte die zukünftigen Termine aus unseren Kalendern gesammelt in meinen Arbeitskalender importieren.
+
+Das war schon deutlich angenehmer, als jede Datei einzeln anzufassen.
+
+Damit war allerdings sofort die nächste Frage da.
+
+Was passiert beim nächsten Mal?
+
+Ein Teil der Termine ist dann ja schon im Arbeitskalender. Ich möchte nicht jedes Mal selbst nachschauen, was bereits übertragen wurde und was noch fehlt.
+
+Dafür gibt es das zweite Werkzeug. Den Termindiffer.
+
+Der stellt die Termine aus meinem Arbeitskalender und den Nextcloud-Kalendern gegenüber.
+
+Aus diesem Vergleich kann ich eine neue Kalenderdatei erstellen lassen. Darin stehen nur die Termine, die im Arbeitskalender noch fehlen.
+
+Auch hier kann ich den Zeitraum eingrenzen und mich auf zukünftige Termine konzentrieren.
+
+Ganz ohne Handarbeit geht es damit natürlich noch nicht. Ich muss die Kalender vorher exportieren. Und die fertige Datei muss ich anschließend wieder importieren.
+
+Aber ich muss nicht mehr selbst herausfinden, welchen Termin ich schon übertragen habe und welchen nicht.
+
+Das nimmt mir zumindest einen nervigen Teil der Arbeit ab.
+
+Beide Werkzeuge bestehen nur aus HTML, CSS und JavaScript.
+
+Ich habe sie auf meinem Server liegen, weil ich sie so bequem von überall aufrufen kann.
+
+Und genau daran finde ich noch etwas anderes interessant.
+
+Viele Menschen in meinem Umfeld wissen gar nicht, wie schnell man sich solche kleinen Helfer inzwischen mit KI bauen lassen kann.
+
+Ich meine damit keine riesige Anwendung. Auch nicht die nächste Geschäftsidee.
+
+Ich meine ganz banale Dinge, die einen im Alltag nerven.
+
+Zwei Dateien vergleichen.
+
+Eine Liste umsortieren.
+
+Mehrere Kalender zu einem zusammenführen.
+
+Bei solchen Aufgaben kann ein erster Entwurf innerhalb kürzester Zeit stehen.
+
+Dann probiert man ihn aus. Schaut, was noch nicht passt. Und lässt nachbessern.
+
+Das bedeutet natürlich nicht, dass sofort alles richtig funktioniert.
+
+Aber zwischen dem Gedanken, dass etwas doch einfacher gehen müsste, und einem ersten brauchbaren Versuch liegt plötzlich nicht mehr unbedingt ein ganzer Abend.
+
+Und es muss dafür auch nicht immer gleich Python sein.
+
+Man muss nicht zwangsläufig eine Laufzeitumgebung installieren, Pakete nachladen oder herausfinden, warum irgendein Skript auf dem eigenen Rechner nicht startet.
+
+Für solche kleinen Aufgaben reicht oft eine einzelne HTML-Datei. Die Oberfläche und die eigentliche Funktion stecken dann gemeinsam in dieser Datei.
+
+Man öffnet sie im Browser. Fertig.
+
+Kein Terminal. Kein eigener Server. Keine zusätzliche Anwendung.
+
+Meine beiden Werkzeuge liegen zwar auf meinem Server. Aber für ein entsprechend gebautes, in sich abgeschlossenes Werkzeug ist das gar nicht nötig.
+
+Die Datei kann genauso gut auf dem eigenen Rechner liegen.
+
+Man kann der KI also ganz konkret sagen:
+
+Bau mir das als einzelne HTML-Datei, die ich lokal im Browser öffnen kann. Ohne Installation und ohne externe Abhängigkeiten.
+
+Für Leute, die nicht ständig mit solchen Dingen arbeiten, ist das vielleicht sogar der interessantere Hinweis als mein eigentliches Kalenderproblem.
+
+Man muss nicht erst ein Homelab aufbauen, nur weil man zwei Dateien vergleichen möchte.
+
+Auch wenn ich natürlich grundsätzlich nichts gegen ein weiteres Homelab habe.
+
+Langfristig möchte ich diesen ganzen Kalenderablauf trotzdem nicht mehr selbst erledigen.
+
+Exportieren, zusammenführen, vergleichen und wieder importieren. Das ist nichts, womit ich auf Dauer meine freie Zeit verbringen möchte.
+
+Am Ende hätte ich gerne einen automatischen Abgleich zwischen Nextcloud und meinem Arbeitskalender in Office dreihundertfünfundsechzig.
+
+Natürlich nur, soweit die Vorgaben meines Arbeitsumfelds das zulassen.
+
+Wie genau ich das löse, muss ich mir noch anschauen. Die Einschränkungen verschwinden ja nicht dadurch, dass ich gerne eine bequemere Lösung hätte.
+
+Bis dahin sind die beiden Werkzeuge mein Kompromiss.
+
+Sie sind keine fertige Kalendersynchronisation. Sie arbeiten mit den Dateien, die ich ihnen gebe.
+
+Wenn ich nichts exportiere und importiere, passiert auch nichts.
+
+Und bevor ich einen ganzen Schwung Termine übernehme, schaue ich mir das Ergebnis lieber noch einmal an.
+
+Aber der bisherige Ablauf ist jetzt einfacher.
+
+Und das reicht mir fürs Erste.
+
+Ich muss nicht erst das komplette Automatisierungsprojekt fertig haben, bevor sich irgendetwas verbessert.
+
+Das ist für mich eigentlich der entscheidende Punkt.
+
+Sonst landet so etwas schnell auf der Liste mit den Dingen, die ich irgendwann mal ordentlich machen möchte.
+
+Und diese Liste ist wirklich lang genug.
+
+Die Automatisierung kommt noch.
+
+Bis dahin habe ich zwei kleine Helfer, die mir ein bisschen Arbeit abnehmen.
+
+Jetzt muss ich nur noch auf die Erinnerung in meiner To-do-Liste hören.
