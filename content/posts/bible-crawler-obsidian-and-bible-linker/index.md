@@ -15,7 +15,7 @@ Vor ca. drei Jahren wollte ich meine Bibelstudien digitalisieren. Ich wollte die
 
 ## Bible Crawler
 
-Das kleine Programm habe ich auf [Github](https://github.com/SimeonLukas/Bible-Crawler-Rust) veröffentlicht und es gibt 3 Versionen: eine für Windows, eine für Linux und eine für MacOS, so dass jeder der möchte sich die Bibeltexte in Markdown-Dateien herunterladen kann. Da ich zu der Zeit ein großes Interesse an der Programmiersprache Rust hatte, habe ich das Programm in Rust geschrieben. Rust ist eine moderne, performante und sichere Programmiersprache, die sich besonders für Systemprogrammierung eignet. Das Programm ist sehr einfach gehalten und besteht aus nur einer Datei und den enstprechenden JSON-Dateien, die die Konfiguration für die Bibelversionen enthalten.
+Das kleine Programm habe ich ursprünglich auf GitHub veröffentlicht, wobei es 3 Versionen gab: eine für Windows, eine für Linux und eine für macOS. Aus urheberrechtlichen Gründen habe ich das Projekt jedoch offline genommen; ein öffentlicher Download ist daher nicht mehr verfügbar. Da ich zu der Zeit ein großes Interesse an der Programmiersprache Rust hatte, habe ich das Programm in Rust geschrieben. Rust ist eine moderne, performante und sichere Programmiersprache, die sich besonders für Systemprogrammierung eignet. Das Programm ist sehr einfach gehalten und besteht aus nur einer Datei und den entsprechenden JSON-Dateien, die die Konfiguration für die Bibelversionen enthalten.
 
 ### Was macht der Bible Crawler?
 
@@ -32,12 +32,7 @@ Folgende Bibelversionen stehen aktuell in der neuesten Version zur Verfügung:
 
 ### Installation
 
-Man muss einfach nur das [Programm](https://github.com/SimeonLukas/Bible-Crawler-Rust/releases/latest) herunterladen und ausführen. Es gibt keine weiteren Abhängigkeiten. Das Programm ist sehr einfach gehalten.
-
-Als Nutzer von MacOS oder Linux muss man lediglich die Datei mit `chmod +x ./biblecrawler` ausführbar machen, damit man sie per `./biblecrawler` ausführen kann.
-
-Für MacOS Nutzer muss man zusätzlich in den Sicherheitseinstellungen die Ausführung von nicht signierten Programmen erlauben.
-
+Das Programm wird aus urheberrechtlichen Gründen nicht mehr zum Download angeboten. Früher gab es keine weiteren Abhängigkeiten, und das Programm war sehr einfach gehalten.
 
 ### Nutzung
 

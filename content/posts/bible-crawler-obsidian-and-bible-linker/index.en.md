@@ -15,7 +15,7 @@ About three years ago, I wanted to digitize my Bible studies. I wanted to be abl
 
 ## Bible Crawler
 
-I published the small program on [Github](https://github.com/SimeonLukas/Bible-Crawler-Rust) and there are 3 versions: one for Windows, one for Linux, and one for MacOS, so anyone who wants can download the Bible texts in markdown files. Since I had a great interest in the Rust programming language at the time, I wrote the program in Rust. Rust is a modern, performant, and safe programming language that is particularly suitable for system programming. The program is very simple and consists of only one file and the corresponding JSON files that contain the configuration for the Bible versions.
+I originally published the small program on GitHub, with 3 versions: one for Windows, one for Linux, and one for macOS. However, I have taken the project offline for copyright reasons, so it is no longer publicly available for download. Since I had a great interest in the Rust programming language at the time, I wrote the program in Rust. Rust is a modern, performant, and safe programming language that is particularly suitable for system programming. The program is very simple and consists of only one file and the corresponding JSON files that contain the configuration for the Bible versions.
 
 ### What does the Bible Crawler do?
 
@@ -32,11 +32,7 @@ Translations from die-bibel.de:
 
 ### Installation
 
-You simply need to download and run the [program](https://github.com/SimeonLukas/Bible-Crawler-Rust/releases/latest). There are no other dependencies. The program is very simple.
-
-As a MacOS or Linux user, you only need to make the file executable with `chmod +x ./biblecrawler` so you can run it using `./biblecrawler`.
-
-For MacOS users, you must additionally allow the execution of unsigned programs in the security settings.
+The program is no longer available for download for copyright reasons. It previously had no other dependencies and was very simple.
 
 ### Usage
 
